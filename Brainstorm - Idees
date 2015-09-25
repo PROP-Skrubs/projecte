@@ -1,0 +1,22 @@
+Idees:
+  Mode multijugador: a part de tenir un mode en el que l'usuari resolgui un puzzle ell sol, es poden fer escenaris 1vX
+    1v1: Classic, dos jugadors
+    1vAI: Humà contra màquina
+      La velocitat a la que resol el puzzle és variable segons el nivell de dificultat al que es jugui.
+  
+  Referent a la gestió d'usuaris: és viable implementar que els usuaris estiguin en un servidor remot?
+    [json?]
+  
+  Intro music + toplevelb055 splash screen? get dat art, bitches.
+  
+  Dificultats:
+    Easy, Normal, Dificil, ULTRA-VIOLENCE[desbloqueable]
+    Que controlen?
+      Tamany màxim del propi Hidato.
+      Ratio d'espais en blanc - queda veure com s'ajusta això.
+      [Especific per a contrarellotge] Temps disponible per a resoldre el puzzle (cpt. obvious)
+      Distància resolta d'una tirada.
+  
+  Estadístiques
+    Incloure un avg. dels diferents modes de joc
+      Temps utilitzat, vegades resolt vs. vegades abandonat, etc.
