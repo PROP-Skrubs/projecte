@@ -1,5 +1,7 @@
 [Link molon](http://www.mathrecreation.com/2011/06/hidato-or-kings-tour.html) on sembla que hi ha una explicacio de les mates i la logica darrere del hidato. Això ho podem fer servir per a implementar correctament les funcions que ens generin un hidato UNIC
 
+Preguntar-li al Borja exactament quina és la topologia permesa del tauler. 
+
 Idees:
   Mode multijugador: a part de tenir un mode en el que l'usuari resolgui un puzzle ell sol, es poden fer escenaris 1vX
     1v1: Classic, dos jugadors
