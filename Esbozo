@@ -26,5 +26,6 @@ Domain
 
 
 Persistence
+
     bool hasUsername(username);
     bool userMatchPassword(username,password);
