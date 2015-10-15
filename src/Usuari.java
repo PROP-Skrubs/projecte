@@ -3,12 +3,24 @@
  */
 public class Usuari
 {
+    private int uniqID;
     private String nomUsuari;
     private String contrasenya;
+    private String nomReal;
 
     Usuari()
     {
 
+    }
+
+    public int getUniqID()
+    {
+        return uniqID;
+    }
+
+    public void setUniqID(int uniqID)
+    {
+        this.uniqID = uniqID;
     }
 
     public String getContrasenya()
@@ -33,6 +45,17 @@ public class Usuari
 
     public boolean validaContrasenya(String altraContrasenya)
     {
-        return altraContrasenya.compareTo(contrasenya)==0;
+        System.out.println(contrasenya);
+        return altraContrasenya.compareTo(contrasenya) == 0;
+    }
+
+    public String getNomReal()
+    {
+        return nomReal;
+    }
+
+    public void setNomReal(String nomReal)
+    {
+        this.nomReal = nomReal;
     }
 }
