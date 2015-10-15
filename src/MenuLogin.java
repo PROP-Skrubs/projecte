@@ -33,11 +33,13 @@ public class MenuLogin
                 if (CapaDomini.fesLogin(nomUsuari, contrasenya))
                 {
                     CapaVista.mostraMenuPrincipal();
+                    //TODO: que el menu es mostri al centre de la pantalla
                     frame.dispose();
                 }
                 else
                 {
                     //Alerta a l'usuari que el login ha sigut incorrecte
+                    //TODO: aixo es pot fer amb un "pop-up" grafic, oi? :)
                     System.out.println("Login incorrecte");
                 }
             }
@@ -50,9 +52,11 @@ public class MenuLogin
                 String nomUsuari = campUsuari.getText();
                 String contrasenya = new String(campContrasenya.getPassword());
                 String nomReal = "pepito";
-                CapaDomini.crearUsuari(nomUsuari, contrasenya, nomReal);
-                //TODO: controlar les excepcions i el resultat de la operacio
-                System.out.println("Usuari creat correctament");
+                boolean usuariCreatCorrectament = CapaDomini.crearUsuari(nomUsuari, contrasenya, nomReal);
+
+                //TODO: aixo es pot fer amb un "pop-up" grafic, oi? :)
+                if (usuariCreatCorrectament) System.out.println("Usuari creat correctament");
+                else System.out.println("Ja existia un usuari amb aquest nom!!");
             }
         });
     }

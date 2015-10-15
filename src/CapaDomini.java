@@ -16,20 +16,25 @@ public class CapaDomini
         return true;
     }
 
-    public static void crearUsuari(String nomUsuari, String contrasenya, String nomReal)
+    public static boolean crearUsuari(String nomUsuari, String contrasenya, String nomReal)
     {
         Usuari u = new Usuari();
         u.setNomUsuari(nomUsuari);
         u.setContrasenya(contrasenya);
         u.setNomReal(nomReal);
-        CapaPersistencia.crearUsuari(u);
-        //TODO: controlar les excepcions i el resultat de la operacio
+        return CapaPersistencia.crearUsuari(u);
+        /*TODO:
+            Controlar les excepcions i el resultat de la operacio.
+              ^en principi ja es controla tot lo necessari (basicament si es crea o no l'user) i es deixa morir els errors de base de dades.
+         */
     }
 
-    private static void eliminarUsuari(String nomUsuari)
+    private static boolean eliminarUsuari(String nomUsuari)
     {
-        CapaPersistencia.eliminarUsuari(nomUsuari);
-        //TODO: controlar les excepcions i el resultat de la operacio
+        return CapaPersistencia.eliminarUsuari(nomUsuari);
+        /*TODO:
+            Si la capa de persistencia tira una excepcio normal en lloc d'una runtime (o controlem la runtime aqui), llavors podem morir "more gracefully" si mai borrem mes d'un usuari... PERO COM TAMPOC PASSARA MAI (GOD BLESS UNIQUE CONSTRAINTS), FUCK IT.
+         */
     }
 
     public static Usuari getUsuariActual()

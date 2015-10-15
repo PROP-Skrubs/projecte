@@ -45,7 +45,6 @@ public class Usuari
 
     public boolean validaContrasenya(String altraContrasenya)
     {
-        System.out.println(contrasenya);
         return altraContrasenya.compareTo(contrasenya) == 0;
     }
 
