@@ -1,6 +1,6 @@
 public class Tauler
 {
-    private int[][] tauler;
+    private Casella[][] tauler;
     private static int FORAT = -1;
     private static int BUIT = 0;
 
@@ -13,10 +13,7 @@ public class Tauler
         //throw exception
     }
 
-    public Tauler(int tamany)
-    {
-        tauler = new int[tamany][tamany];
-    }
+    public Tauler(int tamany) { tauler = new Casella[tamany][tamany]; }
 
     public int getCasella(int posX, int posY)
     {
@@ -28,15 +25,11 @@ public class Tauler
         tauler[posX][posY] = valor;
     }
 
-    public int tamanyX()
+    public int tamany()
     {
         return tauler.length;
     }
 
-    public int tamanyY()
-    {
-        return tauler[0].length;
-    }
 }
 
 
