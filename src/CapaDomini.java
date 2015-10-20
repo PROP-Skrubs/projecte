@@ -73,4 +73,30 @@ public class CapaDomini
     {
         return usuariActual;
     }
+
+
+    public static boolean validarparamscreacioTaulerpredeterminat(int n,int m, int x, String dificultat)
+    {
+        if (n < 3 || n > 10)
+        {
+            throw new RuntimeException("Nombre de costat no valid, inserti un altre");
+        }
+        if (m < 0 || m >(0,3*n*n))
+        {
+            throw new RuntimeException("Nombre de forats no vàlid, inserti un altre");
+        }
+        if (x < 3 || x >(n*n-1))
+        {
+            throw new RuntimeException("Nombre predeterminats no vàlid, inserti un altre");
+        }
+        if  ((dificultat.compareTo("facil") != 0) || (dificultat.compareTo("normal") != 0) || (dificultat.compareTo("dificil") != 0) || (dificultat.compareTo("UltraViolence") != 0) )
+        {
+            throw new RuntimeException("Dificultat no vàlida, inserti un altre");
+        }
+    }
+
+    public Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
+    {
+        Tauler t = new Tauler(n);
+    }
 }
