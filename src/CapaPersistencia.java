@@ -12,12 +12,12 @@ public class CapaPersistencia
     {
         try
         {
+            //jbdc:sqlite:<pathAlFitxer.db>
             conn = DriverManager.getConnection("jdbc:sqlite:basedades.db");
         }
         catch (SQLException e)
         {
-            System.err.println(e.getMessage());
-            throw new RuntimeException("No s'ha pogut connectar a la Base de Dades!");
+            throw new RuntimeException("No s'ha pogut connectar a la Base de Dades!", e);
         }
         validarBaseDeDades();
     }
@@ -130,5 +130,3 @@ public class CapaPersistencia
         }
     }
 }
-
-

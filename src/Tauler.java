@@ -1,6 +1,12 @@
 public class Tauler
 {
-    private int[][] tauler;
+    private class Casella
+    {
+        public int valor;
+        public int x;
+        public int y;
+    }
+    private Casella[][] tauler;
     private static int FORAT = -1;
     private static int BUIT = 0;
 
@@ -8,9 +14,7 @@ public class Tauler
     //Incloem un constructor sense arguments perque requeriments del llenguatge, però no el fem servir
     {
         //Com que aquest constructor no s'hauria de fer servir mai, faig que tiri excepcions si es invocat i així ajudi a detectar errors de disseny
-        //falta implementar que tiri excepcions de veritat, i no escrigui a la consola ;)
-        System.out.println("ERROR: INVOCAT EL CONSTRUCTOR PER DEFECTE DE TAULER!");
-        //throw exception
+        throw new RuntimeException("ERROR: INVOCAT EL CONSTRUCTOR PER DEFECTE DE TAULER!");
     }
 
     public Tauler(int tamany)
@@ -38,5 +42,4 @@ public class Tauler
         return tauler[0].length;
     }
 }
-
 
