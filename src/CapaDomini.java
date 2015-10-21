@@ -45,6 +45,7 @@ public class CapaDomini
          */
     }
 
+
     public static boolean validarHidato(Hidato h)
     {
         /**
@@ -56,6 +57,8 @@ public class CapaDomini
         int primeraIncognita = taulerEsbos.trobaPrimerIncognita();
         return bt(taulerEsbos,primeraIncognita,false);
     }
+
+
     public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada)
     {
         if (reject(t)) return false;
@@ -102,8 +105,10 @@ public class CapaDomini
     public Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
     {
         mapabool = new boolean[n][n];
-        for(int i = 0; i < n; ++i) {
-            for(int j = 0; j < n; ++j) {
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = 0; j < n; ++j)
+            {
                 mapabool[i][j] = false;
             }
         }
@@ -113,29 +118,22 @@ public class CapaDomini
         int auxX;
         int auxY;
 
-        for(int i = 0, i < n; ++i) { //poner de forma RANDOM els forats
-            auxX = rnd.nextInt(n);
-            auxY = rnd.nextInt(n);
-            if(mapabool[auxX][auxY]) --i;
-            else t.setCasella(auxX, auxY, -1);
-            mapabool[auxX][auxY] = true;
-        }
+        for (int i = 0, i<n;
+        ++i){ //poner de forma RANDOM els forats
+        auxX = rnd.nextInt(n);
+        auxY = rnd.nextInt(n);
+        if (mapabool[auxX][auxY]) --i;
+        else t.setCasella(auxX, auxY, -1);
+        mapabool[auxX][auxY] = true;
+    }
 
         //mirarforatsvalids(t);
 
         private int[] num_pre = new int[m];
         num_pre[0] = 1;
 
-
         auxX = rnd.nextInt(n);
         auxY = rnd.nextInt(n);
 
-
-
-
-
-
     }
-
-
 }
