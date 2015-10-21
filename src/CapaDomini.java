@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by daniel on 12/10/15.
@@ -7,6 +8,9 @@ public class CapaDomini
 {
     private static Usuari usuariActual;
     private static Tauler taulerEsbos;
+    private boolean[][] mapabool;
+    private int[] X = {0,1,1,0,-1,1,-1,-1};
+    private int[] Y = {1,0,1,-1,0,-1,1,-1};
 
     public static boolean fesLogin(String nomUsuari, String contrasenya)
     {
@@ -97,6 +101,41 @@ public class CapaDomini
 
     public Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
     {
+        mapabool = new boolean[n][n];
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < n; ++j) {
+                mapabool[i][j] = false;
+            }
+        }
+
         Tauler t = new Tauler(n);
+        Random rnd = new Random();
+        int auxX;
+        int auxY;
+
+        for(int i = 0, i < n; ++i) { //poner de forma RANDOM els forats
+            auxX = rnd.nextInt(n);
+            auxY = rnd.nextInt(n);
+            if(mapabool[auxX][auxY]) --i;
+            else t.setCasella(auxX, auxY, -1);
+            mapabool[auxX][auxY] = true;
+        }
+
+        //mirarforatsvalids(t);
+
+        private int[] num_pre = new int[m];
+        num_pre[0] = 1;
+
+
+        auxX = rnd.nextInt(n);
+        auxY = rnd.nextInt(n);
+
+
+
+
+
+
     }
+
+
 }
