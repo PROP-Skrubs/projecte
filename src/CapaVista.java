@@ -22,4 +22,3 @@ public class CapaVista
         new MenuPrincipal();
     }
 }
-
