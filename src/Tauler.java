@@ -40,6 +40,13 @@ public class Tauler
         return tauler.length;
     }
 
+    public boolean esvalid(int Posx, int Posy) {
+        if (Posx >= 0 && Posx < tauler.length && Posy >= 0 && Posy < tauler.length) return true;
+        else return false;
+    }
+
+
+
     public void getAdjacents(Casella inici, Queue<Casella> aAfegir)
     {
         for (int i = -1; i<=1; ++i)
