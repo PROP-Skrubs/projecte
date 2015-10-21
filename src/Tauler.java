@@ -20,7 +20,7 @@ public class Tauler
 
     public void setCasella(int posX, int posY, int valor)
     {
-        tauler[posX][posY] = valor;
+        tauler[posX][posY].elem = valor;
     }
 
     public int tamany()
