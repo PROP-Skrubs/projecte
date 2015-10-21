@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.Vector
 /**
  * Created by daniel on 12/10/15.
  */
@@ -11,6 +11,33 @@ public class CapaDomini
     private boolean[][] mapabool;
     private int[] X = {0,1,1,0,-1,1,-1,-1};
     private int[] Y = {1,0,1,-1,0,-1,1,-1};
+
+
+    public void bubbleSort(int[] array) {
+        boolean swapped = true;
+        int j = 0;
+        int tmp;
+        while (swapped) {
+            swapped = false;
+            j++;
+            for (int i = 0; i < array.length - j; i++) {
+                if (array[i] > array[i + 1]) {
+                    tmp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = tmp;
+                    swapped = true;
+                }
+            }
+        }
+    }
+
+    public boolean norepeticion(int[]numpre ) {
+        //Pre : v esta ordenat;
+        for(int i = 1; i < numpre.length ;++i){
+            if(numpre[i] == numpre[i-1]) return false;
+        }
+        return true;
+    }
 
     public static boolean fesLogin(String nomUsuari, String contrasenya)
     {
@@ -128,12 +155,47 @@ public class CapaDomini
     }
 
         //mirarforatsvalids(t);
+        boolean b = t.esPartit();
+        if(b) {throw new RuntimeException("Repetir Hitaro predeterminat")};
 
-        private int[] num_pre = new int[m];
-        num_pre[0] = 1;
+        int num_pre[] = new int[];
+        boolean preparat = false;
+        while (!preparat){ //cogemos que numeros seran los que metamos en el Tauler
+            num_pre[0] = 1;
+            num_pre[x-m] = x;
+
+            for(int i = 1; i < x-m-1; ++i){
+                num_pre[i] = rnd.nextInt(x-m-1);
+            }
+            bubbleSort(num_pre);
+
+            if(norepeticion(num_pre)) { preparat = true;}
+
+
+        }
+        preparat = false;
+        while (!preparat){ //ponemos el primero numero de forma random sin que caiga en un Forat
+            auxX = rnd.nextInt(n);
+            auxY = rnd.nextInt(n);
+            if (!mapabool[auxX][auxY]){
+                t.setCasella(auxX, auxY, num_pre[0]); //Ponemos el numero 1 en alguna parte del tablero
+                preparat = true;
+            }
+
+        }
+
+        for (int i = 1; i < num_pre.length; ++i){
+            int margen = num_pre[i] - num_pre[i-1];
+            auxX = rnd.nextInt(8);
+            auxY = rnd.nextInt(8);
+            if(!mapabool[auxX][auxY] && t.esvalid(auxX,auxY)){
+                
+            }
+        }
+
+
 
         auxX = rnd.nextInt(n);
         auxY = rnd.nextInt(n);
-
     }
 }
