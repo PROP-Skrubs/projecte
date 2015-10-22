@@ -35,6 +35,11 @@ public class Tauler
         tauler[posX][posY] = new Casella(posX, posY, valor);
     }
 
+    public int getLongitud()
+    {
+        return tauler.length;
+    }
+
     public int tamany()
     {
         return tauler.length;
@@ -49,21 +54,30 @@ public class Tauler
 
     public void getAdjacents(Casella inici, Queue<Casella> aAfegir)
     {
-        for (int i = -1; i<=1; ++i)
+        /**
+         * Aquesta funció afegeix a la cua "aAfegir" tots els adjacents que no tinguin o un valor o un forat, es a dir, només els que siguin buits
+         */
+        int DEBUG_AFEGIT = 0;
+        for (int i = -1; i <= 1; ++i)
         {
             int consideraX = inici.x + i;
             if (consideraX >= 0 && consideraX < tauler.length)
             {
-                for (int j = -1; j<=1; ++j)
+                for (int j = -1; j <= 1; ++j)
                 {
                     int consideraY = inici.y + j;
                     if (consideraY >= 0 && consideraY < tauler.length)
                     {
-                        if tauler[consideraX][consideraY].elem !=
+                        if (tauler[consideraX][consideraY].elem == Casella.BUIT)
+                        {
+                            aAfegir.add(new Casella(consideraX, consideraY, 0));
+                            ++DEBUG_AFEGIT;
+                        }
                     }
                 }
             }
         }
+        System.err.println("S'han trobat " + DEBUG_AFEGIT + " adjacents\tCasella inicial: " + inici.x + "," + inici.y);
     }
 
     public boolean esPartit()
@@ -81,6 +95,7 @@ public class Tauler
 
         boolean[][] visitats = new boolean[tauler.length][tauler.length];
         int primeraX = -1, primeraY = -1;
+        int casellesVisitades = 0;
         for (int i = 0; i < tauler.length; ++i)
         {
             for (int j = 0; j < tauler.length; ++j)
@@ -91,16 +106,38 @@ public class Tauler
                     primeraX = i;
                     primeraY = j;
                 }
+                else
+                {
+                    ++casellesVisitades;
+                }
             }
         }
 
         //BFS a partir d'aqui
         Queue<Casella> aVisitar = new ArrayDeque<Casella>();
-        getAdjacents(new Casella(primeraX,primeraY,0), aVisitar);
+        getAdjacents(new Casella(primeraX, primeraY, 0), aVisitar);
+        visitats[primeraX][primeraY] = true;
+        ++casellesVisitades;
+        while (!aVisitar.isEmpty())
+        {
+            Casella actual = aVisitar.element();
+            aVisitar.remove();
+            //check if we've been here before. If so, just skip this round
+            if (visitats[actual.x][actual.y]) continue;
+            ++casellesVisitades;
+            visitats[actual.x][actual.y] = true;
+            getAdjacents(actual,aVisitar);
+        }
 
-
-
+        //Ara mirem si hem visitat tantes caselles com te el mapa...
+        if (casellesVisitades > tauler.length * tauler.length)
+            throw new RuntimeException("S'han visitat " + casellesVisitades + " en un tauler de " + tauler.length * tauler.length + " caselles");
+        if (casellesVisitades < tauler.length * tauler.length)
+        {
+            System.err.println("S'han visitat " + casellesVisitades + " caselles...");
+            return true;
+        }
+        return false;
     }
 
 }
-
