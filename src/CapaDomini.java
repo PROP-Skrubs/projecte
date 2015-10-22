@@ -85,22 +85,33 @@ public class CapaDomini
         return bt(taulerEsbos,primeraIncognita,false);
     }
 
-    public static boolean backtracking(int num_ficats, int num_pre_long, int[] num_pre,Casella actual ,Tauler t, boolean[][] mapabool)
+    public static boolean backtracking(int k, int margen, Casella actual, Tauler t, boolean[][] mapabool)
     {
         Random rnd = new Random();
-        if (num_ficats == num_pre_long) return true;
+        if (k == margen) return true;
         else {
-            int k = rnd.nextInt(8);
-            int auxX = actual.x + X[k];
-            int auxY = actual.y + Y[k];
-            if (t.esvalid(auxX,auxY) && !mapabool[auxX][auxY]) {
+            boolean ya = false;
+            while(!ya) {
+                int p = rnd.nextInt(8);
+                int auxX = actual.x + X[p];
+                int auxY = actual.y + Y[p];
 
-        
+                if (t.esvalid(auxX, auxY) && !mapabool[auxX][auxY]) {
+                    Casella newaux = new Casella();
+
+                    newaux.elem = actual.elem + 1;
+                    newaux.x = auxX;
+                    newaux.y = auxY;
+
+                    t.setCasella(auxX, auxY, newaux.elem);
+                    mapabool[auxX][auxY] = true;
+
+
+                    backtracking(k+1, margen, newaux, t, mapabool);
+                    ya = true;
+                }
             }
-
-
         }
-
     }
 
     public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada)
@@ -132,7 +143,7 @@ public class CapaDomini
         {
             throw new RuntimeException("Nombre de costat no valid, inserti un altre");
         }
-        if (m < 0 || m >(0,3*n*n))
+        if (m < 0 || m >(0.3*n*n))
         {
             throw new RuntimeException("Nombre de forats no vàlid, inserti un altre");
         }
@@ -168,22 +179,22 @@ public class CapaDomini
             auxX = rnd.nextInt(n);
             auxY = rnd.nextInt(n);
             if (mapabool[auxX][auxY]) { --i; }
-            else { t.setCasella(auxX, auxY, -1);}
+            else { t.setCasella(auxX, auxY, Casella.FORAT);}
             mapabool[auxX][auxY] = true;
         }
 
         //mirarforatsvalids(t);
         boolean b = t.esPartit();
-        if(b) {throw new RuntimeException("Repetir Hitaro predeterminat")};
+        if(b) {throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat")};
 
-        int num_pre[] = new int[];
+        int[] num_pre = new int[x];
         boolean preparat = false;
         while (!preparat){ //cogemos que numeros seran los que metamos en el Tauler
             num_pre[0] = 1;
-            num_pre[x-m] = x;
+            num_pre[x] = n*n - m;
 
-            for(int i = 1; i < x-m-1; ++i){
-                num_pre[i] = rnd.nextInt(x-m-1);
+            for(int i = 1; i < x-1; ++i){
+                num_pre[i] = rnd.nextInt(x-1);
             }
             bubbleSort(num_pre);
 
@@ -197,20 +208,17 @@ public class CapaDomini
             auxY = rnd.nextInt(n);
             if (!mapabool[auxX][auxY]){
                 t.setCasella(auxX, auxY, num_pre[0]); //Ponemos el numero 1 en alguna parte del tablero
-                inicial.x = auxX;
-                inicial.y = auxY;
-                inicial.elem = 1;
                 preparat = true;
             }
 
         }
+        for(int i = 1; i < num_pre.length; ++i){
+            int margen = num_pre[i] - num_pre[i-1];
+            int k = 0;
+            inicial = t.buscarnumeromax();
 
-        int num_ficats = 1
-        if (backtracking(num_ficats, num_pre.length,num_pre,inicial,t, mapabool)) {
+            backtracking(k,margen,inicial,t,mapabool);
 
         }
-
-        auxX = rnd.nextInt(n);
-        auxY = rnd.nextInt(n);
     }
 }

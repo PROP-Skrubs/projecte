@@ -50,7 +50,18 @@ public class Tauler
         else return false;
     }
 
+    public Casella buscarnumeromax()
+    {
+        Casella ret = new Casella(0,0,0);
 
+        for (int i = 0; i < tauler.length; ++i) {
+            for (int j = 0; j < tauler.length; ++j) {
+                if (tauler[i][j].elem > ret.elem) { ret.elem = tauler[i][j].elem};
+
+            }
+        }
+        return ret;
+    }
 
     public void getAdjacents(Casella inici, Queue<Casella> aAfegir)
     {
