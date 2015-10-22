@@ -183,7 +183,7 @@ public class CapaDomini
             auxX = rnd.nextInt(8);
             auxY = rnd.nextInt(8);
             if(!mapabool[auxX][auxY] && t.esvalid(auxX,auxY)){
-                
+
             }
         }
 
