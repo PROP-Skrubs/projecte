@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Vector
 /**
@@ -8,12 +9,11 @@ public class CapaDomini
 {
     private static Usuari usuariActual;
     private static Tauler taulerEsbos;
-    private boolean[][] mapabool;
-    private int[] X = {0,1,1,0,-1,1,-1,-1};
-    private int[] Y = {1,0,1,-1,0,-1,1,-1};
+    private static int[] X = {0,1,1,0,-1,1,-1,-1};
+    private static int[] Y = {1,0,1,-1,0,-1,1,-1};
+    private static Queue q;
 
-
-    public void bubbleSort(int[] array) {
+    public static void bubbleSort(int[] array) {
         boolean swapped = true;
         int j = 0;
         int tmp;
@@ -31,7 +31,7 @@ public class CapaDomini
         }
     }
 
-    public boolean norepeticion(int[]numpre ) {
+    public static boolean norepeticion(int[]numpre ) {
         //Pre : v esta ordenat;
         for(int i = 1; i < numpre.length ;++i){
             if(numpre[i] == numpre[i-1]) return false;
@@ -85,6 +85,23 @@ public class CapaDomini
         return bt(taulerEsbos,primeraIncognita,false);
     }
 
+    public static boolean backtracking(int num_ficats, int num_pre_long, int[] num_pre,Casella actual ,Tauler t, boolean[][] mapabool)
+    {
+        Random rnd = new Random();
+        if (num_ficats == num_pre_long) return true;
+        else {
+            int k = rnd.nextInt(8);
+            int auxX = actual.x + X[k];
+            int auxY = actual.y + Y[k];
+            if (t.esvalid(auxX,auxY) && !mapabool[auxX][auxY]) {
+
+        
+            }
+
+
+        }
+
+    }
 
     public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada)
     {
@@ -129,9 +146,11 @@ public class CapaDomini
         }
     }
 
-    public Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
+    public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
     {
-        mapabool = new boolean[n][n];
+        boolean[][] mapabool = new boolean[n][n];
+        Casella inicial = new Casella();
+
         for (int i = 0; i < n; ++i)
         {
             for (int j = 0; j < n; ++j)
@@ -145,14 +164,13 @@ public class CapaDomini
         int auxX;
         int auxY;
 
-        for (int i = 0, i<n;
-        ++i){ //poner de forma RANDOM els forats
-        auxX = rnd.nextInt(n);
-        auxY = rnd.nextInt(n);
-        if (mapabool[auxX][auxY]) --i;
-        else t.setCasella(auxX, auxY, -1);
-        mapabool[auxX][auxY] = true;
-    }
+        for (int i = 0; i <  n; ++i)   { //poner de forma RANDOM els forats
+            auxX = rnd.nextInt(n);
+            auxY = rnd.nextInt(n);
+            if (mapabool[auxX][auxY]) { --i; }
+            else { t.setCasella(auxX, auxY, -1);}
+            mapabool[auxX][auxY] = true;
+        }
 
         //mirarforatsvalids(t);
         boolean b = t.esPartit();
@@ -179,21 +197,18 @@ public class CapaDomini
             auxY = rnd.nextInt(n);
             if (!mapabool[auxX][auxY]){
                 t.setCasella(auxX, auxY, num_pre[0]); //Ponemos el numero 1 en alguna parte del tablero
+                inicial.x = auxX;
+                inicial.y = auxY;
+                inicial.elem = 1;
                 preparat = true;
             }
 
         }
 
-        for (int i = 1; i < num_pre.length; ++i){
-            int margen = num_pre[i] - num_pre[i-1];
-            auxX = rnd.nextInt(8);
-            auxY = rnd.nextInt(8);
-            if(!mapabool[auxX][auxY] && t.esvalid(auxX,auxY)){
+        int num_ficats = 1
+        if (backtracking(num_ficats, num_pre.length,num_pre,inicial,t, mapabool)) {
 
-            }
         }
-
-
 
         auxX = rnd.nextInt(n);
         auxY = rnd.nextInt(n);
