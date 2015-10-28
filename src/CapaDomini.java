@@ -9,12 +9,11 @@ public class CapaDomini
 {
     private static Usuari usuariActual;
     private static Tauler taulerEsbos;
-    private boolean[][] mapabool;
-    private int[] X = {0,1,1,0,-1,1,-1,-1};
-    private int[] Y = {1,0,1,-1,0,-1,1,-1};
+    private static int[] X = {0,1,1,0,-1,1,-1,-1};
+    private static int[] Y = {1,0,1,-1,0,-1,1,-1};
+    private static Queue q;
 
-
-    public void bubbleSort(int[] array) {
+    public static void bubbleSort(int[] array) {
         boolean swapped = true;
         int j = 0;
         int tmp;
@@ -32,7 +31,7 @@ public class CapaDomini
         }
     }
 
-    public boolean norepeticion(int[]numpre ) {
+    public static boolean norepeticion(int[]numpre ) {
         //Pre : v esta ordenat;
         for(int i = 1; i < numpre.length ;++i){
             if(numpre[i] == numpre[i-1]) return false;
@@ -86,6 +85,36 @@ public class CapaDomini
         return bt(taulerEsbos,primeraIncognita,false);
     }
 
+
+    public static boolean backtracking(int k, int margen, Casella actual, Tauler t, boolean[][] mapabool)
+    {
+        Random rnd = new Random();
+        if (k == margen) return true;
+        else {
+            boolean ya = false;
+            while(!ya) {
+                int p = rnd.nextInt(8);
+                int auxX = actual.x + X[p];
+                int auxY = actual.y + Y[p];
+
+                if (t.esvalid(auxX, auxY) && !mapabool[auxX][auxY]) {
+                    Casella newaux = new Casella();
+
+                    newaux.elem = actual.elem + 1;
+                    newaux.x = auxX;
+                    newaux.y = auxY;
+
+                    t.setCasella(auxX, auxY, newaux.elem);
+                    mapabool[auxX][auxY] = true;
+
+
+                    backtracking(k+1, margen, newaux, t, mapabool);
+                    ya = true;
+                }
+            }
+        }
+    }
+
     public static Queue<Casella> donaPermutacions(Tauler t, Casella
 
     public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada)
@@ -119,7 +148,7 @@ public class CapaDomini
         {
             throw new RuntimeException("Nombre de costat no valid, inserti un altre");
         }
-        if (m < 0 || m >(0,3*n*n))
+        if (m < 0 || m >(0.3*n*n))
         {
             throw new RuntimeException("Nombre de forats no vàlid, inserti un altre");
         }
@@ -133,9 +162,11 @@ public class CapaDomini
         }
     }
 
-    public Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
+    public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
     {
-        mapabool = new boolean[n][n];
+        boolean[][] mapabool = new boolean[n][n];
+        Casella inicial = new Casella();
+
         for (int i = 0; i < n; ++i)
         {
             for (int j = 0; j < n; ++j)
@@ -149,27 +180,26 @@ public class CapaDomini
         int auxX;
         int auxY;
 
-        for (int i = 0, i<n;
-        ++i){ //poner de forma RANDOM els forats
-        auxX = rnd.nextInt(n);
-        auxY = rnd.nextInt(n);
-        if (mapabool[auxX][auxY]) --i;
-        else t.setCasella(auxX, auxY, -1);
-        mapabool[auxX][auxY] = true;
-    }
+        for (int i = 0; i <  n; ++i)   { //poner de forma RANDOM els forats
+            auxX = rnd.nextInt(n);
+            auxY = rnd.nextInt(n);
+            if (mapabool[auxX][auxY]) { --i; }
+            else { t.setCasella(auxX, auxY, Casella.FORAT);}
+            mapabool[auxX][auxY] = true;
+        }
 
         //mirarforatsvalids(t);
         boolean b = t.esPartit();
-        if(b) {throw new RuntimeException("Repetir Hitaro predeterminat")};
+        if(b) {throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat")};
 
-        int num_pre[] = new int[];
+        int[] num_pre = new int[x];
         boolean preparat = false;
         while (!preparat){ //cogemos que numeros seran los que metamos en el Tauler
             num_pre[0] = 1;
-            num_pre[x-m] = x;
+            num_pre[x] = n*n - m;
 
-            for(int i = 1; i < x-m-1; ++i){
-                num_pre[i] = rnd.nextInt(x-m-1);
+            for(int i = 1; i < x-1; ++i){
+                num_pre[i] = rnd.nextInt(x-1);
             }
             bubbleSort(num_pre);
 
@@ -187,19 +217,13 @@ public class CapaDomini
             }
 
         }
-
-        for (int i = 1; i < num_pre.length; ++i){
+        for(int i = 1; i < num_pre.length; ++i){
             int margen = num_pre[i] - num_pre[i-1];
-            auxX = rnd.nextInt(8);
-            auxY = rnd.nextInt(8);
-            if(!mapabool[auxX][auxY] && t.esvalid(auxX,auxY)){
+            int k = 0;
+            inicial = t.buscarnumeromax();
 
-            }
+            backtracking(k,margen,inicial,t,mapabool);
+
         }
-
-
-
-        auxX = rnd.nextInt(n);
-        auxY = rnd.nextInt(n);
     }
 }
