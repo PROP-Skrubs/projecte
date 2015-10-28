@@ -15,4 +15,10 @@ public class Casella {
         this.y = y;
         this.elem = elem;
     }
+    public Casella(Casella c)
+    {
+        this.x = c.x;
+        this.y = c.y;
+        this.elem = c.elem;
+    }
 }

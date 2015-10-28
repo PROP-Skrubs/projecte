@@ -3,11 +3,11 @@
  */
 public class TesterParticio
 {
-    public static int main(String[] args)
+    public static void main(String[] args)
     {
-        Tauler prova = new Tauler(4);
+        Tauler prova = new Tauler(9);
         CapaVista.demanaTaulerAUsuari(prova);
-        if (!prova.esPartit()) System.out.println("Es valid!!");
-        return 0;
+        if (!prova.esPartit()) System.out.println("No és partit!! Tot bé.");
+        else System.out.println("Malament, és partit.");
     }
 }

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Random;
-import java.util.Vector
+import java.util.Vector;
 /**
  * Created by daniel on 12/10/15.
  */
@@ -81,10 +82,11 @@ public class CapaDomini
          * Retorna false si el Hidato no tenia solucio, o aquesta no era unica.
          */
         taulerEsbos = h.getTauler();
-        int primeraIncognita = taulerEsbos.trobaPrimerIncognita();
+        Casella primeraIncognita = taulerEsbos.trobaPrimeraIncognita();
         return bt(taulerEsbos,primeraIncognita,false);
     }
 
+    public static Queue<Casella> donaPermutacions(Tauler t, Casella
 
     public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada)
     {
@@ -92,13 +94,15 @@ public class CapaDomini
         if (accept(t))
         {
             if (solucioTrobada) throw new RuntimeException("Tauler amb multiples solucions.");
-            else solucioTrobada = true;
+            else
+                solucioTrobada = true;
         }
-        ArrayList<Casella> permutacions = donaPermutacions( );
+        Queue<Casella> permutacions = donaPermutacions( );
         int index = 0;
         while (next(t,permutacions,index))
         {
             solucioTrobada = bt(t);
+            ++index;
         }
         return solucioTrobada;
     }
@@ -189,7 +193,7 @@ public class CapaDomini
             auxX = rnd.nextInt(8);
             auxY = rnd.nextInt(8);
             if(!mapabool[auxX][auxY] && t.esvalid(auxX,auxY)){
-                
+
             }
         }
 

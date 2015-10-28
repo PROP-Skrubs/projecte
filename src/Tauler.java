@@ -25,6 +25,20 @@ public class Tauler
         }
     }
 
+    public Tauler(Tauler t)
+    {
+        int tamany = t.tamany();
+        tauler = new Casella[tamany][tamany];
+        for (int i = 0; i < tamany; ++i)
+        {
+            for (int j = 0; j < tamany; ++j)
+            {
+                tauler[i][j] = new Casella(t.tauler[i][j]);
+            }
+        }
+
+    }
+
     public Casella getCasella(int posX, int posY)
     {
         return tauler[posX][posY];
@@ -46,11 +60,22 @@ public class Tauler
     }
 
     public boolean esvalid(int Posx, int Posy) {
-        if (Posx >= 0 && Posx < tauler.length && Posy >= 0 && Posy < tauler.length) return true;
-        else return false;
+        return (Posx >= 0 && Posx < tauler.length && Posy >= 0 && Posy < tauler.length);
     }
 
-
+    public Casella trobaPrimeraIncognita()
+    {
+        //TODO: aixo encara no funca.
+        Casella minCasella = new Casella(-1,-1,getLongitud());
+        for (int i = 0; i < getLongitud(); ++i)
+        {
+            for (int j = 0; j < getLongitud(); ++j)
+            {
+                if (tauler[i][j].elem < minCasella.elem) minCasella = new Casella(tauler[i][j]);
+            }
+        }
+        return minCasella;
+    }
 
     public void getAdjacents(Casella inici, Queue<Casella> aAfegir)
     {
@@ -68,16 +93,19 @@ public class Tauler
                     int consideraY = inici.y + j;
                     if (consideraY >= 0 && consideraY < tauler.length)
                     {
-                        if (tauler[consideraX][consideraY].elem == Casella.BUIT)
+                        if (consideraX != inici.x || consideraY != inici.y)
                         {
-                            aAfegir.add(new Casella(consideraX, consideraY, 0));
-                            ++DEBUG_AFEGIT;
+                            if (tauler[consideraX][consideraY].elem == Casella.BUIT)
+                            {
+                                aAfegir.add(new Casella(consideraX, consideraY, 0));
+                                ++DEBUG_AFEGIT;
+                            }
                         }
                     }
                 }
             }
         }
-        System.err.println("S'han trobat " + DEBUG_AFEGIT + " adjacents\tCasella inicial: " + inici.x + "," + inici.y);
+//        System.err.println("S'han trobat " + DEBUG_AFEGIT + " adjacents\tCasella inicial: " + inici.x + "," + inici.y);
     }
 
     public boolean esPartit()
@@ -112,14 +140,23 @@ public class Tauler
                 }
             }
         }
+        if (primeraX == -1 || primeraY == -1)
+        {
+            if (casellesVisitades==tauler.length * tauler.length)
+                return false;
+            else
+                throw new RuntimeException("No hi ha punt d'inici, pero no hem visitat totes les caselles??");
+        }
 
         //BFS a partir d'aqui
-        Queue<Casella> aVisitar = new ArrayDeque<Casella>();
+        Queue<Casella> aVisitar = new ArrayDeque<>();
         getAdjacents(new Casella(primeraX, primeraY, 0), aVisitar);
         visitats[primeraX][primeraY] = true;
         ++casellesVisitades;
+        int iteracions = 0;
         while (!aVisitar.isEmpty())
         {
+            ++iteracions;
             Casella actual = aVisitar.element();
             aVisitar.remove();
             //check if we've been here before. If so, just skip this round
@@ -128,6 +165,7 @@ public class Tauler
             visitats[actual.x][actual.y] = true;
             getAdjacents(actual,aVisitar);
         }
+        System.err.println("S'han fet " + iteracions + " iteracions");
 
         //Ara mirem si hem visitat tantes caselles com te el mapa...
         if (casellesVisitades > tauler.length * tauler.length)

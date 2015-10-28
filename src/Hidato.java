@@ -7,6 +7,9 @@ public class Hidato
     private TaulerComplert taulerComplert;
     public boolean dificultat;
 
-
+    public Tauler getTauler()
+    {
+        return new Tauler(tauler);
+    }
 
 }
