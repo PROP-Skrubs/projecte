@@ -1,30 +1,20 @@
-import java.sql.*;
+package CapaPersistencia;
+
+import CapaDomini.Usuari;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
- * Created by daniel on 13/10/15.
+ * Created by daniel on 29/10/15.
  */
-
-public class CapaPersistencia
+public class ControladorUsuari
 {
-    private static Connection conn;
-
-    static
-    {
-        try
-        {
-            //jbdc:sqlite:<pathAlFitxer.db>
-            conn = DriverManager.getConnection("jdbc:sqlite:basedades.db");
-        }
-        catch (SQLException e)
-        {
-            throw new RuntimeException("No s'ha pogut connectar a la Base de Dades!", e);
-        }
-        validarBaseDeDades();
-    }
-
     public static boolean crearUsuari(Usuari u)
     {
-        try (Statement s = conn.createStatement();
+        try (Statement s = CapaPersistencia.conn.createStatement();
              ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM usuaris WHERE nomUsuari = '" + u.getNomUsuari() + "'"))
         {
             resSet.next();
@@ -35,7 +25,7 @@ public class CapaPersistencia
             throw new RuntimeException(e);
         }
         //Ja hem comprovat que no hi ha un usuari amb el mateix nom... per tant podem inserir be.
-        try (PreparedStatement p = conn.prepareStatement("INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)"))
+        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)"))
         {
             p.setString(1, u.getNomUsuari());
             p.setString(2, u.getContrasenya());
@@ -53,7 +43,7 @@ public class CapaPersistencia
     {
         //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
         // o potser tambe el usuari per a si mateix (?)
-        try (Statement s = conn.createStatement())
+        try (Statement s = CapaPersistencia.conn.createStatement())
         {
             int usuarisBorrats = s.executeUpdate("DELETE FROM usuaris WHERE nomUsuari = '" + nomUsuari + "'");
             if (usuarisBorrats != 1)
@@ -80,7 +70,7 @@ public class CapaPersistencia
     public static Usuari donaUsuari(String nomUsuari)
     {
         Usuari u = null;
-        try (Statement s = conn.createStatement();
+        try (Statement s = CapaPersistencia.conn.createStatement();
              ResultSet resSet = s.executeQuery("SELECT * FROM usuaris u WHERE u.nomUsuari = '" + nomUsuari + "'"))
         {
             if (resSet.next())
@@ -103,30 +93,5 @@ public class CapaPersistencia
             throw new RuntimeException(e);
         }
         return u;
-    }
-
-    private static void validarBaseDeDades()
-    {
-        //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
-        /*  'CREATE TABLE IF NOT EXISTS table_name (
-            {table definition...}
-            )'
-        */
-        String usuarisCreateTable = "CREATE TABLE IF NOT EXISTS usuaris (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nomUsuari VARCHAR(30) NOT NULL UNIQUE," +
-                "contrasenya VARCHAR(30) NOT NULL," +
-                "nomReal VARCHAR(30)" +
-                ")";
-        //Falta afegir el codi de la resta de taules
-        try (Statement statement = conn.createStatement())
-        {
-            statement.execute(usuarisCreateTable);
-            //Falta afegir el codi de la resta de taules
-        }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
     }
 }

@@ -1,3 +1,8 @@
+package Testers;
+
+import CapaDomini.Tauler;
+import CapaVista.CapaVista;
+
 /**
  * Created by cross on 22/10/15.
  */

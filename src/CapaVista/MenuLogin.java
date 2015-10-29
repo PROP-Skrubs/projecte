@@ -1,3 +1,8 @@
+package CapaVista;
+
+import CapaDomini.ControladorLogin;
+import CapaDomini.ControladorUsuari;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +35,7 @@ public class MenuLogin
                 String nomUsuari = campUsuari.getText();
                 String contrasenya = new String(campContrasenya.getPassword());
 
-                if (CapaDomini.fesLogin(nomUsuari, contrasenya))
+                if (ControladorLogin.fesLogin(nomUsuari, contrasenya))
                 {
                     CapaVista.mostraMenuPrincipal();
                     //TODO: que el menu es mostri al centre de la pantalla
@@ -52,7 +57,7 @@ public class MenuLogin
                 String nomUsuari = campUsuari.getText();
                 String contrasenya = new String(campContrasenya.getPassword());
                 String nomReal = "pepito";
-                boolean usuariCreatCorrectament = CapaDomini.crearUsuari(nomUsuari, contrasenya, nomReal);
+                boolean usuariCreatCorrectament = ControladorUsuari.crearUsuari(nomUsuari, contrasenya, nomReal);
 
                 //TODO: aixo es pot fer amb un "pop-up" grafic, oi? :)
                 if (usuariCreatCorrectament) System.out.println("Usuari creat correctament");

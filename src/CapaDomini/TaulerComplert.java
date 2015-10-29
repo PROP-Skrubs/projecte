@@ -1,3 +1,7 @@
+package CapaDomini;
+
+import CapaDomini.Tauler;
+
 public class TaulerComplert extends Tauler
 {
     public int comparaDiferencies(Tauler altre)

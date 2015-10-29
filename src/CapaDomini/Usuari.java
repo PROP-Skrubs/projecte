@@ -1,3 +1,5 @@
+package CapaDomini;
+
 /**
  * Created by daniel on 13/10/15.
  */
@@ -8,7 +10,7 @@ public class Usuari
     private String contrasenya;
     private String nomReal;
 
-    Usuari()
+    public Usuari()
     {
 
     }

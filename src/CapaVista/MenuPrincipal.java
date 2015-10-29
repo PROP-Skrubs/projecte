@@ -1,3 +1,7 @@
+package CapaVista;
+
+import CapaDomini.ControladorLogin;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,7 +23,7 @@ public class MenuPrincipal
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        etiquetaNomUsuari.setText("Benvingut, " + CapaDomini.getUsuariActual().getNomUsuari() + "!");
+        etiquetaNomUsuari.setText("Benvingut, " + ControladorLogin.getUsuariActual().getNomUsuari() + "!");
 
         frame.pack();
         frame.setVisible(true);

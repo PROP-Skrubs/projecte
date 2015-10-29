@@ -1,6 +1,8 @@
+package CapaVista;
+
+import CapaDomini.CapaDomini;
+
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 /**
  * Created by daniel on 12/10/15.
@@ -51,7 +53,7 @@ public class CapaVista
 
         String dificultat = "facil"; //como ejemplo
 
-        Tauler ret = CapaDomini.creacioTaulerPredeterminat(n,m,x,dificultat);
+        Tauler ret = CapaDomini.creacioTaulerPredeterminat(n, m, x, dificultat);
 
         return ret;
 

@@ -1,3 +1,5 @@
+package CapaDomini;
+
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Random;
@@ -7,8 +9,7 @@ import java.util.Vector;
  */
 public class CapaDomini
 {
-    private static Usuari usuariActual;
-    private static Tauler taulerEsbos;
+
     private static int[] X = {0,1,1,0,-1,1,-1,-1};
     private static int[] Y = {1,0,1,-1,0,-1,1,-1};
     private static Queue q;
@@ -37,52 +38,6 @@ public class CapaDomini
             if(numpre[i] == numpre[i-1]) return false;
         }
         return true;
-    }
-
-    public static boolean fesLogin(String nomUsuari, String contrasenya)
-    {
-        Usuari u = CapaPersistencia.donaUsuari(nomUsuari);
-        if (u == null) return false;
-        if (!u.validaContrasenya(contrasenya)) return false;
-
-        //si passa totes les comprovacions
-        usuariActual = u;
-        return true;
-    }
-
-    public static boolean crearUsuari(String nomUsuari, String contrasenya, String nomReal)
-    {
-        Usuari u = new Usuari();
-        u.setNomUsuari(nomUsuari);
-        u.setContrasenya(contrasenya);
-        u.setNomReal(nomReal);
-        return CapaPersistencia.crearUsuari(u);
-        /*TODO:
-            Controlar les excepcions i el resultat de la operacio.
-              ^en principi ja es controla tot lo necessari (basicament si es crea o no l'user) i es deixa morir els errors de base de dades.
-         */
-    }
-
-    private static boolean eliminarUsuari(String nomUsuari)
-    {
-        //Retorna true si s'ha borrat l'usuari. False si no s'ha borrat cap usuari. Tira excepcio si s'han borrat multiples.
-        return CapaPersistencia.eliminarUsuari(nomUsuari);
-        /*TODO:
-            Si la capa de persistencia tira una excepcio normal en lloc d'una runtime (o controlem la runtime aqui), llavors podem morir "more gracefully" si mai borrem mes d'un usuari... PERO COM TAMPOC PASSARA MAI (GOD BLESS UNIQUE CONSTRAINTS), FUCK IT.
-         */
-    }
-
-
-    public static boolean validarHidato(Hidato h)
-    {
-        /**
-         * Aquesta funcio accepta un Hidato on el seu tauler complert és buit i el d'usuari conte un Hidato que s'ha de validar.
-         * Retorna true si el tauler d'usuari tenia un Hidato vàlid (solucio i és unica) i deixa el tauler mestre amb totes les dades.
-         * Retorna false si el Hidato no tenia solucio, o aquesta no era unica.
-         */
-        taulerEsbos = h.getTauler();
-        Casella primeraIncognita = taulerEsbos.trobaPrimeraIncognita();
-        return bt(taulerEsbos,primeraIncognita,false);
     }
 
 
@@ -114,33 +69,6 @@ public class CapaDomini
             }
         }
     }
-
-    public static Queue<Casella> donaPermutacions(Tauler t, Casella
-
-    public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada)
-    {
-        if (reject(t)) return false;
-        if (accept(t))
-        {
-            if (solucioTrobada) throw new RuntimeException("Tauler amb multiples solucions.");
-            else
-                solucioTrobada = true;
-        }
-        Queue<Casella> permutacions = donaPermutacions( );
-        int index = 0;
-        while (next(t,permutacions,index))
-        {
-            solucioTrobada = bt(t);
-            ++index;
-        }
-        return solucioTrobada;
-    }
-
-    public static Usuari getUsuariActual()
-    {
-        return usuariActual;
-    }
-
 
     public static boolean validarparamscreacioTaulerpredeterminat(int n,int m, int x, String dificultat)
     {
@@ -190,11 +118,11 @@ public class CapaDomini
 
         //mirarforatsvalids(t);
         boolean b = t.esPartit();
-        if(b) {throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat")};
+        if(b) {throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");}
 
         int[] num_pre = new int[x];
         boolean preparat = false;
-        while (!preparat){ //cogemos que numeros seran los que metamos en el Tauler
+        while (!preparat){ //cogemos que numeros seran los que metamos en el CapaDomini.Tauler
             num_pre[0] = 1;
             num_pre[x] = n*n - m;
 
