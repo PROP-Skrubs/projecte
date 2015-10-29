@@ -15,12 +15,10 @@ public class Casella {
         this.y = y;
         this.elem = elem;
     }
-
-    /*public Casella clone()
+    public Casella(Casella c)
     {
-        Casella ret = new Casella(this.x, this.y, this.elem);
-
-        return ret;
-
-    }*/
+        this.x = c.x;
+        this.y = c.y;
+        this.elem = c.elem;
+    }
 }
