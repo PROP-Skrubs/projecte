@@ -1,4 +1,6 @@
 import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Queue;
 
 public class Tauler
@@ -56,7 +58,7 @@ public class Tauler
 
         for (int i = 0; i < tauler.length; ++i) {
             for (int j = 0; j < tauler.length; ++j) {
-                if (tauler[i][j].elem > ret.elem) { ret.elem = tauler[i][j].elem};
+                if (tauler[i][j].elem > ret.elem) { ret.elem = tauler[i][j].elem;}
 
             }
         }
@@ -149,6 +151,54 @@ public class Tauler
             return true;
         }
         return false;
+    }
+
+    public boolean pucacabar(Casella inici, boolean[][] mapabool) {
+        /*a partir d'una casella inicial i un mapa da booleans que emula el tauler dient on hi ha alguna cosa i on no
+        et retorna true si al ficar la casella al tauler pot completar el tauler, false si no pot acaba-ho.
+         */
+
+
+        int[] X = {0,1,1,0,-1,1,-1,-1};
+        int[] Y = {1,0,1,-1,0,-1,1,-1};
+        boolean res = true;
+
+        boolean[][] newmapabool = new boolean[mapabool.length][];
+
+        for (int i = 0; i < mapabool.length; ++i) {
+            newmapabool[i] = mapabool[i].clone();
+        }
+
+
+        Queue<Casella> q = new ArrayDeque<Casella>();
+        q.add(inici);
+        newmapabool[inici.x][inici.y] = true;
+
+        while (!q.isEmpty()) {
+
+            Casella auxcua = new Casella(q.element().x, q.element().y, q.element().elem);
+            q.remove();
+
+            for (int i = 0; i < 8; ++i) {
+                int auxposX = auxcua.x + X[i];
+                int auxposY = auxcua.y + Y[i];
+                if (this.esvalid(auxposX,auxposY) && newmapabool[auxposX][auxposY]){
+                    Casella newauxcua = new Casella(auxposX,auxposY,auxcua.elem +1);
+                    q.add(newauxcua);
+                    newmapabool[auxposX][auxposY] = true;
+                }
+
+            }
+
+        }
+        for (int i = 0; i < newmapabool.length; ++i) {
+            for ( int j = 0; j < newmapabool.length; ++j) {
+                if (!newmapabool[i][j]) res = false;
+            }
+        }
+
+
+        return res;
     }
 
 }
