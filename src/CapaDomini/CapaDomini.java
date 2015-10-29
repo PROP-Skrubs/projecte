@@ -59,12 +59,12 @@ public class CapaDomini
                     newaux.x = auxX;
                     newaux.y = auxY;
 
-                    t.setCasella(auxX, auxY, newaux.elem);
-                    mapabool[auxX][auxY] = true;
-
-
-                    backtracking(k+1, margen, newaux, t, mapabool);
-                    ya = true;
+                    if (t.pucacabar(newaux,mapabool)) {
+                        t.setCasella(auxX, auxY, newaux.elem);
+                        mapabool[auxX][auxY] = true;
+                        backtracking(k+1, margen, newaux, t, mapabool);
+                        ya = true;
+                    }
                 }
             }
         }
@@ -88,6 +88,7 @@ public class CapaDomini
         {
             throw new RuntimeException("Dificultat no vàlida, inserti un altre");
         }
+        return true;
     }
 
     public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
@@ -153,5 +154,9 @@ public class CapaDomini
             backtracking(k,margen,inicial,t,mapabool);
 
         }
+
+
+
+        return t;
     }
 }
