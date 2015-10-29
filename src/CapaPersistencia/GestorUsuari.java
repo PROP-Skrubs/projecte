@@ -10,7 +10,7 @@ import java.sql.Statement;
 /**
  * Created by daniel on 29/10/15.
  */
-public class ControladorUsuari
+public class GestorUsuari
 {
     public static boolean crearUsuari(Usuari u)
     {

@@ -1,6 +1,6 @@
 package CapaDomini;
 
-import CapaPersistencia.CapaPersistencia;
+import CapaPersistencia.GestorUsuari;
 
 /**
  * Created by daniel on 29/10/15.
@@ -12,7 +12,7 @@ public class ControladorLogin
 
     public static boolean fesLogin(String nomUsuari, String contrasenya)
     {
-        Usuari u = CapaPersistencia.ControladorUsuari.donaUsuari(nomUsuari);
+        Usuari u = GestorUsuari.donaUsuari(nomUsuari);
         if (u == null) return false;
         if (!u.validaContrasenya(contrasenya)) return false;
 
