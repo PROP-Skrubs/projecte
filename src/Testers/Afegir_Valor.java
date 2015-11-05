@@ -8,8 +8,7 @@ import java.util.Scanner;
 import CapaDomini.*;
 
 public class Afegir_Valor {
-    public void afegir() {
-        Hidato h = new Hidato();
+    public void afegir(Hidato h) {
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
