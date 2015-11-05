@@ -8,8 +8,7 @@ import java.util.Scanner;
  * Created by oriol on 29/10/15.
  */
 public class Remove_valor {
-    public void afegir() {
-        Hidato h = new Hidato();
+    public void remove(Hidato h) {
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
