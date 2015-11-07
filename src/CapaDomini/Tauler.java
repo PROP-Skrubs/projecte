@@ -250,65 +250,18 @@ public class Tauler
         return false;
     }
 
-    public boolean pucacabar(Casella inici, boolean[][] mapabool) {
-        /*a partir d'una casella inicial i un mapa da booleans que emula el tauler dient on hi ha alguna cosa i on no
-        et retorna true si al ficar la casella al tauler pot completar el tauler, false si no pot acaba-ho.
-         */
-
-
-        int[] X = {0,1,1,0,-1,1,-1,-1};
-        int[] Y = {1,0,1,-1,0,-1,1,-1};
-        boolean res = true;
-
-        boolean[][] newmapabool = new boolean[mapabool.length][];
-
-        for (int i = 0; i < mapabool.length; ++i) {
-            newmapabool[i] = mapabool[i].clone();
-        }
-
-
-        Queue<Casella> q = new ArrayDeque<Casella>();
-        q.add(inici);
-        newmapabool[inici.x][inici.y] = true;
-
-        while (!q.isEmpty()) {
-
-            Casella auxcua = new Casella(q.element().x, q.element().y, q.element().elem);
-            q.remove();
-
-            for (int i = 0; i < 8; ++i) {
-                int auxposX = auxcua.x + X[i];
-                int auxposY = auxcua.y + Y[i];
-                if (this.esvalid(auxposX,auxposY) && newmapabool[auxposX][auxposY]){
-                    Casella newauxcua = new Casella(auxposX,auxposY,auxcua.elem +1);
-                    q.add(newauxcua);
-                    newmapabool[auxposX][auxposY] = true;
-                }
-
-            }
-
-        }
-        for (int i = 0; i < newmapabool.length; ++i) {
-            for ( int j = 0; j < newmapabool.length; ++j) {
-                if (!newmapabool[i][j]) res = false;
+    public boolean he_acabat() {
+        int cont = 0;
+        for (int i = 0; i < this.tamany(); ++i) {
+            for (int j = 0; j < this.tamany(); ++j) {
+                if(this.getCasella(i,j).elem == 0) ++cont;
             }
         }
 
+        if (cont == 0) return true;
+        else return false;
 
-        return res;
     }
-
-    //En la BD se guarda como string, hay que hacer la conversion
-    public String guardar_matriz_dao(){
-        String matriz ="";
-        for(int i = 0; i< tamany();++i){
-            for(int j = 0; j< tamany();++j){
-                matriz += tauler[i][j]+",";
-            }
-        }
-        return matriz;
-    }
-
     public Integer getNforats() {
         return nforats;
     }

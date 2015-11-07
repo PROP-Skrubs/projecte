@@ -3,6 +3,8 @@ package CapaDomini;
 /**
  * Created by daniel on 12/10/15.
  */
+
+
 public class Hidato
 {
     private Tauler tauler;

@@ -21,7 +21,7 @@ public class ControladorHidato
         return bt(taulerEsbos,primeraIncognita,false);
     }
 
-   // public static Queue<Casella> donaPermutacions(Tauler t, Casella c){};
+    public static Queue<Casella> donaPermutacions(Tauler t, Casella c){};
 
     public static boolean bt(Tauler t, int numeroActual, boolean solucioTrobada, TaulerComplert taulerDesti)
     {
