@@ -25,7 +25,7 @@ public class Remove_valor {
         }
         System.out.println("Eliminat");
         h.getTauler().setCasella(x, y, 0);
-        h.pintar_hidato(2);
+        h.getTauler().pintar_tauler(1);
 
     }
 }

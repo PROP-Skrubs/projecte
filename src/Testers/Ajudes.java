@@ -6,6 +6,8 @@ package Testers;
 import CapaDomini.Hidato;
 import CapaDomini.ControladorAjudes;
 import CapaDomini.Casella;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,5 +36,13 @@ public class Ajudes {
             y = capt.nextInt();
         }
         List<Integer> l = ca.help2(x, y, h);
+        Iterator<Integer> it = l.iterator();
+        System.out.println("Possibles Candidats:");
+        while (it.hasNext()) {
+            System.out.print(" " + it.next());
+
+        }
+        System.out.print("\n");
     }
+
 }

@@ -12,11 +12,11 @@ public class Imprimir_Hidato {
 
     public void imprimir(Hidato h){
         Scanner capt = new Scanner(System.in);
-        h.pintar_hidato(1);
+        h.getTauler().pintar_tauler(1);
     }
 
     public void imprimir_sol(Hidato h){
         Scanner capt = new Scanner(System.in);
-        h.pintar_hidato(2);
+        h.getTauler().pintar_tauler(1);
     }
 }

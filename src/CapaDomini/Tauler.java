@@ -262,4 +262,34 @@ public class Tauler
 
     }
 
+    public void pintar_tauler(int m){
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_BARRA = "\u2014";
+
+        for (int i = 0; i < 6; ++i){
+            System.out.print("|");
+            for (int j = 0; j < 6; ++j) {
+                if(m == 1){
+                    if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
+                    if (getCasella(i,j).elem - 10 < 0) System.out.print("*");
+                    if(getCasella(i,j).elem != 0)System.out.print(ANSI_RED + getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
+                    else System.out.print(getCasella(i,j).elem);
+                }
+                else{
+                    if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
+                    if(getCasella(i,j).elem != 0)System.out.print(ANSI_RED+ getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
+                    else{
+                        if(getCasella(i,j).elem != 0) System.out.print(getCasella(i,j).elem);
+                        else System.out.print(" ");
+                    }
+                }
+                System.out.print("|");
+            }
+            System.out.print("\n");
+
+        }
+
+    }
+
 }
