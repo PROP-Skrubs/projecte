@@ -1,9 +1,6 @@
 package CapaDomini;
 
-import java.util.ArrayDeque;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
+import java.util.*;
 
 public class Tauler
 {
@@ -47,6 +44,14 @@ public class Tauler
             }
         }
 
+    }
+
+    public void clone(Tauler t) {
+        for (int i = 0; i<t.tamany(); ++i) {
+            for (int j=0; j<t.tamany(); ++j) {
+                this.setCasella(i,j,t.getCasella(i,j).elem);
+            }
+        }
     }
 
     public Casella getCasella(int posX, int posY)
@@ -104,6 +109,29 @@ public class Tauler
         }
         return null;
     }
+
+
+    public void getAdjacentslist(Casella inici, List<Casella> aAfegir) {
+        /**
+         * Aquesta funció afegeix a la lista "aAfegir" tots els adjacents que no tinguin o un valor o un forat, es a dir, només els que siguin buits
+         */
+        int DEBUG_AFEGIT = 0;
+        for (int i = -1; i <= 1; ++i) {
+            int consideraX = inici.x + i;
+            if (consideraX >= 0 && consideraX < tauler.length) {
+                for (int j = -1; j <= 1; ++j) {
+                    int consideraY = inici.y + j;
+                    if (consideraY >= 0 && consideraY < tauler.length) {
+                        if (tauler[consideraX][consideraY].elem == Casella.BUIT) {
+                            aAfegir.add(new Casella(consideraX, consideraY, 0));
+                            ++DEBUG_AFEGIT;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     public void getAdjacents(Casella inici, Queue<Casella> aAfegir)
     {
@@ -221,51 +249,17 @@ public class Tauler
         return false;
     }
 
-    public boolean pucacabar(Casella inici, boolean[][] mapabool) {
-        /*a partir d'una casella inicial i un mapa da booleans que emula el tauler dient on hi ha alguna cosa i on no
-        et retorna true si al ficar la casella al tauler pot completar el tauler, false si no pot acaba-ho.
-         */
-
-
-        int[] X = {0,1,1,0,-1,1,-1,-1};
-        int[] Y = {1,0,1,-1,0,-1,1,-1};
-        boolean res = true;
-
-        boolean[][] newmapabool = new boolean[mapabool.length][];
-
-        for (int i = 0; i < mapabool.length; ++i) {
-            newmapabool[i] = mapabool[i].clone();
-        }
-
-
-        Queue<Casella> q = new ArrayDeque<Casella>();
-        q.add(inici);
-        newmapabool[inici.x][inici.y] = true;
-
-        while (!q.isEmpty()) {
-
-            Casella auxcua = new Casella(q.element().x, q.element().y, q.element().elem);
-            q.remove();
-
-            for (int i = 0; i < 8; ++i) {
-                int auxposX = auxcua.x + X[i];
-                int auxposY = auxcua.y + Y[i];
-                if (this.esvalid(auxposX,auxposY) && newmapabool[auxposX][auxposY]){
-                    Casella newauxcua = new Casella(auxposX,auxposY,auxcua.elem +1);
-                    q.add(newauxcua);
-                    newmapabool[auxposX][auxposY] = true;
-                }
-
-            }
-
-        }
-        for (int i = 0; i < newmapabool.length; ++i) {
-            for ( int j = 0; j < newmapabool.length; ++j) {
-                if (!newmapabool[i][j]) res = false;
+    public boolean he_acabat() {
+        int cont = 0;
+        for (int i = 0; i < this.tamany(); ++i) {
+            for (int j = 0; j < this.tamany(); ++j) {
+                if(this.getCasella(i,j).elem == 0) ++cont;
             }
         }
 
+        if (cont == 0) return true;
+        else return false;
 
-        return res;
     }
+
 }

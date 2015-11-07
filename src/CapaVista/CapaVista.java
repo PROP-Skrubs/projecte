@@ -52,7 +52,6 @@ public class CapaVista
         String str = br.readLine(); */
 
         String dificultat = "facil"; //como ejemplo
-
         Tauler ret = CapaDomini.creacioTaulerPredeterminat(n, m, x, dificultat);
 
         return ret;
