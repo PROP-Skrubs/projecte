@@ -13,7 +13,10 @@ public class Hidato
     {
         return new Tauler(tauler);
     }
-    public TaulerComplert getTaulerComplert(){ return new TaulerComplert(taulerComplert); }
+    public TaulerComplert getTaulerComplert()
+    {
+        return taulerComplert;
+    }
 
     public void pintar_hidato(int m){
         final String ANSI_RESET = "\u001B[0m";
