@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DriverPartida {
 
     public void manual(){
-        System.out.println("-Menu de ajuda:");
+        System.out.println("Menu de ajuda:");
         System.out.println("-creator: Creador de Hidatos");
         System.out.println("-hidato play: Comensar partida");
         System.out.println("\t-add:  Afegir numero");

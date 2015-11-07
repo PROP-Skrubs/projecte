@@ -272,18 +272,10 @@ public class Tauler
             for (int j = 0; j < 6; ++j) {
                 if(m == 1){
                     if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
-                    if (getCasella(i,j).elem - 10 < 0) System.out.print("*");
+                    if (getCasella(i,j).elem == 0) System.out.print(" ");
+                    if (getCasella(i,j).elem == 0) System.out.print("*");
                     if(getCasella(i,j).elem != 0)System.out.print(ANSI_RED + getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
                     else System.out.print(getCasella(i,j).elem);
-                }
-                else{
-                    if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
-                    if(getCasella(i,j).elem != 0)System.out.print(ANSI_RED+ getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
-                    else{
-                        if(getCasella(i,j).elem != 0) System.out.print(getCasella(i,j).elem);
-                        else System.out.print(" ");
-                    }
-                }
                 System.out.print("|");
             }
             System.out.print("\n");
