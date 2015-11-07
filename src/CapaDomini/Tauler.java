@@ -348,7 +348,6 @@ public class Tauler
         for (int i = 0; i < 6; ++i){
             System.out.print("|");
             for (int j = 0; j < 6; ++j) {
-                if(m == 1){
                     if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
                     if (getCasella(i,j).elem == 0) System.out.print(" ");
                     if (getCasella(i,j).elem == 0) System.out.print("*");
