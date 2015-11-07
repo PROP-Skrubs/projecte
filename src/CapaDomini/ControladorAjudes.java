@@ -25,9 +25,9 @@ public class ControladorAjudes {
 
     //Primer paso: Quitar de la lista los numeros que ya estan colocados en el tablero
     public List<Integer> quitar_puestos(List<Integer> vector, Integer i, Integer j, Hidato h) {
-        int result[] = new int[h.getTauler().getTamany()];
-        for (int k = 0; k < h.getTauler().getTamany(); ++k) {
-            for (int l = 0; l < h.getTauler().getTamany(); ++l) {
+        int result[] = new int[h.getTauler().tamany()];
+        for (int k = 0; k < h.getTauler().tamany(); ++k) {
+            for (int l = 0; l < h.getTauler().tamany(); ++l) {
                 if (h.getTauler().getCasella(k, l).elem != 0) {
                     vector.remove(h.getTauler().getCasella(k, l).elem); //quito de la lista los numeros que ya estan colocados
                 }
@@ -37,7 +37,7 @@ public class ControladorAjudes {
     }
     //Pongo en un vector todos los numeros posibles del tablero del 1 al n
     public List<Integer> omplir_vex(Hidato h){
-        Integer n = h.getTauler().getTamany();
+        Integer n = h.getTauler().tamany();
         List<Integer> candidats = null;
         for(int i =1; i<=n; ++i){
             candidats.set(i, i);    //meto en la lista todos los numero posibles
@@ -60,7 +60,7 @@ public class ControladorAjudes {
                 }
             }
         }
-        if (i+1 < h.getTauler().getTamany()) {    //Abajo
+        if (i+1 < h.getTauler().tamany()) {    //Abajo
             if (h.getTauler().getCasella(i + 1, j).elem != 0) {
                 for (int k = 0; k < vector.size(); k++) {
                     if(Math.abs(k-h.getTauler().getCasella(i + 1, j).elem) != 1 ){
@@ -78,7 +78,7 @@ public class ControladorAjudes {
                 }
             }
         }
-        if (j+1 < h.getTauler().getTamany()) {    //Derecha
+        if (j+1 < h.getTauler().tamany()) {    //Derecha
             if (h.getTauler().getCasella(i, j + 1).elem != 0) {
                 for (int k = 0; k < vector.size(); k++) {
                     if(Math.abs(h.getTauler().getCasella(i, j + 1).elem) != 1 ){
@@ -96,7 +96,7 @@ public class ControladorAjudes {
                 }
             }
         }
-        if (((i+1)<h.getTauler().getTamany()) && ((j-1)>0)) {    //Diagonal izq abajo
+        if (((i+1)<h.getTauler().tamany()) && ((j-1)>0)) {    //Diagonal izq abajo
             if (h.getTauler().getCasella(i + 1, j - 1).elem != 0) {
                 for (int k = 0; k < vector.size(); k++) {
                     if(Math.abs(k-h.getTauler().getCasella(i + 1, j - 1).elem) != 1 ){
@@ -105,7 +105,7 @@ public class ControladorAjudes {
                 }
             }
         }
-        if (((i-1)>0) && ((j+1)<h.getTauler().getTamany())) {    //Diagonal derecha arriba
+        if (((i-1)>0) && ((j+1)<h.getTauler().tamany())) {    //Diagonal derecha arriba
             if (h.getTauler().getCasella(i - 1, j + 1).elem != 0) {
                 for (int k = 0; k < vector.size(); k++) {
                     if(Math.abs(k-h.getTauler().getCasella(i - 1, j + 1).elem) != 1 ){
@@ -114,7 +114,7 @@ public class ControladorAjudes {
                 }
             }
         }
-        if (((i+1)<h.getTauler().getTamany()) && ((j+1)<h.getTauler().getTamany())) {    //Diagonal derecha abajo
+        if (((i+1)<h.getTauler().tamany()) && ((j+1)<h.getTauler().tamany())) {    //Diagonal derecha abajo
             if (h.getTauler().getCasella(i + 1, j + 1).elem != 0) {
                 for (int k = 0; k < vector.size(); k++) {
                     if(Math.abs(k-h.getTauler().getCasella(i + 1, j + 1).elem) != 1 ){
