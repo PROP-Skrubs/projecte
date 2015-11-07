@@ -97,17 +97,14 @@ public class CapaDomini
 
     public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
     {
-        boolean[][] mapabool = new boolean[n][n];
+        /*
+        Donat una "n" que serà el tamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
+        haurà al Tauler, donat una "x" que serà el nombre de números predetermints que tingui el Tauler y una "dificultat"
+        que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
+        números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.
+         */
         Casella inicial = new Casella();
 
-
-        for (int i = 0; i < n; ++i)
-        {
-            for (int j = 0; j < n; ++j)
-            {
-                mapabool[i][j] = false;
-            }
-        }
 
         Tauler t = new Tauler(n);
         Random rnd = new Random();
@@ -117,9 +114,8 @@ public class CapaDomini
         for (int i = 0; i <  m; ++i)   { //poner de forma RANDOM els forats
             auxX = rnd.nextInt(n);
             auxY = rnd.nextInt(n);
-            if (mapabool[auxX][auxY]) { --i; }
+            if (t.getCasella(auxX,auxY).elem == -1 ) { --i; }
             else { t.setCasella(auxX, auxY, Casella.FORAT);}
-            mapabool[auxX][auxY] = true;
         }
         escriu(t);
         boolean b = t.esPartit();
@@ -145,9 +141,8 @@ public class CapaDomini
         while (!preparat){ //ponemos el primero numero de forma random sin que caiga en un Forat
             auxX = rnd.nextInt(n);
             auxY = rnd.nextInt(n);
-            if (!mapabool[auxX][auxY]){
+            if (t.getCasella(auxX,auxY).elem == 0){
                 t.setCasella(auxX, auxY, num_pre.get(0)); //Ponemos el numero 1 en alguna parte del tablero
-                mapabool[auxX][auxY] = true;
                 preparat = true;
                 inicial.x = auxX;
                 inicial.y = auxY;
