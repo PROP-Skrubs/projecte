@@ -13,9 +13,9 @@ public class CreadorHidatos {
         CapaDomini cd = new CapaDomini();
         while(true){
             System.out.println("Introdueix una comana:");
-            System.out.println("\t- 1:Generar Hidato aleatori");
-            System.out.println("\t- 2:Generar Hidato manualment");
-            System.out.println("\t- x:Sortir generador Hidatos");
+            System.out.println("\t- 1: Generar Hidato aleatori");
+            System.out.println("\t- 2: Generar Hidato manualment");
+            System.out.println("\t- x: Sortir generador Hidatos");
             Scanner capt = new Scanner(System.in);
             String s = capt.nextLine();
             if (s.equals("1")){
@@ -42,7 +42,7 @@ public class CreadorHidatos {
                 while (true) {
                     s = capt.nextLine();
                     if (s.equals("facil") || s.equals("normal") || s.equals("dificil") || s.equals("UltraViolence")) {
-                        cd.creacioTaulerPredeterminat(n, m, x, s).pintar_tauler(1);
+                        cd.creacioTaulerPredeterminat(n, m, x, s).pintar_tauler();
 
                         break;
                     }

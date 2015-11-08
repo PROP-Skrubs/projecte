@@ -34,6 +34,6 @@ public class Afegir_Valor {
             n = capt.nextInt();
         }
         h.getTauler().setCasella(x, y, n);
-        h.getTauler().pintar_tauler(1);
+        h.getTauler().pintar_tauler();
     }
 }

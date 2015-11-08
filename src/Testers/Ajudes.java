@@ -16,7 +16,6 @@ public class Ajudes {
         ControladorAjudes ca = new ControladorAjudes();
         Casella c = new Casella();
         c = ca.help1(h);
-        Scanner capt = new Scanner(System.in);
         System.out.println("Jo de tu posaria el numero" + c.elem + " a les posicions x:" + c.x + " y:" + c.y);
     }
     public void ajuda2(Hidato h){

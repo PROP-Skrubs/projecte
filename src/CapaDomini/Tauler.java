@@ -5,10 +5,7 @@ import java.util.*;
 public class Tauler
 {
     private Casella[][] tauler;
-    private Integer idhidato;
-    private Integer nforats;
-    private Integer ncolocats;
-    private Integer tamany;
+
     private static Casella[] offsets = {
             new Casella(1, -1), new Casella(1, 0), new Casella(1, -1),
             new Casella(0, -1), new Casella(0, 1),
@@ -71,7 +68,9 @@ public class Tauler
     {
         return tauler.length;
     }
-    public Integer tamany() {
+
+    public int tamany()
+    {
         return tauler.length;
     }
 
@@ -262,50 +261,19 @@ public class Tauler
         else return false;
 
     }
-    public Integer getNforats() {
-        return nforats;
-    }
 
-    public void setNforats(Integer nforats) {
-        this.nforats = nforats;
-    }
-
-    public Integer getNcolocats() {
-        return ncolocats;
-    }
-
-    public void setNcolocats(Integer ncolocats) {
-        this.ncolocats = ncolocats;
-    }
-
-    public Integer getIdhidato() {
-        return idhidato;
-    }
-
-    public void setIdhidato(Integer idhidato) {
-        this.idhidato = idhidato;
-    }
-    public Tauler(Integer idhidato, Integer nforats, Integer ncolocats, Integer tamany, Casella[][] tauler){
-        this.idhidato= idhidato;
-        this.nforats = nforats;
-        this.ncolocats = ncolocats;
-        this.tamany = tamany;
-        this.tauler = tauler;
-    }
-
-    public void pintar_tauler(int m){
+    public void pintar_tauler(){
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_BARRA = "\u2014";
 
-        for (int i = 0; i < 6; ++i){
+        for (int i = 0; i < getLongitud(); ++i){
             System.out.print("|");
-            for (int j = 0; j < 6; ++j) {
-                    if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
-                    if (getCasella(i,j).elem == 0) System.out.print(" ");
-                    if (getCasella(i,j).elem == 0) System.out.print("*");
-                    if(getCasella(i,j).elem != 0)System.out.print(ANSI_RED + getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
-                    else System.out.print(getCasella(i,j).elem);
+            for (int j = 0; j < getLongitud(); ++j) {
+                if (getCasella(i,j).elem - 10 < 0) System.out.print(" ");
+                if (getCasella(i,j).elem == -1) System.out.print("*");
+                else if(getCasella(i,j).elem != 0)System.out.print(ANSI_RED + getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
+                else System.out.print(getCasella(i,j).elem);
                 System.out.print("|");
             }
             System.out.print("\n");
