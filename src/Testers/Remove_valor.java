@@ -12,14 +12,14 @@ public class Remove_valor {
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
-        while (x < 1 | x > 6) {
+        while (x < 1 | x > h.getTauler().getLongitud()) {
             System.out.println("X no valida, introdueix una altra");
             x = capt.nextInt();
         }
 
         System.out.println("introdueix Y:");
         int y = capt.nextInt();
-        while (y < 1 | y > 6) {
+        while (y < 1 | y > h.getTauler().getLongitud()) {
             System.out.println("Y no valida, introdueix una altra");
             y = capt.nextInt();
         }

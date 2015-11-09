@@ -1,5 +1,6 @@
 package Testers;
 
+import CapaDomini.CapaDomini;
 import CapaDomini.Hidato;
 import java.util.Scanner;
 /**
@@ -8,8 +9,12 @@ import java.util.Scanner;
 public class HidatoPlayer {
     public static void main(String[] args) {
         System.out.print("Ha comensat una partida nova:");
-        Hidato h = new Hidato();
+        System.out.print("Selecciona un id d'algun Hidato :");
         Scanner capt = new Scanner(System.in);
+        int id = capt.nextInt();
+        //if
+        CapaDomini cp = new CapaDomini();
+        Hidato h = cp.get_hidato(id);
         while (h.getTaulerComplert().comparaDiferencies(h.getTauler()) > 0){
             String s;
             s = capt.nextLine();
