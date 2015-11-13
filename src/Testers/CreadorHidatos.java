@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class CreadorHidatos {
     public void main() {
         System.out.println("Generador de Hidatos:");
-        CapaDomini cd = new CapaDomini();
         while(true){
             System.out.println("Introdueix una comana:");
             System.out.println("\t- 1: Generar Hidato aleatori");
@@ -42,8 +41,8 @@ public class CreadorHidatos {
                 while (true) {
                     s = capt.nextLine();
                     if (s.equals("facil") || s.equals("normal") || s.equals("dificil") || s.equals("UltraViolence")) {
+                        CapaDomini cd = new CapaDomini();
                         cd.creacioTaulerPredeterminat(n, m, x, s).pintar_tauler();
-
                         break;
                     }
                     else System.out.println("Dificultat no valida [facil/normal/dificil/UltraViolence]");

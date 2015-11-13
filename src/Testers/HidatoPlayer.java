@@ -17,10 +17,12 @@ public class HidatoPlayer {
         Hidato h = cp.get_hidato(id);
         while (h.getTaulerComplert().comparaDiferencies(h.getTauler()) > 0){
             String s;
+            System.out.println("Introdueix una comana:");
             s = capt.nextLine();
             if (s.equals("add")){
                 Afegir_Valor av = new Afegir_Valor();
                 av.afegir(h);
+
             }
 
             else if (s.equals("rm")){
@@ -36,10 +38,7 @@ public class HidatoPlayer {
                 Ajudes a = new Ajudes();
                 a.ajuda2(h);
             }
-            else if (s.equals("help3")){
-
-            }
-            else if (s.equals("stop")) {
+            else if (s.equals("x")) {
                 break;
             }
         }

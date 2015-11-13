@@ -71,4 +71,8 @@ public class Hidato
         getTauler().setCasella(x, y, 0);
         getTauler().pintar_tauler();
     }
+
+    public void imprimir(){
+        getTauler().pintar_tauler();
+    }
 }
