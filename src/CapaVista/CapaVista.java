@@ -1,7 +1,7 @@
 package CapaVista;
 
 import CapaDomini.CapaDomini;
-
+import CapaDomini.Tauler;
 import java.util.Scanner;
 
 /**

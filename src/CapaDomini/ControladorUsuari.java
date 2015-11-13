@@ -1,4 +1,5 @@
 package CapaDomini;
+import CapaDomini.Usuari;
 
 /**
  * Created by daniel on 29/10/15.
@@ -11,7 +12,7 @@ public class ControladorUsuari
         u.setNomUsuari(nomUsuari);
         u.setContrasenya(contrasenya);
         u.setNomReal(nomReal);
-        return CapaPersistencia.ControladorUsuari.crearUsuari(u);
+        CapaPersistencia.ControladorUsuari.crearUsuari(u);
         /*TODO:
             Controlar les excepcions i el resultat de la operacio.
               ^en principi ja es controla tot lo necessari (basicament si es crea o no l'user) i es deixa morir els errors de base de dades.
