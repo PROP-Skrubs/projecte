@@ -11,7 +11,7 @@ public class CapaDomini
         for (int i = 0; i < t.tamany(); ++i) {
             for (int j = 0; j < t.tamany(); ++j) {
                 if(!num_pre.contains(t.getCasella(i, j).elem) && (t.getCasella(i, j).elem != -1)) {
-                    t.setCasella(i,j,0);
+                    t.setCasella(i,j,0,0);
                 }
             }
         }
@@ -44,22 +44,29 @@ public class CapaDomini
         Random rnd = new Random();
         if (k == final1-1){
             fin.clone(t);
+//            escriu(fin);
             return 0;
         }
         else {
             List<Casella> Adjacents = new ArrayList<Casella>();
             t.getAdjacentslist(actual, Adjacents);
             while (!Adjacents.isEmpty() && !fin.he_acabat()) {
+
+                //int p = numadjmespetit(Adjacents);
+                //Collections.sort(Adjacents, new Casella());
+                Collections.sort(Adjacents);
                 int kaux = k +1;
-                int p = rnd.nextInt(Adjacents.size());
-                Casella aux = Adjacents.get(p);
-                Adjacents.remove(p);
+                Casella aux = Adjacents.get(0);
+                Adjacents.remove(0);
 
                 aux.elem = actual.elem+1;
 
                 Tauler taux = new Tauler(t.tamany());
                 taux.clone(t);
-                taux.setCasella(aux.x, aux.y, aux.elem);
+//                escriu(taux);
+                //              escriu(t);
+                taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
+                //            escriu(taux);
 
                 if(taux.he_acabat()) backtracking(kaux,final1,aux,taux,fin);
                 else  if(!taux.esPartit()) {
@@ -111,11 +118,13 @@ public class CapaDomini
         int auxX;
         int auxY;
 
+        //ficar_numadjlliures(t);
+
         for (int i = 0; i <  m; ++i)   { //poner de forma RANDOM els forats
             auxX = rnd.nextInt(n);
             auxY = rnd.nextInt(n);
             if (t.getCasella(auxX,auxY).elem == -1 ) { --i; }
-            else { t.setCasella(auxX, auxY, Casella.FORAT);}
+            else { t.setCasella(auxX, auxY, Casella.FORAT, -1);}
         }
         escriu(t);
         boolean b = t.esPartit();
@@ -142,7 +151,7 @@ public class CapaDomini
             auxX = rnd.nextInt(n);
             auxY = rnd.nextInt(n);
             if (t.getCasella(auxX,auxY).elem == 0){
-                t.setCasella(auxX, auxY, num_pre.get(0)); //Ponemos el numero 1 en alguna parte del tablero
+                t.setCasella(auxX, auxY, num_pre.get(0), t.getCasella(auxX,auxY).numadjlliures); //Ponemos el numero 1 en alguna parte del tablero
                 preparat = true;
                 inicial.x = auxX;
                 inicial.y = auxY;

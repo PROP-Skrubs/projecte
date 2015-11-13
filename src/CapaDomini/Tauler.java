@@ -27,11 +27,13 @@ public class Tauler
         {
             for (int j = 0; j < tamany; ++j)
             {
-                tauler[i][j] = new Casella(i, j, Casella.BUIT);
+                if ( (i == 0 && j == 0 ) || (i == 0 && j == tamany-1) || (i == tamany -1 && j == 0) || (i == tamany-1 && j == tamany-1)) tauler[i][j] = new Casella(i, j, Casella.BUIT, 3);
+                else if ( (i == 0 && j != 0 && j != tamany) || (i == tamany-1 && j != 0 && j != tamany-1) || (j == 0 && i != 0 && i != tamany-1) || (j == tamany-1 && i != 0 && i != tamany-1) ) tauler[i][j] = new Casella(i, j, Casella.BUIT, 5);
+                else tauler[i][j] = new Casella(i, j, Casella.BUIT, 8);
+
             }
         }
     }
-
     public Tauler(Tauler t)
     {
         int tamany = t.tamany();
@@ -49,19 +51,29 @@ public class Tauler
     public void clone(Tauler t) {
         for (int i = 0; i<t.tamany(); ++i) {
             for (int j=0; j<t.tamany(); ++j) {
-                this.setCasella(i,j,t.getCasella(i,j).elem);
+                this.setCasella(i,j,t.getCasella(i,j).elem,t.getCasella(i,j).numadjlliures);
             }
         }
     }
+
 
     public Casella getCasella(int posX, int posY)
     {
         return tauler[posX][posY];
     }
 
-    public void setCasella(int posX, int posY, int valor)
+    public void setCasella(int posX, int posY, int valor, int numadjlliure)
     {
-        tauler[posX][posY] = new Casella(posX, posY, valor);
+        int[] X = {0, 1, 0, -1, 1, 1, -1, -1};
+        int[] Y = {1, 0, -1, 0, 1, -1, 1, -1};
+        tauler[posX][posY] = new Casella(posX, posY, valor, numadjlliure);
+
+        for (int i = 0; i < 8; ++i) {
+            if (esvalid(posX + X[i], posY + Y[i]) && tauler[posX + X[i]][posY + Y[i]].elem != -1)
+                --tauler[posX + X[i]][posY + Y[i]].numadjlliures;
+
+        }
+
     }
 
     public int getLongitud()
@@ -81,7 +93,7 @@ public class Tauler
 
     public Casella buscarnumeromax()
     {
-        Casella ret = new Casella(0, 0, 0);
+        Casella ret = new Casella(0, 0, 0,0);
 
         for (int i = 0; i < tauler.length; ++i)
         {
@@ -123,7 +135,7 @@ public class Tauler
                     int consideraY = inici.y + j;
                     if (consideraY >= 0 && consideraY < tauler.length) {
                         if (tauler[consideraX][consideraY].elem == Casella.BUIT) {
-                            aAfegir.add(new Casella(consideraX, consideraY, 0));
+                            aAfegir.add(new Casella(consideraX, consideraY, 0,tauler[consideraX][consideraY].numadjlliures));
                             ++DEBUG_AFEGIT;
                         }
                     }
@@ -221,7 +233,7 @@ public class Tauler
 
         //BFS a partir d'aqui
         Queue<Casella> aVisitar = new ArrayDeque<>();
-        getAdjacents(new Casella(primeraX, primeraY, 0), aVisitar);
+        getAdjacents(new Casella(primeraX, primeraY, 0,0), aVisitar);
         visitats[primeraX][primeraY] = true;
         ++casellesVisitades;
         int iteracions = 0;
