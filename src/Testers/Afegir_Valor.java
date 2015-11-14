@@ -26,7 +26,7 @@ public class Afegir_Valor {
         }
         System.out.println("introdueix valor:");
         int n = capt.nextInt();
-        while (h.getTauler().buscaNumero(n) != null) {
+        while (h.getTauler().buscaCasella(n) != null) {
             System.out.println("Valor ja assignat");
             n = capt.nextInt();
         }

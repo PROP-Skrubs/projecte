@@ -11,8 +11,24 @@ public class Hidato
 
     public Tauler getTauler()
     {
-        return new Tauler(tauler);
+        return tauler;
     }
+
+    public void setTauler(Tauler nou)
+    {
+        tauler = nou;
+    }
+
+    public TaulerComplert getTaulerComplert()
+    {
+        return taulerComplert;
+    }
+
+    public void setTaulerComplert(TaulerComplert nou)
+    {
+        taulerComplert = nou;
+    }
+
 
 
     public void pintar_hidato(int m){

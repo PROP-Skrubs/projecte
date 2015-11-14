@@ -12,7 +12,7 @@ public class DemanaTaulerAUsuari
     public static void run (Tauler aModificar)
     {
         Scanner in = new Scanner(System.in);
-        int costat = aModificar.getLongitud();
+        int costat = aModificar.getTamany();
         for (int i = 0; i < costat; ++i)
         {
             for (int j = 0; j < costat; ++j)

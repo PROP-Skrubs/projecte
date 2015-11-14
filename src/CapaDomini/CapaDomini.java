@@ -1,9 +1,8 @@
 package CapaDomini;
 
-import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Random;
-import java.util.Vector;
+
 /**
  * Created by daniel on 12/10/15.
  */
@@ -52,7 +51,7 @@ public class CapaDomini
                 int auxX = actual.x + X[p];
                 int auxY = actual.y + Y[p];
 
-                if (t.esvalid(auxX, auxY) && !mapabool[auxX][auxY]) {
+                if (t.esValid(auxX, auxY) && !mapabool[auxX][auxY]) {
                     Casella newaux = new Casella();
 
                     newaux.elem = actual.elem + 1;
