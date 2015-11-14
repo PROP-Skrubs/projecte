@@ -21,6 +21,7 @@ public class DriverGestioPartida {
                 System.out.println("\t-rm:   Eliminar numero");
                 System.out.println("\t-help1: Seguent numero");
                 System.out.println("\t-help2: Possibles candidats");
+                System.out.println("\t-stop: Sortir de la partida");
                 s = capt.nextLine();
                 if (s.equals("add")){
                     Afegir_Valor av = new Afegir_Valor();
