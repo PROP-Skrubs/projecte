@@ -1,7 +1,6 @@
 package CapaPersistencia;
 
 import CapaDomini.Hidato;
-import CapaDomini.Usuari;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,11 +11,11 @@ import java.util.List;
  */
 public class ControladorHidato {
     //checkhidato
-    private static Integer idtaulerini;
-    private static Integer idtaulerfi;
+    private static Integer idTaulerIni;
+    private static Integer idTaulerFi;
     private static Integer idhidato;
 
-    public static void donaidhidato(){
+    public static void donaIDHidato(){
             try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT idhidato FROM hidato ORDER BY idhidato")) {
                 ResultSet rs = p.executeQuery();
                 idhidato = rs.getInt("idhidato");
@@ -25,19 +24,19 @@ public class ControladorHidato {
         }
 
     }
-    public static void donaidtaulerini(){
+    public static void donaIDTaulerIni(){
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT id_taulerini FROM tauler_ini ORDER BY id_taulerini")) {
             ResultSet rs = p.executeQuery();
-            idtaulerini = rs.getInt("id_taulerini");
+            idTaulerIni = rs.getInt("id_taulerini");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void donatauleromplert(){
+    public static void donaTaulerOmplert(){
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT id_tauleromplert FROM tauler_omplert ORDER BY id_tauleromplert")) {
             ResultSet rs = p.executeQuery();
-            idtaulerfi = rs.getInt("id_tauleromplert");
+            idTaulerFi = rs.getInt("id_tauleromplert");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -52,12 +51,12 @@ public class ControladorHidato {
             throw new RuntimeException(e);
         }
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO hidato (idhidato,id_taulerini,id_tauleromplert, dificultad) VALUES (?,?,?,?)")) {
-            donaidhidato();
-            donaidtaulerini();
-            donatauleromplert();
+            donaIDHidato();
+            donaIDTaulerIni();
+            donaTaulerOmplert();
             p.setInt(1, idhidato);
-            p.setInt(2, idtaulerini);
-            p.setInt(3, idtaulerfi);
+            p.setInt(2, idTaulerIni);
+            p.setInt(3, idTaulerFi);
             p.setString(4, h.isDificultat());
             p.executeUpdate();
             return true;
@@ -79,7 +78,7 @@ public class ControladorHidato {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }"idhidato"
 
     public static List<Hidato> getHidatos() {
         List<Hidato> lista = new ArrayList<>();

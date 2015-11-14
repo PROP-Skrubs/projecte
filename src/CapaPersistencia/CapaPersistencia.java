@@ -13,7 +13,13 @@ import CapaDomini.Hidato;
 
 public class CapaPersistencia
 {
-    private String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
+    private static final String CREATE_TABLE_USUARIS = "CREATE TABLE IF NOT EXISTS usuaris (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nomUsuari VARCHAR(30) NOT NULL UNIQUE," +
+            "contrasenya VARCHAR(30) NOT NULL," +
+            "nomReal VARCHAR(30)" +
+            ")";
+    private static final String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
     static Connection conn;
 
     static
@@ -30,20 +36,16 @@ public class CapaPersistencia
         validarBaseDeDades();
     }
 
+
+
     private static void validarBaseDeDades()
     {
         //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
 
-        String usuarisCreateTable = "CREATE TABLE IF NOT EXISTS usuaris (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nomUsuari VARCHAR(30) NOT NULL UNIQUE," +
-                "contrasenya VARCHAR(30) NOT NULL," +
-                "nomReal VARCHAR(30)" +
-                ")";
         //Falta afegir el codi de la resta de taules
         try (Statement statement = conn.createStatement())
         {
-            statement.execute(usuarisCreateTable);
+            statement.execute(CREATE_TABLE_USUARIS);
             //Falta afegir el codi de la resta de taules
         }
         catch (SQLException e)

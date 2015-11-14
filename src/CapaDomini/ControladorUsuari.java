@@ -21,7 +21,7 @@ public class ControladorUsuari
          */
     }
 
-    private static boolean eliminarUsuari(String nomUsuari)
+    public static boolean eliminarUsuari(String nomUsuari)
     {
         //Retorna true si s'ha borrat l'usuari. False si no s'ha borrat cap usuari. Tira excepcio si s'han borrat multiples.
         return GestorUsuari.eliminarUsuari(nomUsuari); //todo aixo ara es diu god knows how

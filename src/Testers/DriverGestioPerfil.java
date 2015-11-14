@@ -60,10 +60,10 @@ public class DriverGestioPerfil {
                 String s3 = capt.nextLine();
             }
             else if (s.equals("3")){
-                DriverCreadorHidatos dch = new DriverCreadorHidatos;
+                DriverCreadorHidatos dch = new DriverCreadorHidatos();
                 dch.main();
             }
-            else s.equals("Comana no valida");
+            else s.equals("Comana no valida"); //todo aixo segur que esta be???
         }
     }
 }

@@ -39,20 +39,20 @@ public class Hidato
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
-        while (x < 1 | x > getTauler().getLongitud()) {
+        while (x < 1 | x > getTauler().getTamany()) {
             System.out.println("X no valida, introdueix una altra");
             x = capt.nextInt();
         }
 
         System.out.println("introdueix Y:");
         int y = capt.nextInt();
-        while (y < 1 | y > getTauler().getLongitud()) {
+        while (y < 1 | y > getTauler().getTamany()) {
             System.out.println("Y no valida, introdueix una altra");
             y = capt.nextInt();
         }
         System.out.println("introdueix valor:");
         int n = capt.nextInt();
-        while (getTauler().buscaNumero(n) != null) {
+        while (getTauler().buscaCasella(n) != null) {
             System.out.println("Valor ja assignat");
             n = capt.nextInt();
         }
@@ -67,14 +67,14 @@ public class Hidato
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
-        while (x < 1 | x > getTauler().getLongitud()) {
+        while (x < 1 | x > getTauler().getTamany()) {
             System.out.println("X no valida, introdueix una altra");
             x = capt.nextInt();
         }
 
         System.out.println("introdueix Y:");
         int y = capt.nextInt();
-        while (y < 1 | y > getTauler().getLongitud()) {
+        while (y < 1 | y > getTauler().getTamany()) {
             System.out.println("Y no valida, introdueix una altra");
             y = capt.nextInt();
         }

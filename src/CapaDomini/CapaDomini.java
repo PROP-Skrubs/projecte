@@ -37,8 +37,8 @@ public class CapaDomini
 
     }
     public static void eliminarnumeros( Tauler t, List<Integer> num_pre){
-        for (int i = 0; i < t.tamany(); ++i) {
-            for (int j = 0; j < t.tamany(); ++j) {
+        for (int i = 0; i < t.getTamany(); ++i) {
+            for (int j = 0; j < t.getTamany(); ++j) {
                 if(!num_pre.contains(t.getCasella(i, j).elem) && (t.getCasella(i, j).elem != -1)) {
                     t.setCasella(i,j,0,0);
                 }
@@ -49,8 +49,8 @@ public class CapaDomini
 
 
     public static void escriu(Tauler t) {
-        for(int i = 0; i < t.tamany(); ++i) {
-            for (int j = 0; j < t.tamany(); ++j){
+        for(int i = 0; i < t.getTamany(); ++i) {
+            for (int j = 0; j < t.getTamany(); ++j){
                 System.out.print("|");
                 System.out.print(t.getCasella(i, j).elem);
             }
@@ -93,7 +93,7 @@ public class CapaDomini
 
                 aux.elem = actual.elem +1;
 
-                Tauler taux = new Tauler(t.tamany());
+                Tauler taux = new Tauler(t.getTamany());
                 taux.clone(t);
 //                escriu(taux);
                 //              escriu(t);
@@ -136,7 +136,7 @@ public class CapaDomini
 
                 aux.elem = actual.elem +1;
 
-                Tauler taux = new Tauler(t.tamany());
+                Tauler taux = new Tauler(t.getTamany());
                 taux.clone(t);
 //                escriu(taux);
                 //              escriu(t);
@@ -177,7 +177,7 @@ public class CapaDomini
 
                 aux.elem = actual.elem +1;
 
-                Tauler taux = new Tauler(t.tamany());
+                Tauler taux = new Tauler(t.getTamany());
                 taux.clone(t);
 //                escriu(taux);
                 //              escriu(t);
@@ -220,7 +220,7 @@ public class CapaDomini
     public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
     {
         /*
-        Donat una "n" que serà el tamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
+        Donat una "n" que serà el getTamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
         haurà al Tauler, donat una "x" que serà el nombre de números predetermints que tingui el Tauler y una "dificultat"
         que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
         números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.
@@ -278,7 +278,7 @@ public class CapaDomini
 
         System.out.print(inicial.x + " " + inicial.y + " " + inicial.elem + "\n");
 
-        Tauler ret = new Tauler(t.tamany());
+        Tauler ret = new Tauler(t.getTamany());
 
         if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
         else backtrackingmayorde8(0, n*n-m, inicial,t,ret);

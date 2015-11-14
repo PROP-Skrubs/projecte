@@ -11,13 +11,13 @@ import java.util.List;
  */
 public class GestorUsuari
 {
-    private String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
-    private String CHECK_EXISTEIX = "SELECT nomUsuari FROM usuaris where nomUsuari = ?";
-    private String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
-    private String GET_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
+    private final static String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
+    private final static String CHECK_EXISTEIX = "SELECT nomUsuari FROM usuaris where nomUsuari = ?";
+    private final static String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
+    private final static String GET_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
 
     //Inserta un nou usuari a la BD
-    private void guardar_usuari(Usuari user)
+    public static void crearUsuari(Usuari user)
     {
         String sDriverName = "org.sqlite.JDBC";
         try {
@@ -37,7 +37,7 @@ public class GestorUsuari
         }
     }
     //Mira si hi ha ya un usuari amb aquell mateix id a la BD
-    public boolean user_repe (String nomUsuari){
+    public static boolean esUsuariRepetit(String nomUsuari){
         Boolean b = true;
         String sDriverName = "org.sqlite.JDBC";
         try {
@@ -56,7 +56,7 @@ public class GestorUsuari
         return b;
     }
 
-    public void delete_usuari(String nomusuari) {
+    public static void eliminarUsuari(String nomusuari) {
         String sDriverName = "org.sqlite.JDBC";
         try {
             Class.forName(sDriverName);
@@ -72,7 +72,7 @@ public class GestorUsuari
         }
     }
 
-    public static Usuari donaUsuari(String nomUsuari)
+    public static Usuari donaUsuari(String nomUsuari) //todo aixo esta repetit amb getUsuari
     {
         Usuari u = null;
         try (Statement s = CapaPersistencia.conn.createStatement();
@@ -100,7 +100,7 @@ public class GestorUsuari
         return u;
     }
 
-    public Usuari getusuari(String nusuari) {
+    public static Usuari getUsuari(String nusuari) { //todo aixo esta repetit amb getUsuari
         Usuari u  = new Usuari();
         String sDriverName = "org.sqlite.JDBC";
         try {
