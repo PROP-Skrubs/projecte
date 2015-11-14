@@ -1,5 +1,4 @@
 package CapaDomini;
-
 import java.util.*;
 
 /**
@@ -47,18 +46,6 @@ public class CapaDomini
 
     }
 
-
-    public static void escriu(Tauler t) {
-        for(int i = 0; i < t.getTamany(); ++i) {
-            for (int j = 0; j < t.getTamany(); ++j){
-                System.out.print("|");
-                System.out.print(t.getCasella(i, j).elem);
-            }
-            System.out.print("\n");
-        }
-        System.out.print("\n");
-
-    }
 
     public static void escriulist(List<Integer> list){
 
@@ -241,7 +228,7 @@ public class CapaDomini
             if (t.getCasella(auxX,auxY).elem == -1 ) { --i; }
             else { t.setCasella(auxX, auxY, Casella.FORAT, -1);}
         }
-        escriu(t);
+        t.print();
         boolean b = t.esPartit();
         if(b) {throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");}
 
@@ -274,22 +261,33 @@ public class CapaDomini
             }
 
         }
-        escriu(t);
+        t.print();
 
         System.out.print(inicial.x + " " + inicial.y + " " + inicial.elem + "\n");
 
         Tauler ret = new Tauler(t.getTamany());
+        Tauler retcomplert = new Tauler(t.getTamany());
+        int acabarbacktrackin = -1;
 
-        if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
-        else backtrackingmayorde8(0, n*n-m, inicial,t,ret);
+        while(acabarbacktrackin != 0){
+            if(acabarbacktrackin == ValidadorTauler.NOMINMAX) throw new RuntimeException("No esta o el 1 o el numero maxim");
+            if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES) throw new RuntimeException("Els numeros no tenen l'adjacent continuu");
+            if (acabarbacktrackin == ValidadorTauler.JARESOLT) throw new RuntimeException("L'Hidato propossat ja està resolt");
+            if (acabarbacktrackin == ValidadorTauler.NOTESOL)    throw new RuntimeException("L'Hidato propossat no té solució");
+
+            if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
+            else backtrackingmayorde8(0, n*n-m, inicial,t,ret);
+            acabarbacktrackin = ValidadorTauler.validarTauler(ret,retcomplert);
+        }
 
         System.out.print("Surto Backtracking:\n");
-        escriu(ret);
+        ret.print();
 
         eliminarnumeros(ret, num_pre);
 
-        escriu(ret);
+        ret.print();
 
         return ret;
+        
     }
 }
