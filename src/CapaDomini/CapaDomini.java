@@ -7,6 +7,35 @@ import java.util.*;
  */
 public class CapaDomini
 {
+    public static void ordenaAdjacents(List<Casella> Adjacents){
+
+        ListIterator<Casella> it= Adjacents.listIterator();
+        boolean acabat = false;
+        while(it.hasNext() && !acabat) {
+            int x = it.next().x;
+            it.previous();
+            int y = it.next().y;
+            it.previous();
+            int elem = it.next().elem;
+            it.previous();
+            int numadjacents = it.next().numadjlliures;
+            if(x == 0 && y == 0){
+                int p = it.nextIndex() - 1;
+                Casella aux = new Casella(x,y,elem,numadjacents);
+                Adjacents.add(0,aux);
+                acabat = true;
+            }
+            else if (x == 0 || y == 0){
+                int p = it.nextIndex() - 1;
+                Casella aux = new Casella(x,y,elem,numadjacents);
+                Adjacents.add(0,aux);
+                acabat = true;
+            }
+
+        }
+
+
+    }
     public static void eliminarnumeros( Tauler t, List<Integer> num_pre){
         for (int i = 0; i < t.tamany(); ++i) {
             for (int j = 0; j < t.tamany(); ++j) {
@@ -39,7 +68,94 @@ public class CapaDomini
         System.out.print("\n");
     }
 
-    public static int backtracking(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+
+    public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+
+        Random rnd = new Random();
+        if (k == final1-1){
+            fin.clone(t);
+//            escriu(fin);
+            return 0;
+        }
+        else {
+            List<Casella> Adjacents = new ArrayList<Casella>();
+            t.getAdjacentslist(actual, Adjacents);
+            while (!Adjacents.isEmpty() && !fin.he_acabat()) {
+
+                //int p = numadjmespetit(Adjacents);
+                //Collections.sort(Adjacents, new Casella());
+                ordenaAdjacents(Adjacents);
+
+                //Collections.sort(Adjacents);
+                int kaux = k +1;
+                Casella aux = Adjacents.get(0);
+                Adjacents.remove(0);
+
+                aux.elem = actual.elem +1;
+
+                Tauler taux = new Tauler(t.tamany());
+                taux.clone(t);
+//                escriu(taux);
+                //              escriu(t);
+                taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
+                //            escriu(taux);
+
+                if(taux.he_acabat()) backtrackingmayorde8(kaux,final1,aux,taux,fin);
+                else  if(!taux.esPartit()) {
+                    int auxret = backtrackingmayorde8(kaux,final1,aux,taux,fin);
+                    if(auxret == 0) return 0;
+                }
+
+            }
+            return -1;
+        }
+    }
+
+
+    public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+
+        Random rnd = new Random();
+        if (k == final1-1){
+            fin.clone(t);
+//            escriu(fin);
+            return 0;
+        }
+        else {
+            List<Casella> Adjacents = new ArrayList<Casella>();
+            t.getAdjacentslist(actual, Adjacents);
+            while (!Adjacents.isEmpty() && !fin.he_acabat()) {
+
+                //int p = numadjmespetit(Adjacents);
+                //Collections.sort(Adjacents, new Casella());
+                ordenaAdjacents(Adjacents);
+
+                //Collections.sort(Adjacents);
+                int kaux = k +1;
+                Casella aux = Adjacents.get(0);
+                Adjacents.remove(0);
+
+                aux.elem = actual.elem +1;
+
+                Tauler taux = new Tauler(t.tamany());
+                taux.clone(t);
+//                escriu(taux);
+                //              escriu(t);
+                taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
+                //            escriu(taux);
+
+                if(taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin);
+                else  if(!taux.esPartit()) {
+                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
+                    if(auxret == 0) return 0;
+                }
+
+            }
+            return -1;
+        }
+    }
+
+
+    public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
 
         Random rnd = new Random();
         if (k == final1-1){
@@ -59,7 +175,7 @@ public class CapaDomini
                 Casella aux = Adjacents.get(0);
                 Adjacents.remove(0);
 
-                aux.elem = actual.elem+1;
+                aux.elem = actual.elem +1;
 
                 Tauler taux = new Tauler(t.tamany());
                 taux.clone(t);
@@ -68,9 +184,9 @@ public class CapaDomini
                 taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
                 //            escriu(taux);
 
-                if(taux.he_acabat()) backtracking(kaux,final1,aux,taux,fin);
+                if(taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin);
                 else  if(!taux.esPartit()) {
-                    int auxret = backtracking(kaux,final1,aux,taux,fin);
+                    int auxret = backtrackingmayor(kaux, final1, aux, taux, fin);
                     if(auxret == 0) return 0;
                 }
 
@@ -78,7 +194,6 @@ public class CapaDomini
             return -1;
         }
     }
-
 
 
     public static boolean validarparamscreacioTaulerpredeterminat(int n,int m, int x, String dificultat)
@@ -165,7 +280,8 @@ public class CapaDomini
 
         Tauler ret = new Tauler(t.tamany());
 
-        backtracking(0, n * n - m, inicial, t, ret);
+        if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
+        else backtrackingmayorde8(0, n*n-m, inicial,t,ret);
 
         System.out.print("Surto Backtracking:\n");
         escriu(ret);
