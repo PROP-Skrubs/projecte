@@ -1,14 +1,16 @@
 package CapaDomini;
 
+import java.util.Comparator;
+
 /**
  * Created by cross on 20/10/15.
  */
 
-public class Casella
-{
+public class Casella implements Comparable{
     public int elem;
     public int x;
     public int y;
+    public int numadjlliures;
     public static int FORAT = -1;
     public static int BUIT = 0;
     public static boolean original;
@@ -23,6 +25,13 @@ public class Casella
         this.y = y;
         this.elem = elem;
     }
+    public Casella(int x, int y, int elem, int numadjlliures)
+    {
+        this.x = x;
+        this.y = y;
+        this.elem = elem;
+        this.numadjlliures = numadjlliures;
+    }
 
     public Casella(int xx, int yy)
     {
@@ -35,6 +44,13 @@ public class Casella
         this.x = c.x;
         this.y = c.y;
         this.elem = c.elem;
+    }
+    public void clone(Casella cas)
+    { //todo mirar si es pot usar el constructor
+        this.elem = cas.elem;
+        this.x = cas.x;
+        this.y = cas.y;
+        this.numadjlliures = cas.numadjlliures;
     }
 
     public Casella suma(Casella o)
@@ -65,4 +81,9 @@ public class Casella
         return distancia(o) <= 1;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Casella c = (Casella) o;
+        return new Integer(numadjlliures).compareTo(new Integer(c.numadjlliures));
+    }
 }

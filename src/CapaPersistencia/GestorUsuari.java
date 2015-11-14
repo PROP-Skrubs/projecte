@@ -2,68 +2,73 @@ package CapaPersistencia;
 
 import CapaDomini.Usuari;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by daniel on 29/10/15.
  */
 public class GestorUsuari
 {
-    public static boolean crearUsuari(Usuari u)
+    private String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
+    private String CHECK_EXISTEIX = "SELECT nomUsuari FROM usuaris where nomUsuari = ?";
+    private String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
+    private String GET_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
+
+    //Inserta un nou usuari a la BD
+    private void guardar_usuari(Usuari user)
     {
-        try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM usuaris WHERE nomUsuari = '" + u.getNomUsuari() + "'"))
-        {
-            resSet.next();
-            if (resSet.getInt(1) != 0) return false; //Aixo vol dir que ja hi ha un usuari amb aquest nom a la BD
+        String sDriverName = "org.sqlite.JDBC";
+        try {
+            Class.forName(sDriverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-        //Ja hem comprovat que no hi ha un usuari amb el mateix nom... per tant podem inserir be.
-        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)"))
-        {
-            p.setString(1, u.getNomUsuari());
-            p.setString(2, u.getContrasenya());
-            p.setString(3, u.getNomReal());
-            p.executeUpdate();
-            return true;
-        }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/basedades.db")) {
+            PreparedStatement insert = c.prepareStatement(INSERT_USUARI);
+            insert.setInt(1, user.getUniqID());
+            insert.setString(2, user.getNomUsuari());
+            insert.setString(3, user.getContrasenya());
+            insert.setString(4, user.getNomReal());
+            insert.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-
-    public static boolean eliminarUsuari(String nomUsuari)
-    {
-        //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
-        // o potser tambe el usuari per a si mateix (?)
-        try (Statement s = CapaPersistencia.conn.createStatement())
-        {
-            int usuarisBorrats = s.executeUpdate("DELETE FROM usuaris WHERE nomUsuari = '" + nomUsuari + "'");
-            if (usuarisBorrats != 1)
-            {
-                String problema;
-                if (usuarisBorrats == 0) return false;
-                else problema = String.format("S'han borrat %d usuaris!", usuarisBorrats);
-                throw new RuntimeException(problema);
-                /*TODO:
-                    Si no s'ha borrat cap usuari, es pot avisar a l'usuari en lloc de morir.
-                      ^aixo ja esta fet a base de que retorni un boolea
-                    Si s'han borrat _multiples_ usuaris, llavors toca morir bastant... wtf.
-                      ^fet tirant una RuntimeException
-                 */
-            }
-            return true;
+    //Mira si hi ha ya un usuari amb aquell mateix id a la BD
+    public boolean user_repe (String nomUsuari){
+        Boolean b = true;
+        String sDriverName = "org.sqlite.JDBC";
+        try {
+            Class.forName(sDriverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/prueba.db")) {
+            PreparedStatement consulta = c.prepareStatement(CHECK_EXISTEIX);
+            consulta.setString(1, nomUsuari);
+            ResultSet rs = consulta.executeQuery();
+            if(rs.next()) b = false;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    public void delete_usuari(String nomusuari) {
+        String sDriverName = "org.sqlite.JDBC";
+        try {
+            Class.forName(sDriverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/basedades.db")) {
+            PreparedStatement delete = c.prepareStatement(DELETE_USUARI);
+            delete.setString(1, nomusuari);
+            delete.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -91,6 +96,31 @@ public class GestorUsuari
         catch (SQLException e)
         {
             throw new RuntimeException(e);
+        }
+        return u;
+    }
+
+    public Usuari getusuari(String nusuari) {
+        Usuari u  = new Usuari();
+        String sDriverName = "org.sqlite.JDBC";
+        try {
+            Class.forName(sDriverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/prueba.db")) {
+            PreparedStatement consulta = c.prepareStatement(GET_USUARI);
+            consulta.setString(1, nusuari);
+            try (ResultSet rs = consulta.executeQuery()) {
+                u.setUniqID(rs.getInt(1));
+                u.setNomUsuari(rs.getString(2));
+                u.setContrasenya(rs.getString(3));
+                u.setNomReal(rs.getString(4));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return u;
     }

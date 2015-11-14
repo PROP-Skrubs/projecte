@@ -1,8 +1,12 @@
 package CapaDomini;
 
+import java.util.Scanner;
+
 /**
  * Created by daniel on 12/10/15.
  */
+
+
 public class Hidato
 {
     private Tauler tauler;
@@ -13,52 +17,73 @@ public class Hidato
     {
         return tauler;
     }
-
-    public void setTauler(Tauler nou)
-    {
-        tauler = nou;
-    }
-
     public TaulerComplert getTaulerComplert()
     {
         return taulerComplert;
     }
 
+    public void setTauler(Tauler nou)
+    {
+        tauler = nou;
+    }
     public void setTaulerComplert(TaulerComplert nou)
     {
         taulerComplert = nou;
     }
 
 
-
-    public void pintar_hidato(int m){
-        final String ANSI_RESET = "\u001B[0m";
-        final String ANSI_RED = "\u001B[31m";
-        final String ANSI_BARRA = "\u2014";
-
-        for (int i = 0; i < 6; ++i){
-            System.out.print("|");
-            for (int j = 0; j < 6; ++j) {
-                if(m == 1){
-                    if (tauler.getCasella(i,j).elem - 10 < 0) System.out.print(" ");
-                    if (tauler.getCasella(i,j).elem - 10 < 0) System.out.print("*");
-                    if(tauler.getCasella(i,j).elem != 0)System.out.print(ANSI_RED + tauler.getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
-                    else System.out.print(tauler.getCasella(i,j).elem);
-                }
-                else{
-                    if (taulerComplert.getCasella(i,j).elem - 10 < 0) System.out.print(" ");
-                    if(taulerComplert.getCasella(i,j).elem != 0)System.out.print(ANSI_RED+ taulerComplert.getCasella(i,j).elem + ANSI_RESET); //mirar si es un numero core
-                    else{
-                        if(taulerComplert.getCasella(i,j).elem != 0) System.out.print(taulerComplert.getCasella(i,j).elem);
-                        else System.out.print(" ");
-                    }
-                }
-                System.out.print("|");
-            }
-            System.out.print("\n");
-
+    public void afegir() { //todo arreglar aixo
+        /**
+         * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+         */
+        Scanner capt = new Scanner(System.in);
+        System.out.println("introdueix X:");
+        int x = capt.nextInt();
+        while (x < 1 | x > getTauler().getLongitud()) {
+            System.out.println("X no valida, introdueix una altra");
+            x = capt.nextInt();
         }
 
+        System.out.println("introdueix Y:");
+        int y = capt.nextInt();
+        while (y < 1 | y > getTauler().getLongitud()) {
+            System.out.println("Y no valida, introdueix una altra");
+            y = capt.nextInt();
+        }
+        System.out.println("introdueix valor:");
+        int n = capt.nextInt();
+        while (getTauler().buscaNumero(n) != null) {
+            System.out.println("Valor ja assignat");
+            n = capt.nextInt();
+        }
+        getTauler().setCasella(x, y, n);
+        getTauler().pintar_tauler();
     }
 
+    public void remove() {
+        /**
+         * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+         */
+        Scanner capt = new Scanner(System.in);
+        System.out.println("introdueix X:");
+        int x = capt.nextInt();
+        while (x < 1 | x > getTauler().getLongitud()) {
+            System.out.println("X no valida, introdueix una altra");
+            x = capt.nextInt();
+        }
+
+        System.out.println("introdueix Y:");
+        int y = capt.nextInt();
+        while (y < 1 | y > getTauler().getLongitud()) {
+            System.out.println("Y no valida, introdueix una altra");
+            y = capt.nextInt();
+        }
+        System.out.println("Eliminat");
+        getTauler().setCasella(x, y, 0);
+        getTauler().pintar_tauler();
+    }
+
+    public void imprimir(){
+        getTauler().pintar_tauler();
+    }
 }

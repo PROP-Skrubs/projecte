@@ -9,9 +9,8 @@ import CapaDomini.Hidato;
 import java.util.Scanner;
 
 public class Imprimir_Hidato {
-    public static void main(){
-        Hidato h = new Hidato();
-        Scanner capt = new Scanner(System.in);
-        h.pintar_hidato(2);
+
+    public void imprimir(Hidato h){
+        h.getTauler().pintar_tauler();
     }
 }

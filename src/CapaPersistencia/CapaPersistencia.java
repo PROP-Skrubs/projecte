@@ -13,6 +13,7 @@ import CapaDomini.Hidato;
 
 public class CapaPersistencia
 {
+    private String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
     static Connection conn;
 
     static
@@ -32,10 +33,7 @@ public class CapaPersistencia
     private static void validarBaseDeDades()
     {
         //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
-        /*  'CREATE TABLE IF NOT EXISTS table_name (
-            {table definition...}
-            )'
-        */
+
         String usuarisCreateTable = "CREATE TABLE IF NOT EXISTS usuaris (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nomUsuari VARCHAR(30) NOT NULL UNIQUE," +
