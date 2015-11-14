@@ -113,4 +113,37 @@ public class ControladorHidato {
         }
         return lista;
     }
+    
+      public static Hidato getHidato(Integer idhidato) {
+        Hidato h = new Hidato();
+        String sDriverName = "org.sqlite.JDBC";
+        try {
+            Class.forName(sDriverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/ProgramaJava/projecte_Skrubs/basedades.db")) {
+            PreparedStatement consulta = c.prepareStatement("SELECT * FROM hidato WHERE idhidato  = '" + idhidato + "'");
+            try (ResultSet rs = consulta.executeQuery()) {
+                while (rs.next()) {
+                    Integer idh = rs.getInt("idhidato");
+                    Integer idtiini = rs.getInt("id_taulerini");
+                    Integer idtomp = rs.getInt("id_tauleromplert");
+                    String dificultad  = rs.getString("dificultad");
+                    h.setIdhidato(idh);
+                    h.setDificultat(dificultad);
+                    TauleriniCP.getTaulerini(idtiini);
+                    TaulerOmplertCP.getTaulerOmp(idtomp);
+                    h.setTauler(TauleriniCP.getTaulerini(idtiini));
+                    h.setTaulerComplert(TaulerOmplertCP.getTaulerOmp(idtomp));
+                }
+                return h;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return h;
+    }
 }
