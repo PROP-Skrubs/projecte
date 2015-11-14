@@ -50,7 +50,7 @@ public class DriverPartida {
             }
 
             else if (s.equals("creator")){
-                CreadorHidatos ch = new CreadorHidatos();
+                DriverCreadorHidatos ch = new DriverCreadorHidatos();
                 ch.main();
             }
 

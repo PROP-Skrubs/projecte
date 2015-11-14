@@ -17,9 +17,9 @@ public class DriverGestEstRan {
             else if (s.equals("estadistiques")) {
                 while (true) {
                     System.out.println("Introdueix una comana:");
-                    System.out.println("\t- 1: Estadistiques Usuari");
-                    System.out.println("\t- 2: Estadistiques Hidatos resolts per dificultat");
-                    System.out.println("\t- 3: Estadistiques Hidatos totals resolts");
+                    System.out.println("\t- 1: Lectura Estadistiques Usuari");
+                    System.out.println("\t- 2: Lectura Estadistiques Hidatos resolts per dificultat");
+                    System.out.println("\t- 3: Lectura Estadistiques Hidatos totals resolts");
                     System.out.println("\t- x: Sortir estadistiques");
                     s = capt.nextLine();
                     if (s.equals("1")) {
@@ -38,9 +38,9 @@ public class DriverGestEstRan {
             else if (s.equals("ranquing")){
                 while (true) {
                     System.out.println("Introdueix una comana:");
-                    System.out.println("\t- 1: Ranquing de Usuaris");
-                    System.out.println("\t- 2: Ranquing de Hidatos");
-                    System.out.println("\t- x: Sortir Ranquing");
+                    System.out.println("\t- 1: Lectura Ranquing de Usuaris");
+                    System.out.println("\t- 2: Lectura Ranquing de Hidatos");
+                    System.out.println("\t- x: Lectura Sortir Ranquing");
                     s = capt.nextLine();
                     if (s.equals("1")) {
 

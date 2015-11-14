@@ -261,6 +261,7 @@ public class Tauler
         return false;
     }
 
+
     public boolean he_acabat() {
         int cont = 0;
         for (int i = 0; i < this.tamany(); ++i) {
@@ -274,7 +275,13 @@ public class Tauler
 
     }
 
+
     public void pintar_tauler(){
+        /**
+         * Imprimeix per pantalla el tauler donat. El simbol '*' significa una casella en la qual no hi pot anar cap element.
+         * Els numeros de color vermell indiquen els valors propis donats per el Tauler mentre que els numeros de color negre indiquen els valors
+         * indtroduits per el usuari.
+         */
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_BARRA = "\u2014";

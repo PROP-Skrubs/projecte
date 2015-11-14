@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Created by oriol on 7/11/15.
  */
-public class CreadorHidatos {
+public class DriverCreadorHidatos {
     public void main() {
         System.out.println("Generador de Hidatos:");
         while(true){

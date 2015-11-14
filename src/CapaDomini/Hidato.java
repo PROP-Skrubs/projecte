@@ -24,6 +24,9 @@ public class Hidato
 
 
     public void afegir() {
+        /**
+         * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+         */
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
@@ -44,15 +47,14 @@ public class Hidato
             System.out.println("Valor ja assignat");
             n = capt.nextInt();
         }
-        while (n > 36) {
-            System.out.println("Valorn no valid, introdueix una altra");
-            n = capt.nextInt();
-        }
         getTauler().setCasella(x, y, n);
         getTauler().pintar_tauler();
     }
 
     public void remove() {
+        /**
+         * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+         */
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
