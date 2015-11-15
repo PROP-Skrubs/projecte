@@ -84,7 +84,7 @@ public class Hidato
         }
         System.out.println("introdueix valor:");
         int n = capt.nextInt();
-        while (tauler.buscaNumero(n) != null) {
+        while (tauler.buscaCasella(n) != null) {
             System.out.println("Valor ja assignat");
             n = capt.nextInt();
         }

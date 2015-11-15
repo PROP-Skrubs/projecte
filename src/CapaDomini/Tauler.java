@@ -63,7 +63,7 @@ public class Tauler
         }
     }
 
-    public Casella buscaNumero(int num)
+    public Casella buscaCasella(int num)
     {
         for (Casella[] fila : tauler)
         {
@@ -198,20 +198,6 @@ public class Tauler
             }
         }
         return true;
-    }
-
-
-    public Casella buscaCasella(int num)
-    {
-        for (Casella[] fila : tauler)
-        {
-            for (Casella candidat : fila)
-            {
-                if (candidat.elem == num)
-                    return new Casella(candidat);
-            }
-        }
-        return null;
     }
 
 

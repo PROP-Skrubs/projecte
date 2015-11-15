@@ -9,7 +9,7 @@ import java.util.List;
 public class ControladorAjudes {
     public Casella help1(Hidato h){
         int x = h.getTauler().trobaPrimeraIncognitaAPartirDe(1);
-        return h.getTaulerComplert().buscaNumero(x);
+        return h.getTaulerComplert().buscaCasella(x);
     }
 
     public List<Integer> help2(Integer i, Integer j, Hidato h) {
