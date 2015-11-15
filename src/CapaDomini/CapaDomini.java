@@ -202,83 +202,94 @@ public class CapaDomini
         que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
         números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.
          */
-        Casella inicial = new Casella();
+        int acabarbacktrackin = -1;
+        Tauler ret = new Tauler(n);
+        while(acabarbacktrackin != 0) {
+            Casella inicial = new Casella();
 
-        Tauler t = new Tauler(n);
-        Random rnd = new Random();
-        int auxX;
-        int auxY;
+            Tauler t = new Tauler(n);
+            Random rnd = new Random();
+            int auxX;
+            int auxY;
 
-        //ficar_numadjlliures(t);
+            //ficar_numadjlliures(t);
 
-        for (int i = 0; i <  m; ++i)   { //poner de forma RANDOM els forats
-            auxX = rnd.nextInt(n);
-            auxY = rnd.nextInt(n);
-            if (t.getCasella(auxX,auxY).elem == -1 ) { --i; }
-            else { t.setCasella(auxX, auxY, Casella.FORAT, -1);}
-        }
-        t.print();
-        boolean b = t.esPartit();
-        if(b) {throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");}
-
-
-        List<Integer> num_pre = new ArrayList<Integer>();
-        List<Integer> num_pre_aux = new ArrayList<Integer>();
-
-        for (int i = 2; i < n*n-m-1; ++i) num_pre_aux.add(i);
-
-        num_pre.add(1);
-        for (int i = 0; i < x - 2; ++i) {
-            int auxrnd = rnd.nextInt(num_pre_aux.size());
-            num_pre.add(num_pre_aux.get(auxrnd));
-            num_pre_aux.remove(auxrnd);
-        }
-        num_pre.add(n*n-m);
-
-
-
-        boolean preparat = false;
-        while (!preparat){ //ponemos el primero numero de forma random sin que caiga en un Forat
-            auxX = rnd.nextInt(n);
-            auxY = rnd.nextInt(n);
-            if (t.getCasella(auxX,auxY).elem == 0){
-                t.setCasella(auxX, auxY, num_pre.get(0), t.getCasella(auxX,auxY).numadjlliures); //Ponemos el numero 1 en alguna parte del tablero
-                preparat = true;
-                inicial.x = auxX;
-                inicial.y = auxY;
-                inicial.elem = num_pre.get(0);
+            for (int i = 0; i < m; ++i) { //poner de forma RANDOM els forats
+                auxX = rnd.nextInt(n);
+                auxY = rnd.nextInt(n);
+                if (t.getCasella(auxX, auxY).elem == -1) {
+                    --i;
+                } else {
+                    t.setCasella(auxX, auxY, Casella.FORAT, -1);
+                }
+            }
+            t.print();
+            boolean b = t.esPartit();
+            if (b) {
+                throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");
             }
 
-        }
-        t.print();
 
-        System.out.print(inicial.x + " " + inicial.y + " " + inicial.elem + "\n");
+            List<Integer> num_pre = new ArrayList<Integer>();
+            List<Integer> num_pre_aux = new ArrayList<Integer>();
 
-        Tauler ret = new Tauler(t.getTamany());
+            for (int i = 2; i < n * n - m - 1; ++i) num_pre_aux.add(i);
+
+            num_pre.add(1);
+            for (int i = 0; i < x - 2; ++i) {
+                int auxrnd = rnd.nextInt(num_pre_aux.size());
+                num_pre.add(num_pre_aux.get(auxrnd));
+                num_pre_aux.remove(auxrnd);
+            }
+            num_pre.add(n * n - m);
+
+
+            boolean preparat = false;
+            while (!preparat) { //ponemos el primero numero de forma random sin que caiga en un Forat
+                auxX = rnd.nextInt(n);
+                auxY = rnd.nextInt(n);
+                if (t.getCasella(auxX, auxY).elem == 0) {
+                    t.setCasella(auxX, auxY, num_pre.get(0), t.getCasella(auxX, auxY).numadjlliures); //Ponemos el numero 1 en alguna parte del tablero
+                    preparat = true;
+                    inicial.x = auxX;
+                    inicial.y = auxY;
+                    inicial.elem = num_pre.get(0);
+                }
+
+            }
+            t.print();
+
+            System.out.print(inicial.x + " " + inicial.y + " " + inicial.elem + "\n");
+
 //        Tauler retcomplert = new Tauler(t.getTamany());
-        int acabarbacktrackin = -1;
 
-        eliminarnumeros(ret, num_pre);
 
-        while(acabarbacktrackin != 0){
-            if(acabarbacktrackin == ValidadorTauler.NOMINMAX) throw new RuntimeException("No esta o el 1 o el numero maxim");
-            if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES) throw new RuntimeException("Els numeros no tenen l'adjacent continuu");
-            if (acabarbacktrackin == ValidadorTauler.JARESOLT) throw new RuntimeException("L'Hidato propossat ja està resolt");
-            if (acabarbacktrackin == ValidadorTauler.NOTESOL)    throw new RuntimeException("L'Hidato propossat no té solució");
+
+
+            if (acabarbacktrackin == ValidadorTauler.NOMINMAX)
+                throw new RuntimeException("No esta o el 1 o el numero maxim");
+            if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES)
+                throw new RuntimeException("Els numeros no tenen l'adjacent continuu");
+            if (acabarbacktrackin == ValidadorTauler.JARESOLT)
+                throw new RuntimeException("L'Hidato propossat ja està resolt");
+            if (acabarbacktrackin == ValidadorTauler.NOTESOL)
+                throw new RuntimeException("L'Hidato propossat no té solució");
 
             if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
-            else backtrackingmayorde8(0, n*n-m, inicial,t,ret);
-            acabarbacktrackin = ValidadorTauler.validarTauler(ret,retcomplert);
+            else backtrackingmayorde8(0, n * n - m, inicial, t, ret);
+            eliminarnumeros(ret, num_pre);
+
+            acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
+            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
+
+
+            System.out.print("Surto Backtracking:\n");
+            ret.print();
+
+
+            ret.print();
+
         }
-
-        System.out.print("Surto Backtracking:\n");
-        ret.print();
-
-
-
-        ret.print();
-
         return ret;
-        
     }
 }

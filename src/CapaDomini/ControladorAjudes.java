@@ -24,90 +24,82 @@ public class ControladorAjudes {
         return res1;
     }
 
-    public List<Integer> quitar_resto(List<Integer> vector, Integer i, Integer j, Hidato h) {
-        if (i-1 > 0) {    //Arriba //Si las variables i,j estan dentro del rango
-            if (h.getTauler().getCasella(i - 1, j).elem != 0) {   //Si hay un numero colocado, miramos para cada candidato el rango
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i - 1, j).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i - 1, j).elem);
+   public List<Integer> quitar_resto(List<Integer> vector, Integer i, Integer j, Hidato h) {
+        Integer indice = 0;
+        while(indice < vector.size()) {
+            List<Boolean> se_borra = new ArrayList<>();
+            Integer auxi = vector.get(indice);
+            Boolean b = false;
+            if (i-1 >= 0) {    //Arriba //Si las variables i,j estan dentro del rango
+                if (h.getTauler().getCasella(i - 1, j).elem != 0) {   //Si hay un numero colocado, miramos para cada candidato el rango
+                    if(Math.abs(auxi-h.getTauler().getCasella(i - 1, j).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (i+1 < h.getTauler().getTamany()) {    //Abajo
-            if (h.getTauler().getCasella(i + 1, j).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i + 1, j).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i + 1, j).elem);
+            if (i+1 < h.getTauler().getTamany()) {    //Abajo
+                if (h.getTauler().getCasella(i + 1, j).elem != 0) {
+                    if(Math.abs(auxi-h.getTauler().getCasella(i + 1, j).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (j-1 > 0) {    //Izquierda
-            if (h.getTauler().getCasella(i, j - 1).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    System.out.print("dd" + auxi);
-                    if(!(Math.abs(auxi-h.getTauler().getCasella(i, j - 1).elem) == 1)){
-                        System.out.print("Haid deliminar");
-                        vector.remove((Integer)h.getTauler().getCasella(i, j - 1).elem);
+            if (j-1 >= 0) {    //Izquierda
+                if (h.getTauler().getCasella(i, j - 1).elem != 0) {
+                    if((Math.abs(auxi-h.getTauler().getCasella(i, j - 1).elem) == 1)){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (j+1 < h.getTauler().getTamany()) {    //Derecha
-            if (h.getTauler().getCasella(i, j + 1).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i, j + 1).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i, j + 1).elem);
+            if (j+1 < h.getTauler().getTamany()) {    //Derecha
+                if (h.getTauler().getCasella(i, j + 1).elem != 0) {
+                    if(Math.abs(auxi-h.getTauler().getCasella(i, j + 1).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (((i-1)>0) && ((j-1) > 0)) {    //Diagonal izq arriba
-            if (h.getTauler().getCasella(i - 1, j - 1).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i - 1, j - 1).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i - 1, j - 1).elem);
+            if (((i-1)>=0) && ((j-1) >= 0)) {    //Diagonal izq arriba
+                if (h.getTauler().getCasella(i - 1, j - 1).elem != 0) {
+                    if(Math.abs(auxi-h.getTauler().getCasella(i - 1, j - 1).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (((i+1)<h.getTauler().getTamany()) && ((j-1)>0)) {    //Diagonal izq abajo
-            if (h.getTauler().getCasella(i + 1, j - 1).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i + 1, j - 1).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i + 1, j - 1).elem);
+            if (((i+1)<h.getTauler().getTamany()) && ((j-1)>=0)) {    //Diagonal izq abajo
+                if (h.getTauler().getCasella(i + 1, j - 1).elem != 0) {
+                    if(Math.abs(auxi-h.getTauler().getCasella(i + 1, j - 1).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (((i-1)>0) && ((j+1)<h.getTauler().getTamany())) {    //Diagonal derecha arriba
-            if (h.getTauler().getCasella(i - 1, j + 1).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i - 1, j + 1).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i - 1, j + 1).elem);
+            if (((i-1)>=0) && ((j+1)<h.getTauler().getTamany())) {    //Diagonal derecha arriba
+                if (h.getTauler().getCasella(i - 1, j + 1).elem != 0) {
+                    if(Math.abs(auxi-h.getTauler().getCasella(i - 1, j + 1).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
-        if (((i+1)<h.getTauler().getTamany()) && ((j+1)<h.getTauler().getTamany())) {    //Diagonal derecha abajo
-            if (h.getTauler().getCasella(i + 1, j + 1).elem != 0) {
-                for (int k = 0; k < vector.size(); k++) {
-                    int auxi = vector.get(k);
-                    if(Math.abs(auxi-h.getTauler().getCasella(i + 1, j + 1).elem) != 1 ){
-                        vector.remove((Integer)h.getTauler().getCasella(i + 1, j + 1).elem);
+            if (((i+1)<h.getTauler().getTamany()) && ((j+1)<h.getTauler().getTamany())) {    //Diagonal derecha abajo
+                if (h.getTauler().getCasella(i + 1, j + 1).elem != 0) {
+                    if(Math.abs(auxi-h.getTauler().getCasella(i + 1, j + 1).elem) == 1 ){
+                        b = true;
+                        se_borra.add(b);
                     }
                 }
             }
-        }
+            if(se_borra.size()  == 0) {
+                vector.remove(auxi);
+            }
+            else ++indice;
 
+        }
         return vector;
     }
 

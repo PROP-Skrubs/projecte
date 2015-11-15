@@ -1,9 +1,8 @@
 package Testers;
 
-import CapaDomini.Hidato;
 import CapaDomini.Tauler;
+import CapaDomini.TaulerComplert;
 import CapaDomini.ValidadorTauler;
-import CapaVista.DemanaTaulerAUsuari;
 
 import java.util.Scanner;
 
@@ -12,15 +11,16 @@ import java.util.Scanner;
  */
 public class ValidarHidato
 {
-    public static void run()
+    public static void main(String[] args)
     {
-        System.out.println("De quant vols que sigui el tauler? ");
-        Tauler prova = new Tauler(new Scanner(System.in).nextInt());
-        DemanaTaulerAUsuari.run(prova);
-        Hidato h = new Hidato();
-        h.setTauler(prova);
+        Scanner teclat = new Scanner(System.in);
+        Tauler t1 = new Tauler(teclat);
+        TaulerComplert t2 = new TaulerComplert();
 
-        System.out.println(ValidadorTauler.validarTauler(h.getTauler(),h.getTaulerComplert()));
+        int resultat = ValidadorTauler.validarTauler(t1, t2);
 
+        System.out.println(resultat);
+
+        if (resultat == 0) t2.print();
     }
 }

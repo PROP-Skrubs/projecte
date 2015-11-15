@@ -1,14 +1,17 @@
 package Testers;
 
-import CapaDomini.CapaDomini;
 
+import CapaDomini.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
  * Created by oriol on 7/11/15.
  */
 public class DriverCreadorHidatos {
-    public void main() {
+    public static void main(String[] args) {
         System.out.println("Generador de Hidatos:");
         while(true){
             System.out.println("Introdueix una comana:");
@@ -42,7 +45,11 @@ public class DriverCreadorHidatos {
                     s = capt.nextLine();
                     if (s.equals("facil") || s.equals("normal") || s.equals("dificil") || s.equals("UltraViolence")) {
                         CapaDomini cd = new CapaDomini();
-                        cd.creacioTaulerPredeterminat(n, m, x, s).pintar_tauler();
+                        Tauler t = new Tauler();
+                        TaulerComplert tc = new TaulerComplert();
+                        t = cd.creacioTaulerPredeterminat(n, m, x, s, tc);
+                        t.pintar_tauler();
+                        tc.pintar_tauler();
                         break;
                     }
                     else System.out.println("Dificultat no valida [facil/normal/dificil/UltraViolence]");
@@ -50,7 +57,61 @@ public class DriverCreadorHidatos {
 
             }
             else if (s.equals("2")){
+                capt = new Scanner(System.in);
+                while (true) {
+                    System.out.println("Vols utilitzar un arxiu per introduir el Hidato? [y/n]");
+                    s = capt.nextLine();
+                    if(s.equals("y")){;
+                        Scanner scanner;
+                        System.out.println("Selecciona arxiu:[1/2/3]");
+                        s = capt.nextLine();
+                        while (true) {
+                            if (s.equals("1")) {
+                                try {
+                                    scanner = new Scanner(new File("hidato1.txt"));
+                                } catch (FileNotFoundException e) {
+                                    throw new RuntimeException("Arxiu no trobat", e);
 
+                                }
+                                break;
+                            }
+                            else if (s.equals("2")) {
+                                try {
+                                    scanner = new Scanner(new File("hidato2.txt"));
+                                } catch (FileNotFoundException e) {
+                                    throw new RuntimeException("Arxiu no trobat", e);
+
+                                }
+                                break;
+                            }
+                            else if (s.equals("3")) {
+                                try {
+                                    scanner = new Scanner(new File("hidato3.txt"));
+                                } catch (FileNotFoundException e) {
+                                    throw new RuntimeException("Arxiu no trobat", e);
+
+                                }
+                                break;
+                            }
+                            else System.out.println("Comana no valida");
+                        }
+
+                        Tauler t = new Tauler(scanner);
+                        TaulerComplert  tc = new TaulerComplert();
+                        int i = ValidadorTauler.validarTauler(t, tc);
+                        t.pintar_tauler();
+
+                    }
+                    else {
+                        System.out.println("Introdueix tamany hidato:");
+                        int n = capt.nextInt();
+                        while (n < 3 | n > 10) {
+                            System.out.println("Tamany no valid, introdueix una altra");
+                            n = capt.nextInt();
+                        }
+                        System.out.println("");
+                    }
+                }
             }
             else if (s.equals("x")){
                 break;

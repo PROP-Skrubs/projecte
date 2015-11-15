@@ -11,7 +11,8 @@ import java.util.List;
  */
 public class GestorHidato
 {
-    //checkhidato
+    private static final Connection conn = CapaPersistencia.conn;
+
     private static Integer idTaulerIni;
     private static Integer idTaulerFi;
     private static Integer idhidato;
@@ -25,11 +26,21 @@ public class GestorHidato
             "numAjudesUtilitzades," +
             "esAcabada," +
             ") VALUES (?,?,?,?,?,?)";
-
-
     private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
     private final static String SELECT_HIDATO= "SELECT * FROM hidatos WHERE id = ?";
 
+    public static Hidato donaHidato(int id)
+    {
+        try (PreparedStatement p = conn.prepareStatement(SELECT_HIDATO))
+        {
+            p.setInt(1,id);
+
+        }
+        catch (SQLException e)
+        {
+
+        }
+    }
 
     public static void donaIDHidato(){
             try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT idhidato FROM hidato ORDER BY idhidato")) {

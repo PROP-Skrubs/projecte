@@ -293,12 +293,13 @@ public class Tauler
     public boolean[] presentsAlTauler()
     {
         // no usarem presentsAlTauler[0]
-        boolean[] aRetornar = new boolean[tauler.length * tauler.length + 1];
+        boolean[] aRetornar = new boolean[maximElementPossible()+1];
         for (Casella[] fila : tauler)
         {
             for (Casella candidat : fila)
             {
-                aRetornar[candidat.elem] = true;
+                if (candidat.elem > 0) //comprovacio que no sigui ni un BUIT (0) ni un forat (-1!!!!)
+                    aRetornar[candidat.elem] = true;
             }
         }
         return aRetornar;
