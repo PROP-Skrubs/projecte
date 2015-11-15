@@ -293,7 +293,7 @@ public class Tauler
     public boolean[] presentsAlTauler()
     {
         // no usarem presentsAlTauler[0]
-        boolean[] aRetornar = new boolean[maximElementPossible()];
+        boolean[] aRetornar = new boolean[maximElementPossible()+1];
         for (Casella[] fila : tauler)
         {
             for (Casella candidat : fila)
