@@ -10,7 +10,88 @@ import java.sql.*;
  */
 public class GestorPartida
 {
-      public static boolean crearPartida(Partida p) {
+    private static final Connection conn = CapaPersistencia.conn;
+    /*
+
+
+
+    */
+    private static final String INSERT_PARTIDA = "INSERT INTO partides (\n" +
+            "    idUsuari,\n" +
+            "    idHidato,\n" +
+            "    idTaulerProgres,\n" +
+            "    nCelesResoltes,\n" +
+            "    numAjudesUtilitzades,\n" +
+            "    esAcabada\n" +
+            "    ) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String COUNT_PARTIDA = "SELECT COUNT(*) FROM partides WHERE id=?";
+    private static final String DELETE_PARTIDA = "DELETE FROM partides WHERE id=?";
+    private static final String SELECT_PARTIDA = "SELECT * FROM partides WHERE id=?";
+    private static final String UPDATE_PARTIDA = "UPDATE partides SET\n" +
+            "    idUsuari=?,\n" +
+            "    idHidato=?,\n" +
+            "    idTaulerProgres=?,\n" +
+            "    nCelesResoltes=?,\n" +
+            "    numAjudesUtilitzades=?,\n" +
+            "    esAcabada=?\n" +
+            "WHERE id=?";
+
+    public static boolean existeixPartida(int id)
+    {
+        if (id == -1)
+            return false;
+        try (PreparedStatement s = conn.prepareStatement(COUNT_PARTIDA))
+        {
+            s.setInt(1, id);
+            ResultSet resSet = s.executeQuery();
+            resSet.next();
+            if (resSet.getInt(1) >= 2) throw new RuntimeException("Dos Partides a la Base de Dades amb la mateixa ID!!");
+            return resSet.getInt(1) == 1;
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean creaPartida(Partida p)
+    {
+        if (GestorHidato.existeixHidato(p.getIdhidato()))
+            GestorHidato.creaHidato(p.getHidato());
+
+
+    }
+
+    public static boolean eliminaPartida(int id)
+    {
+
+    }
+
+    public static Partida donaPartida(int id)
+    {
+
+    }
+
+    public static boolean modificaPartida(Partida p)
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static boolean crearPartida(Partida p) {
         //Miramos si ya hay algun partida con p.partida
         try (Statement s = CapaPersistencia.conn.createStatement();
              ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM partida WHERE idpartida = '" + (p.getIdpartida()) + "'")) {

@@ -1,12 +1,9 @@
 package CapaPersistencia;
 
 import CapaDomini.Casella;
-import CapaDomini.Hidato;
 import CapaDomini.Tauler;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Maria on 14/11/2015.
@@ -16,14 +13,14 @@ public class TauleriniCP {
     public static boolean crearTaulerini(Tauler tini) {
         //Miramos si ya hay algun taulerini con idtaulerini
         try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM tauler_ini WHERE id_taulerini = '" + (tini.getIdtauler()) + "'")) {
+             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM tauler_ini WHERE id_taulerini = '" + (tini.getUniqID()) + "'")) {
             resSet.next();
             if (resSet.getInt(1) != 0) return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO tauler_ini (id_taulerini,medida, matriz)  VALUES (?,?,?)")) {
-            p.setInt(1, tini.getIdtauler());
+            p.setInt(1, tini.getUniqID());
             p.setInt(2, tini.getTamany());
             String m = fromCasellaToString(tini.getTauler(),tini.getTamany());
             p.setString(3, m);
@@ -64,7 +61,7 @@ public class TauleriniCP {
                     Integer idtaulerinia = rs.getInt("id_taulerini");
                     Integer medida = rs.getInt("medida");
                     String matriz = rs.getString("matriz");
-                    ini.setIdtauler(idtaulerinia);
+                    ini.setUniqID(idtaulerinia);
                     Casella[][] caux = fromStringToCasella(matriz,medida);
                     ini.setTauler(caux);
                 }

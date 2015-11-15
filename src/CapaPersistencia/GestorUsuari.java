@@ -14,6 +14,11 @@ public class GestorUsuari
     private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
     private final static String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
     private final static String SELECT_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
+    private final static String UPDATE_USUARI = "UPDATE usuaris SET\n" +
+            "    nomUsuari=?,\n" +
+            "    contrasenya=?,\n" +
+            "    nomReal=?\n" +
+            "WHERE id=?\n";
 
     //Inserta un nou usuari a la BD
 
@@ -33,7 +38,25 @@ public class GestorUsuari
         }
     }
 
-    public static boolean crearUsuari(Usuari u)
+    public static boolean existeixUsuari(int id)
+    {
+        if (id == -1)
+            return false;
+        try (PreparedStatement s = conn.prepareStatement(COUNT_USUARI))
+        {
+            s.setInt(1, id);
+            ResultSet resSet = s.executeQuery();
+            resSet.next();
+            if (resSet.getInt(1) >= 2) throw new RuntimeException("Dos Usuaris a la Base de Dades amb la mateixa ID!!");
+            return resSet.getInt(1) == 1;
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean creaUsuari(Usuari u)
     {
         if (existeixUsuari(u.getNomUsuari()))
             return false;
@@ -52,7 +75,7 @@ public class GestorUsuari
         return true;
     }
 
-    public static boolean eliminarUsuari(String nomUsuari)
+    public static boolean eliminaUsuari(String nomUsuari)
     {
         //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
         // o potser tambe el usuari per a si mateix (?)
@@ -78,7 +101,7 @@ public class GestorUsuari
     public static Usuari donaUsuari(String nomUsuari)
     {
         Usuari u = null;
-        try (PreparedStatement s = CapaPersistencia.conn.prepareStatement(SELECT_USUARI))
+        try (PreparedStatement s = conn.prepareStatement(SELECT_USUARI))
         {
             s.setString(1, nomUsuari);
             ResultSet resSet = s.executeQuery();
@@ -102,5 +125,30 @@ public class GestorUsuari
             throw new RuntimeException(e);
         }
         return u;
+    }
+
+    public static boolean modificaUsuari(Usuari u)
+    {
+        if (!existeixUsuari(u.getUniqID()))
+            return false;
+        try (PreparedStatement s = conn.prepareStatement(UPDATE_USUARI))
+        {
+            s.setString(1,u.getNomUsuari());
+            s.setString(2,u.getContrasenya());
+            s.setString(3,u.getNomReal());
+            s.setInt(4,u.getUniqID());
+            int modificats = s.executeUpdate();
+            if (modificats != 1)
+            {
+                String problema;
+                if (modificats == 0) throw new RuntimeException("No s'ha modificat l'usuari, pero ha passat el check d'existencia.");
+                else problema = String.format("S'han modificat %d usuaris!", modificats);
+                throw new RuntimeException(problema);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -12,7 +12,7 @@ public class Usuari
 
     public Usuari()
     {
-
+        uniqID = -1;
     }
 
     public int getUniqID()

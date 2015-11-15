@@ -6,7 +6,7 @@ import java.util.*;
 public class Tauler
 {
     private Casella[][] tauler;
-    private Integer idtauler;
+    private int uniqID;
     private static Casella[] offsets = {
             new Casella(1, -1), new Casella(1, 0), new Casella(1, 1),
             new Casella(0, -1), /*casella central*/ new Casella(0, 1),
@@ -17,11 +17,13 @@ public class Tauler
     public Tauler()
     {
         // Aixo abans tiraba execpio perque se suposa que no s'havia de fer servir mai.
+        uniqID = -1;
         tauler = null;
     }
 
     public Tauler(int tamany)
     {
+        uniqID = -1;
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
         {
@@ -39,6 +41,7 @@ public class Tauler
 
     public Tauler(Tauler t)
     {
+        uniqID = -1;
         int tamany = t.getTamany();
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
@@ -51,6 +54,12 @@ public class Tauler
     }
 
     public Tauler(Scanner in)
+    {
+        uniqID = -1;
+        llegirDeText(in);
+    }
+
+    public void llegirDeText(Scanner in)
     {
         int tamany = in.nextInt();
         tauler = new Casella[tamany][tamany];
@@ -99,11 +108,11 @@ public class Tauler
     public Casella[][] getTauler() {
         return tauler;
     }
-    public Integer getIdtauler() {
-        return idtauler;
+    public int getUniqID() {
+        return uniqID;
     }
-    public void setIdtauler(Integer idtauler) {
-        this.idtauler = idtauler;
+    public void setUniqID(int idtauler) {
+        this.uniqID = idtauler;
     }
 
     public Casella getCasella(int posX, int posY)
@@ -326,27 +335,7 @@ public class Tauler
         return i;
     }
 
-    public int camiMesCurt(int a, int b)
-    {
-        //todo: valorar si aixo fa falta (es car de calcular) i en tot cas implementar-ho
-        throw new RuntimeException("Aquesta funcio se suposa que no la has de cridar, no esta implementada!");
-        /**
-         * Busca la distancia minima entre el punt A i el punt B.
-         * Si un dels numeros no existeix, o no hi ha cami retorna -1.
-         */
-        //
-        //        Casella cA = buscaCasella(a);
-        //        Casella cB = buscaCasella(b);
-        //        if (cA != null && cB != null)
-        //        {
-        //            //fes un bfs
-        //        }
-        //        else
-        //        {
-        //            //return algo que no hi ha cami
-        //        }
-        //        return -1;
-    }
+
 
     public boolean esPartit()
     {
