@@ -40,7 +40,7 @@ public class DriverGestEstRan {
                     System.out.println("Introdueix una comana:");
                     System.out.println("\t- 1: Lectura Ranquing de Usuaris");
                     System.out.println("\t- 2: Lectura Ranquing de Hidatos");
-                    System.out.println("\t- x: Lectura Sortir Ranquing");
+                    System.out.println("\t- x: Sortir Ranquing");
                     s = capt.nextLine();
                     if (s.equals("1")) {
 

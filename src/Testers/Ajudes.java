@@ -34,7 +34,7 @@ public class Ajudes {
             System.out.println("Y no valida, introdueix una altra");
             y = capt.nextInt();
         }
-        List<Integer> l = ca.help2(x, y, h);
+        List<Integer> l = ca.help2(x-1, y-1, h);
 
         if(l.isEmpty()) System.out.print("Estoy vacia");
 
