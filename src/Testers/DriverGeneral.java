@@ -19,16 +19,13 @@ public class DriverGeneral {
                 break;
             }
             else if (s.equals("1")){
-                DriverGestioPerfil dgp = new DriverGestioPerfil();
-                dgp.main();
+                DriverGestioPerfil.main();
             }
             else if (s.equals("2")){
-                DriverGestioPartida dgp = new DriverGestioPartida();
-                dgp.main();
+                DriverGestioPartida.main();
             }
             else if (s.equals("3")){
-                DriverGestEstRan dgea = new DriverGestEstRan();
-                dgea.main();
+                DriverGestEstRan.main();
             }
 
             else s.equals("Comana no valida");

@@ -96,8 +96,13 @@ public class Hidato
             else break;
             n = capt.nextInt();
         }
-        tauler.setCasella(x - 1, y - 1, n);
-        tauler.pintar_tauler();
+        if (tauler.getCasella(x-1,y-1).isOriginal()){
+            System.out.print("Aquesta casella no es pot modificar");
+        }
+        else {
+            tauler.setCasella(x - 1, y - 1, n);
+            tauler.pintar_tauler();
+        }
     }
 
     public void remove() {
@@ -119,8 +124,13 @@ public class Hidato
             y = capt.nextInt();
         }
         System.out.println("Eliminat");
-        tauler.setCasella(x - 1, y - 1, 0);
-        tauler.pintar_tauler();
+        if (tauler.getCasella(x-1,y-1).isOriginal()){
+            System.out.print("Aquesta casella no es pot modificar");
+        }
+        else {
+            tauler.setCasella(x - 1, y - 1, 0);
+            tauler.pintar_tauler();
+        }
     }
 
     public void imprimir(){
