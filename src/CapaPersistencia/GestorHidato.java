@@ -12,76 +12,65 @@ import java.util.List;
 public class GestorHidato
 {
     private static final Connection conn = CapaPersistencia.conn;
-
+    private static final String COUNT_HIDATO = "SELECT COUNT(*) FROM hidatos WHERE idHidato = ?";
+    private static final String INSERT_HIDATO = "INSERT INTO hidatos (" +
+            "idTauler," +
+            "idTaulerComplert," +
+            "dificultat" +
+            ") VALUES (?,?,?)";
+    private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
+    private final static String SELECT_HIDATO= "SELECT * FROM hidatos WHERE id = ?";
     private static Integer idTaulerIni;
     private static Integer idTaulerFi;
     private static Integer idhidato;
 
-    private static final String COUNT_HIDATO = "SELECT COUNT(*) FROM hidatos WHERE idHidato = ?";
-    private static final String INSERT_HIDATO = "INSERT INTO hidatos (" +
-            "idUsuari," +
-            "idHidato," +
-            "idTaulerProgres," +
-            "nCelesResoltes," +
-            "numAjudesUtilitzades," +
-            "esAcabada," +
-            ") VALUES (?,?,?,?,?,?)";
-    private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
-    private final static String SELECT_HIDATO= "SELECT * FROM hidatos WHERE id = ?";
-
-    public static Hidato donaHidato(int id)
+    public static boolean existeixHidato(int id)
     {
-        try (PreparedStatement p = conn.prepareStatement(SELECT_HIDATO))
+        try (PreparedStatement s = conn.prepareStatement(COUNT_HIDATO))
         {
-            p.setInt(1,id);
-
+            s.setInt(1,id);
+            ResultSet resSet = s.executeQuery();
+            resSet.next();
+            if (resSet.getInt(1) >= 2) throw new RuntimeException("Dos Hidatos a la Base de Dades amb la mateixa ID!!");
+            return resSet.getInt(1) == 1;
         }
         catch (SQLException e)
         {
-
-        }
-    }
-
-    public static void donaIDHidato(){
-            try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT idhidato FROM hidato ORDER BY idhidato")) {
-                ResultSet rs = p.executeQuery();
-                idhidato = rs.getInt("idhidato");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-    public static void donaIDTaulerIni(){
-        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT id_taulerini FROM tauler_ini ORDER BY id_taulerini")) {
-            ResultSet rs = p.executeQuery();
-            idTaulerIni = rs.getInt("id_taulerini");
-        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void donaTaulerOmplert(){
-        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT id_tauleromplert FROM tauler_omplert ORDER BY id_tauleromplert")) {
-            ResultSet rs = p.executeQuery();
-            idTaulerFi = rs.getInt("id_tauleromplert");
-        } catch (SQLException e) {
+    public static Hidato donaHidato(int id)
+    {
+        Hidato aRetornar = null;
+        try (PreparedStatement p = conn.prepareStatement(SELECT_HIDATO))
+        {
+            p.setInt(1,id);
+            ResultSet resSet = p.executeQuery();
+            if (resSet.next())
+            {
+                aRetornar = new Hidato();
+                aRetornar.setUniqID(id);
+                int idTauler = resSet.getInt("idTauler");
+                aRetornar.setTauler(GestorTauler.donaTauler(idTauler));
+                int idTaulerComplert = resSet.getInt("idTaulerComplert");
+                aRetornar.setTaulerComplert(GestorTauler.donaTaulerComplert(idTaulerComplert));
+                aRetornar.setDificultat(resSet.getString("dificultat"));
+            }
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
+        return aRetornar;
     }
+
+
     public static boolean crearHidato(Hidato h) {
-        //Miramos si ya hay algun hidato con h.idhidato
-        try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM hidato WHERE idhidato = '" + (h.getIdhidato()) + "'")) {
-            resSet.next();
-            if (resSet.getInt(1) != 0) return false;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO hidato (idhidato,id_taulerini,id_tauleromplert, dificultad) VALUES (?,?,?,?)")) {
-            donaIDHidato();
-            donaIDTaulerIni();
-            donaTaulerOmplert();
-            p.setInt(1, idhidato);
+        if (existeixHidato(h.getUniqID()))
+            return false;
+        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement(INSERT_HIDATO)) {
+            p.setInt(1, h.);
             p.setInt(2, idTaulerIni);
             p.setInt(3, idTaulerFi);
             p.setString(4, h.isDificultat());
@@ -124,7 +113,7 @@ public class GestorHidato
                      Integer idtauleromplerta = rs.getInt("id_tauleromplert");
                     String dif = rs.getString("dificultad");
                     Hidato h = new Hidato();
-                    h.setIdhidato(id);
+                    h.setUniqID(id);
                     h.setDificultat(dif);
                    // h.setTauler(null);
                    // h.setTaulerComplert(null);
@@ -139,7 +128,7 @@ public class GestorHidato
         }
         return lista;
     }
-    
+
       public static Hidato getHidato(Integer idhidato) {
         Hidato h = new Hidato();
         String sDriverName = "org.sqlite.JDBC";
@@ -156,7 +145,7 @@ public class GestorHidato
                     Integer idtiini = rs.getInt("id_taulerini");
                     Integer idtomp = rs.getInt("id_tauleromplert");
                     String dificultad  = rs.getString("dificultad");
-                    h.setIdhidato(idh);
+                    h.setUniqID(idh);
                     h.setDificultat(dificultad);
                     TauleriniCP.getTaulerini(idtiini);
                     TaulerOmplertCP.getTaulerOmp(idtomp);

@@ -85,9 +85,10 @@ public class GestorUsuari
             if (resSet.next())
             {
                 u = new Usuari();
-                u.setNomUsuari(resSet.getString(2));
-                u.setContrasenya(resSet.getString(3));
-                u.setNomReal(resSet.getString(4));
+                u.setUniqID(resSet.getInt("id"));
+                u.setNomUsuari(resSet.getString("nomUsuari"));
+                u.setContrasenya(resSet.getString("contrasenya"));
+                u.setNomReal(resSet.getString("nomReal"));
             }
             if (resSet.next()) //Hi ha mes d'un usuari que concorda amb el nom que li ha donat! Error!!!
             {
