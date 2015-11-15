@@ -24,7 +24,7 @@ public class CapaPersistencia
             "tamany INTEGER NOT NULL,\n" +
             "stringCreacio VARCHAR\n" +
             ")";
-    private static final String CREATE_TABLE_HIDATOS = "CREATE TABLE IF NOT EXISTS partides (\n" +
+    private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS partides (\n" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "idUsuari INTEGER NOT NULL,\n" +
             "idHidato INTEGER NOT NULL,\n" +
@@ -36,7 +36,7 @@ public class CapaPersistencia
             "FOREIGN KEY (iduser) REFERENCES usuaris (id),\n" +
             "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)\n" +
             ")";
-    private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS hidatos (\n" +
+    private static final String CREATE_TABLE_HIDATOS = "CREATE TABLE IF NOT EXISTS hidatos (\n" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "idTauler INTEGER,\n" +
             "idTaulerComplert INTEGER,\n" +

@@ -46,16 +46,6 @@ public class CapaDomini
 
     }
 
-
-    public static void escriulist(List<Integer> list){
-
-        for(int i = 0; i < list.size(); ++i) {
-            System.out.print(list.get(i) + " ");
-        }
-        System.out.print("\n");
-    }
-
-
     public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
 
         Random rnd = new Random();
@@ -214,7 +204,6 @@ public class CapaDomini
          */
         Casella inicial = new Casella();
 
-
         Tauler t = new Tauler(n);
         Random rnd = new Random();
         int auxX;
@@ -247,7 +236,7 @@ public class CapaDomini
         num_pre.add(n*n-m);
 
 
-        escriulist(num_pre);
+
         boolean preparat = false;
         while (!preparat){ //ponemos el primero numero de forma random sin que caiga en un Forat
             auxX = rnd.nextInt(n);
@@ -269,6 +258,8 @@ public class CapaDomini
 //        Tauler retcomplert = new Tauler(t.getTamany());
         int acabarbacktrackin = -1;
 
+        eliminarnumeros(ret, num_pre);
+        
         while(acabarbacktrackin != 0){
             if(acabarbacktrackin == ValidadorTauler.NOMINMAX) throw new RuntimeException("No esta o el 1 o el numero maxim");
             if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES) throw new RuntimeException("Els numeros no tenen l'adjacent continuu");
@@ -283,7 +274,7 @@ public class CapaDomini
         System.out.print("Surto Backtracking:\n");
         ret.print();
 
-        eliminarnumeros(ret, num_pre);
+
 
         ret.print();
 
