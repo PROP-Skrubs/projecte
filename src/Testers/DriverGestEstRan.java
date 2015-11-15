@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Created by oriol on 12/11/15.
  */
 public class DriverGestEstRan {
-    public static void main(String[] args) {
+    public static void main() {
         while (true) {
             System.out.print("Introdueix Stub a probar:");
             Scanner capt = new Scanner(System.in);

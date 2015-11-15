@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Created by oriol on 7/11/15.
  */
 public class DriverCreadorHidatos {
-    public static void main(String[] args) {
+    public static void main() {
         System.out.println("Generador de Hidatos:");
         while (true) {
             System.out.println("Introdueix una comana:");
@@ -59,45 +59,58 @@ public class DriverCreadorHidatos {
                 capt = new Scanner(System.in);
                 System.out.println("S'utilitzara arxius predeterminats per aquesta fase de testeig");
                 Scanner scanner;
+                String ar;
                 while (true) {
-                    System.out.println("Selecciona arxiu:[1/2/3]");
+                    System.out.println("Selecciona arxiu:[1/2/3/4/5]");
                     s = capt.nextLine();
                     if (s.equals("1")) {
-                        try {
-                            scanner = new Scanner(new File("./src/Testers/hidato1"));
-                        } catch (FileNotFoundException e) {
-                            System.out.println(System.getProperty("user.dir"));
-                            throw new RuntimeException("Arxiu no trobat", e);
-
-                        }
+                        ar = "./src/Testers/hidato1";
                         break;
-                    } else if (s.equals("2")) {
-                        try {
-                            scanner = new Scanner(new File("./src/Testers/hidato2"));
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException("Arxiu no trobat", e);
-
-                        }
+                    }
+                    else if (s.equals("2")) {
+                        ar = "./src/Testers/hidato2";
                         break;
-                    } else if (s.equals("3")) {
-                        try {
-                            scanner = new Scanner(new File("./src/Testers/hidato3"));
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException("Arxiu no trobat", e);
-
-                        }
+                    }
+                    else if (s.equals("3")) {
+                        ar = "./src/Testers/hidato3";
                         break;
-                    } else System.out.println("Comana no valida");
+                    }
+                    else if (s.equals("4")) {
+                        ar = "./src/Testers/hidato4";
+                        break;
+                    }
+                    else if (s.equals("5")) {
+                        ar = "./src/Testers/hidato5";
+                        break;
+                    }
+                    else if (s.equals("6")) {
+                        ar = "./src/Testers/hidato6";
+                        break;
+                    }
+                    else System.out.println("Comana no valida");
+                }
+                try {
+                    scanner = new Scanner(new File(ar));
+                } catch (FileNotFoundException e) {
+                    System.out.println(System.getProperty("user.dir"));
+                    throw new RuntimeException("Arxiu no trobat", e);
+
                 }
                 Tauler t = new Tauler(scanner);
                 TaulerComplert tc = new TaulerComplert();
-                System.out.println("li passo el seguent tauler");
-                t.print();
-                System.out.println("//////////////////////////////////////////////////////////");
                 int i = ValidadorTauler.validarTauler(t, tc);
                 t.pintar_tauler();
-                System.out.println(i);
-                tc.pintar_tauler();
+                System.out.print("\n");
+                if(i==0){
+                    System.out.println("Valid amb sol. unica");
+                    tc.pintar_tauler();
+                }
+                else if (i==1) System.out.println("Error, no conte el valor minim o el maxim");
+                else if (i==2) System.out.println("Error, els valor no estan ben posats");
+                else if (i==3) System.out.println("Error, el hidato ja esta resolt");
+                else if (i==4) System.out.println("Error, no te solucio possible");
+                else if (i==5) System.out.println("Error de solucio multiple, tauler no valid");
+
 
 
             }
