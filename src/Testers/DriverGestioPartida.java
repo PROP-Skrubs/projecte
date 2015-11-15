@@ -19,7 +19,7 @@ public class DriverGestioPartida {
                 System.out.print("Introdueix id del hidato a jugar:");
                 Hidato h;
                 Integer i = capt.nextInt();
-                h = GestorHidato.getHidato(i);
+                h = GestorHidato.donaHidato(i);
                 while (h.getTaulerComplert().comparaDiferencies(h.getTauler()) > 0) {
                     System.out.println("Introdueix una comana:");
                     System.out.println("\t-add:  Afegir numero");

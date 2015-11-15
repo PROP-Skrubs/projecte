@@ -76,7 +76,8 @@ public class CapaDomini
                 //              escriu(t);
                 taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
                 //            escriu(taux);
-
+                taux.print();
+                System.out.print("\n");
                 if(taux.he_acabat()) backtrackingmayorde8(kaux,final1,aux,taux,fin);
                 else  if(!taux.esPartit()) {
                     int auxret = backtrackingmayorde8(kaux,final1,aux,taux,fin);
@@ -119,7 +120,8 @@ public class CapaDomini
                 //              escriu(t);
                 taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
                 //            escriu(taux);
-
+                taux.print();
+                System.out.print("\n");
                 if(taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin);
                 else  if(!taux.esPartit()) {
                     int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
@@ -160,10 +162,11 @@ public class CapaDomini
                 //              escriu(t);
                 taux.setCasella(aux.x, aux.y, aux.elem,t.getCasella(aux.x,aux.y).numadjlliures);
                 //            escriu(taux);
-
+                taux.print();
+                System.out.print("\n");
                 if(taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin);
                 else  if(!taux.esPartit()) {
-                    int auxret = backtrackingmayor(kaux, final1, aux, taux, fin);
+                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
                     if(auxret == 0) return 0;
                 }
 
@@ -202,9 +205,11 @@ public class CapaDomini
         que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
         números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.
          */
+        int intentsdedonarHidatobo = 0;
         int acabarbacktrackin = -1;
         Tauler ret = new Tauler(n);
         while(acabarbacktrackin != 0) {
+            ++intentsdedonarHidatobo;
             Casella inicial = new Casella();
 
             Tauler t = new Tauler(n);
@@ -223,7 +228,6 @@ public class CapaDomini
                     t.setCasella(auxX, auxY, Casella.FORAT, -1);
                 }
             }
-            t.print();
             boolean b = t.esPartit();
             if (b) {
                 throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");
@@ -257,15 +261,8 @@ public class CapaDomini
                 }
 
             }
-            t.print();
-
-            System.out.print(inicial.x + " " + inicial.y + " " + inicial.elem + "\n");
-
-//        Tauler retcomplert = new Tauler(t.getTamany());
 
 
-
-            System.out.print("acabarbactracking = ;" + acabarbacktrackin + "\n");
             if (acabarbacktrackin == ValidadorTauler.NOMINMAX)
                 throw new RuntimeException("No esta o el 1 o el numero maxim");
             if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES)
@@ -274,10 +271,10 @@ public class CapaDomini
                 throw new RuntimeException("L'Hidato propossat ja està resolt");
             if (acabarbacktrackin == ValidadorTauler.NOTESOL)
                 throw new RuntimeException("L'Hidato propossat no té solució");
+            if (acabarbacktrackin == ValidadorTauler.MULTIPLES && intentsdedonarHidatobo == 20)
+                throw new RuntimeException("Els parametres donats no son suficients per donar un Hidato únic");
 
-//            if (n <= 5) backtrackingmenor(0, n * n - m, inicial, t, ret);
-            //else
-            backtrackingmayorde8(0, n * n - m, inicial, t, ret);
+            backtrackingmenor(0, n * n - m, inicial, t, ret);
             eliminarnumeros(ret, num_pre);
 
             acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
