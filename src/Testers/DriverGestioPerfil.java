@@ -47,7 +47,7 @@ public class DriverGestioPerfil {
                     System.out.println("Siusplau, introdueix nom usuari a crear:");
                     capt = new Scanner(System.in);
                     s = capt.nextLine();
-                    if(/*comprobacio usr esta repetit*/){
+                    if(true/*comprobacio usr esta repetit*/){
                         System.out.println("Nom de usuari ja repetit, introdueix un altre nom.");
                     }
                     else break;

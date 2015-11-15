@@ -99,8 +99,10 @@ public class DriverCreadorHidatos {
                             else System.out.println("Comana no valida");
                         }
 
-                        Tauler t = new Tauler();
-                        DemanaTaulerAUsuari.llegirTaulerApartirText(scanner, t);
+                        Tauler t = new Tauler(scanner);
+                        TaulerComplert  tc = new TaulerComplert();
+                        int i = ValidadorTauler.validarTauler(t, tc);
+                        t.pintar_tauler();
 
                     }
                     else {
