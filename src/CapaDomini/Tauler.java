@@ -50,6 +50,19 @@ public class Tauler
         }
     }
 
+    public Tauler(Scanner in)
+    {
+        int tamany = in.nextInt();
+        tauler = new Casella[tamany][tamany];
+        for (int i = 0; i < tamany; ++i)
+        {
+            for (int j = 0; j < tamany; ++j)
+            {
+                tauler[i][j] = new Casella(i,j,in.nextInt());
+            }
+        }
+    }
+
     public void move(Tauler altre)
     {
         //agafa lo que hi ha a l'altre tauler i t'ho posa a tu

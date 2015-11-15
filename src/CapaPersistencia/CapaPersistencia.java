@@ -20,13 +20,23 @@ public class CapaPersistencia
             "contrasenya VARCHAR(30) NOT NULL," +
             "nomReal VARCHAR(30)" +
             ")";
-    //    private static final String CREATE_TABLE_TAULERS;
-    //    private static final String CREATE_TABLE_HIDATOS;
+    private static final String CREATE_TABLE_TAULERS = "CREATE TABLE taulers (" +
+                "id INT PRIMARY KEY," +
+                "tamany INTEGER NOT NULL," +
+                "stringCreacio VARCHAR" +
+                ")";
+    private static final String CREATE_TABLE_HIDATOS = "";
     private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS partides (" +
-            "idPartida INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "idUsuari INTEGER NOT NULL," +
             "idHidato INTEGER NOT NULL," +
             "idTaulerProgres INTEGER NOT NULL," +
+            "nCelesResoltes INTEGER NOT NULL," +
+            "numAjudesUtilitzades INTEGER NOT NULL, #te que anar relacionat amb la dificultat" +
+            "esAcabada BOOLEAN NOT NULL," +
+            "FOREIGN KEY (idhidato) REFERENCES hidato (id)," +
+            "FOREIGN KEY (iduser) REFERENCES usuaris (id)," +
+            "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
             ")";
 
     static Connection conn;
