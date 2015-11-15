@@ -14,13 +14,16 @@ public class ValidarHidato
     public static void main(String[] args)
     {
         Scanner teclat = new Scanner(System.in);
-        Tauler t1 = new Tauler(teclat);
-        TaulerComplert t2 = new TaulerComplert();
+        while (true)
+        {
+            Tauler t1 = new Tauler(teclat);
+            TaulerComplert t2 = new TaulerComplert();
 
-        int resultat = ValidadorTauler.validarTauler(t1, t2);
+            int resultat = ValidadorTauler.validarTauler(t1, t2);
 
-        System.out.println(resultat);
+            System.out.println(resultat);
 
-        if (resultat == 0) t2.print();
+            if (resultat == 0) t2.print();
+        }
     }
 }

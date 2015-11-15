@@ -9,22 +9,27 @@ import java.util.Scanner;
 
 public class Hidato
 {
-    private Integer idhidato;
+    private int uniqID;
     private Tauler tauler;
     private TaulerComplert taulerComplert;
     public String dificultat;
 
     public Hidato()
     {
-        idhidato = null;
+        uniqID = -1;
         tauler = null;
         taulerComplert = null;
         dificultat = null;
     }
 
-    public Hidato(Integer idhidato, Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    public String getDificultat()
     {
-        this.idhidato = idhidato;
+        return dificultat;
+    }
+
+    public Hidato(Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    {
+        this.uniqID = -1;
         this.tauler.move(tauler);
         this.taulerComplert.move(taulerComplert);
         this.dificultat = dificultat;
@@ -40,6 +45,22 @@ public class Hidato
         return taulerComplert;
     }
 
+    public int getIDTauler()
+    {
+        return tauler.getUniqID();
+    }
+    public void setIDTauler(int id) {
+        tauler.setUniqID(id);
+    }
+    public int getIDTaulerComplert()
+    {
+        return taulerComplert.getUniqID();
+    }
+    public void setIDTaulerComplert(int id)
+    {
+        taulerComplert.setUniqID(id);
+    }
+
     public void setTauler(Tauler nou)
     {
         tauler = nou;
@@ -48,12 +69,12 @@ public class Hidato
     {
         taulerComplert = nou;
     }
-    public Integer getIdhidato() {
-        return idhidato;
+    public int getUniqID() {
+        return uniqID;
     }
 
-    public void setIdhidato(Integer idhidato) {
-        this.idhidato = idhidato;
+    public void setUniqID(int uniqID) {
+        this.uniqID = uniqID;
     }
 
     public String isDificultat() {

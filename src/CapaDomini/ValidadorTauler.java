@@ -12,12 +12,12 @@ public class ValidadorTauler
 {
     private static Tauler taulerEsbos;
     private static TaulerComplert taulerFinal;
-    private static boolean solucioTrobada = false;
+    private static boolean solucioTrobada;
     private static boolean[] presentsInicialment;
     private static List<Interval> intervalsInicials;
     private static int maximaIncognita;
     private static int indexSeguentInterval; //L'inicialitzarem a 1 (based from 0) perque el primer interval (0) sempre sera 1..primeraIncognita-1
-    private static boolean multiplesSolucions = false;
+    private static boolean multiplesSolucions;
 
     public static final int OK = 0;
     public static final int NOMINMAX = 1;
@@ -40,6 +40,11 @@ public class ValidadorTauler
          *   Explorar les solucions (amb backtracking) i mirar si hi ha una i nomes una que sigui valida
          *   //todo: si el hidato m'ho passa el generador de l'Edu no fa falta comprovar els items 1, 2,
          */
+
+        //S'ha de reinicialitzar tots els parametres
+        solucioTrobada = false;
+        multiplesSolucions = false;
+
         taulerEsbos = new Tauler(aValidar);
         if (!taulerEsbos.teMaximIMinim()) return NOMINMAX;
         if (!taulerEsbos.casellesBenPosades()) return NOBENPOSADES;
