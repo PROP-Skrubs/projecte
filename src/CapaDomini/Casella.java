@@ -81,6 +81,38 @@ public class Casella implements Comparable{
         return distancia(o) <= 1;
     }
 
+public int getElem() {
+        return elem;
+    }
+
+    public void setElem(int elem) {
+        this.elem = elem;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public static boolean isOriginal() {
+        return original;
+    }
+
+    public static void setOriginal(boolean original) {
+        Casella.original = original;
+    }
+    
     @Override
     public int compareTo(Object o) {
         Casella c = (Casella) o;
