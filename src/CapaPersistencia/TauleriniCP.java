@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Maria on 01/11/2015.
+ * Created by Maria on 14/11/2015.
  */
 public class TauleriniCP {
 
@@ -24,8 +24,8 @@ public class TauleriniCP {
         }
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO tauler_ini (id_taulerini,medida, matriz)  VALUES (?,?,?)")) {
             p.setInt(1, tini.getIdtauler());
-            p.setInt(2, tini.tamany());
-            String m = fromCasellaToString(tini.getTauler(),tini.tamany());
+            p.setInt(2, tini.getTamany());
+            String m = fromCasellaToString(tini.getTauler(),tini.getTamany());
             p.setString(3, m);
             p.executeUpdate();
             return true;
@@ -102,4 +102,3 @@ public class TauleriniCP {
         return  s.substring(0,s.length()-1);
     }
 }
-
