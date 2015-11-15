@@ -19,40 +19,23 @@ public class CapaPersistencia
             "contrasenya VARCHAR(30) NOT NULL," +
             "nomReal VARCHAR(30)" +
             ")";
-    private static final String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
-
-    private static final String CREATE_TABLE_HIDATO = "CREATE TABLE IF NOT EXISTS hidato (" +
-            "idhidato INTEGER PRIMARY KEY ," +
-            "id_taulerini INTEGER NOT NULL UNIQUE," +
-            "id_tauleromplert INTEGER NOT NULL UNIQUE," +
-            "dificultad VARCHAR(30)" +
-            ")";
-    private static final String INSERT_HIDATO = "INSERT INTO hidato VALUES (?,?,?,?)";
-
-    private static final String CREATE_TABLE_TAULERINI = "CREATE TABLE IF NOT EXISTS tauler_ini (" +
-            "id_taulerini INTEGER PRIMARY KEY ," +
-            "medida INTEGER NOT," +
-            "matriz VARCHAR NOT NULL," +
-            ")";
-    private static final String INSERT_TAULERINI = "INSERT INTO tauler_ini VALUES (?,?,?)";
-
-    private static final String CREATE_TABLE_TAULEROMP = "CREATE TABLE IF NOT EXISTS tauler_omplert (" +
-            "id_tauleromplert INTEGER PRIMARY KEY ," +
-            "medida INTEGER NOT," +
-            "matriz VARCHAR NOT NULL," +
-            ")";
-    private static final String INSERT_TAULEROMP = "INSERT INTO tauler_omplert VALUES (?,?,?)";
-
-    private static final String CREATE_TABLE_PARTIDA = "CREATE TABLE IF NOT EXISTS usuaris (" +
-            "idpartida INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "idhidato INTEGER NOT NULL UNIQUE," +
-            "iduser INTEGER NOT NULL," +
-            "ncelesresolt INTEGER" +
-            "numajud INTEGER," +
-            "matriz VARCHAR ," +
-            "acabat BOOLEAN" +
-            ")";
-    private static final String INSERT_PARTIDA = "INSERT INTO partida VALUES (?,?,?,?,?,?,?)";
+    private static final String CREATE_TABLE_TAULERS = "CREATE TABLE taulers (" +
+                "id INT PRIMARY KEY," +
+                "tamany INTEGER NOT NULL," +
+                "stringCreacio VARCHAR" +
+                ")";
+    private static final String CREATE_TABLE_HIDATOS = "";
+    private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS partides (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "idUsuari INTEGER NOT NULL," +
+            "idHidato INTEGER NOT NULL," +
+            "idTaulerProgres INTEGER NOT NULL," +
+            "nCelesResoltes INTEGER NOT NULL," +
+            "numAjudesUtilitzades INTEGER NOT NULL, #te que anar relacionat amb la dificultat" +
+            "esAcabada BOOLEAN NOT NULL," +
+            "FOREIGN KEY (idhidato) REFERENCES hidato (id)," +
+            "FOREIGN KEY (iduser) REFERENCES usuaris (id)," +
+            "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
 
     static Connection conn;
 
@@ -77,18 +60,16 @@ public class CapaPersistencia
         //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
 
         //Falta afegir el codi de la resta de taules
-      /*  try (Statement statement = conn.createStatement())
+        try (Statement statement = conn.createStatement())
         {
             statement.execute(CREATE_TABLE_USUARIS);
-            statement.execute(CREATE_TABLE_HIDATO);
-            statement.execute(CREATE_TABLE_TAULERINI);
-            statement.execute(CREATE_TABLE_TAULEROMP);
-            statement.execute(CREATE_TABLE_PARTIDA);
+            statement.execute(CREATE_TABLE_HIDATOS);
+            statement.execute(CREATE_TABLE_PARTIDES);
             //Falta afegir el codi de la resta de taules
         }
         catch (SQLException e)
         {
             throw new RuntimeException(e);
-        }*/
+        }
     }
 }
