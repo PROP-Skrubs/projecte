@@ -13,7 +13,6 @@ import CapaDomini.Hidato;
 
 public class CapaPersistencia
 {
-    //Important! tots els "CREATE TABLE" han de portar un "IF NOT EXISTS" perque s'executen cada cop que arranca el programa
     private static final String CREATE_TABLE_USUARIS = "CREATE TABLE IF NOT EXISTS usuaris (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "nomUsuari VARCHAR(30) NOT NULL UNIQUE," +
@@ -37,11 +36,10 @@ public class CapaPersistencia
             "FOREIGN KEY (idhidato) REFERENCES hidato (id)," +
             "FOREIGN KEY (iduser) REFERENCES usuaris (id)," +
             "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
-            ")";
 
     static Connection conn;
 
-    static //Inicialitzador de la base de dades
+    static
     {
         try
         {
@@ -55,12 +53,19 @@ public class CapaPersistencia
         validarBaseDeDades();
     }
 
-    private static void validarBaseDeDades()
+
+
+    public static void validarBaseDeDades()
     {
-        //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar.
+        //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
+
+        //Falta afegir el codi de la resta de taules
         try (Statement statement = conn.createStatement())
         {
             statement.execute(CREATE_TABLE_USUARIS);
+            statement.execute(CREATE_TABLE_HIDATOS);
+            statement.execute(CREATE_TABLE_PARTIDES);
+            //Falta afegir el codi de la resta de taules
         }
         catch (SQLException e)
         {

@@ -9,19 +9,22 @@ import java.util.Scanner;
 
 public class Hidato
 {
+    private Integer idhidato;
     private Tauler tauler;
     private TaulerComplert taulerComplert;
-    public String dificultat; //todo refactor into an integer or enum type
+    public String dificultat;
 
     Hidato()
     {
+        idhidato = null;
         tauler = null;
         taulerComplert = null;
         dificultat = null;
     }
 
-    Hidato(Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    Hidato(Integer idhidato, Tauler tauler, TaulerComplert taulerComplert, String dificultat)
     {
+        this.idhidato = idhidato;
         this.tauler.move(tauler);
         this.taulerComplert.move(taulerComplert);
         this.dificultat = dificultat;
@@ -45,7 +48,21 @@ public class Hidato
     {
         taulerComplert = nou;
     }
+    public Integer getIdhidato() {
+        return idhidato;
+    }
 
+    public void setIdhidato(Integer idhidato) {
+        this.idhidato = idhidato;
+    }
+
+    public String isDificultat() {
+        return dificultat;
+    }
+
+    public void setDificultat(String dificultat) {
+        this.dificultat = dificultat;
+    }
 
     public void afegir() { //todo arreglar aixo
         /**
@@ -54,25 +71,33 @@ public class Hidato
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");
         int x = capt.nextInt();
-        while (x < 1 | x > getTauler().getTamany()) {
+        while (x < 1 | x > tauler.getTamany()) {
             System.out.println("X no valida, introdueix una altra");
             x = capt.nextInt();
         }
 
         System.out.println("introdueix Y:");
         int y = capt.nextInt();
-        while (y < 1 | y > getTauler().getTamany()) {
+        while (y < 1 | y > tauler.getTamany()) {
             System.out.println("Y no valida, introdueix una altra");
             y = capt.nextInt();
         }
         System.out.println("introdueix valor:");
         int n = capt.nextInt();
-        while (getTauler().buscaCasella(n) != null) {
+        while (tauler.buscaNumero(n) != null) {
             System.out.println("Valor ja assignat");
             n = capt.nextInt();
         }
-        getTauler().setCasella(x, y, n);
-        getTauler().pintar_tauler();
+        while(true){
+            if (tauler.getTamany() * 2 < n)
+                System.out.println("Valor massa gran");
+            else if (n < 1)
+                System.out.println("Valor massa petit");
+            else break;
+            n = capt.nextInt();
+        }
+        tauler.setCasella(x - 1, y - 1, n);
+        tauler.pintar_tauler();
     }
 
     public void remove() {
@@ -94,8 +119,8 @@ public class Hidato
             y = capt.nextInt();
         }
         System.out.println("Eliminat");
-        getTauler().setCasella(x, y, 0);
-        getTauler().pintar_tauler();
+        tauler.setCasella(x - 1, y - 1, 0);
+        tauler.pintar_tauler();
     }
 
     public void imprimir(){

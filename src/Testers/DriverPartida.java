@@ -1,6 +1,7 @@
 package Testers;
 
 import CapaDomini.Hidato;
+import CapaDomini.Partida;
 
 import java.util.Scanner;
 
@@ -35,14 +36,16 @@ public class DriverPartida {
             }
             else if (s.equals("man")) {
                 DriverPartida d = new DriverPartida();
+                Partida p = new Partida();
+                p.setIduser(1);
+                p.setIduser(1);
                 d.manual();
             }
 
             else if (s.equals("p")){
-                Imprimir_Hidato ih = new Imprimir_Hidato();
                 Hidato h = new Hidato();
                 System.out.print("Hidato actual:\n");
-                ih.imprimir(h);
+                h.getTauler().pintar_tauler();
             }
 
             else if (s.equals("hidato play")){

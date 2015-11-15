@@ -6,7 +6,7 @@ import java.util.*;
 public class Tauler
 {
     private Casella[][] tauler;
-
+    private Integer idtauler;
     private static Casella[] offsets = {
             new Casella(1, -1), new Casella(1, 0), new Casella(1, 1),
             new Casella(0, -1), /*casella central*/ new Casella(0, 1),
@@ -80,7 +80,18 @@ public class Tauler
             }
         }
     }
-
+    public void setTauler(Casella[][] tauler) {
+        this.tauler = tauler;
+    }
+    public Casella[][] getTauler() {
+        return tauler;
+    }
+    public Integer getIdtauler() {
+        return idtauler;
+    }
+    public void setIdtauler(Integer idtauler) {
+        this.idtauler = idtauler;
+    }
 
     public Casella getCasella(int posX, int posY)
     {
