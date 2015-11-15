@@ -259,7 +259,7 @@ public class CapaDomini
         int acabarbacktrackin = -1;
 
         eliminarnumeros(ret, num_pre);
-        
+
         while(acabarbacktrackin != 0){
             if(acabarbacktrackin == ValidadorTauler.NOMINMAX) throw new RuntimeException("No esta o el 1 o el numero maxim");
             if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES) throw new RuntimeException("Els numeros no tenen l'adjacent continuu");
