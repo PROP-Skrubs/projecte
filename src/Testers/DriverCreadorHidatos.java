@@ -59,7 +59,7 @@ public class DriverCreadorHidatos {
                 capt = new Scanner(System.in);
                 System.out.println("S'utilitzara arxius predeterminats per aquesta fase de testeig");
                 Scanner scanner;
-                String ar = "./src/Testers/hidato2";
+                String ar;
                 while (true) {
                     System.out.println("Selecciona arxiu:[1/2/3/4/5]");
                     s = capt.nextLine();
