@@ -265,7 +265,7 @@ public class CapaDomini
 
 
 
-
+            System.out.print("acabarbactracking = ;" + acabarbacktrackin + "\n");
             if (acabarbacktrackin == ValidadorTauler.NOMINMAX)
                 throw new RuntimeException("No esta o el 1 o el numero maxim");
             if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES)
@@ -275,8 +275,9 @@ public class CapaDomini
             if (acabarbacktrackin == ValidadorTauler.NOTESOL)
                 throw new RuntimeException("L'Hidato propossat no té solució");
 
-            if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
-            else backtrackingmayorde8(0, n * n - m, inicial, t, ret);
+//            if (n <= 5) backtrackingmenor(0, n * n - m, inicial, t, ret);
+            //else
+            backtrackingmayorde8(0, n * n - m, inicial, t, ret);
             eliminarnumeros(ret, num_pre);
 
             acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);

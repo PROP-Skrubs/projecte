@@ -2,6 +2,7 @@ package CapaVista;
 
 import CapaDomini.CapaDomini;
 import CapaDomini.Tauler;
+import CapaDomini.TaulerComplert;
 import java.util.Scanner;
 
 /**
@@ -39,7 +40,8 @@ public class CapaVista
         String str = br.readLine(); */
 
         String dificultat = "facil"; //como ejemplo
-        Tauler ret = CapaDomini.creacioTaulerPredeterminat(n, m, x, dificultat);
+        TaulerComplert tc = new TaulerComplert();
+        Tauler ret = CapaDomini.creacioTaulerPredeterminat(n, m, x, dificultat, tc);
 
         return ret;
 
