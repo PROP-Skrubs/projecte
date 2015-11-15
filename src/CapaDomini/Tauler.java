@@ -63,6 +63,19 @@ public class Tauler
         }
     }
 
+    public Casella buscaNumero(int num)
+    {
+        for (Casella[] fila : tauler)
+        {
+            for (Casella candidat : fila)
+            {
+                if (candidat.elem == num)
+                    return new Casella(candidat);
+            }
+        }
+        return null;
+    }
+    
     public void move(Tauler altre)
     {
         //agafa lo que hi ha a l'altre tauler i t'ho posa a tu
