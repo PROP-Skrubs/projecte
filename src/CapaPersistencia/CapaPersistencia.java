@@ -15,36 +15,36 @@ import javax.swing.plaf.nimbus.State;
 
 public class CapaPersistencia
 {
-    private static final String CREATE_TABLE_USUARIS = "CREATE TABLE IF NOT EXISTS usuaris (\n" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "nomUsuari VARCHAR NOT NULL UNIQUE,\n" +
-            "contrasenya VARCHAR NOT NULL,\n" +
-            "nomReal VARCHAR\n" +
+    private static final String CREATE_TABLE_USUARIS = "CREATE TABLE IF NOT EXISTS usuaris (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nomUsuari VARCHAR NOT NULL UNIQUE," +
+            "contrasenya VARCHAR NOT NULL," +
+            "nomReal VARCHAR" +
             ")";
-    private static final String CREATE_TABLE_TAULERS = "CREATE TABLE IF NOT EXISTS taulers (\n" +
-            "id INT PRIMARY KEY AUTOINCREMENT,\n" +
-            "tamany INTEGER NOT NULL,\n" +
-            "stringCreacio VARCHAR\n" +
+    private static final String CREATE_TABLE_TAULERS = "CREATE TABLE IF NOT EXISTS taulers (" +
+            "id INT PRIMARY KEY AUTOINCREMENT," +
+            "tamany INTEGER NOT NULL," +
+            "stringCreacio VARCHAR" +
             ")";
-    private static final String CREATE_TABLE_HIDATOS = "CREATE TABLE IF NOT EXISTS hidatos (\n" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "idTauler INTEGER,\n" +
-            "idTaulerComplert INTEGER,\n" +
-            "dificultat VARCHAR NOT NULL,\n" +
-            "FOREIGN KEY (idTauler) REFERENCES taulers (id),\n" +
-            "FOREIGN KEY (idTaulerComplert) REFERENCES taulers (id),\n" +
+    private static final String CREATE_TABLE_HIDATOS = "CREATE TABLE IF NOT EXISTS hidatos (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "idTauler INTEGER," +
+            "idTaulerComplert INTEGER," +
+            "dificultat VARCHAR NOT NULL," +
+            "FOREIGN KEY (idTauler) REFERENCES taulers (id)," +
+            "FOREIGN KEY (idTaulerComplert) REFERENCES taulers (id)," +
             ")";
-    private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS partides (\n" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "idUsuari INTEGER NOT NULL,\n" +
-            "idHidato INTEGER NOT NULL,\n" +
-            "idTaulerProgres INTEGER NOT NULL,\n" +
-            "nCelesResoltes INTEGER NOT NULL,\n" +
-            "numAjudesUtilitzades INTEGER NOT NULL, #te que anar relacionat amb la dificultat\n" +
-            "esAcabada BOOLEAN NOT NULL,\n" +
-            "FOREIGN KEY (idhidato) REFERENCES hidato (id),\n" +
-            "FOREIGN KEY (iduser) REFERENCES usuaris (id),\n" +
-            "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)\n" +
+    private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS partides (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "idUsuari INTEGER NOT NULL," +
+            "idHidato INTEGER NOT NULL," +
+            "idTaulerProgres INTEGER NOT NULL," +
+            "nCelesResoltes INTEGER NOT NULL," +
+            "numAjudesUtilitzades INTEGER NOT NULL, #te que anar relacionat amb la dificultat" +
+            "esAcabada BOOLEAN NOT NULL," +
+            "FOREIGN KEY (idhidato) REFERENCES hidato (id)," +
+            "FOREIGN KEY (iduser) REFERENCES usuaris (id)," +
+            "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
             ")";
 
     static Connection conn;

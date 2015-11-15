@@ -13,7 +13,7 @@ public class Casella implements Comparable {
     public int numadjlliures;
     public static int FORAT = -1;
     public static int BUIT = 0;
-    public static boolean original;
+    public boolean original;
 
     public Casella() {
     }
@@ -97,12 +97,12 @@ public class Casella implements Comparable {
         this.y = y;
     }
 
-    public static boolean isOriginal() {
+    public boolean isOriginal() {
         return original;
     }
 
-    public static void setOriginal(boolean original) {
-        Casella.original = original;
+    public void setOriginal(boolean original) {
+        this.original = original;
     }
 
     @Override
