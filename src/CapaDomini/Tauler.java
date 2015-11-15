@@ -56,10 +56,10 @@ public class Tauler
     public Tauler(Scanner in)
     {
         uniqID = -1;
-        llegirDeText(in);
+        llegeixRepresentacioTextual(in);
     }
 
-    public void llegirDeText(Scanner in)
+    public void llegeixRepresentacioTextual(Scanner in)
     {
         int tamany = in.nextInt();
         tauler = new Casella[tamany][tamany];
@@ -70,6 +70,21 @@ public class Tauler
                 tauler[i][j] = new Casella(i,j,in.nextInt());
             }
         }
+    }
+
+    public String donaRepresentacioTextual()
+    {
+        StringBuilder aRetornar = new StringBuilder(400);
+        aRetornar.append(getTamany()).append(' ');
+        for (Casella[] fila : tauler)
+        {
+            for (Casella c : fila)
+            {
+                aRetornar.append(c.elem).append(' ');
+            }
+            aRetornar.append('\n');
+        }
+        return aRetornar.toString();
     }
 
     public Casella buscaCasella(int num)

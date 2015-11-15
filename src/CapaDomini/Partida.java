@@ -3,70 +3,77 @@ package CapaDomini;
 /**
  * Created by Maria on 10/11/2015.
  */
-public class Partida {
-    Integer idpartida;
-    Integer idhidato;
-    Integer iduser;
-    Integer ncelesresolt;
-    Integer numajd;
-    Casella[][] matriu;
-    Boolean acabat;
+public class Partida
+{
+    int uniqID;
+    int idHidato;
+    int idUser;
+    int nCelesResoltes;
+    int numAjudesUtilitzades;
+    Tauler taulerProgres;
+    boolean esAcabada;
 
-    public Integer getIdhidato() {
-        return idhidato;
+    public int getIdHidato()
+    {
+        return idHidato;
     }
 
-    public void setIdhidato(Integer idhidato) {
-        this.idhidato = idhidato;
+    public void setIdHidato(int idHidato)
+    {
+        this.idHidato = idHidato;
     }
 
-    public Integer getIduser() {
-        return iduser;
+    public int getIdUser()
+    {
+        return idUser;
     }
 
-    public void setIduser(Integer iduser) {
-        this.iduser = iduser;
+    public void setIdUser(int idUser)
+    {
+        this.idUser = idUser;
     }
 
-    public Integer getIdpartida() {
-        return idpartida;
+    public int getUniqID()
+    {
+        return uniqID;
     }
 
-    public void setIdpartida(Integer idpartida) {
-        this.idpartida = idpartida;
+    public void setUniqID(int uniqID)
+    {
+        this.uniqID = uniqID;
     }
 
-    public Integer getNcelesresolt() {
-        return ncelesresolt;
+    public int getnCelesResoltes()
+    {
+        return nCelesResoltes;
     }
 
-    public void setNcelesresolt(Integer ncelesresolt) {
-        this.ncelesresolt = ncelesresolt;
+    public void setnCelesResoltes(int nCelesResoltes)
+    {
+        this.nCelesResoltes = nCelesResoltes;
     }
 
-    public Integer getNumajd() {
-        return numajd;
+    public int getNumAjudesUtilitzades()
+    {
+        return numAjudesUtilitzades;
     }
 
-    public void setNumajd(Integer numajd) {
-        this.numajd = numajd;
+    public void setNumAjudesUtilitzades(int numAjudesUtilitzades)
+    {
+        this.numAjudesUtilitzades = numAjudesUtilitzades;
     }
 
-    public Casella[][] getMatriu() {
-        return matriu;
+    public Boolean getEsAcabada()
+    {
+        return esAcabada;
     }
 
-    public void setMatriu(Casella[][] matriu) {
-        this.matriu = matriu;
+    public void setEsAcabada(Boolean esAcabada)
+    {
+        this.esAcabada = esAcabada;
     }
 
-    public Boolean getAcabat() {
-        return acabat;
+    public Partida()
+    {
     }
-
-    public void setAcabat(Boolean acabat) {
-        this.acabat = acabat;
-    }
-
-    public  Partida(){};
 }

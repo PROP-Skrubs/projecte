@@ -1,7 +1,6 @@
 package Testers;
 
 import CapaDomini.Tauler;
-import CapaVista.DemanaTaulerAUsuari;
 
 import java.util.Scanner;
 
@@ -15,8 +14,7 @@ public class TaulerParticionat
     public static void run()
     {
         System.out.println("De quant vols que sigui el tauler? ");
-        Tauler prova = new Tauler(new Scanner(System.in).nextInt());
-        DemanaTaulerAUsuari.run(prova);
+        Tauler prova = new Tauler(new Scanner(System.in));
         if (!prova.esPartit()) System.out.println("No és partit!! Tot bé.");
         else System.out.println("Malament, és partit.");
 

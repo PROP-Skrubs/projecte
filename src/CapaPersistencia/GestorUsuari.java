@@ -14,11 +14,11 @@ public class GestorUsuari
     private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
     private final static String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
     private final static String SELECT_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
-    private final static String UPDATE_USUARI = "UPDATE usuaris SET\n" +
-            "    nomUsuari=?,\n" +
-            "    contrasenya=?,\n" +
-            "    nomReal=?\n" +
-            "WHERE id=?\n";
+    private final static String UPDATE_USUARI = "UPDATE usuaris SET" +
+            "    nomUsuari=?," +
+            "    contrasenya=?," +
+            "    nomReal=?" +
+            "WHERE id=?";
 
     //Inserta un nou usuari a la BD
 
@@ -56,48 +56,6 @@ public class GestorUsuari
         }
     }
 
-    public static boolean creaUsuari(Usuari u)
-    {
-        if (existeixUsuari(u.getNomUsuari()))
-            return false;
-        //Ja hem comprovat que no hi ha un usuari amb el mateix nom... per tant podem inserir be.
-        try (PreparedStatement p = conn.prepareStatement(INSERT_USUARI))
-        {
-            p.setString(1, u.getNomUsuari());
-            p.setString(2, u.getContrasenya());
-            p.setString(3, u.getNomReal());
-            p.executeUpdate();
-        }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-        return true;
-    }
-
-    public static boolean eliminaUsuari(String nomUsuari)
-    {
-        //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
-        // o potser tambe el usuari per a si mateix (?)
-        try (PreparedStatement s = conn.prepareStatement(DELETE_USUARI))
-        {
-            s.setString(1,nomUsuari);
-            int usuarisBorrats = s.executeUpdate();
-            if (usuarisBorrats != 1)
-            {
-                String problema;
-                if (usuarisBorrats == 0) return false;
-                else problema = String.format("S'han borrat %d usuaris!", usuarisBorrats);
-                throw new RuntimeException(problema);
-            }
-            return true;
-        }
-        catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static Usuari donaUsuari(String nomUsuari)
     {
         Usuari u = null;
@@ -125,6 +83,48 @@ public class GestorUsuari
             throw new RuntimeException(e);
         }
         return u;
+    }
+
+    public static int creaUsuari(Usuari u)
+    {
+        if (existeixUsuari(u.getNomUsuari()))
+            return -1;
+        //Ja hem comprovat que no hi ha un usuari amb el mateix nom... per tant podem inserir be.
+        try (PreparedStatement p = conn.prepareStatement(INSERT_USUARI))
+        {
+            p.setString(1, u.getNomUsuari());
+            p.setString(2, u.getContrasenya());
+            p.setString(3, u.getNomReal());
+            p.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return CapaPersistencia.retornaUltimaClauInserida();
+    }
+
+    public static boolean eliminaUsuari(String nomUsuari)
+    {
+        //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
+        // o potser tambe el usuari per a si mateix (?)
+        try (PreparedStatement s = conn.prepareStatement(DELETE_USUARI))
+        {
+            s.setString(1,nomUsuari);
+            int usuarisBorrats = s.executeUpdate();
+            if (usuarisBorrats != 1)
+            {
+                String problema;
+                if (usuarisBorrats == 0) return false;
+                else problema = String.format("S'han borrat %d usuaris!", usuarisBorrats);
+                throw new RuntimeException(problema);
+            }
+            return true;
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public static boolean modificaUsuari(Usuari u)

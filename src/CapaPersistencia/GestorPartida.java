@@ -11,29 +11,25 @@ import java.sql.*;
 public class GestorPartida
 {
     private static final Connection conn = CapaPersistencia.conn;
-    /*
 
-
-
-    */
-    private static final String INSERT_PARTIDA = "INSERT INTO partides (\n" +
-            "    idUsuari,\n" +
-            "    idHidato,\n" +
-            "    idTaulerProgres,\n" +
-            "    nCelesResoltes,\n" +
-            "    numAjudesUtilitzades,\n" +
-            "    esAcabada\n" +
+    private static final String INSERT_PARTIDA = "INSERT INTO partides (" +
+            "    idUsuari," +
+            "    idHidato," +
+            "    idTaulerProgres," +
+            "    nCelesResoltes," +
+            "    numAjudesUtilitzades," +
+            "    esAcabada" +
             "    ) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String COUNT_PARTIDA = "SELECT COUNT(*) FROM partides WHERE id=?";
     private static final String DELETE_PARTIDA = "DELETE FROM partides WHERE id=?";
     private static final String SELECT_PARTIDA = "SELECT * FROM partides WHERE id=?";
-    private static final String UPDATE_PARTIDA = "UPDATE partides SET\n" +
-            "    idUsuari=?,\n" +
-            "    idHidato=?,\n" +
-            "    idTaulerProgres=?,\n" +
-            "    nCelesResoltes=?,\n" +
-            "    numAjudesUtilitzades=?,\n" +
-            "    esAcabada=?\n" +
+    private static final String UPDATE_PARTIDA = "UPDATE partides SET" +
+            "    idUsuari=?," +
+            "    idHidato=?," +
+            "    idTaulerProgres=?," +
+            "    nCelesResoltes=?," +
+            "    numAjudesUtilitzades=?," +
+            "    esAcabada=?" +
             "WHERE id=?";
 
     public static boolean existeixPartida(int id)
@@ -54,20 +50,35 @@ public class GestorPartida
         }
     }
 
-    public static boolean creaPartida(Partida p)
+    public static Partida donaPartida(int id)
     {
-        if (GestorHidato.existeixHidato(p.getIdhidato()))
+        Partida aRetornar;
+        try (PreparedStatement p = conn.prepareStatement(SELECT_PARTIDA))
+        {
+            p.setInt(1,id);
+            ResultSet resSet = p.executeQuery();
+            if (resSet.next())
+            {
+                aRetornar = new Partida();
+                aRetornar
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return aRetornar;
+    }
+
+    public static int creaPartida(Partida p)
+    {
+        if (GestorHidato.existeixHidato(p.getIdHidato()))
             GestorHidato.creaHidato(p.getHidato());
 
 
     }
 
     public static boolean eliminaPartida(int id)
-    {
-
-    }
-
-    public static Partida donaPartida(int id)
     {
 
     }
@@ -80,35 +91,24 @@ public class GestorPartida
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     public static boolean crearPartida(Partida p) {
         //Miramos si ya hay algun partida con p.partida
         try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM partida WHERE idpartida = '" + (p.getIdpartida()) + "'")) {
+             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM partida WHERE idpartida = '" + (p.getUniqID()) + "'")) {
             resSet.next();
             if (resSet.getInt(1) != 0) return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try (PreparedStatement insert = CapaPersistencia.conn.prepareStatement("INSERT INTO partida (idpartida, idhidato, iduser, ncelesresolt, numajud, matriz, acabat)  VALUES (?,?,?,?,?,?,?)")) {
-            insert.setInt(1, p.getIdpartida());
-            insert.setInt(2, p.getIdhidato());
-            insert.setInt(3,p.getIduser());
-            insert.setInt(4, p.getNcelesresolt());
-            insert.setInt(5, p.getNumajd());
+            insert.setInt(1, p.getUniqID());
+            insert.setInt(2, p.getIdHidato());
+            insert.setInt(3,p.getIdUser());
+            insert.setInt(4, p.getnCelesResoltes());
+            insert.setInt(5, p.getNumAjudesUtilitzades());
             String s = fromCasellaToString(p.getMatriu(),p.getMatriu().length);
             insert.setString(6, s);
-            insert.setBoolean(7, p.getAcabat());
+            insert.setBoolean(7, p.getEsAcabada());
             insert.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -150,15 +150,15 @@ public class GestorPartida
                     Integer numajud = rs.getInt("numajud");
                     String matriu = rs.getString("matriz");
                     Boolean acabat = rs.getBoolean("acabat");
-                    p.setIdpartida(idpartida);
-                    p.setIdhidato(idhidato);
-                    p.setIduser(iduser);
-                    p.setNcelesresolt(ncelesresolt);
-                    p.setNumajd(numajud);
+                    p.setUniqID(idpartida);
+                    p.setIdHidato(idhidato);
+                    p.setIdUser(iduser);
+                    p.setnCelesResoltes(ncelesresolt);
+                    p.setNumAjudesUtilitzades(numajud);
                     //fer consulta per trobar el tamany que s'ha de pasar
                     // Casella[][] caux = fromStringToCasella(matriu,);
                     // p.setMatriu(caux);
-                    p.setAcabat(acabat);
+                    p.setEsAcabada(acabat);
                 }
                 return p;
             } catch (SQLException e) {
