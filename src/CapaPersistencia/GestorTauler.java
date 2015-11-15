@@ -77,7 +77,7 @@ public class GestorTauler
     }
     public static int creaTauler(Tauler t)
     {
-        
+
     }
     public static int creaTaulerComplert(TaulerComplert t)
     {
