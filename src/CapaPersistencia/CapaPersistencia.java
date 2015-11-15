@@ -77,7 +77,7 @@ public class CapaPersistencia
         //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
 
         //Falta afegir el codi de la resta de taules
-        try (Statement statement = conn.createStatement())
+      /*  try (Statement statement = conn.createStatement())
         {
             statement.execute(CREATE_TABLE_USUARIS);
             statement.execute(CREATE_TABLE_HIDATO);
@@ -89,6 +89,6 @@ public class CapaPersistencia
         catch (SQLException e)
         {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 }
