@@ -37,7 +37,7 @@ public class MenuLogin
 
                 if (ControladorLogin.fesLogin(nomUsuari, contrasenya))
                 {
-                    CapaVista.mostraMenuPrincipal();
+                    new MenuPrincipal();
                     //TODO: que el menu es mostri al centre de la pantalla
                     frame.dispose();
                 }

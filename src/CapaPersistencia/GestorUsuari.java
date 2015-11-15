@@ -3,81 +3,85 @@ package CapaPersistencia;
 import CapaDomini.Usuari;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by daniel on 29/10/15.
  */
 public class GestorUsuari
 {
-    private final static String INSERT_USUARI = "INSERT INTO usuaris VALUES (?,?,?,?)";
-    private final static String CHECK_EXISTEIX = "SELECT nomUsuari FROM usuaris where nomUsuari = ?";
+    private final static Connection conn = CapaPersistencia.conn;
+    private final static String INSERT_USUARI = "INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)";
+    private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
     private final static String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
-    private final static String GET_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
+    private final static String SELECT_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
 
     //Inserta un nou usuari a la BD
-    public static void crearUsuari(Usuari user)
+
+    public static boolean existeixUsuari(String nomUsuari)
     {
-        String sDriverName = "org.sqlite.JDBC";
-        try {
-            Class.forName(sDriverName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        try (PreparedStatement s = conn.prepareStatement(COUNT_USUARI))
+        {
+            s.setString(1, nomUsuari);
+            ResultSet resSet = s.executeQuery();
+            resSet.next();
+            if (resSet.getInt(1) >= 2) throw new RuntimeException("Dos usuaris a la Base de Dades amb el mateix nom!!");
+            return resSet.getInt(1) == 1;
         }
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/basedades.db")) {
-            PreparedStatement insert = c.prepareStatement(INSERT_USUARI);
-            insert.setInt(1, user.getUniqID());
-            insert.setString(2, user.getNomUsuari());
-            insert.setString(3, user.getContrasenya());
-            insert.setString(4, user.getNomReal());
-            insert.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    //Mira si hi ha ya un usuari amb aquell mateix id a la BD
-    public static boolean esUsuariRepetit(String nomUsuari){
-        Boolean b = true;
-        String sDriverName = "org.sqlite.JDBC";
-        try {
-            Class.forName(sDriverName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/prueba.db")) {
-            PreparedStatement consulta = c.prepareStatement(CHECK_EXISTEIX);
-            consulta.setString(1, nomUsuari);
-            ResultSet rs = consulta.executeQuery();
-            if(rs.next()) b = false;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    public static void eliminarUsuari(String nomusuari) {
-        String sDriverName = "org.sqlite.JDBC";
-        try {
-            Class.forName(sDriverName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/basedades.db")) {
-            PreparedStatement delete = c.prepareStatement(DELETE_USUARI);
-            delete.setString(1, nomusuari);
-            delete.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
         }
     }
 
-    public static Usuari donaUsuari(String nomUsuari) //todo aixo esta repetit amb getUsuari
+    public static boolean crearUsuari(Usuari u)
+    {
+        if (existeixUsuari(u.getNomUsuari()))
+            return false;
+        //Ja hem comprovat que no hi ha un usuari amb el mateix nom... per tant podem inserir be.
+        try (PreparedStatement p = conn.prepareStatement(INSERT_USUARI))
+        {
+            p.setString(1, u.getNomUsuari());
+            p.setString(2, u.getContrasenya());
+            p.setString(3, u.getNomReal());
+            p.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
+    public static boolean eliminarUsuari(String nomUsuari)
+    {
+        //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
+        // o potser tambe el usuari per a si mateix (?)
+        try (PreparedStatement s = conn.prepareStatement(DELETE_USUARI))
+        {
+            s.setString(1,nomUsuari);
+            int usuarisBorrats = s.executeUpdate();
+            if (usuarisBorrats != 1)
+            {
+                String problema;
+                if (usuarisBorrats == 0) return false;
+                else problema = String.format("S'han borrat %d usuaris!", usuarisBorrats);
+                throw new RuntimeException(problema);
+            }
+            return true;
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Usuari donaUsuari(String nomUsuari)
     {
         Usuari u = null;
-        try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT * FROM usuaris u WHERE u.nomUsuari = '" + nomUsuari + "'"))
+        try (PreparedStatement s = CapaPersistencia.conn.prepareStatement(SELECT_USUARI))
         {
+            s.setString(1, nomUsuari);
+            ResultSet resSet = s.executeQuery();
             if (resSet.next())
             {
                 u = new Usuari();
@@ -85,9 +89,8 @@ public class GestorUsuari
                 u.setContrasenya(resSet.getString(3));
                 u.setNomReal(resSet.getString(4));
             }
-            if (resSet.next())
+            if (resSet.next()) //Hi ha mes d'un usuari que concorda amb el nom que li ha donat! Error!!!
             {
-                //Hi ha mes d'un usuari que concorda amb el nom que li ha donat! Error!!!
                 throw new RuntimeException("Hi ha mes d'un usuari amb el mateix nom!");
                 //Aixo realment no te que ser RuntimeException, sino que hauria de ser normal i handlejada mes amunt...
                 // pero *tampoc passara mai* (la taula te UNIQUE constraint), aixi que fuck it.
@@ -96,31 +99,6 @@ public class GestorUsuari
         catch (SQLException e)
         {
             throw new RuntimeException(e);
-        }
-        return u;
-    }
-
-    public static Usuari getUsuari(String nusuari) { //todo aixo esta repetit amb getUsuari
-        Usuari u  = new Usuari();
-        String sDriverName = "org.sqlite.JDBC";
-        try {
-            Class.forName(sDriverName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/Desktop/prueba.db")) {
-            PreparedStatement consulta = c.prepareStatement(GET_USUARI);
-            consulta.setString(1, nusuari);
-            try (ResultSet rs = consulta.executeQuery()) {
-                u.setUniqID(rs.getInt(1));
-                u.setNomUsuari(rs.getString(2));
-                u.setContrasenya(rs.getString(3));
-                u.setNomReal(rs.getString(4));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return u;
     }
