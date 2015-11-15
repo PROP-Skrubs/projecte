@@ -2,19 +2,16 @@ package Testers;
 
 
 import CapaDomini.*;
-import CapaVista.*;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 /**
  * Created by oriol on 7/11/15.
  */
 public class DriverCreadorHidatos {
-    public void main() {
+    public static void main(String[] args) {
         System.out.println("Generador de Hidatos:");
         while(true){
             System.out.println("Introdueix una comana:");
