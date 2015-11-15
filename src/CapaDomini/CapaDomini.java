@@ -233,7 +233,7 @@ public class CapaDomini
             num_pre.add(num_pre_aux.get(auxrnd));
             num_pre_aux.remove(auxrnd);
         }
-        num_pre.add(n*n-m);
+        num_pre.add(n * n - m);
 
 
 
@@ -258,8 +258,6 @@ public class CapaDomini
 //        Tauler retcomplert = new Tauler(t.getTamany());
         int acabarbacktrackin = -1;
 
-        eliminarnumeros(ret, num_pre);
-        
         while(acabarbacktrackin != 0){
             if(acabarbacktrackin == ValidadorTauler.NOMINMAX) throw new RuntimeException("No esta o el 1 o el numero maxim");
             if (acabarbacktrackin == ValidadorTauler.NOBENPOSADES) throw new RuntimeException("Els numeros no tenen l'adjacent continuu");
@@ -268,7 +266,10 @@ public class CapaDomini
 
             if (n <= 7) backtrackingmenor(0, n * n - m, inicial, t, ret);
             else backtrackingmayorde8(0, n*n-m, inicial,t,ret);
+            eliminarnumeros(ret, num_pre);
+
             acabarbacktrackin = ValidadorTauler.validarTauler(ret,retcomplert);
+            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
         }
 
         System.out.print("Surto Backtracking:\n");
