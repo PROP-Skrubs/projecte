@@ -21,8 +21,8 @@ public class TaulerOmplertCP {
         }
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO tauler_omplert (id_tauleromplert, medida, matriz)  VALUES (?,?,?)")) {
             p.setInt(1, tomp.getIdtauler());
-            p.setInt(2, tomp.tamany());
-            String m = fromCasellaToString(tomp.getTauler(),tomp.tamany());
+            p.setInt(2, tomp.getTamany());
+            String m = fromCasellaToString(tomp.getTauler(),tomp.getTamany());
             p.setString(3, m);
             p.executeUpdate();
             return true;
