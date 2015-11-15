@@ -14,7 +14,7 @@ public class Hidato
     private TaulerComplert taulerComplert;
     public String dificultat;
 
-    Hidato()
+    public Hidato()
     {
         idhidato = null;
         tauler = null;
@@ -22,7 +22,7 @@ public class Hidato
         dificultat = null;
     }
 
-    Hidato(Integer idhidato, Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    public Hidato(Integer idhidato, Tauler tauler, TaulerComplert taulerComplert, String dificultat)
     {
         this.idhidato = idhidato;
         this.tauler.move(tauler);

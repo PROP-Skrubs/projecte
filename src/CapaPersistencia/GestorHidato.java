@@ -16,6 +16,21 @@ public class GestorHidato
     private static Integer idTaulerFi;
     private static Integer idhidato;
 
+    private static final String COUNT_HIDATO = "SELECT COUNT(*) FROM hidatos WHERE idHidato = ?";
+    private static final String INSERT_HIDATO = "INSERT INTO hidatos (" +
+            "idUsuari," +
+            "idHidato," +
+            "idTaulerProgres," +
+            "nCelesResoltes," +
+            "numAjudesUtilitzades," +
+            "esAcabada," +
+            ") VALUES (?,?,?,?,?,?)";
+
+
+    private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
+    private final static String SELECT_HIDATO= "SELECT * FROM hidatos WHERE id = ?";
+
+
     public static void donaIDHidato(){
             try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("SELECT idhidato FROM hidato ORDER BY idhidato")) {
                 ResultSet rs = p.executeQuery();

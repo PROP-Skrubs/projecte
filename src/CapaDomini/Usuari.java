@@ -5,7 +5,6 @@ package CapaDomini;
  */
 public class Usuari
 {
-    private int uniqID;
     private String nomUsuari;
     private String contrasenya;
     private String nomReal;
@@ -13,16 +12,6 @@ public class Usuari
     public Usuari()
     {
 
-    }
-
-    public int getUniqID()
-    {
-        return uniqID;
-    }
-
-    public void setUniqID(int uniqID)
-    {
-        this.uniqID = uniqID;
     }
 
     public String getContrasenya()
