@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * Created by Maria on 07/11/2015.
  */
-public class ControladorHidato {
+public class GestorHidato
+{
     //checkhidato
     private static Integer idTaulerIni;
     private static Integer idTaulerFi;

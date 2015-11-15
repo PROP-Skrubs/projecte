@@ -11,7 +11,22 @@ public class Hidato
 {
     private Tauler tauler;
     private TaulerComplert taulerComplert;
-    public boolean dificultat;
+    public String dificultat; //todo refactor into an integer or enum type
+
+    Hidato()
+    {
+        tauler = null;
+        taulerComplert = null;
+        dificultat = null;
+    }
+
+    Hidato(Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    {
+        this.tauler.move(tauler);
+        this.taulerComplert.move(taulerComplert);
+        this.dificultat = dificultat;
+    }
+
 
     public Tauler getTauler()
     {

@@ -204,7 +204,7 @@ public class CapaDomini
         return true;
     }
 
-    public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat)
+    public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat, TaulerComplert retcomplert)
     {
         /*
         Donat una "n" que serà el getTamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
@@ -266,7 +266,7 @@ public class CapaDomini
         System.out.print(inicial.x + " " + inicial.y + " " + inicial.elem + "\n");
 
         Tauler ret = new Tauler(t.getTamany());
-        Tauler retcomplert = new Tauler(t.getTamany());
+//        Tauler retcomplert = new Tauler(t.getTamany());
         int acabarbacktrackin = -1;
 
         while(acabarbacktrackin != 0){

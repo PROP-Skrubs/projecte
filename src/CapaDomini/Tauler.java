@@ -9,16 +9,15 @@ public class Tauler
 
     private static Casella[] offsets = {
             new Casella(1, -1), new Casella(1, 0), new Casella(1, 1),
-            new Casella(0, -1), new Casella(0, 1),
+            new Casella(0, -1), /*casella central*/ new Casella(0, 1),
             new Casella(-1, -1), new Casella(-1, 0), new Casella(-1, 1)
     };
 
 
     public Tauler()
-    //Incloem un constructor sense arguments per requeriments del llenguatge, però no el fem servir
     {
-        //Com que aquest constructor no s'hauria de fer servir mai, faig que tiri excepcions si es invocat i així ajudi a detectar errors de disseny
-        throw new RuntimeException("ERROR: INVOCAT EL CONSTRUCTOR PER DEFECTE DE TAULER!");
+        // Aixo abans tiraba execpio perque se suposa que no s'havia de fer servir mai.
+        tauler = null;
     }
 
     public Tauler(int tamany)
