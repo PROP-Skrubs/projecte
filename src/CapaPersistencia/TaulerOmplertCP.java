@@ -1,7 +1,6 @@
 package CapaPersistencia;
 
 import CapaDomini.Casella;
-import CapaDomini.Tauler;
 import CapaDomini.TaulerComplert;
 
 import java.sql.*;
@@ -13,14 +12,14 @@ public class TaulerOmplertCP {
     public static boolean crearTauleromplert(TaulerComplert tomp) {
         //Miramos si ya hay algun taulerini con idtaulerini
         try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM tauler_omplert WHERE id_tauleromplert = '" + (tomp.getIdtauler()) + "'")) {
+             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM tauler_omplert WHERE id_tauleromplert = '" + (tomp.getUniqID()) + "'")) {
             resSet.next();
             if (resSet.getInt(1) != 0) return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO tauler_omplert (id_tauleromplert, medida, matriz)  VALUES (?,?,?)")) {
-            p.setInt(1, tomp.getIdtauler());
+            p.setInt(1, tomp.getUniqID());
             p.setInt(2, tomp.getTamany());
             String m = fromCasellaToString(tomp.getTauler(),tomp.getTamany());
             p.setString(3, m);
@@ -61,7 +60,7 @@ public class TaulerOmplertCP {
                     Integer idtaulerinia = rs.getInt("id_tauleromplert");
                     Integer medida = rs.getInt("medida");
                     String matriz = rs.getString("matriz");
-                    ini.setIdtauler(idtaulerinia);
+                    ini.setUniqID(idtaulerinia);
                     Casella[][] caux = fromStringToCasella(matriz,medida);
                     ini.setTauler(caux);
                 }

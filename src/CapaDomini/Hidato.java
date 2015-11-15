@@ -22,9 +22,14 @@ public class Hidato
         dificultat = null;
     }
 
-    public Hidato(int idHidato, Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    public String getDificultat()
     {
-        this.uniqID = idHidato;
+        return dificultat;
+    }
+
+    public Hidato(Tauler tauler, TaulerComplert taulerComplert, String dificultat)
+    {
+        this.uniqID = -1;
         this.tauler.move(tauler);
         this.taulerComplert.move(taulerComplert);
         this.dificultat = dificultat;
@@ -38,6 +43,22 @@ public class Hidato
     public TaulerComplert getTaulerComplert()
     {
         return taulerComplert;
+    }
+
+    public int getIDTauler()
+    {
+        return tauler.getUniqID();
+    }
+    public void setIDTauler(int id) {
+        tauler.setUniqID(id);
+    }
+    public int getIDTaulerComplert()
+    {
+        return taulerComplert.getUniqID();
+    }
+    public void setIDTaulerComplert(int id)
+    {
+        taulerComplert.setUniqID(id);
     }
 
     public void setTauler(Tauler nou)

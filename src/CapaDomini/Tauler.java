@@ -6,7 +6,7 @@ import java.util.*;
 public class Tauler
 {
     private Casella[][] tauler;
-    private Integer idtauler;
+    private int uniqID;
     private static Casella[] offsets = {
             new Casella(1, -1), new Casella(1, 0), new Casella(1, 1),
             new Casella(0, -1), /*casella central*/ new Casella(0, 1),
@@ -17,11 +17,13 @@ public class Tauler
     public Tauler()
     {
         // Aixo abans tiraba execpio perque se suposa que no s'havia de fer servir mai.
+        uniqID = -1;
         tauler = null;
     }
 
     public Tauler(int tamany)
     {
+        uniqID = -1;
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
         {
@@ -39,6 +41,7 @@ public class Tauler
 
     public Tauler(Tauler t)
     {
+        uniqID = -1;
         int tamany = t.getTamany();
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
@@ -51,6 +54,12 @@ public class Tauler
     }
 
     public Tauler(Scanner in)
+    {
+        uniqID = -1;
+        llegirDeText(in);
+    }
+
+    public void llegirDeText(Scanner in)
     {
         int tamany = in.nextInt();
         tauler = new Casella[tamany][tamany];
@@ -99,11 +108,11 @@ public class Tauler
     public Casella[][] getTauler() {
         return tauler;
     }
-    public Integer getIdtauler() {
-        return idtauler;
+    public int getUniqID() {
+        return uniqID;
     }
-    public void setIdtauler(Integer idtauler) {
-        this.idtauler = idtauler;
+    public void setUniqID(int idtauler) {
+        this.uniqID = idtauler;
     }
 
     public Casella getCasella(int posX, int posY)
