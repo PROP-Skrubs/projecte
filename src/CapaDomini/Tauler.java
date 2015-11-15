@@ -326,27 +326,7 @@ public class Tauler
         return i;
     }
 
-    public int camiMesCurt(int a, int b)
-    {
-        //todo: valorar si aixo fa falta (es car de calcular) i en tot cas implementar-ho
-        throw new RuntimeException("Aquesta funcio se suposa que no la has de cridar, no esta implementada!");
-        /**
-         * Busca la distancia minima entre el punt A i el punt B.
-         * Si un dels numeros no existeix, o no hi ha cami retorna -1.
-         */
-        //
-        //        Casella cA = buscaCasella(a);
-        //        Casella cB = buscaCasella(b);
-        //        if (cA != null && cB != null)
-        //        {
-        //            //fes un bfs
-        //        }
-        //        else
-        //        {
-        //            //return algo que no hi ha cami
-        //        }
-        //        return -1;
-    }
+
 
     public boolean esPartit()
     {

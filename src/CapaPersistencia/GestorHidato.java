@@ -105,7 +105,7 @@ public class GestorHidato
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }"idhidato"
+    }
 
     public static List<Hidato> getHidatos() {
         List<Hidato> lista = new ArrayList<>();
