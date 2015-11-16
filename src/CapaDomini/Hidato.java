@@ -93,9 +93,19 @@ public class Hidato
         return dificultat;
     }
 
+    public int getTamany()
+    {
+        return tauler.getTamany();
+    }
+
     public void setDificultat(String dificultat)
     {
         this.dificultat = dificultat;
+    }
+
+    public boolean casellaEsOriginal(int x, int y)
+    {
+        return tauler.getCasella(x,y).elem >0;
     }
 
 }

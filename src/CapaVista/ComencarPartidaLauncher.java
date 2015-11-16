@@ -1,8 +1,14 @@
 package CapaVista;
 
+import CapaDomini.ControladorLogin;
+import CapaDomini.ControladorPartida;
+import CapaPersistencia.GestorHidato;
+import CapaPersistencia.GestorPartida;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
+import java.awt.*;
+import java.util.List;
 
 public class ComencarPartidaLauncher extends JDialog
 {
@@ -11,7 +17,9 @@ public class ComencarPartidaLauncher extends JDialog
     private JButton buttonCancel;
     private JRadioButton carregarPartidaRadioButton;
     private JRadioButton novaPartidaRadioButton;
-    private JList list1;
+    private JList llistaHidatosIPartides;
+    private AbstractListModel<String> modelLlistaPartides;
+    private AbstractListModel<String> modelLlistaHidatos;
     private ButtonGroup radioButtonGroup;
 
     public ComencarPartidaLauncher()
@@ -20,11 +28,35 @@ public class ComencarPartidaLauncher extends JDialog
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
+        radioButtonGroup = new ButtonGroup();
+
         radioButtonGroup.add(carregarPartidaRadioButton);
         radioButtonGroup.add(novaPartidaRadioButton);
+        carregarPartidaRadioButton.setActionCommand("carregar partida");
+        novaPartidaRadioButton.setActionCommand("nova partida");
 
-        pack();
-        setVisible();
+        carregaModel(1);
+        carregaModel(2);
+
+        llistaHidatosIPartides.setModel(modelLlistaHidatos);
+
+        carregarPartidaRadioButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                llistaHidatosIPartides.setModel(modelLlistaPartides);
+            }
+        });
+
+        novaPartidaRadioButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                llistaHidatosIPartides.setModel(modelLlistaHidatos);
+            }
+        });
 
         buttonOK.addActionListener(new ActionListener()
         {
@@ -62,9 +94,49 @@ public class ComencarPartidaLauncher extends JDialog
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    public void carregaModel(int quinModel)
+    {
+        List<Integer> totesID;
+        if (quinModel == 1) //Partida
+        {
+            totesID = GestorPartida.donaTotesID();
+        }
+        else
+        {
+            totesID = GestorHidato.donaTotesID();
+        }
+
+        DefaultListModel<String> listM = new DefaultListModel<>();
+        for (Integer i : totesID)
+        {
+            listM.addElement(i.toString());
+        }
+        if (quinModel == 1)
+        {
+            modelLlistaPartides = listM;
+        }
+        else
+        {
+            modelLlistaHidatos = listM;
+        }
+    }
+
     private void onOK()
     {
-        // add your code here
+        Integer idSeleccionada = Integer.valueOf((String) llistaHidatosIPartides.getSelectedValue());
+        if (carregarPartidaRadioButton.isSelected())
+        {
+            ControladorPartida.carregarPartida(idSeleccionada); //todo verificar que un usuari nomes pugui carregar la seva partida
+        }
+        else if (novaPartidaRadioButton.isSelected())
+        {
+            ControladorPartida.novaPartida(ControladorLogin.getUsuariActual().getUniqID(), idSeleccionada);
+        }
+        else
+        {
+            throw new RuntimeException("Que vols que faci?");
+        }
+        ControladorPartida.jugaPartida();
         dispose();
     }
 
@@ -119,14 +191,16 @@ public class ComencarPartidaLauncher extends JDialog
         contentPane.add(panel3, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         novaPartidaRadioButton = new JRadioButton();
         novaPartidaRadioButton.setSelected(true);
-        novaPartidaRadioButton.setText("Vull carregar una partida en curs");
+        novaPartidaRadioButton.setText("Vull començar una nova partida");
         panel3.add(novaPartidaRadioButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         carregarPartidaRadioButton = new JRadioButton();
         carregarPartidaRadioButton.setSelected(false);
-        carregarPartidaRadioButton.setText("Vull començar una nova partida");
+        carregarPartidaRadioButton.setText("Vull carregar una partida en curs");
         panel3.add(carregarPartidaRadioButton, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        list1 = new JList();
-        contentPane.add(list1, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        llistaHidatosIPartides = new JList();
+        final DefaultListModel defaultListModel1 = new DefaultListModel();
+        llistaHidatosIPartides.setModel(defaultListModel1);
+        contentPane.add(llistaHidatosIPartides, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
     }
 
     /**

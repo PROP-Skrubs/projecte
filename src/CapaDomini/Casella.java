@@ -14,7 +14,6 @@ public class Casella implements Comparable
     public int numadjlliures;
     public static int FORAT = -1;
     public static int BUIT = 0;
-    public boolean original;
 
     public Casella()
     {
@@ -48,17 +47,22 @@ public class Casella implements Comparable
         this.elem = c.elem;
     }
 
-    public void clone(Casella cas)
-    { //todo mirar si es pot usar el constructor
-        this.elem = cas.elem;
-        this.x = cas.x;
-        this.y = cas.y;
-        this.numadjlliures = cas.numadjlliures;
-    }
-
     public Casella suma(Casella o)
     {
-        return new Casella(x + o.x, y + o.y);
+        Casella aRetornar = new Casella(this);
+        aRetornar.setX(x + o.x);
+        aRetornar.setY(y + o.y);
+        return aRetornar;
+    }
+
+    public Casella sumaAmbCheck(Casella o, int minim, int maxim)
+    {
+        Casella aRetornar = suma(o);
+        aRetornar.x = aRetornar.x>minim?aRetornar.x:minim;
+        aRetornar.x = aRetornar.x<maxim?aRetornar.x:maxim;
+        aRetornar.y = aRetornar.y>minim?aRetornar.y:minim;
+        aRetornar.y = aRetornar.y<maxim?aRetornar.y:maxim;
+        return aRetornar;
     }
 
     public int distancia(Casella o)
@@ -112,16 +116,6 @@ public class Casella implements Comparable
     public void setY(int y)
     {
         this.y = y;
-    }
-
-    public boolean isOriginal()
-    {
-        return original;
-    }
-
-    public void setOriginal(boolean original)
-    {
-        this.original = original;
     }
 
     @Override

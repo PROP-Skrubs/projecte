@@ -77,7 +77,7 @@ public class GestorTauler
 
     public static TaulerComplert donaTaulerComplert(int id)
     {
-        return (TaulerComplert) donaTauler(id);
+        return new TaulerComplert(donaTauler(id));
     }
 
     public static int creaTauler(Tauler t)
@@ -85,8 +85,7 @@ public class GestorTauler
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement(INSERT_TAULER))
         {
             p.setInt(1, t.getTamany());
-            p.setInt(2, t.);
-            p.setString(3, t.donaRepresentacioTextual());
+            p.setString(2, t.donaRepresentacioTextual());
             p.executeUpdate();
         }
         catch (SQLException e)

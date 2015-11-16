@@ -37,6 +37,13 @@ public class Tauler
 
             }
         }
+        for (int i = 0; i < tamany; ++i) //por si las moscas
+        {
+            for (int j = 0; j < tamany; ++j)
+            {
+                tauler[i][j].elem=Casella.BUIT;
+            }
+        }
     }
 
     public Tauler(Tauler t)

@@ -36,7 +36,7 @@ public class Partida
             System.out.println("Valor ja assignat");
             return 3;
         }
-        if (taulerProgres.getTamany() * 2 < elem)
+        if (taulerProgres.maximElementPossible() < elem)
         {
             System.out.println("Valor massa gran");
             return 3;
@@ -46,7 +46,7 @@ public class Partida
             System.out.println("Valor massa petit");
             return 3;
         }
-        if (taulerProgres.getCasella(x - 1, y - 1).isOriginal())
+        if (hidato.casellaEsOriginal(x,y))
         {
             System.out.print("Aquesta casella no es pot modificar");
             return 0;
@@ -58,6 +58,16 @@ public class Partida
             return 0;
         }
 
+    }
+
+    public Tauler getTaulerOriginal()
+    {
+        return hidato.getTauler();
+    }
+
+    public TaulerComplert getTaulerComplert()
+    {
+        return hidato.getTaulerComplert();
     }
 
     public Usuari getUsuari()
@@ -80,6 +90,41 @@ public class Partida
         hidato = h;
     }
 
+    public void setTaulerProgres(Tauler t)
+    {
+        taulerProgres = t;
+    }
+
+    public Tauler getTaulerProgres()
+    {
+        return new Tauler(taulerProgres);
+    }
+
+    public int getIDUsuari()
+    {
+        return usuari.getUniqID();
+    }
+
+    public int getIDTaulerProgres()
+    {
+        return taulerProgres.getUniqID();
+    }
+
+    public int getIDHidato()
+    {
+        return hidato.getUniqID();
+    }
+
+    public void setIDHidato(int id)
+    {
+        hidato.setUniqID(id);
+    }
+
+    public void setIDTaulerProgres(int id)
+    {
+        taulerProgres.setUniqID(id);
+    }
+
     public int remove(int x, int y)
     {
         /**
@@ -96,10 +141,10 @@ public class Partida
             System.out.println("Y no valida, introdueix una altra");
             return 2;
         }
-        if (taulerProgres.getCasella(x - 1, y - 1).isOriginal())
+        if (hidato.casellaEsOriginal(x,y))
         {
             System.out.print("Aquesta casella no es pot eliminar");
-            return 0;
+            return 3;
         }
         else
         {
