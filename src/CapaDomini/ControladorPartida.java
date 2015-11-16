@@ -126,6 +126,11 @@ public class ControladorPartida
             GestorPartida.creaPartida(partida);
     }
 
+    public static void descartaPartida()
+    {
+        //todo aixo pot tenir en compte que s'ha fet un intent i incrementar les estadistiques apropiadament (en el futur)
+    }
+
 
 
 

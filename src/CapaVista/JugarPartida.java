@@ -60,7 +60,7 @@ public class JugarPartida
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                ControladorHidato.descartaPartida();
+                ControladorPartida.descartaPartida();
                 frame.dispose();
             }
         });
