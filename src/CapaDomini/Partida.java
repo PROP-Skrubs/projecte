@@ -79,45 +79,72 @@ public class Partida
 
     public int getUniqID()
     {
+        /**
+         * Retorna UniqID
+         */
         return uniqID;
     }
 
     public void setUniqID(int uniqID)
     {
+        /**
+         * Modifica UniqID per el passat per paràmetre
+         */
         this.uniqID = uniqID;
     }
 
     public int getnCelesResoltes()
     {
+        /**
+         * Retorna nCelesResoltes
+         */
         return nCelesResoltes;
     }
 
     public void setnCelesResoltes(int nCelesResoltes)
     {
+        /**
+         * Modifica nCelesResoltes per el passat per paràmetre
+         */
         this.nCelesResoltes = nCelesResoltes;
     }
 
     public int getNumAjudesUtilitzades()
     {
+        /**
+         * Retorna NumAjudesUtilitzades
+         */
         return numAjudesUtilitzades;
     }
 
     public void setNumAjudesUtilitzades(int numAjudesUtilitzades)
     {
+        /**
+         * Modifica NumAjudesUtilitzades per el passat per paràmetre
+         */
         this.numAjudesUtilitzades = numAjudesUtilitzades;
     }
 
     public Boolean getEsAcabada()
     {
+        /**
+         * Retorna EsAcabada
+         */
         return esAcabada;
     }
 
     public void setEsAcabada(Boolean esAcabada)
     {
+        /**
+         * Modifica esAcabada per el passat per paràmetre
+         */
         this.esAcabada = esAcabada;
     }
 
     public Partida()
     {
+        /**
+         * Constructora Buida
+         */
     }
 }

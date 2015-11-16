@@ -16,15 +16,21 @@ public class Casella implements Comparable {
     public boolean original;
 
     public Casella() {
+        /** Dona una Casella buida
+        */
     }
 
     public Casella(int x, int y, int elem) {
+        /** Dona una Casella amb els valors que pases per paràmetre excepte numadjlliures
+        */
         this.x = x;
         this.y = y;
         this.elem = elem;
     }
 
     public Casella(int x, int y, int elem, int numadjlliures) {
+        /**Dona una Casella amb els valors que pases per paràmetre
+        */
         this.x = x;
         this.y = y;
         this.elem = elem;
@@ -32,17 +38,25 @@ public class Casella implements Comparable {
     }
 
     public Casella(int xx, int yy) {
+        /**Et modifica la X y la Y de la Casella ficantli xx y yy
+        */
         x = xx;
         y = yy;
     }
 
     public Casella(Casella c) {
+        /**A la Casella li modifica els valors de la Casella per els que
+         * te la Casella que pases per paràmetre excepte el numadjlliures
+         */
         this.x = c.x;
         this.y = c.y;
         this.elem = c.elem;
     }
 
     public void clone(Casella cas) { //todo mirar si es pot usar el constructor
+        /** A la Casella li modifica els valors de la Casella per els que te
+         * la Casella que pases per paràmetre.
+         */
         this.elem = cas.elem;
         this.x = cas.x;
         this.y = cas.y;
@@ -50,6 +64,9 @@ public class Casella implements Comparable {
     }
 
     public Casella suma(Casella o) {
+        /**Als valors X y Y de la Casella se li suma els valors X y Y de
+         * la Casella que pases per paràmetre
+         */
         return new Casella(x + o.x, y + o.y);
     }
 
@@ -66,47 +83,71 @@ public class Casella implements Comparable {
     }
 
     public boolean esDinsLimits(int tam) {
+        /**Donat el tamany d’un tauler que li pases per paràmetre et diu si la Casella està dins dels límits del Tauler
+        */
         return 0 <= x && x < tam && 0 <= y && y < tam;
     }
 
     public boolean esAdjacent(Casella o) {
+
+        /**Donat una Casella que li pases per paràmetre et diu si es Adjacent a la Casella.
+         */
         return distancia(o) <= 1;
     }
 
-    public int getElem() {
+    public int getElem(){
+        /**Et retorna el valor de la Casella
+        */
         return elem;
     }
 
     public void setElem(int elem) {
+        /**Et modifica el valor de la Casella per el enter que li pases per paràmetre
+        */
         this.elem = elem;
     }
 
     public int getX() {
+        /**Et retorna el valor de la X
+        */
         return x;
     }
 
     public void setX(int x) {
+        /**Et modifica el valor de la X per el enter que li pases per paràmetre
+         */
         this.x = x;
     }
 
     public int getY() {
+        /**Et retorna el valor de la Y
+         */
         return y;
     }
 
     public void setY(int y) {
+        /**Et modifica el valor de la X per el enter que li pases per paràmetre
+         */
         this.y = y;
     }
 
     public boolean isOriginal() {
+        /**Et retorna el valor de la Original
+         */
         return original;
     }
 
     public void setOriginal(boolean original) {
+        /**Et modifica el valor de la Original per el enter que li pases per paràmetre
+         */
         this.original = original;
     }
 
     @Override
         public int compareTo(Object o) {
+        /**Funcio que serveix per ordenar per l'implentacio Comparable
+          */
+
         Casella c = (Casella) o;
         return new Integer(numadjlliures).compareTo(new Integer(c.numadjlliures));
     }

@@ -109,6 +109,9 @@ public class ValidadorTauler
 
     static boolean next(Tauler t, int permIndex, List<Casella> permutacions)
     {
+        /**
+         * Genera la siguiente permutacion del Tablero
+         */
         if (permIndex != 0) //this will undo the changes made on the previous permutation
         {
             Casella c = permutacions.get(permIndex - 1);
@@ -127,6 +130,9 @@ public class ValidadorTauler
 
     static boolean reject(Tauler t, Casella casellaPosada)
     {
+        /**
+         * Comproba si el candidat es invalid i el descarta si ho es
+         */
         //todo: amb nomes una comprovacio sembla que ja rompe... mola
         boolean returnVal = false;
         //1a comprovacio: mirar que la distancia entre la casella que hem posat i la inicial del seguent interval es troben a distancia assolible
@@ -142,6 +148,9 @@ public class ValidadorTauler
 
     static boolean accept(Tauler t)
     {
+        /**
+         * Comproba si el candidat es valid i ho accepta si ho es
+         */
         int recorre = t.recorreTauler(1).elem;
         int maxIncog = t.maximElementPossible();
         if (recorre != maxIncog) throw new RuntimeException("No m'acceptes el tauler?? sadface");
@@ -151,7 +160,7 @@ public class ValidadorTauler
     static void bt(Tauler t, int numeroActual)
     {
         /**
-         *
+         * Es la funció Core del Backtracking
          */
 
 //        t.print();

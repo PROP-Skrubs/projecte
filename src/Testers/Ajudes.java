@@ -13,12 +13,18 @@ import java.util.Scanner;
 
 public class Ajudes {
     public void ajuda1(Hidato h){
+        /**
+         * Imprimeix per pantalla on s’ha de posar el següent número de l’Hidato
+         */
         ControladorAjudes ca = new ControladorAjudes();
         Casella c = new Casella();
         c = ca.help1(h);
         System.out.println("Jo de tu posaria el numero" + c.elem + " a les posicions x:" + (c.x+1) + " y:" + (c.y+1));
     }
     public void ajuda2(Hidato h){
+        /**
+         * Imprimeix per a una casella de l’Hidato, els possibles candidats
+         */
         ControladorAjudes ca = new ControladorAjudes();
         Scanner capt = new Scanner(System.in);
         System.out.println("introdueix X:");

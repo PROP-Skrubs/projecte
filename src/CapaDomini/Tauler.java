@@ -16,6 +16,9 @@ public class Tauler
 
     public Tauler()
     {
+        /**
+         * Contructora Buida
+         */
         // Aixo abans tiraba execpio perque se suposa que no s'havia de fer servir mai.
         uniqID = -1;
         tauler = null;
@@ -23,6 +26,9 @@ public class Tauler
 
     public Tauler(int tamany)
     {
+        /**
+         * Contructora a partir d'un tamany passat per paràmetre
+         */
         uniqID = -1;
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
@@ -41,6 +47,9 @@ public class Tauler
 
     public Tauler(Tauler t)
     {
+        /**
+         * Crea un tauler igual al Tauler passat per paràmetre
+         */
         uniqID = -1;
         int tamany = t.getTamany();
         tauler = new Casella[tamany][tamany];
@@ -55,12 +64,18 @@ public class Tauler
 
     public Tauler(Scanner in)
     {
+        /**
+         * Crea un tauler igual a lo que es llegeix per terminal
+         */
         uniqID = -1;
         llegeixRepresentacioTextual(in);
     }
 
     public void llegeixRepresentacioTextual(Scanner in)
     {
+        /**
+         * Assigna la Matriu a la representacio textual que passes per paràmetre
+         */
         int tamany = in.nextInt();
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
@@ -74,6 +89,9 @@ public class Tauler
 
     public String donaRepresentacioTextual()
     {
+        /**
+         * Retorna un String que serà la Matriu
+         */
         StringBuilder aRetornar = new StringBuilder(400);
         aRetornar.append(getTamany()).append(' ');
         for (Casella[] fila : tauler)
@@ -89,6 +107,9 @@ public class Tauler
 
     public Casella buscaCasella(int num)
     {
+        /**
+         * Retorna una Casella on el valor sigui igual al enter passat per paràmetre
+         */
         for (Casella[] fila : tauler)
         {
             for (Casella candidat : fila)
@@ -102,6 +123,9 @@ public class Tauler
     
     public void move(Tauler altre)
     {
+        /**
+         * Sgafa lo que hi ha a l'altre tauler i t'ho posa a la Matriu
+         */
         //agafa lo que hi ha a l'altre tauler i t'ho posa a tu
         tauler = altre.tauler;
         altre.tauler = null;
@@ -109,6 +133,9 @@ public class Tauler
 
     public void clone(Tauler t)
     {
+        /**
+         * Iguala el Tauler a el Tauler que passa per paràmetres
+         */
         for (int i = 0; i < t.getTamany(); ++i)
         {
             for (int j = 0; j < t.getTamany(); ++j)
@@ -118,35 +145,59 @@ public class Tauler
         }
     }
     public void setTauler(Casella[][] tauler) {
+        /**
+         * Modifica tauler igual al Tauler passat per paràmetre
+         */
         this.tauler = tauler;
     }
     public Casella[][] getTauler() {
+        /**
+         * Retorna el Tauler
+         */
         return tauler;
     }
     public int getUniqID() {
+        /**
+         * Retorna UniqID
+         */
         return uniqID;
     }
     public void setUniqID(int idtauler) {
+        /**
+         * Modifica tauler igual al idTauler passat per paràmetre
+         */
         this.uniqID = idtauler;
     }
 
     public Casella getCasella(int posX, int posY)
     {
+        /**
+         * Retorna la Casella del Tauler amb la posicio pasada per paràmetre
+         */
         return new Casella(tauler[posX][posY]);
     }
 
     public Casella getCasella(Casella candidat)
     {
+        /**
+         * Retorna la Casella del Tauler amb la posicio de la Casella pasada per paràmetre
+         */
         return new Casella(tauler[candidat.x][candidat.y]);
     }
 
     public void setCasella(int posX, int posY, int valor)
     {
+        /**
+         * Modifica el Tauler ficant una Casella amb el valor y la posició pasada per paràmetres
+         */
         tauler[posX][posY].elem = valor;
     }
 
     public void setCasella(int posX, int posY, int valor, int numadjlliure)
     {
+        /**
+         * Modifica el Tauler ficant una Casella amb el valor, el numadjlliure y la posició pasada per paràmetres
+         */
         int[] X = {0, 1, 0, -1, 1, 1, -1, -1};
         int[] Y = {1, 0, -1, 0, 1, -1, 1, -1};
         tauler[posX][posY] = new Casella(posX, posY, valor, numadjlliure);
@@ -161,27 +212,42 @@ public class Tauler
 
     public void setCasella(Casella c)
     {
+        /**
+         * Modifica el Tauler ficant una Casella amb el valor y la posició pasada per paràmetre
+         */
         tauler[c.x][c.y] = c;
     }
 
     public int getTamany()
     {
+        /**
+         * Retorna el tamany del Tauler
+         */
         return tauler.length;
     }
 
     public boolean esValid(int Posx, int Posy)
     {
         //todo: el nom no es gens indicatiu
+        /**
+         * Et retorna si la posició pasada per paràmetres esta dins dels limits del tauler
+         */
         return (Posx >= 0 && Posx < tauler.length && Posy >= 0 && Posy < tauler.length);
     }
 
     public boolean teMaximIMinim()
     {
+        /**
+         * Et diu si te el numero 1 i el número maxim del tauler
+         */
         return buscaCasella(1) != null && buscaCasella(maximElementPossible()) != null;
     }
 
     public List<Interval> donaIntervals(boolean[] presents)
     {
+        /**
+         * Et retorna una llista de tots els intervals
+         */
         List<Interval> aRetornar = new ArrayList<>();
         boolean enInterval = false;
         int iniciInterval = -400;
@@ -316,6 +382,10 @@ public class Tauler
 
     public boolean[] presentsAlTauler()
     {
+        /**
+         * Retorna un array de booleans que indica que si cada casella en ordre ascendent sent primer la posicio (0,0)
+         * si hi ha un valor no BUIT i no FORAT.
+         */
         // no usarem presentsAlTauler[0]
         boolean[] aRetornar = new boolean[maximElementPossible()+1];
         for (Casella[] fila : tauler)
@@ -424,6 +494,9 @@ public class Tauler
 
     public void print()
     {
+        /**
+         * Pintar el Tauler per pantalla
+         */
         for (int i = 0; i < getTamany(); ++i)
         {
             for (int j = 0; j < getTamany(); ++j)
@@ -437,6 +510,9 @@ public class Tauler
 
     public boolean he_acabat()
     {
+        /**
+         * Et retorna un boolean que et diu si esta complet el Tauler
+         */
         int cont = 0;
         for (int i = 0; i < this.getTamany(); ++i)
         {

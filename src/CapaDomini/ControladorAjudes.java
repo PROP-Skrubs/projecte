@@ -8,11 +8,17 @@ import java.util.List;
  */
 public class ControladorAjudes {
     public Casella help1(Hidato h){
+        /**Donat un Hidato per paràmetre et retorna la Casella següent que s’hauria completar al Hidato en una partida,
+         * en ordre creixent de ficar Caselles.
+         */
         int x = h.getTauler().trobaPrimeraIncognitaAPartirDe(1);
         return h.getTaulerComplert().buscaCasella(x);
     }
 
     public List<Integer> help2(Integer i, Integer j, Hidato h) {
+        /**Et retorna una llista de enters que seran els valors que pot obtenir el valor de la Casella a la
+         * posicio I i J del Hidaot H que pasen per paràmetre.
+        */
         List<Integer> candidatos_todos = new ArrayList<>();
         List<Integer> resultado = new ArrayList<>();
         List<Integer> res1 = new ArrayList<>();
@@ -25,6 +31,9 @@ public class ControladorAjudes {
     }
 
    public List<Integer> quitar_resto(List<Integer> vector, Integer i, Integer j, Hidato h) {
+       /**Retorna una llista amb les cadidats de la Casella a la posició I i J del Hidato H. Candidats s’enten com
+        * els valors que pot pendre el valor.
+        */
         Integer indice = 0;
         while(indice < vector.size()) {
             List<Boolean> se_borra = new ArrayList<>();
@@ -106,6 +115,8 @@ public class ControladorAjudes {
 
     //Primer paso: Quitar de la lista los numeros que ya estan colocados en el tablero
     public List<Integer> quitar_puestos(List<Integer> vector, Hidato h) {
+        /**Treu els valors de la llista que estiguin ja predeterminats al Hidato
+        */
         List<Integer> listaaux = new ArrayList<>();
         for (int k = 0; k < h.getTauler().getTamany(); ++k) {
             for (int l = 0; l < h.getTauler().getTamany(); ++l) {
@@ -118,6 +129,8 @@ public class ControladorAjudes {
     }
     //Pongo en un vector todos los numeros posibles del tablero del 1 al n
     public List<Integer> omplir_vex(Hidato h){
+        /**T’omple una llista amb els valors de 1 fins a tamany del Tauler menys forats
+         */
         Integer n = h.getTauler().getTamany() * h.getTauler().getTamany();
         List<Integer> l = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -126,6 +139,8 @@ public class ControladorAjudes {
         return l;
     }
     public void print(List<Integer> vector){
+        /**Surt per pantalla els valors de la llista pasada per paràmetres
+         */
         for (Integer temp : vector) {
             System.out.println(temp);
         }
