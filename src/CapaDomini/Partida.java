@@ -19,13 +19,16 @@ public class Partida
         /**
          * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
          */
-        if (x < 1 | x > taulerProgres.getTamany())
+        System.out.print("TaulerProgres.getTamany(): "); System.out.println(taulerProgres.getTamany());
+        System.out.print("X: "); System.out.println(x);
+        System.out.print("Y: "); System.out.println(y);
+        if (x < 0 | x > taulerProgres.getTamany()-1)
         {
             System.out.println("X no valida, introdueix una altra");
             return 1;
         }
 
-        if (y < 1 | y > taulerProgres.getTamany())
+        if (y < 0 | y > taulerProgres.getTamany()-1)
         {
             System.out.println("Y no valida, introdueix una altra");
             return 2;
@@ -53,11 +56,10 @@ public class Partida
         }
         else
         {
-            taulerProgres.setCasella(x - 1, y - 1, elem);
+            taulerProgres.setCasella(x, y, elem);
             taulerProgres.pintar_tauler();
             return 0;
         }
-
     }
 
     public Tauler getTaulerOriginal()
@@ -130,13 +132,13 @@ public class Partida
         /**
          * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
          */
-        if (x < 1 | x > taulerProgres.getTamany())
+        if (x < 0 | x > taulerProgres.getTamany()-1)
         {
             System.out.println("X no valida, introdueix una altra");
             return 1;
         }
 
-        if (y < 1 | y > taulerProgres.getTamany())
+        if (y < 0 | y > taulerProgres.getTamany()-1)
         {
             System.out.println("Y no valida, introdueix una altra");
             return 2;
@@ -148,7 +150,7 @@ public class Partida
         }
         else
         {
-            taulerProgres.setCasella(x - 1, y - 1, 0);
+            taulerProgres.setCasella(x, y, 0);
             taulerProgres.pintar_tauler();
             return 0;
         }

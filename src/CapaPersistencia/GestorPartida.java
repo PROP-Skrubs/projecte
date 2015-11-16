@@ -91,11 +91,12 @@ public class GestorPartida
         if (!GestorUsuari.existeixUsuari(p.getIDUsuari()))
             throw new RuntimeException("Intentes crear una partida i el usuari que la juga ni existeix?");
 
-        if (!GestorHidato.existeixHidato(p.getIDHidato())) //pot existir a priori (cas jugar existent) o no (cas crear nou + jugar)
+        if (!GestorHidato.existeixHidato(p.getIDHidato())) //pot existir a priori (cas jugar existent) o no (cas crear nou + jugar) todo no m'ho crec
         {
             int nouIDHidato = GestorHidato.creaHidato(p.getHidato());
             p.setIDHidato(nouIDHidato);
         }
+
         if (!GestorTauler.existeixTauler(p.getIDTaulerProgres())) //mai hauria d'existir a priori
         {
             int nouIDTaulerProgres = GestorTauler.creaTauler(p.getTaulerProgres());
@@ -111,6 +112,7 @@ public class GestorPartida
             ps.setInt(4, p.getnCelesResoltes());
             ps.setInt(5, p.getNumAjudesUtilitzades());
             ps.setBoolean(6, p.esAcabada());
+            ps.executeUpdate();
         }
         catch (SQLException e)
         {

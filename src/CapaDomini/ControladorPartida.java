@@ -49,7 +49,7 @@ public class ControladorPartida
             }
             else
             {
-                throw new RuntimeException("No se com vols que modifiqui una casella");
+//                throw new RuntimeException("No se com vols que modifiqui una casella");
             }
             return aRetornar;
         }
@@ -78,7 +78,7 @@ public class ControladorPartida
         /**
          * Comença a jugar la partida actual
          */
-        JugarPartida j = new JugarPartida(partida.getTaulerOriginal(),callbackImplementor);
+        JugarPartida j = new JugarPartida(partida.getTaulerProgres(),callbackImplementor);
     }
 
     public static void novaPartida(Usuari u, Hidato h)
@@ -89,7 +89,7 @@ public class ControladorPartida
         partida = new Partida();
         partida.setUsuari(u);
         partida.setHidato(h);
-        partida.setTaulerProgres(new Tauler(h.getTamany()));
+        partida.setTaulerProgres(new Tauler(h.getTauler()));
         partida.setnCelesResoltes(0);
         partida.setNumAjudesUtilitzades(0);
         partida.setEsAcabada(false);

@@ -12,7 +12,7 @@ import java.util.List;
 public class GestorHidato
 {
     private static final Connection conn = CapaPersistencia.conn;
-    private static final String COUNT_HIDATO = "SELECT COUNT(*) FROM hidatos WHERE idHidato = ?";
+    private static final String COUNT_HIDATO = "SELECT COUNT(*) FROM hidatos WHERE id = ?";
     private static final String INSERT_HIDATO = "INSERT INTO hidatos (" +
             "idTauler," +
             "idTaulerComplert," +
