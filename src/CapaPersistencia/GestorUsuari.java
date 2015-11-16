@@ -12,6 +12,7 @@ public class GestorUsuari
     private final static Connection conn = CapaPersistencia.conn;
     private final static String INSERT_USUARI = "INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)";
     private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
+    private final static String COUNT_USUARI_ID = "SELECT COUNT(*) FROM usuaris WHERE id=?";
     private final static String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
     private final static String SELECT_USUARI_NOMUSUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
     private final static String SELECT_USUARI_ID = "SELECT * FROM usuaris WHERE id=?";
@@ -43,7 +44,7 @@ public class GestorUsuari
     {
         if (id == -1)
             return false;
-        try (PreparedStatement s = conn.prepareStatement(COUNT_USUARI))
+        try (PreparedStatement s = conn.prepareStatement(COUNT_USUARI_ID))
         {
             s.setInt(1, id);
             ResultSet resSet = s.executeQuery();

@@ -1,6 +1,7 @@
 package CapaVista;
 
 import CapaDomini.ControladorHidato;
+import CapaDomini.ControladorPartida;
 import CapaDomini.Tauler;
 import CapaDomini.TaulerDisplayerCallbacks;
 
@@ -49,18 +50,18 @@ public class JugarPartida
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                //                ControladorHidato.guardaEstat();
+                ControladorPartida.guardarPartida();
+                System.out.println("Partida guardada correctament!");
             }
         });
-
 
         sortirButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                //                ControladorHidato.descartaPartida();
-
+                ControladorHidato.descartaPartida();
+                frame.dispose();
             }
         });
     }
@@ -85,7 +86,7 @@ public class JugarPartida
         panel1.add(taulerDisplayer1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         guardarPartidaButton = new JButton();
         guardarPartidaButton.setText("Guardar Partida");
-        panel1.add(guardarPartidaButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(72, 260), null, 0, false));
+        panel1.add(guardarPartidaButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         sortirButton = new JButton();
         sortirButton.setText("Sortir");
         panel1.add(sortirButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

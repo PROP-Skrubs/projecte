@@ -93,12 +93,13 @@ public class ControladorPartida
         return partida != null;
     }
 
-    public static boolean guardarPartida()
+    public static void guardarPartida()
     {
-        if (!GestorPartida.existeixPartida(partida.getUniqID()))
-            return GestorPartida.modificaPartida(partida);
+        //todo aixo hauria d'associar el usuari amb la ID de la partida (cas creacio)
+        if (GestorPartida.existeixPartida(partida.getUniqID()))
+            GestorPartida.modificaPartida(partida);
         else
-            return GestorPartida.creaPartida(partida) != -1;
+            GestorPartida.creaPartida(partida);
     }
 
 

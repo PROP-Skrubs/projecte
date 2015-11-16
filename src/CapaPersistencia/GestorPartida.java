@@ -24,7 +24,7 @@ public class GestorPartida
     private static final String COUNT_PARTIDA = "SELECT COUNT(*) FROM partides WHERE id=?";
     private static final String DELETE_PARTIDA = "DELETE FROM partides WHERE id=?";
     private static final String SELECT_PARTIDA = "SELECT * FROM partides WHERE id=?";
-    private static final String UPDATE_PARTIDA = "UPDATE partides SET" +
+    private static final String UPDATE_PARTIDA = "UPDATE partides SET " +
             "idTaulerProgres=?," +
             "nCelesResoltes=?," +
             "numAjudesUtilitzades=?," +
@@ -117,17 +117,22 @@ public class GestorPartida
         return false; //todo acabar
     }
 
-    public static boolean modificaPartida(Partida p)
+    public static void modificaPartida(Partida p)
     {
         //todo: aixo esborra les dades (taulerProgres) velles i en crea de noves. Hauria de ser capaç de modificar l'estat.
         if (!existeixPartida(p.getUniqID()))
         {
             throw new RuntimeException("Vols que modifiqui una partida que no es present a la BD?");
         }
-        try (PreparedStatement p = conn.prepareStatement(UPDATE_PARTIDA))
+        GestorTauler.eliminaTauler(p.getIDTaulerProgres());
+
+        try (PreparedStatement ps = conn.prepareStatement(UPDATE_PARTIDA))
         {
-            //todo: estic aqui, acabar aixo
-            p.setInt();
+            int novaIDTaulerProgres = GestorTauler.creaTauler(p.getTaulerProgres());
+            ps.setInt(1,novaIDTaulerProgres);
+            ps.setInt(2,p.getnCelesResoltes());
+            ps.setInt(3,p.getNumAjudesUtilitzades());
+            ps.setBoolean(4,p.esAcabada());
         }
         catch (SQLException e)
         {
