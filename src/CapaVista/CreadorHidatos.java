@@ -11,7 +11,7 @@ public class CreadorHidatos extends JDialog
     private JButton buttonCancel;
     private JRadioButton automaticamentRadioButton;
     private JRadioButton manualmentRadioButton;
-    private ButtonGroup comboGroup;
+    private ButtonGroup radioButtonGroup;
 
     public CreadorHidatos()
     {
@@ -19,9 +19,12 @@ public class CreadorHidatos extends JDialog
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        comboGroup = new ButtonGroup();
-        comboGroup.add(automaticamentRadioButton);
-        comboGroup.add(manualmentRadioButton);
+        radioButtonGroup = new ButtonGroup();
+        radioButtonGroup.add(automaticamentRadioButton);
+        radioButtonGroup.add(manualmentRadioButton);
+
+        pack();
+        setVisible(true);
 
         buttonOK.addActionListener(new ActionListener()
         {
@@ -62,7 +65,10 @@ public class CreadorHidatos extends JDialog
     private void onOK()
     {
         // add your code here
-        
+        if (automaticamentRadioButton.isSelected())
+            System.out.println("Falta afegir la classe creadora manual");//new CrearTaulerAutomatic();
+        if (manualmentRadioButton.isSelected())
+            System.out.println("Falta afegir la classe creadora manual");
         dispose();
     }
 

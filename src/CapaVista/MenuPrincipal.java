@@ -14,7 +14,7 @@ public class MenuPrincipal
     private JLabel etiquetaNomUsuari;
     private JButton crearNouHidatoButton;
     private JButton començarPartidaButton;
-    private JButton veureEstadístiquesButton;
+    private JButton carregarPartidaButton;
 
     public MenuPrincipal()
     {
@@ -49,9 +49,9 @@ public class MenuPrincipal
         començarPartidaButton = new JButton();
         començarPartidaButton.setText("Començar partida");
         panel1.add(començarPartidaButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        veureEstadístiquesButton = new JButton();
-        veureEstadístiquesButton.setText("Veure estadístiques");
-        panel1.add(veureEstadístiquesButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        carregarPartidaButton = new JButton();
+        carregarPartidaButton.setText("Veure estadístiques");
+        panel1.add(carregarPartidaButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

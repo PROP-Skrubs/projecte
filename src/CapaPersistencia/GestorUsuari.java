@@ -150,5 +150,6 @@ public class GestorUsuari
         {
             throw new RuntimeException(e);
         }
+        return true;
     }
 }
