@@ -58,6 +58,9 @@ public class CapaPersistencia
 
     public static int retornaUltimaClauInserida()
     {
+        /**
+         * Retorna l'ultima clau inserida
+         */
         int aRetornar = -1;
         try (Statement s = conn.createStatement())
         {
@@ -76,6 +79,9 @@ public class CapaPersistencia
 
     public static void validarBaseDeDades()
     {
+        /**
+         * En cas que no estiguin les taules creades a la BD, les crea
+         */
         //Executem tots els CREATE TABLE statements per assegurar-nos que la BD esta en condicions d'operar. Exemple:
 
         //Falta afegir el codi de la resta de taules

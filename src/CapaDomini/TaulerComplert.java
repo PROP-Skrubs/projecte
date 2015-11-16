@@ -4,17 +4,26 @@ public class TaulerComplert extends Tauler
 {
     public TaulerComplert()
     {
+        /**
+         * Crea un TaulerComplert BUIT
+         */
         //Igual que amb el constructor de la classe pare, s'ha d'anar molt amb compte amb aixo ja que inicialitza el seu tauler a null...
         super();
     }
 
     public TaulerComplert(Tauler orig)
     {
+        /**
+         * Crea un TaulerComplert igual al passat per paràmetres
+         */
         super(orig);
     }
 
     public int comparaDiferencies(Tauler altre)
     {
+        /**
+         * Retorna la compte de Caselles que no coincideixen de el TaulerComplert amb el Tauler passat per paràmetre
+         */
         //TODO: Que torni també la llista de diferencies que troba... pero java es una puta i no deixa parametres per referencia, aixi que esta una mica fucked
         //S'ha de fer sanity-check que comprovi que els dos taulers tenen dimensions iguals
         if (this.getTamany() != altre.getTamany())

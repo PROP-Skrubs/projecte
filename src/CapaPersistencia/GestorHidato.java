@@ -40,6 +40,9 @@ public class GestorHidato
 
     public static Hidato donaHidato(int id)
     {
+        /**
+         * Retorna un hidato amb id ‘id’
+         */
         Hidato aRetornar = null;
         try (PreparedStatement p = conn.prepareStatement(SELECT_HIDATO))
         {
@@ -65,6 +68,9 @@ public class GestorHidato
 
     public static int creaHidato(Hidato h)
     {
+        /**
+         * Guarda a la BD a la taula hidato l’hidato h
+         */
         if (!GestorTauler.existeixTauler(h.getIDTauler()))
         {
             int nouIDTauler = GestorTauler.creaTauler(h.getTauler());
@@ -94,6 +100,9 @@ public class GestorHidato
 
     public static boolean eliminaHidato(int id)
     {
+        /**
+         * Elimina de la BD l’hidato amb id ‘idhidato’
+         */
         Hidato h = donaHidato(id);
         GestorTauler.eliminaTauler(h.getIDTauler());
         GestorTauler.eliminaTaulerComplert(h.getIDTaulerComplert());

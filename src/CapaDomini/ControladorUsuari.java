@@ -9,6 +9,8 @@ public class ControladorUsuari
 {
     public static boolean crearUsuari(String nomUsuari, String contrasenya, String nomReal)
     {
+        /**Crea un Usuari amb els valors passat per paràmetre.
+         */
         Usuari u = new Usuari();
         u.setNomUsuari(nomUsuari);
         u.setContrasenya(contrasenya);
@@ -21,7 +23,9 @@ public class ControladorUsuari
     }
 
     public static boolean eliminarUsuari(String nomUsuari)
-    {
+    {   /**Elimina el Usuari que tingui el nomUsuari passat per paràmetre
+         */
+
         //Retorna true si s'ha borrat l'usuari. False si no s'ha borrat cap usuari. Tira excepcio si s'han borrat multiples.
         return GestorUsuari.eliminaUsuari(nomUsuari);
         /*TODO:

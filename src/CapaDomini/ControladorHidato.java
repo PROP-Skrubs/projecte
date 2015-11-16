@@ -26,12 +26,18 @@ public class ControladorHidato
         }
         public static ControladorHidatoCallbackImplementor getInstance()
         {
+            /**
+             *
+             */
             if (instance == null) instance = new ControladorHidatoCallbackImplementor();
             return instance;
         }
 
         public boolean casellaModificada(Casella c)
         {
+            /**
+             * Modifica la Casella passat per paràmetre
+             */
             return modificaCasella(c);
         }
     }
@@ -40,6 +46,9 @@ public class ControladorHidato
 
     public static boolean modificaCasella(Casella c)
     {
+        /**
+         *
+         */
         if (c.getElem() > 0 || c.getElem() == Casella.BUIT || c.getElem() == Casella.FORAT)
         {
             taulerCreacio.setCasella(c);
@@ -60,6 +69,9 @@ public class ControladorHidato
 
     public static void creaHidatoManualment(int tamany)
     {
+        /**
+         *
+         */
         taulerCreacio = new Tauler(tamany);
         CrearTaulerManual ct = new CrearTaulerManual(taulerCreacio,callbackImplementor);
         ct.pack();
@@ -68,6 +80,9 @@ public class ControladorHidato
 
     public static void creaHidatoAutomaticament()
     {
+        /**
+         *
+         */
         CrearTaulerAutomatic ct = new CrearTaulerAutomatic();
         ct.pack();
         ct.setVisible(true);
@@ -75,6 +90,9 @@ public class ControladorHidato
 
     public static void fesCreacioAutomatica(int tamanyHidato, int numForats, int numPrecolocats, String dificultat)
     {
+        /**
+         *
+         */
         Tauler t;
         TaulerComplert tc = new TaulerComplert();
 
@@ -91,6 +109,9 @@ public class ControladorHidato
 
     public static int validaIGuarda() //todo fer aixo com una interface
     {
+        /***
+         *
+         */
         TaulerComplert hopefully = new TaulerComplert();
         int result = ValidadorTauler.validarTauler(taulerCreacio,hopefully);
         if (result == ValidadorTauler.OK)

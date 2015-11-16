@@ -33,6 +33,9 @@ public class GestorPartida
 
     public static boolean existeixPartida(int id)
     {
+        /**
+         * Retorna si existeix una Partida amb l'id passat per paràmetres o no
+         */
         if (id == -1)
             return false;
         try (PreparedStatement s = conn.prepareStatement(COUNT_PARTIDA))
@@ -52,7 +55,11 @@ public class GestorPartida
 
     public static Partida donaPartida(int id)
     {
+        /**
+         * Retorna una Partida amb id igual a la id donada per paràmetre
+         */
         Partida aRetornar = null;
+
         try (PreparedStatement p = conn.prepareStatement(SELECT_PARTIDA))
         {
             p.setInt(1, id);

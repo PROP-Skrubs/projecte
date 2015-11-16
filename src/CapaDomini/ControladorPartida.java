@@ -54,23 +54,35 @@ public class ControladorPartida
 
     public static int afegirvaloraCaselladePartida(int x, int y, int elem)
     {
+        /**Afegeix al Tauler de la partida el ELEM a la posicio X,Y passat tot per paràmetres
+         *
+         */
         int ret = partida.afegir(x, y, elem);
         return ret;
     }
 
     public static int eliminarvalorCaselladePartida(int x, int y)
     {
+        /**Elimina el valor de la Casella de partida de la posicio X,Y passat per paràmetres
+         *
+         */
         int ret = partida.remove(x, y);
         return ret;
     }
 
     public static void jugaPartida()
     {
+        /**
+         *
+         */
         JugarPartida j = new JugarPartida(partida.getTaulerOriginal(),callbackImplementor);
     }
 
     public static void novaPartida(Usuari u, Hidato h)
     {
+        /**
+         *
+         */
         partida = new Partida();
         partida.setUsuari(u);
         partida.setHidato(h);
@@ -82,6 +94,9 @@ public class ControladorPartida
 
     public static void novaPartida(int idUsuari, int idHidato)
     {
+        /**
+         *
+         */
         Usuari u = GestorUsuari.donaUsuari(idUsuari);
         Hidato h = GestorHidato.donaHidato(idHidato);
         novaPartida(u,h);
@@ -89,6 +104,9 @@ public class ControladorPartida
 
     public static boolean carregarPartida(int idPartida)
     {
+        /**
+         *
+         */
         partida = GestorPartida.donaPartida(idPartida);
         return partida != null;
     }
@@ -104,7 +122,5 @@ public class ControladorPartida
 
 
 
-    //demanarhelp1
-    //demanarhelp2
 
 }
