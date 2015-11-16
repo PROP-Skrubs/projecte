@@ -4,6 +4,7 @@ import java.util.*;
 /**
  * Created by daniel on 12/10/15.
  */
+
 public class CapaDomini
 {
     public static void ordenaAdjacents(List<Casella> Adjacents){
@@ -274,7 +275,8 @@ public class CapaDomini
             if (acabarbacktrackin == ValidadorTauler.MULTIPLES && intentsdedonarHidatobo == 20)
                 throw new RuntimeException("Els parametres donats no son suficients per donar un Hidato únic");
 
-            backtrackingmenor(0, n * n - m, inicial, t, ret);
+            if (n > 8) backtrackingmayorde8(0,n*n-m,inicial,t,ret);
+            else backtrackingmenor(0, n * n - m, inicial, t, ret);
             eliminarnumeros(ret, num_pre);
 
             acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);

@@ -1,6 +1,8 @@
 package Testers;
 
 import java.util.Scanner;
+
+import CapaDomini.ControladorPartida;
 import  CapaDomini.Hidato;
 import CapaPersistencia.GestorHidato;
 
@@ -29,9 +31,57 @@ public class DriverGestioPartida {
                     System.out.println("\t-x: Sortir de la partida");
                     s = capt.nextLine();
                     if (s.equals("add")) {
-                        h.afegir();
+
+                        int Comprobador = -1;
+                        System.out.println("introdueix X:");
+                        int x = capt.nextInt();
+                        System.out.println("introdueix Y:");
+                        int y = capt.nextInt();
+                        System.out.println("introdueix valor:");
+                        int elem = capt.nextInt();
+                        while (Comprobador != 0){
+
+                            if(Comprobador == 1){
+                                System.out.println("introdueix X:");
+                                x = capt.nextInt();
+                            }
+                            if(Comprobador == 2) {
+
+                                System.out.println("introdueix Y:");
+                                y = capt.nextInt();
+                            }
+                            if(Comprobador == 3 ){
+
+                                System.out.println("introdueix valor:");
+                                elem = capt.nextInt();
+                            }
+
+                            Comprobador = ControladorPartida.afegirvaloraCaselladePartida(x, y, elem);
+
+                        }
+
                     } else if (s.equals("rm")) {
-                        h.remove();
+                        int Comprobador = -1;
+                        System.out.println("introdueix X:");
+                        int x = capt.nextInt();
+                        System.out.println("introdueix Y:");
+                        int y = capt.nextInt();
+                        System.out.println("introdueix valor:");
+                        int elem = capt.nextInt();
+                        while (Comprobador != 0){
+
+                            if(Comprobador == 1){
+                                System.out.println("introdueix X:");
+                                x = capt.nextInt();
+                            }
+                            if(Comprobador == 2) {
+
+                                System.out.println("introdueix Y:");
+                                y = capt.nextInt();
+                            }
+                            Comprobador = ControladorPartida.eliminarvalorCaselladePartida(x,y);
+
+                        }
                     } else if (s.equals("help1")) {
                         Ajudes a = new Ajudes();
                         a.ajuda1(h);
