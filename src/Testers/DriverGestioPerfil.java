@@ -1,5 +1,9 @@
 package Testers;
 
+import CapaDomini.ControladorLogin;
+import CapaDomini.Usuari;
+import CapaPersistencia.GestorUsuari;
+
 import java.util.Scanner;
 
 /**
@@ -27,25 +31,13 @@ public class DriverGestioPerfil
                 System.out.println("Siusplau, introdueix el teu nom de usuari i contrassenya:");
                 while (true)
                 {
-                    boolean usr = false;
-                    boolean pswrd = false;
                     System.out.println("Nom Usuari:");
-                    capt = new Scanner(System.in);
                     s = capt.nextLine();
-                    //
                     System.out.println("Contrassenya:");
-                    capt = new Scanner(System.in);
                     String s2 = capt.nextLine();
-                    //
-                    if (usr = false)
-                    {
-                        System.out.println("Nom de usuari incorrecte");
-                    }
-                    if (pswrd = false)
-                    {
-                        System.out.println("Constrassenya incorrecte");
-                    }
-                    if (usr == true && pswrd == true) break;
+                    boolean b = ControladorLogin.fesLogin(s,s2);
+                    if(b) break;
+                    else System.out.print("Nom de usuari o contrassenya incorrectes");
 
                 }
                 System.out.print("Loguin Realitzat correctament");
@@ -57,24 +49,25 @@ public class DriverGestioPerfil
                     System.out.println("Siusplau, introdueix nom usuari a crear:");
                     capt = new Scanner(System.in);
                     s = capt.nextLine();
-                    if (true/*comprobacio usr esta repetit*/)
+                    if (GestorUsuari.existeixUsuari(s))
                     {
                         System.out.println("Nom de usuari ja repetit, introdueix un altre nom.");
                     }
                     else break;
                 }
                 System.out.println("Siusplau, introdueix nom Real:");
-                capt = new Scanner(System.in);
                 String s2 = capt.nextLine();
                 System.out.println("Siusplau, introdueix Contrassenya:");
-                capt = new Scanner(System.in);
                 String s3 = capt.nextLine();
+                Usuari u = new Usuari(-1, s, s3, s2);
+                int i = GestorUsuari.creaUsuari(u);
+                System.out.println("Usuari creat correctament, la id assignada a la BD es: " + i );
             }
             else if (s.equals("3"))
             {
                 DriverCreadorHidatos.main();
             }
-            else s.equals("Comana no valida"); //todo aixo segur que esta be???
+            else s.equals("Comana no valida");
         }
     }
 }
