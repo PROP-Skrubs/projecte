@@ -4,6 +4,8 @@ import CapaDomini.ControladorLogin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by daniel on 13/10/15.
@@ -13,8 +15,8 @@ public class MenuPrincipal
     private JPanel panel1;
     private JLabel etiquetaNomUsuari;
     private JButton crearNouHidatoButton;
-    private JButton començarPartidaButton;
-    private JButton veureEstadístiquesButton;
+    private JButton jugarButton;
+    private JButton veureEstadistiquesButton;
 
     public MenuPrincipal()
     {
@@ -27,6 +29,28 @@ public class MenuPrincipal
 
         frame.pack();
         frame.setVisible(true);
+
+        crearNouHidatoButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                CreadorHidatos c = new CreadorHidatos();
+                c.pack();
+                c.setVisible(true);
+            }
+        });
+
+        jugarButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                ComencarPartidaLauncher c = new ComencarPartidaLauncher();
+                c.pack();
+                c.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -46,12 +70,12 @@ public class MenuPrincipal
         crearNouHidatoButton = new JButton();
         crearNouHidatoButton.setText("Crear nou Hidato");
         panel1.add(crearNouHidatoButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        començarPartidaButton = new JButton();
-        començarPartidaButton.setText("Començar partida");
-        panel1.add(començarPartidaButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        veureEstadístiquesButton = new JButton();
-        veureEstadístiquesButton.setText("Veure estadístiques");
-        panel1.add(veureEstadístiquesButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        jugarButton = new JButton();
+        jugarButton.setText("Jugar");
+        panel1.add(jugarButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        veureEstadistiquesButton = new JButton();
+        veureEstadistiquesButton.setText("Veure Estadistiques");
+        panel1.add(veureEstadistiquesButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

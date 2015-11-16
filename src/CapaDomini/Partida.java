@@ -1,51 +1,58 @@
 package CapaDomini;
 
-import java.util.Scanner;
 
 /**
  * Created by Maria on 10/11/2015.
  */
 public class Partida
 {
-    int uniqID;
-    Hidato hidato;
-    Usuari usuari;
-    int nCelesResoltes;
-    int numAjudesUtilitzades;
-    Tauler taulerProgres;
-    boolean esAcabada;
+    private int uniqID;
+    private Hidato hidato;
+    private Usuari usuari;
+    private Tauler taulerProgres;
+    private int nCelesResoltes;
+    private int numAjudesUtilitzades;
+    private boolean esAcabada;
 
-    public int afegir(int x, int y, int elem) { //todo arreglar aixo
+    public int afegir(int x, int y, int elem)
+    { //todo arreglar aixo
         /**
          * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
          */
-        while (x < 1 | x > taulerProgres.getTamany()) {
+        if (x < 1 | x > taulerProgres.getTamany())
+        {
             System.out.println("X no valida, introdueix una altra");
             return 1;
         }
 
-        while (y < 1 | y > taulerProgres.getTamany()) {
+        if (y < 1 | y > taulerProgres.getTamany())
+        {
             System.out.println("Y no valida, introdueix una altra");
             return 2;
         }
 
-        while (taulerProgres.buscaCasella(elem) != null) {
+        if (taulerProgres.buscaCasella(elem) != null)
+        {
             System.out.println("Valor ja assignat");
             return 3;
         }
-        while(true){
-            if (taulerProgres.getTamany() * 2 < elem)
-                System.out.println("Valor massa gran");
-            else if (elem < 1)
-                System.out.println("Valor massa petit");
-            else break;
+        if (taulerProgres.maximElementPossible() < elem)
+        {
+            System.out.println("Valor massa gran");
             return 3;
         }
-        if (taulerProgres.getCasella(x-1,y-1).isOriginal()){
+        if (elem < 1)
+        {
+            System.out.println("Valor massa petit");
+            return 3;
+        }
+        if (hidato.casellaEsOriginal(x,y))
+        {
             System.out.print("Aquesta casella no es pot modificar");
             return 0;
         }
-        else {
+        else
+        {
             taulerProgres.setCasella(x - 1, y - 1, elem);
             taulerProgres.pintar_tauler();
             return 0;
@@ -53,24 +60,94 @@ public class Partida
 
     }
 
-    public int remove(int x, int y) {
+    public Tauler getTaulerOriginal()
+    {
+        return hidato.getTauler();
+    }
+
+    public TaulerComplert getTaulerComplert()
+    {
+        return hidato.getTaulerComplert();
+    }
+
+    public Usuari getUsuari()
+    {
+        return new Usuari(usuari);
+    }
+
+    public void setUsuari(Usuari u)
+    {
+        usuari = u;
+    }
+
+    public Hidato getHidato()
+    {
+        return new Hidato(hidato);
+    }
+
+    public void setHidato(Hidato h)
+    {
+        hidato = h;
+    }
+
+    public void setTaulerProgres(Tauler t)
+    {
+        taulerProgres = t;
+    }
+
+    public Tauler getTaulerProgres()
+    {
+        return new Tauler(taulerProgres);
+    }
+
+    public int getIDUsuari()
+    {
+        return usuari.getUniqID();
+    }
+
+    public int getIDTaulerProgres()
+    {
+        return taulerProgres.getUniqID();
+    }
+
+    public int getIDHidato()
+    {
+        return hidato.getUniqID();
+    }
+
+    public void setIDHidato(int id)
+    {
+        hidato.setUniqID(id);
+    }
+
+    public void setIDTaulerProgres(int id)
+    {
+        taulerProgres.setUniqID(id);
+    }
+
+    public int remove(int x, int y)
+    {
         /**
          * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
          */
-        while (x < 1 | x > taulerProgres.getTamany()) {
+        if (x < 1 | x > taulerProgres.getTamany())
+        {
             System.out.println("X no valida, introdueix una altra");
             return 1;
         }
 
-        while (y < 1 | y > taulerProgres.getTamany()) {
+        if (y < 1 | y > taulerProgres.getTamany())
+        {
             System.out.println("Y no valida, introdueix una altra");
             return 2;
         }
-        if (taulerProgres.getCasella(x-1,y-1).isOriginal()){
+        if (hidato.casellaEsOriginal(x,y))
+        {
             System.out.print("Aquesta casella no es pot eliminar");
-            return 0;
+            return 3;
         }
-        else {
+        else
+        {
             taulerProgres.setCasella(x - 1, y - 1, 0);
             taulerProgres.pintar_tauler();
             return 0;
@@ -125,7 +202,7 @@ public class Partida
         this.numAjudesUtilitzades = numAjudesUtilitzades;
     }
 
-    public Boolean getEsAcabada()
+    public Boolean esAcabada()
     {
         /**
          * Retorna EsAcabada

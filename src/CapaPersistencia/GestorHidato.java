@@ -20,6 +20,7 @@ public class GestorHidato
             ") VALUES (?,?,?)";
     private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
     private final static String SELECT_HIDATO = "SELECT * FROM hidatos WHERE id = ?";
+    private final static String SELECT_ALL_ID_HIDATO = "SELECT id FROM hidatos";
 
     public static boolean existeixHidato(int id)
     {
@@ -75,11 +76,14 @@ public class GestorHidato
             int nouIDTauler = GestorTauler.creaTauler(h.getTauler());
             h.setIDTauler(nouIDTauler);
         }
+        else throw new RuntimeException("Ja existia el tauler?");
         if (!GestorTauler.existeixTaulerComplert(h.getIDTaulerComplert()))
         {
             int nouIDTaulerComplert = GestorTauler.creaTaulerComplert(h.getTaulerComplert());
             h.setIDTaulerComplert(nouIDTaulerComplert);
         }
+        else throw new RuntimeException("Ja existia el tauler complert?");
+
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement(INSERT_HIDATO))
         {
             p.setInt(1, h.getIDTauler());
@@ -124,7 +128,25 @@ public class GestorHidato
 
     public static boolean modificaHidato(Hidato h)
     {
+        return false; //todo what
+    }
 
+    public static List<Integer> donaTotesID()
+    {
+        List<Integer> aRetornar = new ArrayList<>(30);
+        try (Statement s = conn.createStatement())
+        {
+            ResultSet resSet = s.executeQuery(SELECT_ALL_ID_HIDATO);
+            while (resSet.next())
+            {
+                aRetornar.add(resSet.getInt("id"));
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return aRetornar;
     }
 
     //    public static List<Hidato> getHidatos() {

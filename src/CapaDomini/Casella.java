@@ -6,14 +6,15 @@ import java.util.Comparator;
  * Created by cross on 20/10/15.
  */
 
-public class Casella implements Comparable {
+public class Casella implements Comparable
+{
     public int elem;
     public int x;
     public int y;
     public int numadjlliures;
     public static int FORAT = -1;
     public static int BUIT = 0;
-    public boolean original;
+
 
     public Casella() {
         /** Dona una Casella buida
@@ -40,6 +41,7 @@ public class Casella implements Comparable {
     public Casella(int xx, int yy) {
         /**Et modifica la X y la Y de la Casella ficantli xx y yy
         */
+
         x = xx;
         y = yy;
     }
@@ -53,24 +55,33 @@ public class Casella implements Comparable {
         this.elem = c.elem;
     }
 
-    public void clone(Casella cas) { //todo mirar si es pot usar el constructor
-        /** A la Casella li modifica els valors de la Casella per els que te
-         * la Casella que pases per paràmetre.
-         */
-        this.elem = cas.elem;
-        this.x = cas.x;
-        this.y = cas.y;
-        this.numadjlliures = cas.numadjlliures;
-    }
-
-    public Casella suma(Casella o) {
+    public Casella suma(Casella o)
+    {
         /**Als valors X y Y de la Casella se li suma els valors X y Y de
          * la Casella que pases per paràmetre
          */
-        return new Casella(x + o.x, y + o.y);
+        Casella aRetornar = new Casella(this);
+        aRetornar.setX(x + o.x);
+        aRetornar.setY(y + o.y);
+        return aRetornar;
     }
 
-    public int distancia(Casella o) {
+    public Casella sumaAmbCheck(Casella o, int minim, int maxim)
+    {
+        /**Als valors X i Y de la Casella se li suma els valors X y Y de
+         * la Casella que pases per paràmetre dintre de un minim i un màxim
+         */
+        Casella aRetornar = suma(o);
+        aRetornar.x = aRetornar.x>minim?aRetornar.x:minim;
+        aRetornar.x = aRetornar.x<maxim?aRetornar.x:maxim;
+        aRetornar.y = aRetornar.y>minim?aRetornar.y:minim;
+        aRetornar.y = aRetornar.y<maxim?aRetornar.y:maxim;
+        return aRetornar;
+
+    }
+
+    public int distancia(Casella o)
+    {
         /**
          * Torna la minima distancia possible entre dues caselles, independentment del tauler en la que estiguin colocades. La distancia minima real entre dues caselles colocades en un tauler pot ser significativament mes alta (o pot ser que no hi hagi cami per on arribar-hi.
          * Una alternativa baratissima a trobar el tauler.camiMesCurt(Casella a, Casella b) que es necessariament un BFS.
@@ -131,22 +142,11 @@ public class Casella implements Comparable {
         this.y = y;
     }
 
-    public boolean isOriginal() {
-        /**Et retorna el valor de la Original
-         */
-        return original;
-    }
-
-    public void setOriginal(boolean original) {
-        /**Et modifica el valor de la Original per el enter que li pases per paràmetre
-         */
-        this.original = original;
-    }
-
     @Override
         public int compareTo(Object o) {
         /**Funcio que serveix per ordenar per l'implentacio Comparable
           */
+
 
         Casella c = (Casella) o;
         return new Integer(numadjlliures).compareTo(new Integer(c.numadjlliures));

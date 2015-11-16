@@ -24,13 +24,6 @@ public class Hidato
         dificultat = null;
     }
 
-    public String getDificultat()
-    {
-        /**Retorna la dificultat
-         *
-         */
-        return dificultat;
-    }
 
     public Hidato(Tauler tauler, TaulerComplert taulerComplert, String dificultat)
     {
@@ -42,20 +35,31 @@ public class Hidato
         this.dificultat = dificultat;
     }
 
+    public Hidato(Hidato h)
+    {
+        /**
+         * Creo Hidato a partir del Hidato passat per paràmetre
+         */
+        uniqID = h.getUniqID();
+        tauler = h.getTauler();
+        taulerComplert = h.getTaulerComplert();
+        dificultat = h.getDificultat();
+    }
 
     public Tauler getTauler()
     {
         /**
          * Retorna Tauler
          */
-        return tauler;
+        return new Tauler(tauler);
     }
+
     public TaulerComplert getTaulerComplert()
     {
         /**
          * Retorna TaulerComplert
          */
-        return taulerComplert;
+        return new TaulerComplert(taulerComplert);
     }
 
     public int getIDTauler()
@@ -65,12 +69,14 @@ public class Hidato
          */
         return tauler.getUniqID();
     }
+
     public void setIDTauler(int id) {
         /**
          * Modifica el id per el passat per paràmetre
          */
         tauler.setUniqID(id);
     }
+
     public int getIDTaulerComplert()
     {
         /**
@@ -78,6 +84,7 @@ public class Hidato
          */
         return taulerComplert.getUniqID();
     }
+
     public void setIDTaulerComplert(int id)
     {
         /**
@@ -93,6 +100,7 @@ public class Hidato
          */
         tauler = nou;
     }
+
     public void setTaulerComplert(TaulerComplert nou)
     {
         /**
@@ -114,7 +122,7 @@ public class Hidato
         this.uniqID = uniqID;
     }
 
-    public String isDificultat() {
+    public String getDificultat() {
         /**
          * Retorna dificultat
          */
@@ -128,11 +136,18 @@ public class Hidato
         this.dificultat = dificultat;
     }
 
-
-    public void imprimir(){
+    public int getTamany()
+    {
         /**
-         * Printa per pantalla el Tauler
+         * Retorna el Tamany del Tauler
          */
-        getTauler().pintar_tauler();
+
+        return tauler.getTamany();
     }
+
+    public boolean casellaEsOriginal(int x, int y)
+    {
+        return tauler.getCasella(x,y).elem >0;
+    }
+
 }

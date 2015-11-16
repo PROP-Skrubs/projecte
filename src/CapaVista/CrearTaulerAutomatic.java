@@ -1,9 +1,6 @@
 package CapaVista;
 
-import CapaDomini.Hidato;
-import CapaDomini.Tauler;
-import CapaDomini.TaulerComplert;
-import CapaDomini.CapaDomini;
+import CapaDomini.ControladorHidato;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +21,6 @@ public class CrearTaulerAutomatic extends JDialog
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        pack();
-        setVisible(true);
 
         buttonOK.addActionListener(new ActionListener()
         {
@@ -65,23 +60,13 @@ public class CrearTaulerAutomatic extends JDialog
 
     private void onOK()
     {
+        System.out.println("pase por aqui");
         int tamanyHidato = (int) spinnerTamanyHidato.getValue();
         int forats = (int) spinnerForats.getValue();
         int numerosPrecolocats = (int) spinnerNumerosPrecolocats.getValue();
         String dificultat = (String) comboBoxDificultat.getSelectedItem();
 
-        Tauler t = new Tauler();
-        TaulerComplert tc = new TaulerComplert();
-
-        t = CapaDomini.creacioTaulerPredeterminat(tamanyHidato, forats, numerosPrecolocats, dificultat, tc);
-
-        Hidato nouHidato = new Hidato(t, tc, dificultat);
-
-        //mostrar el tauler
-        //mostrar el tauler resolt
-        //dir quina ID se li ha assignat
-        //return
-
+        ControladorHidato.fesCreacioAutomatica(tamanyHidato, forats, numerosPrecolocats, dificultat);
         dispose();
     }
 

@@ -46,6 +46,7 @@ public class GestorTauler
             throw new RuntimeException(e);
         }
     }
+
     public static boolean existeixTaulerComplert(int id)
     {
         return existeixTauler(id);
@@ -73,9 +74,10 @@ public class GestorTauler
         return aRetornar;
 
     }
+
     public static TaulerComplert donaTaulerComplert(int id)
     {
-        return (TaulerComplert) donaTauler(id);
+        return new TaulerComplert(donaTauler(id));
     }
 
     public static int creaTauler(Tauler t)
@@ -83,8 +85,7 @@ public class GestorTauler
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement(INSERT_TAULER))
         {
             p.setInt(1, t.getTamany());
-            p.setInt(2, t.);
-            p.setString(3, t.donaRepresentacioTextual());
+            p.setString(2, t.donaRepresentacioTextual());
             p.executeUpdate();
         }
         catch (SQLException e)
@@ -94,6 +95,7 @@ public class GestorTauler
         return CapaPersistencia.retornaUltimaClauInserida();
 
     }
+
     public static int creaTaulerComplert(TaulerComplert t)
     {
         return creaTauler(t);
@@ -120,6 +122,7 @@ public class GestorTauler
         }
 
     }
+
     public static boolean eliminaTaulerComplert(int id)
     {
         return eliminaTauler(id);

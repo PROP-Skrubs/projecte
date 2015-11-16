@@ -2,13 +2,6 @@ package CapaPersistencia;
 
 import java.sql.*;
 
-import CapaDomini.Usuari;
-import CapaDomini.Tauler;
-import CapaDomini.Hidato;
-
-import javax.swing.plaf.nimbus.State;
-
-
 /**
  * Created by daniel on 13/10/15.
  */
@@ -22,7 +15,7 @@ public class CapaPersistencia
             "nomReal VARCHAR" +
             ")";
     private static final String CREATE_TABLE_TAULERS = "CREATE TABLE IF NOT EXISTS taulers (" +
-            "id INT PRIMARY KEY AUTOINCREMENT," +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "tamany INTEGER NOT NULL," +
             "stringCreacio VARCHAR" +
             ")";
@@ -32,7 +25,7 @@ public class CapaPersistencia
             "idTaulerComplert INTEGER," +
             "dificultat VARCHAR NOT NULL," +
             "FOREIGN KEY (idTauler) REFERENCES taulers (id)," +
-            "FOREIGN KEY (idTaulerComplert) REFERENCES taulers (id)," +
+            "FOREIGN KEY (idTaulerComplert) REFERENCES taulers (id)" +
             ")";
     private static final String CREATE_TABLE_PARTIDES = "CREATE TABLE IF NOT EXISTS partides (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -40,10 +33,10 @@ public class CapaPersistencia
             "idHidato INTEGER NOT NULL," +
             "idTaulerProgres INTEGER NOT NULL," +
             "nCelesResoltes INTEGER NOT NULL," +
-            "numAjudesUtilitzades INTEGER NOT NULL, #te que anar relacionat amb la dificultat" +
+            "numAjudesUtilitzades INTEGER NOT NULL," +
             "esAcabada BOOLEAN NOT NULL," +
-            "FOREIGN KEY (idhidato) REFERENCES hidato (id)," +
-            "FOREIGN KEY (iduser) REFERENCES usuaris (id)," +
+            "FOREIGN KEY (idUsuari) REFERENCES usuaris(id)," +
+            "FOREIGN KEY (idHidato) REFERENCES hidato(id)," +
             "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
             ")";
 
@@ -71,7 +64,7 @@ public class CapaPersistencia
         int aRetornar = -1;
         try (Statement s = conn.createStatement())
         {
-            ResultSet resSet = s.executeQuery("last_insert_rowid()");
+            ResultSet resSet = s.executeQuery("SELECT last_insert_rowid()");
             if (resSet.next())
                 aRetornar = resSet.getInt(1);
             else
@@ -79,9 +72,9 @@ public class CapaPersistencia
         }
         catch (SQLException e)
         {
-            throw new RuntimeException("No es pot coneixer l'última clau inserida.",e);
+            throw new RuntimeException("No es pot coneixer l'última clau inserida.", e);
         }
-        return  aRetornar;
+        return aRetornar;
     }
 
     public static void validarBaseDeDades()

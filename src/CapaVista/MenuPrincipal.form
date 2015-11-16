@@ -24,20 +24,20 @@
           <text value="Crear nou Hidato"/>
         </properties>
       </component>
-      <component id="ded86" class="javax.swing.JButton" binding="començarPartidaButton" default-binding="true">
+      <component id="ded86" class="javax.swing.JButton" binding="jugarButton">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Començar partida"/>
+          <text value="Jugar"/>
         </properties>
       </component>
-      <component id="98df6" class="javax.swing.JButton" binding="veureEstadístiquesButton" default-binding="true">
+      <component id="98df6" class="javax.swing.JButton" binding="veureEstadistiquesButton">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Veure estadístiques"/>
+          <text value="Veure Estadistiques"/>
         </properties>
       </component>
     </children>

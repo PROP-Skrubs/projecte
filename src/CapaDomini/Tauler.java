@@ -43,6 +43,13 @@ public class Tauler
 
             }
         }
+        for (int i = 0; i < tamany; ++i) //por si las moscas
+        {
+            for (int j = 0; j < tamany; ++j)
+            {
+                tauler[i][j].elem=Casella.BUIT;
+            }
+        }
     }
 
     public Tauler(Tauler t)
@@ -82,7 +89,7 @@ public class Tauler
         {
             for (int j = 0; j < tamany; ++j)
             {
-                tauler[i][j] = new Casella(i,j,in.nextInt());
+                tauler[i][j] = new Casella(i, j, in.nextInt());
             }
         }
     }
@@ -120,7 +127,7 @@ public class Tauler
         }
         return null;
     }
-    
+
     public void move(Tauler altre)
     {
         /**
@@ -387,7 +394,7 @@ public class Tauler
          * si hi ha un valor no BUIT i no FORAT.
          */
         // no usarem presentsAlTauler[0]
-        boolean[] aRetornar = new boolean[maximElementPossible()+1];
+        boolean[] aRetornar = new boolean[maximElementPossible() + 1];
         for (Casella[] fila : tauler)
         {
             for (Casella candidat : fila)
@@ -419,7 +426,6 @@ public class Tauler
         if (i == presentsAlTauler.length) return 0;
         return i;
     }
-
 
 
     public boolean esPartit()
