@@ -17,8 +17,19 @@ public class ControladorPartida {
         int ret = partida.remove(x, y);
         return ret;
     }
-    //carregarpartida
-    //guardarpartida
+
+    public boolean carregarPartida(int idPartida)
+    {
+        partida = GestorPartida.donaPartida(idPartida);
+    }
+
+    public boolean guardarPartida()
+    {
+        if (!GestorPartida.existeixPartida(partida.getUniqID()))
+            return GestorPartida.modificaPartida(partida);
+        else
+            return GestorPartida.creaPartida(partida) != -1;
+    }
     //afegirvaloraCasella
     //eliminarvaloraCasella
     //demanarhelp1
