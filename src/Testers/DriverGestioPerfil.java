@@ -5,9 +5,12 @@ import java.util.Scanner;
 /**
  * Created by oriol on 12/11/15.
  */
-public class DriverGestioPerfil {
-    public static void main() {
-        while (true) {
+public class DriverGestioPerfil
+{
+    public static void main()
+    {
+        while (true)
+        {
             System.out.println("Introdueix una comana:");
             System.out.println("\t- 1: Login Usuari");
             System.out.println("\t- 2: Crear Usuari");
@@ -15,12 +18,15 @@ public class DriverGestioPerfil {
             System.out.println("\t- x: Sortir de Gestio de Perfil");
             Scanner capt = new Scanner(System.in);
             String s = capt.nextLine();
-            if (s.equals("x")) {
+            if (s.equals("x"))
+            {
                 break;
             }
-            else if (s.equals("1")){
+            else if (s.equals("1"))
+            {
                 System.out.println("Siusplau, introdueix el teu nom de usuari i contrassenya:");
-                while (true){
+                while (true)
+                {
                     boolean usr = false;
                     boolean pswrd = false;
                     System.out.println("Nom Usuari:");
@@ -31,23 +37,28 @@ public class DriverGestioPerfil {
                     capt = new Scanner(System.in);
                     String s2 = capt.nextLine();
                     //
-                    if(usr = false){
+                    if (usr = false)
+                    {
                         System.out.println("Nom de usuari incorrecte");
                     }
-                    if(pswrd = false){
+                    if (pswrd = false)
+                    {
                         System.out.println("Constrassenya incorrecte");
                     }
-                    if(usr == true && pswrd == true) break;
+                    if (usr == true && pswrd == true) break;
 
                 }
                 System.out.print("Loguin Realitzat correctament");
             }
-            else if (s.equals("2")){
-                while(true){
+            else if (s.equals("2"))
+            {
+                while (true)
+                {
                     System.out.println("Siusplau, introdueix nom usuari a crear:");
                     capt = new Scanner(System.in);
                     s = capt.nextLine();
-                    if(true/*comprobacio usr esta repetit*/){
+                    if (true/*comprobacio usr esta repetit*/)
+                    {
                         System.out.println("Nom de usuari ja repetit, introdueix un altre nom.");
                     }
                     else break;
@@ -59,7 +70,8 @@ public class DriverGestioPerfil {
                 capt = new Scanner(System.in);
                 String s3 = capt.nextLine();
             }
-            else if (s.equals("3")){
+            else if (s.equals("3"))
+            {
                 DriverCreadorHidatos.main();
             }
             else s.equals("Comana no valida"); //todo aixo segur que esta be???

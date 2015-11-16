@@ -13,7 +13,8 @@ public class GestorUsuari
     private final static String INSERT_USUARI = "INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)";
     private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
     private final static String DELETE_USUARI = "DELETE FROM usuaris WHERE nomUsuari = ?";
-    private final static String SELECT_USUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
+    private final static String SELECT_USUARI_NOMUSUARI = "SELECT * FROM usuaris WHERE nomUsuari = ?";
+    private final static String SELECT_USUARI_ID = "SELECT * FROM usuaris WHERE id=?";
     private final static String UPDATE_USUARI = "UPDATE usuaris SET" +
             "    nomUsuari=?," +
             "    contrasenya=?," +
@@ -59,7 +60,7 @@ public class GestorUsuari
     public static Usuari donaUsuari(String nomUsuari)
     {
         Usuari u = null;
-        try (PreparedStatement s = conn.prepareStatement(SELECT_USUARI))
+        try (PreparedStatement s = conn.prepareStatement(SELECT_USUARI_NOMUSUARI))
         {
             s.setString(1, nomUsuari);
             ResultSet resSet = s.executeQuery();
@@ -76,6 +77,33 @@ public class GestorUsuari
                 throw new RuntimeException("Hi ha mes d'un usuari amb el mateix nom!");
                 //Aixo realment no te que ser RuntimeException, sino que hauria de ser normal i handlejada mes amunt...
                 // pero *tampoc passara mai* (la taula te UNIQUE constraint), aixi que fuck it.
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return u;
+    }
+
+    public static Usuari donaUsuari(int id)
+    {
+        Usuari u = null;
+        try (PreparedStatement s = conn.prepareStatement(SELECT_USUARI_ID))
+        {
+            s.setInt(1, id);
+            ResultSet resSet = s.executeQuery();
+            if (resSet.next())
+            {
+                u = new Usuari();
+                u.setUniqID(resSet.getInt("id"));
+                u.setNomUsuari(resSet.getString("nomUsuari"));
+                u.setContrasenya(resSet.getString("contrasenya"));
+                u.setNomReal(resSet.getString("nomReal"));
+            }
+            if (resSet.next())
+            {
+                throw new RuntimeException("Hi ha mes d'un usuari amb la mateixa ID!");
             }
         }
         catch (SQLException e)
@@ -110,7 +138,7 @@ public class GestorUsuari
         // o potser tambe el usuari per a si mateix (?)
         try (PreparedStatement s = conn.prepareStatement(DELETE_USUARI))
         {
-            s.setString(1,nomUsuari);
+            s.setString(1, nomUsuari);
             int usuarisBorrats = s.executeUpdate();
             if (usuarisBorrats != 1)
             {
@@ -133,15 +161,16 @@ public class GestorUsuari
             return false;
         try (PreparedStatement s = conn.prepareStatement(UPDATE_USUARI))
         {
-            s.setString(1,u.getNomUsuari());
-            s.setString(2,u.getContrasenya());
-            s.setString(3,u.getNomReal());
-            s.setInt(4,u.getUniqID());
+            s.setString(1, u.getNomUsuari());
+            s.setString(2, u.getContrasenya());
+            s.setString(3, u.getNomReal());
+            s.setInt(4, u.getUniqID());
             int modificats = s.executeUpdate();
             if (modificats != 1)
             {
                 String problema;
-                if (modificats == 0) throw new RuntimeException("No s'ha modificat l'usuari, pero ha passat el check d'existencia.");
+                if (modificats == 0)
+                    throw new RuntimeException("No s'ha modificat l'usuari, pero ha passat el check d'existencia.");
                 else problema = String.format("S'han modificat %d usuaris!", modificats);
                 throw new RuntimeException(problema);
             }

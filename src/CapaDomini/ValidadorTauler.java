@@ -154,19 +154,19 @@ public class ValidadorTauler
          *
          */
 
-//        t.print();
-//        System.out.println();
-//        System.out.println("------------------------------------------------------------");
-//        System.out.println();
+        //        t.print();
+        //        System.out.println();
+        //        System.out.println("------------------------------------------------------------");
+        //        System.out.println();
 
         if (numeroActual >= t.maximElementPossible() && accept(t))
         {
             if (solucioTrobada)
             {
-//                System.out.println("La ultima solucio era");
-//                t.print();
-//                System.out.println("------------------------------------------------------------");
-//                taulerFinal.print();
+                //                System.out.println("La ultima solucio era");
+                //                t.print();
+                //                System.out.println("------------------------------------------------------------");
+                //                taulerFinal.print();
                 multiplesSolucions = true;
                 throw new RuntimeException("Tauler amb multiples solucions.");
             }

@@ -22,11 +22,6 @@ public class Hidato
         dificultat = null;
     }
 
-    public String getDificultat()
-    {
-        return dificultat;
-    }
-
     public Hidato(Tauler tauler, TaulerComplert taulerComplert, String dificultat)
     {
         this.uniqID = -1;
@@ -35,27 +30,39 @@ public class Hidato
         this.dificultat = dificultat;
     }
 
+    public Hidato(Hidato h)
+    {
+        uniqID = h.getUniqID();
+        tauler = h.getTauler();
+        taulerComplert = h.getTaulerComplert();
+        dificultat = h.getDificultat();
+    }
 
     public Tauler getTauler()
     {
-        return tauler;
+        return new Tauler(tauler);
     }
+
     public TaulerComplert getTaulerComplert()
     {
-        return taulerComplert;
+        return new TaulerComplert(taulerComplert);
     }
 
     public int getIDTauler()
     {
         return tauler.getUniqID();
     }
-    public void setIDTauler(int id) {
+
+    public void setIDTauler(int id)
+    {
         tauler.setUniqID(id);
     }
+
     public int getIDTaulerComplert()
     {
         return taulerComplert.getUniqID();
     }
+
     public void setIDTaulerComplert(int id)
     {
         taulerComplert.setUniqID(id);
@@ -65,28 +72,30 @@ public class Hidato
     {
         tauler = nou;
     }
+
     public void setTaulerComplert(TaulerComplert nou)
     {
         taulerComplert = nou;
     }
-    public int getUniqID() {
+
+    public int getUniqID()
+    {
         return uniqID;
     }
 
-    public void setUniqID(int uniqID) {
+    public void setUniqID(int uniqID)
+    {
         this.uniqID = uniqID;
     }
 
-    public String isDificultat() {
+    public String getDificultat()
+    {
         return dificultat;
     }
 
-    public void setDificultat(String dificultat) {
+    public void setDificultat(String dificultat)
+    {
         this.dificultat = dificultat;
     }
 
-
-    public void imprimir(){
-        getTauler().pintar_tauler();
-    }
 }

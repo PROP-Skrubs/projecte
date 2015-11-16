@@ -7,6 +7,7 @@ public class TaulerComplert extends Tauler
         //Igual que amb el constructor de la classe pare, s'ha d'anar molt amb compte amb aixo ja que inicialitza el seu tauler a null...
         super();
     }
+
     public TaulerComplert(Tauler orig)
     {
         super(orig);

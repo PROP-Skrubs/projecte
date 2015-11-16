@@ -15,6 +15,22 @@ public class Usuari
         uniqID = -1;
     }
 
+    public Usuari(int id, String nomU, String contra, String nomR)
+    {
+        uniqID = id;
+        nomUsuari = nomU;
+        contrasenya = contra;
+        nomReal = nomR;
+    }
+
+    public Usuari(Usuari u)
+    {
+        uniqID = u.getUniqID();
+        nomUsuari = u.getNomUsuari();
+        contrasenya = u.getContrasenya();
+        nomReal = u.getNomReal();
+    }
+
     public int getUniqID()
     {
         return uniqID;

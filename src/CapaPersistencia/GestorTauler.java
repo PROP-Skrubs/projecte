@@ -46,6 +46,7 @@ public class GestorTauler
             throw new RuntimeException(e);
         }
     }
+
     public static boolean existeixTaulerComplert(int id)
     {
         return existeixTauler(id);
@@ -73,6 +74,7 @@ public class GestorTauler
         return aRetornar;
 
     }
+
     public static TaulerComplert donaTaulerComplert(int id)
     {
         return (TaulerComplert) donaTauler(id);
@@ -94,6 +96,7 @@ public class GestorTauler
         return CapaPersistencia.retornaUltimaClauInserida();
 
     }
+
     public static int creaTaulerComplert(TaulerComplert t)
     {
         return creaTauler(t);
@@ -120,6 +123,7 @@ public class GestorTauler
         }
 
     }
+
     public static boolean eliminaTaulerComplert(int id)
     {
         return eliminaTauler(id);

@@ -8,78 +8,105 @@ import java.sql.*;
 /**
  * Created by Maria on 14/11/2015.
  */
-public class TauleriniCP {
+public class TauleriniCP
+{
 
-    public static boolean crearTaulerini(Tauler tini) {
+    public static boolean crearTaulerini(Tauler tini)
+    {
         //Miramos si ya hay algun taulerini con idtaulerini
         try (Statement s = CapaPersistencia.conn.createStatement();
-             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM tauler_ini WHERE id_taulerini = '" + (tini.getUniqID()) + "'")) {
+             ResultSet resSet = s.executeQuery("SELECT COUNT(*) FROM tauler_ini WHERE id_taulerini = '" + (tini.getUniqID()) + "'"))
+        {
             resSet.next();
             if (resSet.getInt(1) != 0) return false;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
-        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO tauler_ini (id_taulerini,medida, matriz)  VALUES (?,?,?)")) {
+        try (PreparedStatement p = CapaPersistencia.conn.prepareStatement("INSERT INTO tauler_ini (id_taulerini,medida, matriz)  VALUES (?,?,?)"))
+        {
             p.setInt(1, tini.getUniqID());
             p.setInt(2, tini.getTamany());
-            String m = fromCasellaToString(tini.getTauler(),tini.getTamany());
+            String m = fromCasellaToString(tini.getTauler(), tini.getTamany());
             p.setString(3, m);
             p.executeUpdate();
             return true;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
     }
 
-    public static boolean eliminartaulerini(Integer idtaulerini) {
-        try (Statement s = CapaPersistencia.conn.createStatement()) {
+    public static boolean eliminartaulerini(Integer idtaulerini)
+    {
+        try (Statement s = CapaPersistencia.conn.createStatement())
+        {
             int tauler_borrat = s.executeUpdate("DELETE FROM tauler_ini WHERE id_taulerini = '" + idtaulerini + "'");
-            if (tauler_borrat != 1) {
+            if (tauler_borrat != 1)
+            {
                 String problema;
                 if (tauler_borrat == 0) return false;
                 else problema = String.format("S'han borrat %d tauler_ini!", tauler_borrat);
                 throw new RuntimeException(problema);
             }
             return true;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
     }
 
-    public static Tauler getTaulerini(Integer idtaulerini) {
+    public static Tauler getTaulerini(Integer idtaulerini)
+    {
         Tauler ini = new Tauler();
         String sDriverName = "org.sqlite.JDBC";
-        try {
+        try
+        {
             Class.forName(sDriverName);
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
         }
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/ProgramaJava/projecte_Skrubs/basedades.db")) {
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:C:/Users/Maria/ProgramaJava/projecte_Skrubs/basedades.db"))
+        {
             PreparedStatement consulta = c.prepareStatement("SELECT * FROM tauler_ini WHERE id_taulerini  = '" + idtaulerini + "'");
-            try (ResultSet rs = consulta.executeQuery()) {
-                while (rs.next()) {
+            try (ResultSet rs = consulta.executeQuery())
+            {
+                while (rs.next())
+                {
                     Integer idtaulerinia = rs.getInt("id_taulerini");
                     Integer medida = rs.getInt("medida");
                     String matriz = rs.getString("matriz");
                     ini.setUniqID(idtaulerinia);
-                    Casella[][] caux = fromStringToCasella(matriz,medida);
+                    Casella[][] caux = fromStringToCasella(matriz, medida);
                     ini.setTauler(caux);
                 }
                 return ini;
-            } catch (SQLException e) {
+            }
+            catch (SQLException e)
+            {
                 throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
         return ini;
     }
 
-    public static Casella[][] fromStringToCasella(String vec, Integer medida) {
+    public static Casella[][] fromStringToCasella(String vec, Integer medida)
+    {
         String[] aux = vec.split(",");
         Casella[][] c = new Casella[medida][medida];
-        for(int i=0; i<medida;++i) {
-            for(int j =0; j<medida;++j) {
+        for (int i = 0; i < medida; ++i)
+        {
+            for (int j = 0; j < medida; ++j)
+            {
                 Integer m = Integer.parseInt(aux[i * medida + j]);
                 Casella auxm = new Casella(i, j, m);
                 c[i][j] = auxm;
@@ -88,14 +115,17 @@ public class TauleriniCP {
         return c;
     }
 
-    public static String fromCasellaToString(Casella[][] matriz, int tamany){
+    public static String fromCasellaToString(Casella[][] matriz, int tamany)
+    {
         String s = new String();
-        for(int i =0; i<tamany;++i) {
-            for(int j =0; j<tamany;++j) {
+        for (int i = 0; i < tamany; ++i)
+        {
+            for (int j = 0; j < tamany; ++j)
+            {
                 s += String.valueOf(matriz[i][j].getElem()) + ',';
             }
         }
         //quito la ultima coma con el substring
-        return  s.substring(0,s.length()-1);
+        return s.substring(0, s.length() - 1);
     }
 }

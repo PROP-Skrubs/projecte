@@ -69,9 +69,9 @@ public class CapaPersistencia
         }
         catch (SQLException e)
         {
-            throw new RuntimeException("No es pot coneixer l'última clau inserida.",e);
+            throw new RuntimeException("No es pot coneixer l'última clau inserida.", e);
         }
-        return  aRetornar;
+        return aRetornar;
     }
 
     public static void validarBaseDeDades()

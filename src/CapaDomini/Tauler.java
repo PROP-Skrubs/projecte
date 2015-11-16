@@ -67,7 +67,7 @@ public class Tauler
         {
             for (int j = 0; j < tamany; ++j)
             {
-                tauler[i][j] = new Casella(i,j,in.nextInt());
+                tauler[i][j] = new Casella(i, j, in.nextInt());
             }
         }
     }
@@ -99,7 +99,7 @@ public class Tauler
         }
         return null;
     }
-    
+
     public void move(Tauler altre)
     {
         //agafa lo que hi ha a l'altre tauler i t'ho posa a tu
@@ -117,16 +117,24 @@ public class Tauler
             }
         }
     }
-    public void setTauler(Casella[][] tauler) {
+
+    public void setTauler(Casella[][] tauler)
+    {
         this.tauler = tauler;
     }
-    public Casella[][] getTauler() {
+
+    public Casella[][] getTauler()
+    {
         return tauler;
     }
-    public int getUniqID() {
+
+    public int getUniqID()
+    {
         return uniqID;
     }
-    public void setUniqID(int idtauler) {
+
+    public void setUniqID(int idtauler)
+    {
         this.uniqID = idtauler;
     }
 
@@ -317,7 +325,7 @@ public class Tauler
     public boolean[] presentsAlTauler()
     {
         // no usarem presentsAlTauler[0]
-        boolean[] aRetornar = new boolean[maximElementPossible()+1];
+        boolean[] aRetornar = new boolean[maximElementPossible() + 1];
         for (Casella[] fila : tauler)
         {
             for (Casella candidat : fila)
@@ -349,7 +357,6 @@ public class Tauler
         if (i == presentsAlTauler.length) return 0;
         return i;
     }
-
 
 
     public boolean esPartit()
