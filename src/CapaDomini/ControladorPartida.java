@@ -33,6 +33,9 @@ public class ControladorPartida
 
         public boolean casellaModificada(Casella c)
         {
+            /**
+             * Verifica que l'operacio de modificar Casella es correcte
+             */
             boolean aRetornar = false;
             if (c.getElem() > 0)
             {
@@ -73,7 +76,7 @@ public class ControladorPartida
     public static void jugaPartida()
     {
         /**
-         *
+         * Comença a jugar la partida actual
          */
         JugarPartida j = new JugarPartida(partida.getTaulerOriginal(),callbackImplementor);
     }
@@ -81,7 +84,7 @@ public class ControladorPartida
     public static void novaPartida(Usuari u, Hidato h)
     {
         /**
-         *
+         * Crea una nova partida a partir de paràmetres
          */
         partida = new Partida();
         partida.setUsuari(u);
@@ -95,7 +98,7 @@ public class ControladorPartida
     public static void novaPartida(int idUsuari, int idHidato)
     {
         /**
-         *
+         * Crea una nova partida a partir de paràmetres
          */
         Usuari u = GestorUsuari.donaUsuari(idUsuari);
         Hidato h = GestorHidato.donaHidato(idHidato);
@@ -105,7 +108,7 @@ public class ControladorPartida
     public static boolean carregarPartida(int idPartida)
     {
         /**
-         *
+         *Carrega la Partida a partir de la idPartida passada per paràmetres
          */
         partida = GestorPartida.donaPartida(idPartida);
         return partida != null;
@@ -113,6 +116,9 @@ public class ControladorPartida
 
     public static void guardarPartida()
     {
+        /**
+         * Guarda la Partida actual
+         */
         //todo aixo hauria d'associar el usuari amb la ID de la partida (cas creacio)
         if (GestorPartida.existeixPartida(partida.getUniqID()))
             GestorPartida.modificaPartida(partida);

@@ -26,9 +26,7 @@ public class ControladorHidato
         }
         public static ControladorHidatoCallbackImplementor getInstance()
         {
-            /**
-             *
-             */
+
             if (instance == null) instance = new ControladorHidatoCallbackImplementor();
             return instance;
         }
@@ -36,7 +34,7 @@ public class ControladorHidato
         public boolean casellaModificada(Casella c)
         {
             /**
-             * Modifica la Casella passat per paràmetre
+             * Verifica que l'operacio de modificar Casella es correctee
              */
             return modificaCasella(c);
         }
@@ -47,7 +45,7 @@ public class ControladorHidato
     public static boolean modificaCasella(Casella c)
     {
         /**
-         *
+         *Verifica que l'operacio de modificar Casella es correcte
          */
         if (c.getElem() > 0 || c.getElem() == Casella.BUIT || c.getElem() == Casella.FORAT)
         {
@@ -70,7 +68,7 @@ public class ControladorHidato
     public static void creaHidatoManualment(int tamany)
     {
         /**
-         *
+         *  Crida la funcio de crearHidatoManual
          */
         taulerCreacio = new Tauler(tamany);
         CrearTaulerManual ct = new CrearTaulerManual(taulerCreacio,callbackImplementor);
@@ -81,7 +79,7 @@ public class ControladorHidato
     public static void creaHidatoAutomaticament()
     {
         /**
-         *
+         * Crida la funcio de crearHidatoAutomaticament
          */
         CrearTaulerAutomatic ct = new CrearTaulerAutomatic();
         ct.pack();
@@ -91,7 +89,7 @@ public class ControladorHidato
     public static void fesCreacioAutomatica(int tamanyHidato, int numForats, int numPrecolocats, String dificultat)
     {
         /**
-         *
+         * Crida la funcio de crear un Hidato automaticament
          */
         Tauler t;
         TaulerComplert tc = new TaulerComplert();
@@ -109,8 +107,8 @@ public class ControladorHidato
 
     public static int validaIGuarda() //todo fer aixo com una interface
     {
-        /***
-         *
+        /**
+         *  Verifica que el tauler sigui legal i el guarda
          */
         TaulerComplert hopefully = new TaulerComplert();
         int result = ValidadorTauler.validarTauler(taulerCreacio,hopefully);
