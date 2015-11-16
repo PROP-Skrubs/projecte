@@ -1,36 +1,80 @@
 package CapaDomini;
 
+import java.util.Scanner;
+
 /**
  * Created by Maria on 10/11/2015.
  */
 public class Partida
 {
     int uniqID;
-    int idHidato;
-    int idUser;
+    Hidato hidato;
+    Usuari usuari;
     int nCelesResoltes;
     int numAjudesUtilitzades;
     Tauler taulerProgres;
     boolean esAcabada;
 
-    public int getIdHidato()
-    {
-        return idHidato;
+    public int afegir(int x, int y, int elem) { //todo arreglar aixo
+        /**
+         * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+         */
+        while (x < 1 | x > taulerProgres.getTamany()) {
+            System.out.println("X no valida, introdueix una altra");
+            return 1;
+        }
+
+        while (y < 1 | y > taulerProgres.getTamany()) {
+            System.out.println("Y no valida, introdueix una altra");
+            return 2;
+        }
+
+        while (taulerProgres.buscaCasella(elem) != null) {
+            System.out.println("Valor ja assignat");
+            return 3;
+        }
+        while(true){
+            if (taulerProgres.getTamany() * 2 < elem)
+                System.out.println("Valor massa gran");
+            else if (elem < 1)
+                System.out.println("Valor massa petit");
+            else break;
+            return 3;
+        }
+        if (taulerProgres.getCasella(x-1,y-1).isOriginal()){
+            System.out.print("Aquesta casella no es pot modificar");
+            return 0;
+        }
+        else {
+            taulerProgres.setCasella(x - 1, y - 1, elem);
+            taulerProgres.pintar_tauler();
+            return 0;
+        }
+
     }
 
-    public void setIdHidato(int idHidato)
-    {
-        this.idHidato = idHidato;
-    }
+    public int remove(int x, int y) {
+        /**
+         * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+         */
+        while (x < 1 | x > taulerProgres.getTamany()) {
+            System.out.println("X no valida, introdueix una altra");
+            return 1;
+        }
 
-    public int getIdUser()
-    {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser)
-    {
-        this.idUser = idUser;
+        while (y < 1 | y > taulerProgres.getTamany()) {
+            System.out.println("Y no valida, introdueix una altra");
+            return 2;
+        }
+        if (taulerProgres.getCasella(x-1,y-1).isOriginal()){
+            System.out.print("Aquesta casella no es pot eliminar");
+            return 0;
+        }
+        else {
+            taulerProgres.setCasella(x - 1, y - 1, 0);
+            taulerProgres.pintar_tauler();
+            return 0;
+        }
     }
 
     public int getUniqID()

@@ -1,7 +1,10 @@
 package Testers;
 
 
-import CapaDomini.*;
+import CapaDomini.CapaDomini;
+import CapaDomini.Tauler;
+import CapaDomini.TaulerComplert;
+import CapaDomini.ValidadorTauler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
