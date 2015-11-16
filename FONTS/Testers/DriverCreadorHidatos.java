@@ -81,32 +81,32 @@ public class DriverCreadorHidatos
                     s = capt.nextLine();
                     if (s.equals("1"))
                     {
-                        ar = "./src/Testers/hidato1";
+                        ar = "./DATA/hidato1";
                         break;
                     }
                     else if (s.equals("2"))
                     {
-                        ar = "./src/Testers/hidato2";
+                        ar = "./DATA/hidato2";
                         break;
                     }
                     else if (s.equals("3"))
                     {
-                        ar = "./src/Testers/hidato3";
+                        ar = "./DATA/hidato3";
                         break;
                     }
                     else if (s.equals("4"))
                     {
-                        ar = "./src/Testers/hidato4";
+                        ar = "./DATA/hidato4";
                         break;
                     }
                     else if (s.equals("5"))
                     {
-                        ar = "./src/Testers/hidato5";
+                        ar = "./DATA/hidato5";
                         break;
                     }
                     else if (s.equals("6"))
                     {
-                        ar = "./src/Testers/hidato6";
+                        ar = "./DATA/hidato6";
                         break;
                     }
                     else System.out.println("Comana no valida");
