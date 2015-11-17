@@ -48,7 +48,7 @@ public class CapaPersistencia
         try
         {
             //jbdc:sqlite:<pathAlFitxer.db>
-            conn = DriverManager.getConnection("jdbc:sqlite:basedades.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:DATA/basedades.db");
         }
         catch (SQLException e)
         {
