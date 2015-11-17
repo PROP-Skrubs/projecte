@@ -1,0 +1,4 @@
+mkdir ../ENTREGA
+cp -a EXE FONTS DATA sqlite-jdbc-3.8.11.2.jar appLauncher testerLauncher ../ENTREGA
+cd ../ENTREGA
+mv EXE/production/PROP/* EXE/
