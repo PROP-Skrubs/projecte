@@ -3,7 +3,7 @@ package Testers;
 import java.lang.IncompatibleClassChangeError;
 import java.lang.System;
 import java.util.Scanner;
-
+import java.util.List;
 import CapaDomini.ControladorPartida;
 import CapaDomini.Hidato;
 import CapaPersistencia.GestorHidato;
