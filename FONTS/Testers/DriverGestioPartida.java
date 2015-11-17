@@ -1,7 +1,9 @@
 package Testers;
 
+import java.lang.IncompatibleClassChangeError;
+import java.lang.System;
 import java.util.Scanner;
-
+import java.util.List;
 import CapaDomini.ControladorPartida;
 import CapaDomini.Hidato;
 import CapaPersistencia.GestorHidato;
@@ -25,6 +27,11 @@ public class DriverGestioPartida
             else if (s.equals("play"))
             {
                 System.out.print("Introdueix id del hidato a jugar:");
+                List<Integer> l = new ArrayList<Integer>;
+                for(int i = 0; i < l.size(); i++) {
+                    System.out.print(l.get(i) + " ");
+                }
+                System.out.print("\n");
                 Hidato h;
                 Integer i = capt.nextInt();
                 h = GestorHidato.donaHidato(i);
