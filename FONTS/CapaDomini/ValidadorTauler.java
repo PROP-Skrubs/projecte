@@ -28,6 +28,12 @@ public class ValidadorTauler
     public static final int MULTIPLES = 5;
 
 
+    /**
+     * Aquesta funcio accepta un Hidato on el seu tauler d'usuari conte un Hidato que s'ha de validar.
+     * @param aValidar
+     * @param deixaAqui
+     * @return Retorna OK si l'Hidato te unicament una solucio valida, qualsevol altra cosa si el Hidato no tenia solucio, o aquesta no era unica, etc.
+     */
     public static int validarTauler(Tauler aValidar, Tauler deixaAqui)
     {
         /**
@@ -83,6 +89,12 @@ public class ValidadorTauler
         else return NOTESOL;
     }
 
+    /**
+     *
+     * @param t
+     * @param numeroSeguent
+     * @return La ultima casella de la "llista" de permutacions ha de ser invalida perque la funcio next es dongui compte de que ja no li queda res mes que fer...
+     */
     static List<Casella> donaPermutacions(Tauler t, int numeroSeguent)
     {
         /**
@@ -108,6 +120,13 @@ public class ValidadorTauler
         return aRetornar;
     }
 
+    /**
+     *
+     * @param t
+     * @param permIndex
+     * @param permutacions
+     * @return Genera la siguiente permutacion del Tablero
+     */
     static boolean next(Tauler t, int permIndex, List<Casella> permutacions)
     {
         /**
@@ -129,6 +148,11 @@ public class ValidadorTauler
     }
 
 
+    /**
+     * Comproba si el candidat es invalid i el descarta si ho es
+     * @param t
+     * @param casellaPosada
+     */
     static boolean reject(Tauler t, Casella casellaPosada)
     {
         /**
@@ -147,6 +171,11 @@ public class ValidadorTauler
         return returnVal;
     }
 
+    /**
+     *  Comproba si el candidat es valid i ho accepta si ho es
+     * @param t
+     * @return
+     */
     static boolean accept(Tauler t)
     {
         /**
@@ -158,6 +187,11 @@ public class ValidadorTauler
         return recorre == maxIncog;
     }
 
+    /**
+     * Es la funció Core del Backtracking
+     * @param t
+     * @param numeroActual
+     */
     static void bt(Tauler t, int numeroActual)
     {
         /**

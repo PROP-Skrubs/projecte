@@ -11,10 +11,16 @@ public class ControladorLogin
 {
     private static Usuari usuariActual;
 
+
+    /**
+     *
+     * @param nomUsuari
+     * @param contrasenya
+     * @return Veridica si la contrasenya es la que correspon al Usuari amb el seu nom
+     */
     public static boolean fesLogin(String nomUsuari, String contrasenya)
     {
-        /**Veridica si la contrasenya es la que correspon al Usuari amb el seu nom
-         */
+
         Usuari u = GestorUsuari.donaUsuari(nomUsuari);
         if (u == null) return false;
         if (!u.validaContrasenya(contrasenya)) return false;
@@ -24,10 +30,11 @@ public class ControladorLogin
         return true;
     }
 
+    /** @return Retorna el UsuariActual
+     */
     public static Usuari getUsuariActual()
     {
-        /**Retorna el UsuariActual
-         */
+
         return usuariActual;
     }
 }

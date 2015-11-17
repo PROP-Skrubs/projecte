@@ -8,10 +8,17 @@ import CapaPersistencia.GestorUsuari;
  */
 public class ControladorUsuari
 {
+
+    /**
+     * Crea un Usuari amb els valors passat per paràmetre.
+     * @param nomUsuari
+     * @param contrasenya
+     * @param nomReal
+     * @return retorna si l'ha creat o no
+     */
     public static boolean crearUsuari(String nomUsuari, String contrasenya, String nomReal)
     {
-        /**Crea un Usuari amb els valors passat per paràmetre.
-         */
+
         Usuari u = new Usuari();
         u.setNomUsuari(nomUsuari);
         u.setContrasenya(contrasenya);
@@ -23,9 +30,13 @@ public class ControladorUsuari
          */
     }
 
+    /**
+     * lEimina el Usuari que tingui el nomUsuari passat per paràmetre
+     * @param nomUsuari
+     * @return Retorna si la elimanat o no
+     */
     public static boolean eliminarUsuari(String nomUsuari)
-    {   /**Elimina el Usuari que tingui el nomUsuari passat per paràmetre
-         */
+    {
 
         //Retorna true si s'ha borrat l'usuari. False si no s'ha borrat cap usuari. Tira excepcio si s'han borrat multiples.
         return GestorUsuari.eliminaUsuari(nomUsuari);

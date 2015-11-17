@@ -32,11 +32,15 @@ public class ControladorPartida
             return instance;
         }
 
+
+        /**
+         *
+         * @param c
+         * @return Verifica que l'operacio de modificar Casella es correcte
+         */
         public boolean casellaModificada(Casella c)
         {
-            /**
-             * Verifica que l'operacio de modificar Casella es correcte
-             */
+
             boolean aRetornar = false;
             if (c.getElem() > 0)
             {
@@ -56,37 +60,51 @@ public class ControladorPartida
         }
     }
 
+
+    /***
+     * Afegeix al Tauler de la partida el ELEM a la posicio X,Y passat tot per paràmetres
+     * @param x
+     * @param y
+     * @param elem
+     * @return et retorna si ho ha afegit o no
+     */
     public static int afegirvaloraCaselladePartida(int x, int y, int elem)
     {
-        /**Afegeix al Tauler de la partida el ELEM a la posicio X,Y passat tot per paràmetres
-         *
-         */
+
         int ret = partida.afegir(x, y, elem);
         return ret;
     }
 
+    /**
+     * Elimina el valor de la Casella de partida de la posicio X,Y passat per paràmetres
+     * @param x
+     * @param y
+     * @return Et retorna si ho ha eliminat o no
+     */
     public static int eliminarvalorCaselladePartida(int x, int y)
     {
-        /**Elimina el valor de la Casella de partida de la posicio X,Y passat per paràmetres
-         *
-         */
+
         int ret = partida.remove(x, y);
         return ret;
     }
 
+    /**
+     * Comença a jugar la partida actual
+     */
     public static void jugaPartida()
     {
-        /**
-         * Comença a jugar la partida actual
-         */
+
         JugarPartida j = new JugarPartida(partida.getTaulerProgres(),callbackImplementor);
     }
 
+    /**
+     * Crea una nova partida a partir de paràmetres
+     * @param u
+     * @param h
+     */
     public static void novaPartida(Usuari u, Hidato h)
     {
-        /**
-         * Crea una nova partida a partir de paràmetres
-         */
+
         partida = new Partida();
         partida.setUsuari(u);
         partida.setHidato(h);
@@ -96,30 +114,39 @@ public class ControladorPartida
         partida.setEsAcabada(false);
     }
 
+
+    /**
+     * Crea una nova partida a partir de paràmetres
+     * @param idUsuari
+     * @param idHidato
+     */
     public static void novaPartida(int idUsuari, int idHidato)
     {
-        /**
-         * Crea una nova partida a partir de paràmetres
-         */
+
         Usuari u = GestorUsuari.donaUsuari(idUsuari);
         Hidato h = GestorHidato.donaHidato(idHidato);
         novaPartida(u,h);
     }
 
+
+    /**
+     * Carrega la Partida a partir de la idPartida passada per paràmetres
+     * @param idPartida
+     * @return et retorna si l'ha carregat o no
+     */
     public static boolean carregarPartida(int idPartida)
     {
-        /**
-         *Carrega la Partida a partir de la idPartida passada per paràmetres
-         */
+
         partida = GestorPartida.donaPartida(idPartida);
         return partida != null;
     }
 
+    /**
+     * Guarda la Partida actual
+     */
     public static void guardarPartida()
     {
-        /**
-         * Guarda la Partida actual
-         */
+
         //todo aixo hauria d'associar el usuari amb la ID de la partida (cas creacio)
         if (GestorPartida.existeixPartida(partida.getUniqID()))
             GestorPartida.modificaPartida(partida);

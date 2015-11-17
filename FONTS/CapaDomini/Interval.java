@@ -8,11 +8,13 @@ class Interval
 {
     public int inici, fi;
 
+    /**
+     * Et modifica el valor de Inici i Fi  per el I i F que li pases per paràmetre
+     * @param i
+     * @param f
+     */
     Interval(int i, int f)
     {
-        /**
-         *Et modifica el valor de Inici i Fi  per el I i F que li pases per paràmetre
-         */
         inici = i;
         fi = f;
     }

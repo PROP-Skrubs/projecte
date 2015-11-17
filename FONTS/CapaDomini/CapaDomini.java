@@ -9,14 +9,14 @@ import java.util.*;
 
 public class CapaDomini
 {
-
+    /**
+     *  Donada una Llista de caselles donada per parametre d’entrada et modifica
+     * aquesta llista perque et fiquin en primera posició els adjacents que estan
+     * en les esquines o els que estan a un extrem del Tauler
+     * @param Adjacents
+     */
     public static void ordenaAdjacents(List<Casella> Adjacents)
     {
-        /** Donada una Llista de caselles donada per parametre d’entrada et modifica
-         * aquesta llista perque et fiquin en primera posició els adjacents que estan
-         * en les esquines o els que estan a un extrem del Tauler
-         *
-         */
         ListIterator<Casella> it = Adjacents.listIterator();
         boolean acabat = false;
         while (it.hasNext() && !acabat)
@@ -48,12 +48,15 @@ public class CapaDomini
 
     }
 
-
+    /**
+     * Donat un tauler i una llista de enters et modifica el tauler ficant
+     * un BUIT a l’element de cada casella que el seu valor no estigui
+     * a la llista de enters
+     * @param t
+     * @param num_pre
+     */
     public static void eliminarnumeros( Tauler t, List<Integer> num_pre){
-        /**@use Donat un tauler i una llista de enters et modifica el tauler ficant
-         * un BUIT a l’element de cada casella que el seu valor no estigui
-         * a la llista de enters
-         */
+
         for (int i = 0; i < t.getTamany(); ++i) {
             for (int j = 0; j < t.getTamany(); ++j) {
                 if(!num_pre.contains(t.getCasella(i, j).elem) && (t.getCasella(i, j).elem != -1)) {
@@ -64,12 +67,19 @@ public class CapaDomini
         }
 
     }
-
+    /**
+     * Donat dos enters una Casella y dos taulers, t’emplena un tauler
+     * completament amb un cami vàlid
+     *
+     * @param k contador del Backtracking
+     * @param final1 final del contador del Backtracking
+     * @param actual Casella on estas
+     * @param t Tauler per on es genera
+     * @param fin Cuando completas t lo pasas a fin para devolsver el tablero completo
+     *
+     * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
+     */
     public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-        /**@deprecated Donat dos enters una Casella y dos taulers, t’emplena un tauler completament
-         *  amb un cami vàlid
-         *
-         */
 
         Random rnd = new Random();
         if (k == final1 - 1)
@@ -102,8 +112,8 @@ public class CapaDomini
                 //              escriu(t);
                 taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
                 //            escriu(taux);
-                taux.print();
-                System.out.print("\n");
+                //taux.print();
+                //System.out.print("\n");
                 if (taux.he_acabat()) backtrackingmayorde8(kaux, final1, aux, taux, fin);
                 else if (!taux.esPartit())
                 {
@@ -116,11 +126,19 @@ public class CapaDomini
         }
     }
 
-
+    /**
+     * Donat dos enters una Casella y dos taulers, t’emplena un tauler
+     * completament amb un cami vàlid
+     *
+     * @param k contador del Backtracking
+     * @param final1 final del contador del Backtracking
+     * @param actual Casella on estas
+     * @param t Tauler per on es genera
+     * @param fin Cuando completas t lo pasas a fin para devolsver el tablero completo
+     *
+     * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
+     */
     public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-        /**@use Donat dos enters una Casella y dos taulers, t’emplena un tauler
-         * completament amb un cami vàlid
-         */
 
         Random rnd = new Random();
         if (k == final1 - 1)
@@ -153,8 +171,8 @@ public class CapaDomini
                 //              escriu(t);
                 taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
                 //            escriu(taux);
-                taux.print();
-                System.out.print("\n");
+                //taux.print();
+                //System.out.print("\n");
                 if (taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin);
                 else if (!taux.esPartit())
                 {
@@ -167,11 +185,20 @@ public class CapaDomini
         }
     }
 
-
+    /**
+     * Donat dos enters una Casella y dos taulers, t’emplena un tauler
+     * completament amb un cami vàlid
+     *
+     * @param k contador del Backtracking
+     * @param final1 final del contador del Backtracking
+     * @param actual Casella on estas
+     * @param t Tauler per on es genera
+     * @param fin Cuando completas t lo pasas a fin para devolsver el tablero completo
+     *
+     * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
+     */
     public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-        /**@use Donat dos enters una Casella y dos taulers, t’emplena un tauler
-         * completament amb un cami vàlid
-         */
+
 
         Random rnd = new Random();
         if (k == final1 - 1)
@@ -202,8 +229,8 @@ public class CapaDomini
                 //              escriu(t);
                 taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
                 //            escriu(taux);
-                taux.print();
-                System.out.print("\n");
+               //taux.print();
+                //System.out.print("\n");
                 if (taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin);
                 else if (!taux.esPartit())
                 {
@@ -242,13 +269,21 @@ public class CapaDomini
         return true;
     }
 
+
+    /**
+     *
+     * @param n
+     * @param m
+     * @param x
+     * @param dificultat
+     * @param retcomplert
+     * @return Donat una "n" que serà el getTamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
+     *haurà al Tauler, donat una "x" que serà el nombre de números predetermints que tingui el Tauler y una "dificultat"
+     *que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
+     *números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.
+     */
     public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat, TaulerComplert retcomplert)
     {
-        /**@return Donat una "n" que serà el getTamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
-         *haurà al Tauler, donat una "x" que serà el nombre de números predetermints que tingui el Tauler y una "dificultat"
-         *que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
-         *números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.
-         */
         int intentsdedonarHidatobo = 0;
         int acabarbacktrackin = -1;
         Tauler ret = new Tauler(n);
@@ -327,7 +362,7 @@ public class CapaDomini
             if (acabarbacktrackin == ValidadorTauler.MULTIPLES && intentsdedonarHidatobo == 20)
                 throw new RuntimeException("Els parametres donats no son suficients per donar un Hidato únic");
 
-            if (n > 8) backtrackingmayorde8(0, n * n - m, inicial, t, ret);
+            if (n >= 7) backtrackingmayorde8(0, n * n - m, inicial, t, ret);
             else backtrackingmenor(0, n * n - m, inicial, t, ret);
             eliminarnumeros(ret, num_pre);
 

@@ -11,14 +11,22 @@ public class Usuari
     private String contrasenya;
     private String nomReal;
 
+    /**
+     * Crea un Usuario vacio
+     */
     public Usuari()
     {
-        /**
-         * Crea un Usuario vacio
-         */
+
         uniqID = -1;
     }
 
+    /**
+     * Crea un Usuari amb els valors passats per paràmetres
+     * @param id
+     * @param nomU
+     * @param contra
+     * @param nomR
+     */
     public Usuari(int id, String nomU, String contra, String nomR)
     {
         uniqID = id;
@@ -27,6 +35,10 @@ public class Usuari
         nomReal = nomR;
     }
 
+    /**
+     * Crea un Usuari igual al passat per paràmetres
+     * @param u
+     */
     public Usuari(Usuari u)
     {
         uniqID = u.getUniqID();
@@ -35,76 +47,88 @@ public class Usuari
         nomReal = u.getNomReal();
     }
 
+    /**
+     * @return Retorna el UniqID
+     */
     public int getUniqID()
     {
 
-        /**
-         * Retorna el UniqID
-         */
         return uniqID;
     }
 
+    /**
+     * Modifica el uniqID ficant un enter pasat per paràmetres
+     * @param uniqID
+     */
     public void setUniqID(int uniqID)
     {
-        /**
-         * Modifica el uniqID ficant un enter pasat per paràmetres
-         */
+
         this.uniqID = uniqID;
     }
 
+    /**
+     * @return Retorna la contrasenya
+     */
     public String getContrasenya()
     {
-        /**
-         * Retorna la contrasenya
-         */
+
         return contrasenya;
     }
-
+    /**
+     * Modifica el uniqID ficant la contrasenya pasada per paràmetres
+     * @param contrasenya
+     */
     public void setContrasenya(String contrasenya)
     {
-        /**
-         * Modifica el uniqID ficant la contrasenya pasada per paràmetres
-         */
+
         this.contrasenya = contrasenya;
     }
 
+    /**
+     * @return Retorna el nomUsuari
+     */
     public String getNomUsuari()
     {
-        /**
-         * Retorna el nomUsuari
-         */
+
         return nomUsuari;
     }
 
+    /**
+     * Modifica el nomUsuari ficant el nomUsuair passat per paràmetres
+     * @param nomUsuari
+     */
     public void setNomUsuari(String nomUsuari)
     {
-        /**
-         * Modifica el nomUsuari ficant el nomUsuair passat per paràmetres
-         */
+
         this.nomUsuari = nomUsuari;
     }
 
+    /**
+     * Et Retorna si la contrasenya pasada per parametres es iguala a la Contrasenya
+     * @param altraContrasenya
+     */
     public boolean validaContrasenya(String altraContrasenya)
     {
-        /**
-         * Et Retorna si la contrasenya pasada per parametres es iguala a la Contrasenya
-         */
+
         return altraContrasenya.compareTo(contrasenya) == 0;
     }
 
+    /**
+     * @return Retorna el NomReal
+     */
     public String getNomReal()
     {
-        /**
-         * Retorna el NomReal
-         */
+
         return nomReal;
     }
 
+    /**
+     * Modifica el nomReal ficant el nomReal passat per paràmetres
+     * @param nomReal
+     */
     public void setNomReal(String nomReal)
     {
-        /**
-         * Modifica el nomReal ficant el nomReal passat per paràmetres
-         */
+
         this.nomReal = nomReal;
     }
 }

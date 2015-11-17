@@ -16,62 +16,85 @@ public class Casella implements Comparable
     public static int FORAT = -1;
     public static int BUIT = 0;
 
-
+    /** Crea una Casella buida
+     */
     public Casella() {
-        /** Dona una Casella buida
-        */
     }
 
+
+    /**
+     * Crea una Casella amb els valors que pases per paràmetre excepte numadjlliures
+     * @param x
+     * @param y
+     * @param elem
+     */
     public Casella(int x, int y, int elem) {
-        /** Dona una Casella amb els valors que pases per paràmetre excepte numadjlliures
-        */
+
         this.x = x;
         this.y = y;
         this.elem = elem;
     }
 
+    /**
+     * Crea una Casella amb els valors que pases per paràmetre
+     * @param x
+     * @param y
+     * @param elem
+     * @param numadjlliures
+     */
     public Casella(int x, int y, int elem, int numadjlliures) {
-        /**Dona una Casella amb els valors que pases per paràmetre
-        */
+
         this.x = x;
         this.y = y;
         this.elem = elem;
         this.numadjlliures = numadjlliures;
     }
 
+
+    /**
+     * Et modifica la X y la Y de la Casella ficantli xx y yy
+     * @param xx
+     * @param yy
+     */
     public Casella(int xx, int yy) {
-        /**Et modifica la X y la Y de la Casella ficantli xx y yy
-        */
 
         x = xx;
         y = yy;
     }
 
+    /**
+     * A la Casella li modifica els valors de la Casella per els que
+     * te la Casella que pases per paràmetre excepte el numadjlliures
+     * @param c
+     */
     public Casella(Casella c) {
-        /**A la Casella li modifica els valors de la Casella per els que
-         * te la Casella que pases per paràmetre excepte el numadjlliures
-         */
+
         this.x = c.x;
         this.y = c.y;
         this.elem = c.elem;
     }
 
+    /**
+     * Als valors X y Y de la Casella se li suma els valors X y Y de
+     * la Casella que pases per paràmetre
+     * @param o
+     * @return
+     */
     public Casella suma(Casella o)
     {
-        /**Als valors X y Y de la Casella se li suma els valors X y Y de
-         * la Casella que pases per paràmetre
-         */
         Casella aRetornar = new Casella(this);
         aRetornar.setX(x + o.x);
         aRetornar.setY(y + o.y);
         return aRetornar;
     }
 
+
+    /**
+     * Als valors X i Y de la Casella se li suma els valors X y Y de
+     * la Casella que pases per paràmetre dintre de un minim i un màxim
+     */
     public Casella sumaAmbCheck(Casella o, int minim, int maxim)
     {
-        /**Als valors X i Y de la Casella se li suma els valors X y Y de
-         * la Casella que pases per paràmetre dintre de un minim i un màxim
-         */
         Casella aRetornar = suma(o);
         aRetornar.x = aRetornar.x>minim?aRetornar.x:minim;
         aRetornar.x = aRetornar.x<maxim?aRetornar.x:maxim;
@@ -81,12 +104,14 @@ public class Casella implements Comparable
 
     }
 
+    /**
+     *
+     * @param o
+     * @return Torna la minima distancia possible entre dues caselles, independentment del tauler en la que estiguin colocades. La distancia minima real entre dues caselles colocades en un tauler pot ser significativament mes alta (o pot ser que no hi hagi cami per on arribar-hi.
+     * Una alternativa baratissima a trobar el tauler.camiMesCurt(Casella a, Casella b) que es necessariament un BFS.
+     */
     public int distancia(Casella o)
     {
-        /**
-         * Torna la minima distancia possible entre dues caselles, independentment del tauler en la que estiguin colocades. La distancia minima real entre dues caselles colocades en un tauler pot ser significativament mes alta (o pot ser que no hi hagi cami per on arribar-hi.
-         * Una alternativa baratissima a trobar el tauler.camiMesCurt(Casella a, Casella b) que es necessariament un BFS.
-         */
         int distX = x - o.x;
         int distY = y - o.y;
         distX = distX >= 0 ? distX : -distX;
@@ -94,61 +119,76 @@ public class Casella implements Comparable
         return distX >= distY ? distX : distY;
     }
 
+    /**
+     *
+     * @param tam
+     * @return Donat el tamany d’un tauler que li pases per paràmetre et diu si la Casella està dins dels límits del Tauler
+     */
     public boolean esDinsLimits(int tam) {
-        /**Donat el tamany d’un tauler que li pases per paràmetre et diu si la Casella està dins dels límits del Tauler
-        */
+
         return 0 <= x && x < tam && 0 <= y && y < tam;
     }
 
+    /**@return Donat una Casella que li pases per paràmetre et diu si es Adjacent a la Casella.
+     */
     public boolean esAdjacent(Casella o) {
 
-        /**Donat una Casella que li pases per paràmetre et diu si es Adjacent a la Casella.
-         */
         return distancia(o) <= 1;
     }
 
+    /**@return Et retorna el valor de la Casella
+     */
     public int getElem(){
-        /**Et retorna el valor de la Casella
-        */
+
         return elem;
     }
 
+    /**
+     * Et modifica el valor de la Casella per el enter que li pases per paràmetre
+     * @param elem
+     */
     public void setElem(int elem) {
-        /**Et modifica el valor de la Casella per el enter que li pases per paràmetre
-        */
+
         this.elem = elem;
     }
 
+    /**@return Et retorna el valor de la X
+     */
     public int getX() {
-        /**Et retorna el valor de la X
-        */
+
         return x;
     }
 
+    /**
+     * Et modifica el valor de la X per el enter que li pases per paràmetre
+     * @param x
+     */
     public void setX(int x) {
-        /**Et modifica el valor de la X per el enter que li pases per paràmetre
-         */
         this.x = x;
     }
 
+    /**
+     *
+     * @return Et retorna el valor de la Y
+     */
     public int getY() {
-        /**Et retorna el valor de la Y
-         */
+
         return y;
     }
 
+    /**
+     * Et modifica el valor de la X per el enter que li pases per paràmetre
+     * @param y
+     */
     public void setY(int y) {
-        /**Et modifica el valor de la X per el enter que li pases per paràmetre
-         */
+
         this.y = y;
     }
 
     @Override
-        public int compareTo(Object o) {
-        /**Funcio que serveix per ordenar per l'implentacio Comparable
-          */
-
-
+    /**Funcio que serveix per ordenar per l'implentacio Comparable
+     */
+    public int compareTo(Object o) {
         Casella c = (Casella) o;
         return new Integer(numadjlliures).compareTo(new Integer(c.numadjlliures));
     }

@@ -32,22 +32,28 @@ public class ControladorHidato
             return instance;
         }
 
+
+        /**
+         *
+         * @param c
+         * @return Verifica que l'operacio de modificar Casella es correcte
+         */
         public boolean casellaModificada(Casella c)
         {
-            /**
-             * Verifica que l'operacio de modificar Casella es correctee
-             */
             return modificaCasella(c);
         }
     }
 
     private static Tauler taulerCreacio;
 
+
+    /**
+     *
+     * @param c
+     * @return Verifica que l'operacio de modificar Casella es correcte
+     */
     public static boolean modificaCasella(Casella c)
     {
-        /**
-         *Verifica que l'operacio de modificar Casella es correcte
-         */
         if (c.getElem() > 0 || c.getElem() == Casella.BUIT || c.getElem() == Casella.FORAT)
         {
             taulerCreacio.setCasella(c);
@@ -66,32 +72,42 @@ public class ControladorHidato
          */
     }
 
+
+    /**
+     * Crida la funcio de crearHidatoManual
+     * @param tamany
+     */
     public static void creaHidatoManualment(int tamany)
     {
-        /**
-         *  Crida la funcio de crearHidatoManual
-         */
+
         taulerCreacio = new Tauler(tamany);
         CrearTaulerManual ct = new CrearTaulerManual(taulerCreacio,callbackImplementor);
         ct.pack();
         ct.setVisible(true);
     }
 
+    /**
+     * Crida la funcio de crearHidatoAutomaticament
+     */
     public static void creaHidatoAutomaticament()
     {
-        /**
-         * Crida la funcio de crearHidatoAutomaticament
-         */
+
         CrearTaulerAutomatic ct = new CrearTaulerAutomatic();
         ct.pack();
         ct.setVisible(true);
     }
 
+
+    /**
+     * Crida la funcio de crear un Hidato automaticament
+     * @param tamanyHidato
+     * @param numForats
+     * @param numPrecolocats
+     * @param dificultat
+     */
     public static void fesCreacioAutomatica(int tamanyHidato, int numForats, int numPrecolocats, String dificultat)
     {
-        /**
-         * Crida la funcio de crear un Hidato automaticament
-         */
+
         Tauler t;
         TaulerComplert tc = new TaulerComplert();
 
@@ -106,11 +122,12 @@ public class ControladorHidato
 
     }
 
+    /**
+     *  @return Verifica que el tauler sigui legal i el guarda
+     */
     public static int validaIGuarda() //todo fer aixo com una interface
     {
-        /**
-         *  Verifica que el tauler sigui legal i el guarda
-         */
+
         TaulerComplert hopefully = new TaulerComplert();
         int result = ValidadorTauler.validarTauler(taulerCreacio,hopefully);
         if (result == ValidadorTauler.OK)

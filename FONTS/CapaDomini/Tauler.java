@@ -17,22 +17,22 @@ public class Tauler
             new Casella(-1, -1), new Casella(-1, 0), new Casella(-1, 1)
     };
 
-
+    /**
+     * Contructora Buida
+     */
     public Tauler()
     {
-        /**
-         * Contructora Buida
-         */
         // Aixo abans tiraba execpio perque se suposa que no s'havia de fer servir mai.
         uniqID = -1;
         tauler = null;
     }
 
+    /**
+     * Contructora a partir d'un tamany passat per paràmetre
+     * @param tamany
+     */
     public Tauler(int tamany)
     {
-        /**
-         * Contructora a partir d'un tamany passat per paràmetre
-         */
         uniqID = -1;
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
@@ -56,11 +56,12 @@ public class Tauler
         }
     }
 
+    /**
+     * Crea un tauler igual al Tauler passat per paràmetre
+     * @param t
+     */
     public Tauler(Tauler t)
     {
-        /**
-         * Crea un tauler igual al Tauler passat per paràmetre
-         */
         uniqID = -1;
         int tamany = t.getTamany();
         tauler = new Casella[tamany][tamany];
@@ -73,20 +74,22 @@ public class Tauler
         }
     }
 
+    /**
+     * Crea un tauler igual a lo que es llegeix per terminal
+     * @param in
+     */
     public Tauler(Scanner in)
     {
-        /**
-         * Crea un tauler igual a lo que es llegeix per terminal
-         */
         uniqID = -1;
         llegeixRepresentacioTextual(in);
     }
 
+    /**
+     * Assigna la Matriu a la representacio textual que passes per paràmetre
+     * @param in
+     */
     public void llegeixRepresentacioTextual(Scanner in)
     {
-        /**
-         * Assigna la Matriu a la representacio textual que passes per paràmetre
-         */
         int tamany = in.nextInt();
         tauler = new Casella[tamany][tamany];
         for (int i = 0; i < tamany; ++i)
@@ -98,11 +101,12 @@ public class Tauler
         }
     }
 
+    /***
+     *
+     * @return Retorna un String que serà la Matriu
+     */
     public String donaRepresentacioTextual()
     {
-        /**
-         * Retorna un String que serà la Matriu
-         */
         StringBuilder aRetornar = new StringBuilder(400);
         aRetornar.append(getTamany()).append(' ');
         for (Casella[] fila : tauler)
@@ -116,11 +120,13 @@ public class Tauler
         return aRetornar.toString();
     }
 
+    /**
+     *
+     * @param num
+     * @return Retorna una Casella on el valor sigui igual al enter passat per paràmetre
+     */
     public Casella buscaCasella(int num)
     {
-        /**
-         * Retorna una Casella on el valor sigui igual al enter passat per paràmetre
-         */
         for (Casella[] fila : tauler)
         {
             for (Casella candidat : fila)
@@ -132,21 +138,23 @@ public class Tauler
         return null;
     }
 
+    /**
+     * Agafa lo que hi ha a l'altre tauler i t'ho posa a la Matriu
+     * @param altre
+     */
     public void move(Tauler altre)
     {
-        /**
-         * Sgafa lo que hi ha a l'altre tauler i t'ho posa a la Matriu
-         */
         //agafa lo que hi ha a l'altre tauler i t'ho posa a tu
         tauler = altre.tauler;
         altre.tauler = null;
     }
 
+    /**
+     * Iguala el Tauler a el Tauler que passa per paràmetres
+     * @param t
+     */
     public void clone(Tauler t)
     {
-        /**
-         * Iguala el Tauler a el Tauler que passa per paràmetres
-         */
         for (int i = 0; i < t.getTamany(); ++i)
         {
             for (int j = 0; j < t.getTamany(); ++j)
@@ -155,60 +163,84 @@ public class Tauler
             }
         }
     }
+
+    /**
+     * Modifica tauler igual al Tauler passat per paràmetre
+     * @param tauler
+     */
     public void setTauler(Casella[][] tauler) {
-        /**
-         * Modifica tauler igual al Tauler passat per paràmetre
-         */
         this.tauler = tauler;
     }
+
+    /**
+     *
+     * @return Retorna el Tauler
+     */
     public Casella[][] getTauler() {
-        /**
-         * Retorna el Tauler
-         */
+
         return tauler;
     }
+
+    /**
+     *
+     * @return Retorna UniqID
+     */
     public int getUniqID() {
-        /**
-         * Retorna UniqID
-         */
+
         return uniqID;
     }
+
+    /**
+     * Modifica tauler igual al idTauler passat per paràmetre
+     * @param idtauler
+     */
     public void setUniqID(int idtauler) {
-        /**
-         * Modifica tauler igual al idTauler passat per paràmetre
-         */
+
         this.uniqID = idtauler;
     }
 
+    /**
+     *
+     * @param posX
+     * @param posY
+     * @return Retorna la Casella del Tauler amb la posicio pasada per paràmetre
+     */
     public Casella getCasella(int posX, int posY)
     {
-        /**
-         * Retorna la Casella del Tauler amb la posicio pasada per paràmetre
-         */
         return new Casella(tauler[posX][posY]);
     }
 
+    /**
+     *
+     * @param candidat
+     * @return Retorna la Casella del Tauler amb la posicio de la Casella pasada per paràmetre
+     */
     public Casella getCasella(Casella candidat)
     {
-        /**
-         * Retorna la Casella del Tauler amb la posicio de la Casella pasada per paràmetre
-         */
         return new Casella(tauler[candidat.x][candidat.y]);
     }
 
+    /**
+     * Modifica el Tauler ficant una Casella amb el valor y la posició pasada per paràmetres
+     * @param posX
+     * @param posY
+     * @param valor
+     */
     public void setCasella(int posX, int posY, int valor)
     {
-        /**
-         * Modifica el Tauler ficant una Casella amb el valor y la posició pasada per paràmetres
-         */
         tauler[posX][posY].elem = valor;
     }
 
+    /**
+     * Modifica el Tauler ficant una Casella amb el valor, el numadjlliure y la posició pasada per paràmetres
+     * @param posX
+     * @param posY
+     * @param valor
+     * @param numadjlliure
+     */
     public void setCasella(int posX, int posY, int valor, int numadjlliure)
     {
-        /**
-         * Modifica el Tauler ficant una Casella amb el valor, el numadjlliure y la posició pasada per paràmetres
-         */
+
         int[] X = {0, 1, 0, -1, 1, 1, -1, -1};
         int[] Y = {1, 0, -1, 0, 1, -1, 1, -1};
         tauler[posX][posY] = new Casella(posX, posY, valor, numadjlliure);
@@ -221,44 +253,52 @@ public class Tauler
 
     }
 
+    /**
+     * Modifica el Tauler ficant una Casella amb el valor y la posició pasada per paràmetre
+     * @param c
+     */
     public void setCasella(Casella c)
     {
-        /**
-         * Modifica el Tauler ficant una Casella amb el valor y la posició pasada per paràmetre
-         */
         tauler[c.x][c.y] = c;
     }
 
+    /**
+     *
+     * @return Retorna el tamany del Tauler
+     */
     public int getTamany()
     {
-        /**
-         * Retorna el tamany del Tauler
-         */
         return tauler.length;
     }
 
+    /**
+     *
+     * @param Posx
+     * @param Posy
+     * @return Et retorna si la posició pasada per paràmetres esta dins dels limits del tauler
+     */
     public boolean esValid(int Posx, int Posy)
     {
         //todo: el nom no es gens indicatiu
-        /**
-         * Et retorna si la posició pasada per paràmetres esta dins dels limits del tauler
-         */
         return (Posx >= 0 && Posx < tauler.length && Posy >= 0 && Posy < tauler.length);
     }
 
+    /**
+     *
+     * @return Et diu si te el numero 1 i el número maxim del tauler
+     */
     public boolean teMaximIMinim()
     {
-        /**
-         * Et diu si te el numero 1 i el número maxim del tauler
-         */
         return buscaCasella(1) != null && buscaCasella(maximElementPossible()) != null;
     }
 
+    /**
+     *
+     * @param presents
+     * @return Et retorna una llista de tots els intervals
+     */
     public List<Interval> donaIntervals(boolean[] presents)
     {
-        /**
-         * Et retorna una llista de tots els intervals
-         */
         List<Interval> aRetornar = new ArrayList<>();
         boolean enInterval = false;
         int iniciInterval = -400;
@@ -282,6 +322,10 @@ public class Tauler
         return aRetornar;
     }
 
+    /**
+     * Aixo comprova que tots els numeros que estiguin posats al tauler hi siguin de manera adjacent.
+     * @return Si la Casella esta ben posada o no
+     */
     public boolean casellesBenPosades()
     {
         /**
@@ -301,12 +345,13 @@ public class Tauler
         return true;
     }
 
-
+    /**
+     * Aquesta funció afegeix a la lista "aAfegir" tots els adjacents que no tinguin o un valor o un forat, es a dir, només els que siguin buits
+     * @param inici
+     * @param aAfegir
+     */
     public void getAdjacentslist(Casella inici, List<Casella> aAfegir)
     {
-        /**
-         * Aquesta funció afegeix a la lista "aAfegir" tots els adjacents que no tinguin o un valor o un forat, es a dir, només els que siguin buits
-         */
         int DEBUG_AFEGIT = 0;
         for (int i = -1; i <= 1; ++i)
         {
@@ -330,11 +375,13 @@ public class Tauler
     }
 
 
+    /**
+     * Aquesta funció afegeix a la cua "aAfegir" tots els adjacents que no tinguin o un valor o un forat, es a dir, només els que siguin buits
+     * @param inici
+     * @param aAfegir
+     */
     public void getAdjacents(Casella inici, Queue<Casella> aAfegir)
     {
-        /**
-         * Aquesta funció afegeix a la cua "aAfegir" tots els adjacents que no tinguin o un valor o un forat, es a dir, només els que siguin buits
-         */
         int DEBUG_AFEGIT = 0;
 
         for (Casella offset : offsets)
@@ -349,11 +396,12 @@ public class Tauler
         //              System.err.println("S'han trobat " + DEBUG_AFEGIT + " adjacents\tCasella inicial: " + inici.x + "," + inici.y);
     }
 
+    /**
+     *
+     * @return Retorna el numero mes elevat que pot tenir aquest tauler
+     */
     public int maximElementPossible() //todo computar aixo un cop
     {
-        /**
-         * Retorna el numero mes elevat que pot tenir aquest tauler
-         */
         int potencialMax = getTamany() * getTamany();
         for (int i = 0; i < getTamany(); ++i)
             for (int j = 0; j < getTamany(); ++j)
@@ -362,6 +410,11 @@ public class Tauler
         return potencialMax;
     }
 
+    /**
+     * Aquesta funcio intenta travessar tot el hidato, començant per la casella que te el numero i acabant fins on es pugui arribar seguint les adjacencies.
+     * @param inicial
+     * @return Torna l'ultima on hi ha pogut arribar.
+     */
     public Casella recorreTauler(int inicial)
     {
         /**
@@ -391,12 +444,13 @@ public class Tauler
         return getCasella(cActual);
     }
 
+    /**
+     *
+     * @return Retorna un array de booleans que indica que si cada casella en ordre ascendent sent primer la posicio (0,0)
+     * si hi ha un valor no BUIT i no FORAT.
+     */
     public boolean[] presentsAlTauler()
     {
-        /**
-         * Retorna un array de booleans que indica que si cada casella en ordre ascendent sent primer la posicio (0,0)
-         * si hi ha un valor no BUIT i no FORAT.
-         */
         // no usarem presentsAlTauler[0]
         boolean[] aRetornar = new boolean[maximElementPossible() + 1];
         for (Casella[] fila : tauler)
@@ -410,6 +464,11 @@ public class Tauler
         return aRetornar;
     }
 
+    /**
+     *
+     * @param minim
+     * @return Retorna 0 si no hi ha cap incognita al tauler a partir del minim (inclusiu)
+     */
     public int trobaPrimeraIncognitaAPartirDe(int minim)
     {
         /**
@@ -431,7 +490,17 @@ public class Tauler
         return i;
     }
 
-
+    /**
+     * Aquesta funcio serveix per a comprovar que un tauler no tingui multiples particions no connexes
+     * Considera "travessables" nomes les caselles que estiguin a Casella.BUIT (0).
+     * Per tant, te en compte tant els forats com els numeros ja posats.
+     * Procediment:
+     *  Marcar totes les caselles impassables com a "visitades"
+     *  Agafar una casella "no visitada" quaslevol
+     *  Començar a fer un BFS des d'aquesta casella, fins a exhaurir tots els adjacents.
+     *  Si al final del BFS queda alguna casella no visitada, el tauler es partit.
+     *  @return  Si es partit o no
+     */
     public boolean esPartit()
     {
         /**
@@ -518,6 +587,10 @@ public class Tauler
         }
     }
 
+    /**
+     * Et retorna un boolean que et diu si esta complet el Tauler
+     * @return si ha acabat el Tauler o no
+     */
     public boolean he_acabat()
     {
         /**

@@ -15,11 +15,16 @@ public class Partida
     private int numAjudesUtilitzades;
     private boolean esAcabada;
 
+    /**
+     * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+     * @param x
+     * @param y
+     * @param elem
+     * @return Si ha pogut afegir
+     */
     public int afegir(int x, int y, int elem)
     { //todo arreglar aixo
-        /**
-         * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
-         */
+
         System.out.print("TaulerProgres.getTamany(): "); System.out.println(taulerProgres.getTamany());
         System.out.print("X: "); System.out.println(x);
         System.out.print("Y: "); System.out.println(y);
@@ -128,11 +133,14 @@ public class Partida
         taulerProgres.setUniqID(id);
     }
 
+    /**
+     * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
+     * @param x
+     * @param y
+     * @return si a eliminat be o no
+     */
     public int remove(int x, int y)
     {
-        /**
-         * Treu un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
-         */
         if (x < 0 | x > taulerProgres.getTamany()-1)
         {
             System.out.println("X no valida, introdueix una altra");
@@ -157,74 +165,82 @@ public class Partida
         }
     }
 
+    /**
+     *
+     * @return Retorna UniqID
+     */
     public int getUniqID()
     {
-        /**
-         * Retorna UniqID
-         */
         return uniqID;
     }
 
+    /**
+     * Modifica UniqID per el passat per paràmetre
+     * @param uniqID
+     */
     public void setUniqID(int uniqID)
     {
-        /**
-         * Modifica UniqID per el passat per paràmetre
-         */
         this.uniqID = uniqID;
     }
 
+    /**
+     *
+     * @return Retorna nCelesResoltes
+     */
     public int getnCelesResoltes()
     {
-        /**
-         * Retorna nCelesResoltes
-         */
         return nCelesResoltes;
     }
 
+    /**
+     * Modifica nCelesResoltes per el passat per paràmetre
+     * @param nCelesResoltes
+     */
     public void setnCelesResoltes(int nCelesResoltes)
     {
-        /**
-         * Modifica nCelesResoltes per el passat per paràmetre
-         */
         this.nCelesResoltes = nCelesResoltes;
     }
 
+    /**
+     *
+     * @return Retorna NumAjudesUtilitzades
+     */
     public int getNumAjudesUtilitzades()
     {
-        /**
-         * Retorna NumAjudesUtilitzades
-         */
         return numAjudesUtilitzades;
     }
 
+    /**
+     * Modifica NumAjudesUtilitzades per el passat per paràmetre
+     * @param numAjudesUtilitzades
+     */
     public void setNumAjudesUtilitzades(int numAjudesUtilitzades)
     {
-        /**
-         * Modifica NumAjudesUtilitzades per el passat per paràmetre
-         */
         this.numAjudesUtilitzades = numAjudesUtilitzades;
     }
 
+    /**
+     *
+     * @return Retorna EsAcabada
+     */
     public Boolean esAcabada()
     {
-        /**
-         * Retorna EsAcabada
-         */
         return esAcabada;
     }
 
+    /**
+     * Modifica esAcabada per el passat per paràmetre
+     * @param esAcabada
+     */
     public void setEsAcabada(Boolean esAcabada)
     {
-        /**
-         * Modifica esAcabada per el passat per paràmetre
-         */
         this.esAcabada = esAcabada;
     }
 
+    /**
+     * Constructora buida
+     */
     public Partida()
     {
-        /**
-         * Constructora Buida
-         */
     }
 }
