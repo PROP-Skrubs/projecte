@@ -7,7 +7,8 @@ import CapaDomini.ValidadorTauler;
 import java.util.Scanner;
 
 /**
- * Created by daniel on 09/11/15.
+ * Aquesta classe testeja la funcionalitat de Validar una Tauler
+ * @author Dani Armengod
  */
 public class ValidarHidato
 {

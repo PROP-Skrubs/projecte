@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Maria on 07/11/2015.
+ * Aquesta classe s'encarrega de les Funcionalitats amb la BD del Hidato
+ * @author Maria Vives
  */
 public class GestorHidato
 {

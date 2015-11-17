@@ -1,8 +1,6 @@
 package Testers;
 
-/**
- * Created by oriol on 5/11/15.
- */
+
 
 import CapaDomini.Hidato;
 import CapaDomini.ControladorAjudes;
@@ -12,6 +10,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Aquesta Classe conte les ajudes de la Partida
+ * @author Maria Vives
+ */
 public class Ajudes {
     public void ajuda1(Hidato h){
         /**

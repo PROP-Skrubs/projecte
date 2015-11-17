@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * Created by daniel on 29/10/15.
+ * Aquesta classe s'encarrega de dir si un Tauler té solució unica o no
+ * @author Dani Armengod
  */
 public class ValidadorTauler
 {

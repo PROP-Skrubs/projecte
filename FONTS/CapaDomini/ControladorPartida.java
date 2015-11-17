@@ -6,7 +6,8 @@ import CapaPersistencia.GestorUsuari;
 import CapaVista.JugarPartida;
 
 /**
- * Created by cross on 15/11/15.
+ * Aquesta Casella s'encarrega de gestionar les accions d'una Partida
+ * @author Eduard J. Seoane
  */
 public class ControladorPartida
 {

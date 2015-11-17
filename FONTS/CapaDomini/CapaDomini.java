@@ -3,7 +3,8 @@ package CapaDomini;
 import java.util.*;
 
 /**
- * Created by daniel on 12/10/15.
+ * Esta Classe crea Hidatos de forma Predeterminada mes tot lo que comporta
+ * @author Eduard J. Seoane
  */
 
 public class CapaDomini
@@ -11,10 +12,10 @@ public class CapaDomini
 
     public static void ordenaAdjacents(List<Casella> Adjacents)
     {
-        /**
-         * Donada una Llista de caselles donada per parametre d’entrada et modifica
+        /** Donada una Llista de caselles donada per parametre d’entrada et modifica
          * aquesta llista perque et fiquin en primera posició els adjacents que estan
          * en les esquines o els que estan a un extrem del Tauler
+         *
          */
         ListIterator<Casella> it = Adjacents.listIterator();
         boolean acabat = false;
@@ -49,7 +50,7 @@ public class CapaDomini
 
 
     public static void eliminarnumeros( Tauler t, List<Integer> num_pre){
-        /** Donat un tauler i una llista de enters et modifica el tauler ficant
+        /**@use Donat un tauler i una llista de enters et modifica el tauler ficant
          * un BUIT a l’element de cada casella que el seu valor no estigui
          * a la llista de enters
          */
@@ -65,8 +66,9 @@ public class CapaDomini
     }
 
     public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-        /** Donat dos enters una Casella y dos taulers, t’emplena un tauler completament
+        /**@deprecated Donat dos enters una Casella y dos taulers, t’emplena un tauler completament
          *  amb un cami vàlid
+         *
          */
 
         Random rnd = new Random();
@@ -116,7 +118,7 @@ public class CapaDomini
 
 
     public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-        /** Donat dos enters una Casella y dos taulers, t’emplena un tauler
+        /**@use Donat dos enters una Casella y dos taulers, t’emplena un tauler
          * completament amb un cami vàlid
          */
 
@@ -167,7 +169,7 @@ public class CapaDomini
 
 
     public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-        /** Donat dos enters una Casella y dos taulers, t’emplena un tauler
+        /**@use Donat dos enters una Casella y dos taulers, t’emplena un tauler
          * completament amb un cami vàlid
          */
 
@@ -217,7 +219,7 @@ public class CapaDomini
 
     public static boolean validarparamscreacioTaulerpredeterminat(int n, int m, int x, String dificultat)
     {
-        /**Donat 3 enters i un string que seran els parametres per generar un Hidato
+        /**@use Donat 3 enters i un string que seran els parametres per generar un Hidato
          * random et verifica que son parametres legals
          */
 
@@ -242,8 +244,7 @@ public class CapaDomini
 
     public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat, TaulerComplert retcomplert)
     {
-        /**
-         *Donat una "n" que serà el getTamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
+        /**@return Donat una "n" que serà el getTamany d'un costat del Tauler, donat una "m" que serà el nombre de "Forats" que hi
          *haurà al Tauler, donat una "x" que serà el nombre de números predetermints que tingui el Tauler y una "dificultat"
          *que serà el complicat que serà aquest. Retornarà un Tauler amb "m" Forats repartits aleatoriament, amb "x"-2
          *números escollits aleatoriament, el 1 i el n*n-m ficats al Tauler.

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Maria on 15/11/2015.
+ * Aquesta classe s'encarrega de les Funcionalitats amb la BD de la Partida
+ * @author Oriol Giralt
  */
 public class GestorPartida
 {

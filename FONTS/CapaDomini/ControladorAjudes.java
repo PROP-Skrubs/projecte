@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by oriol on 29/10/15.
+ * Aquesta classe s'encarrega de gestionar la funcionalitats de les ajudes a l'hora de jugar
+ * @author Maria Vives
  */
 
 public class ControladorAjudes {

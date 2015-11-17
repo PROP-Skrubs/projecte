@@ -11,7 +11,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Created by oriol on 7/11/15.
+ * Aquesta Classe testeja la funcionalitat de Generador d'Hidatos
+ * @author Oriol Giralt
  */
 public class DriverCreadorHidatos
 {

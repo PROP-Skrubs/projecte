@@ -3,7 +3,8 @@ package CapaDomini;
 import java.util.Comparator;
 
 /**
- * Created by cross on 20/10/15.
+ * Esta Classe conté tot Casella amb les seves funcionalitats
+ * @author Eduard J. Seoane
  */
 
 public class Casella implements Comparable

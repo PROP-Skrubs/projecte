@@ -3,6 +3,10 @@ package CapaDomini;
 
 import java.util.*;
 
+/**
+ * Aquesta classe conté Tauler i totes les seves funcionalitats
+ * @author Oriol Giralt
+ */
 public class Tauler
 {
     private Casella[][] tauler;

@@ -6,7 +6,8 @@ import CapaVista.CrearTaulerAutomatic;
 import CapaVista.CrearTaulerManual;
 
 /**
- * Created by daniel on 16/11/15.
+ * Aquesta classe es dedica a poder gestionar les accions que es poden fer amb l'Hidato
+ * @author Dani Armengod
  */
 public class ControladorHidato
 {

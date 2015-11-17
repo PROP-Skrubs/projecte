@@ -3,7 +3,8 @@ package Testers;
 import java.util.Scanner;
 
 /**
- * Created by maria on 12/11/15.
+ * Aquesta classe es un stuck de lo que es Estadistiques i Ranking
+ * @author Eduard J. Seoane
  */
 public class DriverGestEstRan {
     public static void main() {

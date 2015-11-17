@@ -1,5 +1,9 @@
 package CapaDomini;
 
+/**
+ * Aquesta Classe conte TaulerComplert i les seves funcionalitats
+ * @author Eduard J. Seoane
+ */
 public class TaulerComplert extends Tauler
 {
     public TaulerComplert()

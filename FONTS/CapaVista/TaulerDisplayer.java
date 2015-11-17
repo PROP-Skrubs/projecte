@@ -10,7 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * Created by daniel on 15/11/15.
+ * Es la classe que et permet veure e interactuar amb l'Hidato
+ * @author Dani Armengod
  */
 public class TaulerDisplayer extends JPanel
 {

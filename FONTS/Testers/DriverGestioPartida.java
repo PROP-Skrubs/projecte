@@ -7,7 +7,8 @@ import CapaDomini.Hidato;
 import CapaPersistencia.GestorHidato;
 
 /**
- * Created by oriol on 12/11/15.
+ * Aquesta Classe testeja la funcionalitat d'una Partida
+ * @author Eduard J. Seoane
  */
 public class DriverGestioPartida
 {

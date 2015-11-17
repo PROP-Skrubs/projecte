@@ -1,7 +1,8 @@
 package CapaDomini;
 
 /**
- * Created by daniel on 12/11/15.
+ * Aquesta classe serveix per tenir intervals
+ * @author Dani Armengod
  */
 class Interval
 {

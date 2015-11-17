@@ -1,7 +1,8 @@
 package CapaDomini;
 
 /**
- * Created by daniel on 13/10/15.
+ * Aquesta classe conté a Usuari i totes les seves funcionalitats
+ * @author Dani Armengod
  */
 public class Usuari
 {

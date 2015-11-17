@@ -5,8 +5,8 @@ import CapaDomini.Tauler;
 import java.util.Scanner;
 
 /**
- * Created by daniel on 22/10/15.
  * Aquest tester mira si la funcionalitat de comprovar si un tauler és partit funciona bé.
+ * @author Dani Armengod
  */
 
 public class TaulerParticionat

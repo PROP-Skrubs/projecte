@@ -3,7 +3,8 @@ package CapaPersistencia;
 import java.sql.*;
 
 /**
- * Created by daniel on 13/10/15.
+ * Aquesta classe s'encarrega de verificar i crear les taules de la BD
+ * @author Dani Armengod
  */
 
 public class CapaPersistencia

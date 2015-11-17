@@ -2,7 +2,8 @@ package CapaDomini;
 
 
 /**
- * Created by Maria on 10/11/2015.
+ * Aquesta classe conté Partida i les seves funcionalitats
+ * @author Eduard J. Seoane
  */
 public class Partida
 {

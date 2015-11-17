@@ -3,7 +3,8 @@ package Testers;
 import java.util.Scanner;
 
 /**
- * Created by oriol on 12/11/15.
+ * Aquesta Classe testeja totes les funcionalitats
+ * @author Oriol Giralt
  */
 public class DriverGeneral
 {

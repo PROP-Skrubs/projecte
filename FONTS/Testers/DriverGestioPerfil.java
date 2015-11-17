@@ -7,7 +7,8 @@ import CapaPersistencia.GestorUsuari;
 import java.util.Scanner;
 
 /**
- * Created by oriol on 12/11/15.
+ * Aquesta classe testeja les funcionalitats d'un Perfil
+ * @author Maria Vives
  */
 public class DriverGestioPerfil
 {

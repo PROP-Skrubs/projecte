@@ -3,7 +3,8 @@ package CapaDomini;
 import CapaPersistencia.GestorUsuari;
 
 /**
- * Created by daniel on 29/10/15.
+ * Aquesta classe es dedica a gestionar les accions que pot fer un Usuari
+ * @author Maria Vives
  */
 
 public class ControladorLogin

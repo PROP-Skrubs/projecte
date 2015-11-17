@@ -5,7 +5,8 @@ import CapaDomini.Usuari;
 import java.sql.*;
 
 /**
- * Created by daniel on 29/10/15.
+ * Aquesta classe s'encarrega de les Funcionalitats amb la BD del Usuari
+ * @author Dani Armengod
  */
 public class GestorUsuari
 {

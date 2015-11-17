@@ -10,7 +10,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
- * Created by daniel on 15/11/15.
+ * Aquesta classe s'encarrega de les Funcionalitats amb la BD del Tauler
+ * @author Eduard J. Seoane
  */
 public class GestorTauler
 {

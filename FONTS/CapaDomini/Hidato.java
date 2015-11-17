@@ -3,7 +3,8 @@ package CapaDomini;
 import java.util.Scanner;
 
 /**
- * Created by daniel on 12/10/15.
+ * Aquesta classe conte Hidato i totoes les seves funcionalitats
+ * @author Oriol Giralt
  */
 
 
