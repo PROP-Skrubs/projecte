@@ -57,6 +57,9 @@ public class CapaPersistencia
         validarBaseDeDades();
     }
 
+    /**
+     * @return Retorna la última clau inserida, en cas contrari, es retorna un -1
+     */
     public static int retornaUltimaClauInserida()
     {
         /**
@@ -78,6 +81,9 @@ public class CapaPersistencia
         return aRetornar;
     }
 
+    /**
+     * Aquesta funcio crea les taules de la BD en cas que no existeixin
+     */
     public static void validarBaseDeDades()
     {
         /**
