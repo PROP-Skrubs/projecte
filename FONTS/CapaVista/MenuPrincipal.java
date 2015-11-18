@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by daniel on 13/10/15.
  */
+
 public class MenuPrincipal
 {
     private JPanel panel1;
@@ -18,6 +19,9 @@ public class MenuPrincipal
     private JButton jugarButton;
     private JButton veureEstadistiquesButton;
 
+    /**
+     * Mostra el menu a l'usuari que ha fet log in. Permet crear un nou Hidato i jugar partida
+     */
     public MenuPrincipal()
     {
         JFrame frame = new JFrame("MenuPrincipal");
