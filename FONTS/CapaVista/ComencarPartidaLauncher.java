@@ -22,6 +22,9 @@ public class ComencarPartidaLauncher extends JDialog
     private AbstractListModel<String> modelLlistaHidatos;
     private ButtonGroup radioButtonGroup;
 
+    /**
+     * Es la funcio que s'encarrega de mostrar a la vista les opcions carregar partida, partida nova, llistar les id's dels hidatos i partides
+     */
     public ComencarPartidaLauncher()
     {
         setContentPane(contentPane);
@@ -94,6 +97,10 @@ public class ComencarPartidaLauncher extends JDialog
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Aquesta funcio carrega la llista de id d'Hidatos o partida segons l'opcio escollida. Si l'opcio es 1, carrega les id de partides i en cas contrari les id de Hidatos
+     * @param quinModel
+     */
     public void carregaModel(int quinModel)
     {
         List<Integer> totesID;
@@ -121,6 +128,9 @@ public class ComencarPartidaLauncher extends JDialog
         }
     }
 
+    /**
+     * Carrega la partida que ha escollit
+     */
     private void onOK()
     {
         Integer idSeleccionada = Integer.valueOf((String) llistaHidatosIPartides.getSelectedValue());
@@ -140,6 +150,9 @@ public class ComencarPartidaLauncher extends JDialog
         dispose();
     }
 
+    /**
+     * Cancela el que s'ha fet
+     */
     private void onCancel()
     {
         // add your code here if necessary
