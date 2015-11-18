@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by daniel on 16/11/15.
+ * Aquesta classe conté CasellaLabel i totes les seves funcionalitats
  */
 public class CasellaLabel extends JLabel
 {
@@ -14,6 +14,8 @@ public class CasellaLabel extends JLabel
     private static final Color ACTIVE_COLOR = Color.YELLOW;
     private static final Color PASSIVE_COLOR = Color.BLUE;
 
+    /**Crea una CasellaLabel buida
+     */
     public CasellaLabel()
     {
         super();
@@ -23,7 +25,10 @@ public class CasellaLabel extends JLabel
         setHorizontalAlignment(SwingConstants.CENTER);
         setHighlight(false);
     }
-
+    /**
+     * Crea una CasellaLabel igual a la passada per paràmetres
+     * @param c
+     */
     public CasellaLabel(Casella c)
     {
         super();
@@ -35,21 +40,37 @@ public class CasellaLabel extends JLabel
         setHighlight(false);
     }
 
+    /**
+     *
+     * @return Retorna el valor X de la Casella
+     */
     public int getCasellaX()
     {
         return continguts.getX();
     }
 
+    /**
+     *
+     * @return Retorna el valor Y de la Casella
+     */
     public int getCasellaY()
     {
         return continguts.getY();
     }
 
+    /**
+     *
+     * @return Retorna el valor de l'element de la Casella
+     */
     public int getCasellaElem()
     {
         return continguts.getElem();
     }
 
+    /**
+     * Modifica l'element de la Casella amb el valor passat per parametre
+     * @param elem
+     */
     public void setCasellaElem(int elem)
     {
         continguts.setElem(elem);
@@ -63,6 +84,10 @@ public class CasellaLabel extends JLabel
         setText(text);
     }
 
+    /**
+     * Modifica el color de la Casella
+     * @param b
+     */
     public void setHighlight(boolean b)
     {
         Color toSet = b ? ACTIVE_COLOR : PASSIVE_COLOR;
