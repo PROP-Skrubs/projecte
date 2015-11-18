@@ -20,6 +20,10 @@ public class MenuLogin
     private JButton botoEntrar;
     private JButton crearNouCompteDButton;
 
+    /**
+     * Si es vol fer log in, agafa els parametres i entra al Menu principal si es correcte, si no t'indica que hi ha hagut un error.
+     * Si esculls crear nou compte, agafa els parametres i el crea. En cas de que ja hi hagi un usuari amb aquell nom, t'ho indica
+     */
     public MenuLogin()
     {
         final JFrame frame = new JFrame("MenuLogin");
