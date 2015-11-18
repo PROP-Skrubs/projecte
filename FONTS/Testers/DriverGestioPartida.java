@@ -2,6 +2,7 @@ package Testers;
 
 import java.lang.IncompatibleClassChangeError;
 import java.lang.System;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import CapaDomini.ControladorPartida;
@@ -27,7 +28,7 @@ public class DriverGestioPartida
             else if (s.equals("play"))
             {
                 System.out.print("Introdueix id del hidato a jugar:");
-                List<Integer> l = new ArrayList<Integer>;
+                List<Integer> l = new ArrayList<Integer>();
                 for(int i = 0; i < l.size(); i++) {
                     System.out.print(l.get(i) + " ");
                 }

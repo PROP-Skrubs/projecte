@@ -57,6 +57,7 @@ public class CapaPersistencia
         validarBaseDeDades();
     }
 
+
     public static int retornaUltimaClauInserida()
     {
         /**
@@ -77,6 +78,7 @@ public class CapaPersistencia
         }
         return aRetornar;
     }
+
 
     public static void validarBaseDeDades()
     {
