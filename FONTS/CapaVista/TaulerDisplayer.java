@@ -29,11 +29,19 @@ public class TaulerDisplayer extends JPanel
     private int numeroInputBuffer = 0;
     private TaulerDisplayerCallbacks callbackMethods;
 
+    /**
+     * Modifica el TaulerDisplayerCallbacks amb el valor passat per parametre
+     * @param c
+     */
     public void setCallbackMethods(TaulerDisplayerCallbacks c)
     {
         this.callbackMethods = c;
     }
 
+    /**
+     * Crea un tauler igual al Tauler passat per paràmetre
+     * @param t
+     */
     public void setTauler(Tauler t)
     {
         int tamany = t.getTamany();
@@ -56,6 +64,9 @@ public class TaulerDisplayer extends JPanel
         g.setVgap(5);
     }
 
+    /**
+     * Permet interactuar amb el tauler i modificar els valors amb les fletxes del teclat i l'enter
+     */
     public TaulerDisplayer()
     {
         setFocusable(true);
@@ -131,6 +142,9 @@ public class TaulerDisplayer extends JPanel
         });
     }
 
+    /**
+     * Modifica el color mostrat a la vista
+     */
     public void setHighlightOnFocus()
     {
         numerosAlTauler[oldFocus.x][oldFocus.y].setHighlight(false);
@@ -138,11 +152,19 @@ public class TaulerDisplayer extends JPanel
         oldFocus = focus;
     }
 
+    /**
+     *
+     * @return Retorna el tamany del Tauler
+     */
     public int getTamany()
     {
         return numerosAlTauler.length;
     }
 
+    /**
+     * Modifica el TaulerDisplaer ficant una Casella amb el valor de l'element de la casella pasada per paràmetre
+     * @param c
+     */
     public void setCasella(Casella c)
     {
         numerosAlTauler[c.x][c.y].setCasellaElem(c.elem);
