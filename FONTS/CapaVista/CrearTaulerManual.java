@@ -16,13 +16,14 @@ public class CrearTaulerManual extends JDialog
     private TaulerDisplayer taulerDisplayer1;
     private JTextArea instruccionsUpLeftDownTextArea;
 
+    /**
+     * Crea un tauler nou i s'afegeixen els valors introduits al Tauler
+     */
     public CrearTaulerManual(Tauler t, TaulerDisplayerCallbacks cMethods)
     {
         $$$setupUI$$$();
         setContentPane(contentPane);
         setModal(true);
-
-        //Per desactivar "okay on enter" s'ha de treure el .getRootPane().setDefaultButton();
 
         taulerDisplayer1.setTauler(t);
         taulerDisplayer1.setCallbackMethods(cMethods);
@@ -64,12 +65,18 @@ public class CrearTaulerManual extends JDialog
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
-
+    /**
+     * Crea un nou TaulerDisplayer
+     */
     private void createUIComponents()
     {
         taulerDisplayer1 = new TaulerDisplayer();
     }
 
+
+    /**
+     * Aquesta funcio valida l'Hidato creat i el guarda
+     */
     private void onOK()
     {
         // add your code here
@@ -77,9 +84,11 @@ public class CrearTaulerManual extends JDialog
         dispose();
     }
 
+    /**
+     * Cancela el que s'ha fet
+     */
     private void onCancel()
     {
-        // add your code here if necessary
         dispose();
     }
 
@@ -116,7 +125,7 @@ public class CrearTaulerManual extends JDialog
         instruccionsUpLeftDownTextArea = new JTextArea();
         instruccionsUpLeftDownTextArea.setEditable(false);
         instruccionsUpLeftDownTextArea.setEnabled(false);
-        instruccionsUpLeftDownTextArea.setText("Instruccions:\n - Up,Left,Down,Right per moure's per la finestra\n - 0-9 per introduir numero, Enter per a desar-los a la casella.\n - X per introduir forat\n - Backspace per borrar");
+        instruccionsUpLeftDownTextArea.setText("Instruccions:\n - Up,Left,Down,Right per moure's per la finestra\n - 0-9 per introduir numero, Shift per a desar-los a la casella.\n - X per introduir forat\n - Backspace per borrar");
         contentPane.add(instruccionsUpLeftDownTextArea, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
     }
 
