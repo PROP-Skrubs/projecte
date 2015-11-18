@@ -22,6 +22,8 @@ public class CrearTaulerManual extends JDialog
         setContentPane(contentPane);
         setModal(true);
 
+        //Per desactivar "okay on enter" s'ha de treure el .getRootPane().setDefaultButton();
+
         taulerDisplayer1.setTauler(t);
         taulerDisplayer1.setCallbackMethods(cMethods);
 
@@ -114,7 +116,7 @@ public class CrearTaulerManual extends JDialog
         instruccionsUpLeftDownTextArea = new JTextArea();
         instruccionsUpLeftDownTextArea.setEditable(false);
         instruccionsUpLeftDownTextArea.setEnabled(false);
-        instruccionsUpLeftDownTextArea.setText("Instruccions:\n - Up,Left,Down,Right per moure's per la finestra\n - 0-9 per introduir numero, Shift per a desar-los a la casella.\n - X per introduir forat\n - Backspace per borrar");
+        instruccionsUpLeftDownTextArea.setText("Instruccions:\n - Up,Left,Down,Right per moure's per la finestra\n - 0-9 per introduir numero, Enter per a desar-los a la casella.\n - X per introduir forat\n - Backspace per borrar");
         contentPane.add(instruccionsUpLeftDownTextArea, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
     }
 

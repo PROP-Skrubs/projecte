@@ -74,7 +74,7 @@
         <properties>
           <editable value="false"/>
           <enabled value="false"/>
-          <text value="Instruccions:&#10; - Up,Left,Down,Right per moure's per la finestra&#10; - 0-9 per introduir numero, Shift per a desar-los a la casella.&#10; - X per introduir forat&#10; - Backspace per borrar" noi18n="true"/>
+          <text value="Instruccions:&#10; - Up,Left,Down,Right per moure's per la finestra&#10; - 0-9 per introduir numero, Enter per a desar-los a la casella.&#10; - X per introduir forat&#10; - Backspace per borrar" noi18n="true"/>
         </properties>
       </component>
     </children>
