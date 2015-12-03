@@ -1,0 +1,5 @@
+mkdir NUEVA_COMPILACION
+cd FONTS
+javac -d ../NUEVA_COMPILACION */*.java
+cp -a com ../NUEVA_COMPILACION
+
