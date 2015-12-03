@@ -15,6 +15,11 @@ import java.util.Scanner;
  * @author Maria Vives
  */
 public class Ajudes {
+    
+    /**
+     * Aquesta funcio imprimeix per pantalla l'element i la posicio on ha d'anar del seguent numero no col.locat de l'Hidato h
+     * @param h
+     */
     public void ajuda1(Hidato h){
         /**
          * Imprimeix per pantalla on s’ha de posar el següent número de l’Hidato
@@ -24,6 +29,11 @@ public class Ajudes {
         c = ca.help1(h);
         System.out.println("Jo de tu posaria el numero" + c.elem + " a les posicions x:" + (c.x + 1) + " y:" + (c.y + 1));
     }
+    
+    /**
+     * Aquesta funcio imrpimeix per pantalla els possibles candidats que hi pot haver en la casella demanada de l'Hidato h
+     * @param h
+     */
     public void ajuda2(Hidato h){
         /**
          * Imprimeix per a una casella de l’Hidato, els possibles candidats

@@ -23,6 +23,11 @@ public class GestorHidato
     private final static String SELECT_HIDATO = "SELECT * FROM hidatos WHERE id = ?";
     private final static String SELECT_ALL_ID_HIDATO = "SELECT id FROM hidatos";
 
+    /**
+     * Aquesta funcio mira si ja existeix un Hidato amb la id pasada per parametre a la BD
+     * @param id
+     * @return Retorna si existeix un Hidato amb aquella id a la BD true
+     */
     public static boolean existeixHidato(int id)
     {
         try (PreparedStatement s = conn.prepareStatement(COUNT_HIDATO))
@@ -39,6 +44,11 @@ public class GestorHidato
         }
     }
 
+    /**
+     * Aquesta funcio retorna l'Hidato amb id que es passa per parametre
+     * @param id
+     * @return Retorna l'Hidato que te la id pasa per parametre
+     */
     public static Hidato donaHidato(int id)
     {
         /**
@@ -67,6 +77,11 @@ public class GestorHidato
         return aRetornar;
     }
 
+    /**
+     * Aquesta funcio guarda l'Hidato passat per parametre a la BD
+     * @param h
+     * @return Retorna la ultima clau inserida, per saber la id de l'Hidato
+     */
     public static int creaHidato(Hidato h)
     {
         /**
@@ -99,6 +114,11 @@ public class GestorHidato
         return CapaPersistencia.retornaUltimaClauInserida();
     }
 
+    /**
+     * Aquesta funcio rep la id de l'Hidato que es vol eliminar
+     * @param id
+     * @return Retorna false si no s'ha esborrat cap Hidato, diu quants hidatos s'han esborrat, en cas que hagi sigut mes de un, i en cas que s'hagi esborrat nomes un, retorna true
+     */
     public static boolean eliminaHidato(int id)
     {
         /**
@@ -132,6 +152,10 @@ public class GestorHidato
         return false; //todo what
     }
 
+    /**
+     * Aquesta funcio dona totes les id dels Hidatos que hi ha a la BD
+     * @return Retorna una llista amb totes les id
+     */
     public static List<Integer> donaTotesID()
     {
         List<Integer> aRetornar = new ArrayList<>(30);

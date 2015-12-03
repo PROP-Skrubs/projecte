@@ -30,6 +30,11 @@ public class GestorTauler
             "WHERE id=?";
 */
 
+    /**
+     * Aquesta funcio comprova si existeix ja un Tauler amb aquell id a la BD
+     * @param id
+     * @return Retorna true si existeix un tauler, en cas contrari no existeix tauler. Si hi ha mes d'un Tauler a la Bd amb el mateix id, ho diu per pantalla
+     */
     public static boolean existeixTauler(int id)
     {
         if (id == -1)
@@ -48,11 +53,21 @@ public class GestorTauler
         }
     }
 
+    /**
+     * Aquesta funcio comprova si ja existeix un TaulerComplert amb l'id passat per parametre a la BD
+     * @param id
+     * @return Retorna true si existeix, en cas contrari false
+     */
     public static boolean existeixTaulerComplert(int id)
     {
         return existeixTauler(id);
     }
 
+    /**
+     * Aquesta funcio retorna el Tauler amb id que es passa per parametre
+     * @param id
+     * @return Retorna el Tauler amb l'id passat per parametre
+     */
     public static Tauler donaTauler(int id)
     {
         Tauler aRetornar = null;
@@ -76,11 +91,21 @@ public class GestorTauler
 
     }
 
+    /**
+     * Aquesta funcio retorna el Tauler Complert que te com a id la id passada per parametre
+     * @param id
+     * @return Retorna el Tauler Complert amb l'id passat per parametre
+     */
     public static TaulerComplert donaTaulerComplert(int id)
     {
         return new TaulerComplert(donaTauler(id));
     }
 
+    /**
+     * Aquesta funcio guarda el Tauler passat per parametre a la BD
+     * @param t
+     * @return Retorna la ultima clau inserida, per saber la id del Tauler.
+     */
     public static int creaTauler(Tauler t)
     {
         try (PreparedStatement p = CapaPersistencia.conn.prepareStatement(INSERT_TAULER))
@@ -97,11 +122,21 @@ public class GestorTauler
 
     }
 
+    /**
+     * Aquesta funcio guarda el TaulerComplert passat per parametre a la BD
+     * @param t
+     * @return Retorna la ultima clau inserida, per saber la id del TaulerComplert.
+     */
     public static int creaTaulerComplert(TaulerComplert t)
     {
         return creaTauler(t);
     }
 
+    /**
+     * Aquesta funcio rep la id del Tauler que es vol eliminar
+     * @param id
+     * @return Retorna false si no s'ha esborrat cap Tauler, diu quants Taulers s'han esborrat, en cas que hagi sigut mes de un, i en cas que s'hagi esborrat nomes un, retorna true
+     */
     public static boolean eliminaTauler(int id)
     {
         try (PreparedStatement s = conn.prepareStatement(DELETE_TAULER))
@@ -124,6 +159,11 @@ public class GestorTauler
 
     }
 
+    /**
+     * Aquesta funcio rep la id del TaulerComplert que es vol eliminar
+     * @param id
+     * @return Retorna false si no s'ha esborrat cap TaulerComplert, diu quants TaulerComplerts s'han esborrat, en cas que hagi sigut mes de un, i en cas que s'hagi esborrat nomes un, retorna true
+     */
     public static boolean eliminaTaulerComplert(int id)
     {
         return eliminaTauler(id);

@@ -32,6 +32,11 @@ public class GestorPartida
             "esAcabada=? WHERE id=?";
     private static final String SELECT_ALL_ID_PARTIDA = "SELECT id FROM partides";
 
+    /**
+     * Aquesta funcio comprova si existeix ja una partida amb aquell id a la BD
+     * @param id
+     * @return Retorna true si existeix una partida, en cas contrari no existeix partida. Si hi ha mes d'una partida a la Bd amb el mateix id, ho diu per pantalla
+     */
     public static boolean existeixPartida(int id)
     {
         /**
@@ -54,6 +59,11 @@ public class GestorPartida
         }
     }
 
+    /**
+     * Aquesta funcio retorna la partida amb id que es passa per parametre
+     * @param id
+     * @return Retorna la Partida amb la id passada per parametre
+     */
     public static Partida donaPartida(int id)
     {
         /**
@@ -87,6 +97,11 @@ public class GestorPartida
         return aRetornar;
     }
 
+    /**
+     * Aquesta funcio guarda la Partida passada per parametre a la BD
+     * @param p
+     * @return Retorna la ultima clau inserida, per saber la id de la Partida.
+     */
     public static int creaPartida(Partida p)
     {
         if (!GestorUsuari.existeixUsuari(p.getIDUsuari()))
@@ -127,6 +142,10 @@ public class GestorPartida
         return false; //todo acabar
     }
 
+    /**
+     * Aquesta funcio modifica una partida guardada de la BD
+     * @param p
+     */
     public static void modificaPartida(Partida p)
     {
         //todo: aixo esborra les dades (taulerProgres) velles i en crea de noves. Hauria de ser capaç de modificar l'estat.
@@ -150,6 +169,10 @@ public class GestorPartida
         }
     }
 
+    /**
+     * Aquesta funcio dona totes les id de les Partides que hi ha a la BD
+     * @return Retorna una llista amb totes les id
+     */
     public static List<Integer> donaTotesID()
     {
         List<Integer> aRetornar = new ArrayList<>(30);

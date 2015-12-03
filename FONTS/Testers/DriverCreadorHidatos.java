@@ -78,7 +78,7 @@ public class DriverCreadorHidatos
                 String ar;
                 while (true)
                 {
-                    System.out.println("Selecciona arxiu:[1/2/3/4/5]");
+                    System.out.println("Selecciona arxiu:[1/2/3/4/5/6]");
                     s = capt.nextLine();
                     if (s.equals("1"))
                     {

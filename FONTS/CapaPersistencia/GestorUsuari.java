@@ -25,6 +25,11 @@ public class GestorUsuari
 
     //Inserta un nou usuari a la BD
 
+    /**
+     * Aquesta funcio comprova si existeix ja un Usuaro amb aquell nomUsuari a la BD
+     * @param nomUsuari
+     * @return Retorna true si existeix un Usuari, en cas contrari no existeix tauler. Si hi ha mes d'un Usuari a la Bd amb el mateix nomUsuari, ho diu per pantalla
+     */
     public static boolean existeixUsuari(String nomUsuari)
     {
         try (PreparedStatement s = conn.prepareStatement(COUNT_USUARI))
@@ -41,6 +46,11 @@ public class GestorUsuari
         }
     }
 
+    /**
+     * Aquesta funcio comprova si existeix ja un Usuari amb aquell id a la BD
+     * @param id
+     * @return Retorna true si existeix un Usuari, en cas contrari no existeix Usuari. Si hi ha mes d'un Usuari a la Bd amb el mateix id, ho diu per pantalla
+     */
     public static boolean existeixUsuari(int id)
     {
         if (id == -1)
@@ -59,6 +69,11 @@ public class GestorUsuari
         }
     }
 
+    /**
+     * Aquesta funcio retorna l'Usuari amb nomUsuari que es passa per parametre
+     * @param nomUsuari
+     * @return Retorna l'Usuari que te el nomUsuari passat per parametre
+     */
     public static Usuari donaUsuari(String nomUsuari)
     {
         Usuari u = null;
@@ -88,6 +103,11 @@ public class GestorUsuari
         return u;
     }
 
+    /**
+     * Aquesta funcio retorna l'Usuari amb id que es passa per parametre
+     * @param id
+     * @return Retorna l'Usuari amb l'id passat per parametre
+     */
     public static Usuari donaUsuari(int id)
     {
         Usuari u = null;
@@ -115,6 +135,11 @@ public class GestorUsuari
         return u;
     }
 
+    /**
+     * Aquesta funcio guarda l'Usuari passat per parametre a la BD
+     * @param u
+     * @return Retorna la ultima clau inserida, per saber la id de l'Usuari.
+     */
     public static int creaUsuari(Usuari u)
     {
         if (existeixUsuari(u.getNomUsuari()))
@@ -134,6 +159,11 @@ public class GestorUsuari
         return CapaPersistencia.retornaUltimaClauInserida();
     }
 
+    /**
+     * Aquesta funcio rep el nomUsuari del Usuari que es vol eliminar
+     * @param nomUsuari
+     * @return Retorna false si no s'ha esborrat cap Tauler, diu quants Taulers s'han esborrat, en cas que hagi sigut mes de un, i en cas que s'hagi esborrat nomes un, retorna true
+     */
     public static boolean eliminaUsuari(String nomUsuari)
     {
         //Per anar be, aquesta funcio nomes l'hauria de poder arribar a cridar l'administrador!!!
@@ -157,6 +187,11 @@ public class GestorUsuari
         }
     }
 
+    /**
+     * Aquesta funcio modifica un Usuari guardat de la BD
+     * @param u
+     * @return Retorna false si no existeix un Usuari u. En cas que s'hagi modificat mes d'un, ho imprimeix per pantalla i tambe si no s'ha pogut modificar
+     */
     public static boolean modificaUsuari(Usuari u)
     {
         if (!existeixUsuari(u.getUniqID()))

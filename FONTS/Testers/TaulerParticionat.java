@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 public class TaulerParticionat
 {
+    /**
+     * Aquesta funcio, per a un tauler donat mostra per pantalla si es o no partit
+     */
     public static void run()
     {
         System.out.println("De quant vols que sigui el tauler? ");

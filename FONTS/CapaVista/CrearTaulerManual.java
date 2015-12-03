@@ -16,6 +16,9 @@ public class CrearTaulerManual extends JDialog
     private TaulerDisplayer taulerDisplayer1;
     private JTextArea instruccionsUpLeftDownTextArea;
 
+    /**
+     * Crea un tauler nou i s'afegeixen els valors introduits al Tauler
+     */
     public CrearTaulerManual(Tauler t, TaulerDisplayerCallbacks cMethods)
     {
         $$$setupUI$$$();
@@ -62,12 +65,18 @@ public class CrearTaulerManual extends JDialog
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
-
+    /**
+     * Crea un nou TaulerDisplayer
+     */
     private void createUIComponents()
     {
         taulerDisplayer1 = new TaulerDisplayer();
     }
 
+
+    /**
+     * Aquesta funcio valida l'Hidato creat i el guarda
+     */
     private void onOK()
     {
         // add your code here
@@ -75,9 +84,11 @@ public class CrearTaulerManual extends JDialog
         dispose();
     }
 
+    /**
+     * Cancela el que s'ha fet
+     */
     private void onCancel()
     {
-        // add your code here if necessary
         dispose();
     }
 

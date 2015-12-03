@@ -16,6 +16,10 @@ public class CrearTaulerAutomatic extends JDialog
     private JSpinner spinnerNumerosPrecolocats;
     private JComboBox comboBoxDificultat;
 
+
+    /**
+     * Aquesta funcio permet crear un Hidato automaticament, el fa la maquina amb els valors desitjats
+     */
     public CrearTaulerAutomatic()
     {
         setContentPane(contentPane);
@@ -58,6 +62,10 @@ public class CrearTaulerAutomatic extends JDialog
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+
+    /**
+     * Es guarda l'Hidato creat i surt de la finestra
+     */
     private void onOK()
     {
         System.out.println("pase por aqui");
@@ -70,6 +78,9 @@ public class CrearTaulerAutomatic extends JDialog
         dispose();
     }
 
+    /**
+     * Cancela el que s'ha fet
+     */
     private void onCancel()
     {
         // add your code here if necessary

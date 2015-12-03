@@ -22,6 +22,9 @@ public class JugarPartida
     private Tauler t;
     private TaulerDisplayerCallbacks callbacks;
 
+    /**
+     * Va modificant els valors i en cas que s'escolli l'opcio guardar, guarda la partida i en cas que no es vulgui fer, es descarta
+     */
     public JugarPartida(Tauler taulerProgres, TaulerDisplayerCallbacks cMethods)
     {
         $$$setupUI$$$();
@@ -66,6 +69,9 @@ public class JugarPartida
         });
     }
 
+    /**
+     * Crea un tauler nou
+     */
     public void createUIComponents()
     {
         taulerDisplayer1 = new TaulerDisplayer();
