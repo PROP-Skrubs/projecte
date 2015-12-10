@@ -22,6 +22,8 @@ public class GestorHidato
     private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
     private final static String SELECT_HIDATO = "SELECT * FROM hidatos WHERE id = ?";
     private final static String SELECT_ALL_ID_HIDATO = "SELECT id FROM hidatos";
+    private final static String SELECT_HIDATOS_AMB_DIFICULTAT = "SELECT id FROM hidatos WHERE dificultat = ?";
+
 
     /**
      * Aquesta funcio mira si ja existeix un Hidato amb la id pasada per parametre a la BD
@@ -172,6 +174,25 @@ public class GestorHidato
             throw new RuntimeException(e);
         }
         return aRetornar;
+    }
+
+    public static ArrayList<Integer> donaPerDificultat (String dificultat){
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        try (PreparedStatement s = conn.prepareStatement(SELECT_HIDATOS_AMB_DIFICULTAT))
+        {
+            s.setString(1, dificultat);
+            ResultSet resSet = s.executeQuery();
+            while (resSet.next()) {
+                int i = resSet.getInt("idHidato");
+                array.add(i);
+            }
+
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return array;
     }
 
     //    public static List<Hidato> getHidatos() {
