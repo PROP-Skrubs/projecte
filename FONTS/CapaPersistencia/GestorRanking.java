@@ -46,7 +46,7 @@ public class GestorRanking {
      * @return Retorna un ArrayList amb les ids dels deu usuaris que han resolt un Hidato h amb un menor temps.
      * El tamany maxim possible del array sera 10.
      */
-    public static ArrayList<String> getIdUsuarisPerHidato(int idHidato) {
+    public static ArrayList<String> getNomUsuarisPerHidato(int idHidato) {
         ArrayList<String> array = new ArrayList<String>();
         try (PreparedStatement s = conn.prepareStatement(SELECT_USUARIS_PER_HIDATO)) {
             s.setInt(1, idHidato);
@@ -68,7 +68,7 @@ public class GestorRanking {
      * @return Retorna un ArrayList amb les ids dels deu usuaris que han resolt un Hidato h amb un menor temps i una donada dificultat.
      * El tamany maxim possible del array sera 10.
      */
-    public ArrayList<String> getIdUsuarisPerDificultat(String dificultat) {
+    public static ArrayList<String> getNomUsuarisPerDificultat(String dificultat) {
         ArrayList<String> result = new ArrayList<String>();
         try (PreparedStatement s = conn.prepareStatement(SELECT_PERSONES_PER_DIFICULTAT)) {
             s.setString(1, dificultat);

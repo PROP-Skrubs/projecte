@@ -2,6 +2,8 @@ package CapaDomini;
 
 import CapaPersistencia.GestorRanking;
 
+import java.util.ArrayList;
+
 /**
  * Created by oriol on 12/12/15.
  */
@@ -14,5 +16,17 @@ public class ControladorRanquing {
         r.setTemps(temps);
         r.setDificultat(dificultat);
         return GestorRanking.insertRanquing(r);
+    }
+
+    public ArrayList<String> getTopUsuarisperHidato(int idHidato){
+        return GestorRanking.getNomUsuarisPerHidato(idHidato);
+    }
+
+    public ArrayList<String> getTopUsuarisperDificultat(String dificultat){
+        return GestorRanking.getNomUsuarisPerDificultat(dificultat);
+    }
+
+    public ArrayList<Integer> getTopIdHidatos(){
+        return GestorRanking.getIdHidatosMesCopsResolts();
     }
 }
