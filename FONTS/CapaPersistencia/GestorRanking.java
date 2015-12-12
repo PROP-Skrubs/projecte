@@ -1,6 +1,8 @@
 package CapaPersistencia;
 
 
+import CapaDomini.Ranking;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,11 +15,29 @@ import java.util.ArrayList;
 public class GestorRanking {
     private final static Connection conn = CapaPersistencia.conn;
 
-    private final static String INSERT_USUARI = "INSERT INTO usuaris (idUsuari, idHidato, temps, dificultat) VALUES (?,?,?,?)";
+    private final static String INSERT_RANQUING = "INSERT INTO ranquing (idUsuari, idHidato, temps, dificultat) VALUES (?,?,?,?)";
 
     private final static String SELECT_USUARIS_PER_HIDATO = "SELECT idUsuari FROM ranquing WHERE idHidato = ? ORDER BY temps ASC LIMIT=10";
     private final static String SELECT_PERSONES_PER_DIFICULTAT = "SELECT  idUsuari FROM ranquing WHERE dificultat = ? ORDER BY temps ASC LIMIT=10";
     private final static String SELECT_HIDATOS_PER_COPS_RESOLT = "SELECT  idHidato FROM ranquing GROUP BY idHidato ORDER BY COUNT(*) DESC LIMIT=10";
+
+
+    public static int insertRanquing(Ranking r)
+    {
+        try (PreparedStatement p = conn.prepareStatement(INSERT_RANQUING))
+        {
+            p.setInt(1, r.getIdUsuari());
+            p.setInt(2, r.getIdHidato());
+            p.setInt(3, r.getTemps());
+            p.setString(4, r.getDificultat());
+            p.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return CapaPersistencia.retornaUltimaClauInserida();
+    }
 
     /**
      * Aquesta funcio selecciona de la BD els usuaris que han resolt un Hidato h amb menor temps i no han utilitzat cap ajuda
