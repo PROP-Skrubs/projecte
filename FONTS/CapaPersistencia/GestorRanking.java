@@ -17,7 +17,7 @@ public class GestorRanking {
 
     private final static String SELECT_USUARIS_PER_HIDATO = "SELECT idUsuari FROM ranquing WHERE idHidato = ? ORDER BY temps ASC LIMIT=10";
     private final static String SELECT_PERSONES_PER_DIFICULTAT = "SELECT  idUsuari FROM ranquing WHERE dificultat = ? ORDER BY temps ASC LIMIT=10";
-    private final static String SELECT_HIDATOS_PER_COPS_RESOLT = "SELECT  idHidato FROM ranquing GROUP BY idHidato ORDER BY COUNT(idHidato) DESC LIMIT=10";
+    private final static String SELECT_HIDATOS_PER_COPS_RESOLT = "SELECT  idHidato FROM ranquing GROUP BY idHidato ORDER BY COUNT(*) DESC LIMIT=10";
 
     /**
      * Aquesta funcio selecciona de la BD els usuaris que han resolt un Hidato h amb menor temps i no han utilitzat cap ajuda
