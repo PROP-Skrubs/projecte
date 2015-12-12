@@ -9,4 +9,5 @@ import java.util.ArrayList;
  */
 public class Ranking {
     private ArrayList<Integer> ranquingIds;
+    private ArrayList<Integer> usuariIds;
 }

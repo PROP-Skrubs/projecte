@@ -115,29 +115,27 @@ public class DriverGestEstRan {
                         ArrayList<Integer> array = gr.getIdUsuarisPerHidato(id);
                         System.out.println("\t Ranquing de Usuaris amb Hidato = " + id);
                         for (int i = 0; i < array.size(); ++i){
-                            System.out.print("\t\t" + i +  "-> " +  array.get(i) );
+                            System.out.println("\t\t" + i +  "-> " +  array.get(i) );
                         }
                     }
                     else if (s.equals("2")) {
                         System.out.println("Ha seleccionat Lectura Ranquing de Hidatos");
-                        System.out.println("\t Introdueix id Hidato:");
-                        int id = capt.nextInt();
                         GestorRanking gr = new GestorRanking();
-                        ArrayList<Integer> array = gr.getIdHidatosMesCopsResolts(id);
-                        System.out.println("\t Hidato mes cops resolt = " + id);
+                        ArrayList<Integer> array = gr.getIdHidatosMesCopsResolts();
+                        System.out.println("\t HidatoS mes cops resolt ");
                         for (int i = 0; i < array.size(); ++i){
-                            System.out.print("\t\t" + i +  "-> " +  array.get(i) );
+                            System.out.println("\t\t" + i +  "-> " +  array.get(i) );
                         }
                     }
                     else if (s.equals("3")) {
                         System.out.println("Ha seleccionat Lectura Ranquing de Persones per Dificultat");
-                        System.out.println("\t Introdueix id Hidato:");
+                        System.out.println("\t Introdueix dificultat:");
                         s = capt.nextLine();
                         GestorRanking gr = new GestorRanking();
                         ArrayList<Integer> array = gr.getIdUsuarisPerDificultat(s);
                         System.out.println("\t Ranquing de Usuaris amb dificultat = " + s);
                         for (int i = 0; i < array.size(); ++i){
-                            System.out.print("\t\t" + i +  "-> " +  array.get(i) );
+                            System.out.println("\t\t" + i +  "-> " +  array.get(i) );
                         }
                     }
                     else if (s.equals("x")) {
