@@ -42,7 +42,7 @@ public class CapaPersistencia
             ")";
     private static final String CREATE_TABLE_RANQUING = "CREATE TABLE IF NOT EXISTS ranquing (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "idUsuari INTEGER NOT NULL," +
+            "nomUsuari VARCHAR NOT NULL," +
             "idHidato INTEGER NOT NULL," +
             "temps INTEGER NOT NULL," +
             "dificultat VARCHAR NOT NULL," +

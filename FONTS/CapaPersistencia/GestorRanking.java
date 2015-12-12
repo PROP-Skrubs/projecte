@@ -15,18 +15,18 @@ import java.util.ArrayList;
 public class GestorRanking {
     private final static Connection conn = CapaPersistencia.conn;
 
-    private final static String INSERT_RANQUING = "INSERT INTO ranquing (idUsuari, idHidato, temps, dificultat) VALUES (?,?,?,?)";
+    private final static String INSERT_RANQUING = "INSERT INTO ranquing (nomUsuari, idHidato, temps, dificultat) VALUES (?,?,?,?)";
 
-    private final static String SELECT_USUARIS_PER_HIDATO = "SELECT idUsuari FROM ranquing WHERE idHidato = ? ORDER BY temps ASC LIMIT=10";
-    private final static String SELECT_PERSONES_PER_DIFICULTAT = "SELECT  idUsuari FROM ranquing WHERE dificultat = ? ORDER BY temps ASC LIMIT=10";
+    private final static String SELECT_USUARIS_PER_HIDATO = "SELECT nomUsuari FROM ranquing WHERE idHidato = ? ORDER BY temps ASC LIMIT=10";
+    private final static String SELECT_PERSONES_PER_DIFICULTAT = "SELECT  nomUsuari FROM ranquing WHERE dificultat = ? ORDER BY temps ASC LIMIT=10";
     private final static String SELECT_HIDATOS_PER_COPS_RESOLT = "SELECT  idHidato FROM ranquing GROUP BY idHidato ORDER BY COUNT(*) DESC LIMIT=10";
 
 
-    public static int insertRanquing(Ranking r)
+    public static boolean insertRanquing(Ranking r)
     {
         try (PreparedStatement p = conn.prepareStatement(INSERT_RANQUING))
         {
-            p.setInt(1, r.getIdUsuari());
+            p.setString(1, r.getnomUsuari());
             p.setInt(2, r.getIdHidato());
             p.setInt(3, r.getTemps());
             p.setString(4, r.getDificultat());
@@ -36,7 +36,7 @@ public class GestorRanking {
         {
             throw new RuntimeException(e);
         }
-        return CapaPersistencia.retornaUltimaClauInserida();
+        return true;
     }
 
     /**
@@ -46,14 +46,14 @@ public class GestorRanking {
      * @return Retorna un ArrayList amb les ids dels deu usuaris que han resolt un Hidato h amb un menor temps.
      * El tamany maxim possible del array sera 10.
      */
-    public static ArrayList<Integer> getIdUsuarisPerHidato(int idHidato) {
-        ArrayList<Integer> array = new ArrayList<Integer>();
+    public static ArrayList<String> getIdUsuarisPerHidato(int idHidato) {
+        ArrayList<String> array = new ArrayList<String>();
         try (PreparedStatement s = conn.prepareStatement(SELECT_USUARIS_PER_HIDATO)) {
             s.setInt(1, idHidato);
             ResultSet resSet = s.executeQuery();
             while (resSet.next()) {
-                int i = resSet.getInt("idUsuari");
-                array.add(i);
+                String nom = resSet.getString("nomUsuari");
+                array.add(nom);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -68,14 +68,14 @@ public class GestorRanking {
      * @return Retorna un ArrayList amb les ids dels deu usuaris que han resolt un Hidato h amb un menor temps i una donada dificultat.
      * El tamany maxim possible del array sera 10.
      */
-    public ArrayList<Integer> getIdUsuarisPerDificultat(String dificultat) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public ArrayList<String> getIdUsuarisPerDificultat(String dificultat) {
+        ArrayList<String> result = new ArrayList<String>();
         try (PreparedStatement s = conn.prepareStatement(SELECT_PERSONES_PER_DIFICULTAT)) {
             s.setString(1, dificultat);
             ResultSet resSet = s.executeQuery();
             while (resSet.next()) {
-                int i = resSet.getInt("idUsuari");
-                result.add(i);
+                String nom = resSet.getString("nomUsuari");
+                result.add(nom);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
