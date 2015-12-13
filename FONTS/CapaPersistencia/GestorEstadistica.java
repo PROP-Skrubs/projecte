@@ -11,23 +11,17 @@ import java.util.List;
  */
 public class GestorEstadistica {
     private static final Connection conn = CapaPersistencia.conn;
-
-    private static final String INSERT_EST = "INSERT INTO estadistica (" +
-            "idUsuari," +
-            "idHidato," +
-            "nIntents," +
-            "copsResolt," +
-            "tenps," +
-            "nAjudes," +
-            ") VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_EST = "INSERT INTO estadistica (idUsuari,idHidato,nIntents,copsResolt,temps,nAjudes) VALUES (?,?,?,?,?,?)";
     private final static String SELECT_ESTADISTICA = "SELECT * FROM estadistica WHERE idUsuari = ? and idHidato = ?";
     private final static String DELETE_ESTADISTICA = "DELETE FROM estadistica WHERE idUsuari = ? and idHidato = ?";
     private final static String UPDATE_ESTADISTICA = "UPDATE estadistica SET" +
             "    nIntents=?," +
             "    copsResolt=?," +
             "    temps=?," +
-            "    nAjudes=?," +
-            "WHERE idUsuari=? and idHidato=?";
+            "    nAjudes=? WHERE idUsuari=? and idHidato=?";
+
+   // "nAjudes=? WHERE id=?";
+
     private final static String SELECT_ALL_ESTADISTICA = "SELECT * FROM estadistica WHERE idUsuari = ?";
     private final static String SELECT_TEMPS = "SELECT temps FROM estadistica WHERE idHidato = ?";
     private final static String SELECT_NINTENTS = "SELECT nIntents FROM estadistica WHERE idHidato = ?";
@@ -37,7 +31,7 @@ public class GestorEstadistica {
     private final static String SELECT_DIFICULTAD = "SELECT dificultat FROM hidatos WHERE id = ?";
     private static final String COUNT_ESTADISTICA = "SELECT COUNT(*) FROM estadistica WHERE idUsuari=? and idHidato=?";
     private static final String COUNT_USUARI_EST = "SELECT COUNT(*) FROM estadistica WHERE idUsuari=?";
-
+    private final static String SELECT_ALL_ID_DIF = "SELECT DISTINCT id FROM hidatos WHERE dificultat = ?";
 
     public static boolean existeixEstadistica(int idHidato, int idUsuari){
         if(idHidato == -1 || idUsuari == -1) return false;
@@ -166,7 +160,7 @@ public class GestorEstadistica {
         return l;
     }
 
-    public static List<Integer> get_idHidatos() {
+    public static List<Integer> get_idHidatos( ) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_ALL_ID)) {
             ResultSet resSet = p.executeQuery();
@@ -179,21 +173,26 @@ public class GestorEstadistica {
         return l;
     }
 
-    public static Integer get_dificultat(Integer idHidato) {
-        Integer res = 0;
+    public static List<Integer> get_Hidatos_dificultat_x(String dificultat ) {
+        List<Integer> l = new ArrayList<>();
+        try (PreparedStatement p = conn.prepareStatement(SELECT_ALL_ID_DIF)) {
+            p.setString(1, dificultat);
+            ResultSet resSet = p.executeQuery();
+            while (resSet.next()) {
+                l.add(resSet.getInt("id"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return l;
+    }
+
+    public static String get_dificultat(Integer idHidato) {
+        String res = null;
         try (PreparedStatement p = conn.prepareStatement(SELECT_DIFICULTAD)) {
             p.setInt(1, idHidato);
             ResultSet resSet = p.executeQuery();
-                if(resSet.getString("dificultat")== "Fàcil"){
-                    res = 1;
-                }
-                else if(resSet.getString("dificultat")== "Medium"){
-                    res = 2;
-                }
-                else if(resSet.getString("dificultat")== "Dificult"){
-                    res = 3;
-                }
-                else    res = 4;
+            res = resSet.getString("dificultat");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -245,12 +244,13 @@ public class GestorEstadistica {
     }
 
     public static boolean modificaEstadistica(EstadisticasUsuari est){
+        boolean b = false;
         if(!existeixEstadistica(est.getIdUsuari(),est.getIdHidato())){
-            return false;
+            b = false;
         }
         try (PreparedStatement s = conn.prepareStatement(UPDATE_ESTADISTICA)){
             s.setInt(1,est.getIntents());
-            s.setInt(2,est.getCops_res());
+            s.setInt(2, est.getCops_res());
             s.setInt(3,est.getTemps_mig());
             s.setInt(4,est.getAjudes());
             s.setInt(5,est.getIdUsuari());
@@ -264,10 +264,11 @@ public class GestorEstadistica {
                 else problema = String.format("S'han modificat %d estadistiques!", modificats);
                 throw new RuntimeException(problema);
             }
+            b = true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return true;
+        return b;
     }
 
 }
