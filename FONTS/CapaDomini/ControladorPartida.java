@@ -112,6 +112,7 @@ public class ControladorPartida
         partida.setnCelesResoltes(0);
         partida.setNumAjudesUtilitzades(0);
         partida.setEsAcabada(false);
+        partida.setTemps(0);
     }
 
 
