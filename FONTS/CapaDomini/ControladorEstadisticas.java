@@ -106,7 +106,7 @@ public class ControladorEstadisticas {
             int nAjudes = e.getAjudes();
             ++intents;
             ++cops_resolt;
-            nAjudes += p.getnAjudes();
+            nAjudes += p.getNumAjudesUtilitzades();
             temps = (temps + p.getTemps()) / 2;
             e.setIntents(intents);
             e.setAjudes(nAjudes);
@@ -115,7 +115,7 @@ public class ControladorEstadisticas {
             GestorEstadistica.modificaEstadistica(e);
         } else {
             e = new EstadisticasUsuari(p.getIDHidato(), p.getIDUsuari());
-            e.setAjudes(p.getnAjudes());
+            e.setAjudes(p.getNumAjudesUtilitzades());
             e.setCops_res(1);
             e.setIntents(1);
             e.setTemps_mig(p.getTemps());
