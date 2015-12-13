@@ -21,7 +21,8 @@ public class GestorPartida
             "nCelesResoltes," +
             "numAjudesUtilitzades," +
             "esAcabada" +
-            ") VALUES (?, ?, ?, ?, ?, ?)";
+            "temps" +
+            ") VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String COUNT_PARTIDA = "SELECT COUNT(*) FROM partides WHERE id=?";
     private static final String DELETE_PARTIDA = "DELETE FROM partides WHERE id=?";
     private static final String SELECT_PARTIDA = "SELECT * FROM partides WHERE id=?";
@@ -29,7 +30,8 @@ public class GestorPartida
             "idTaulerProgres=?," +
             "nCelesResoltes=?," +
             "numAjudesUtilitzades=?," +
-            "esAcabada=? WHERE id=?";
+            "esAcabada=?," +
+            "temps=? WHERE id=?";
     private static final String SELECT_ALL_ID_PARTIDA = "SELECT id FROM partides";
 
     /**
@@ -88,6 +90,7 @@ public class GestorPartida
                 aRetornar.setnCelesResoltes(resSet.getInt("nCelesResoltes"));
                 aRetornar.setNumAjudesUtilitzades(resSet.getInt("numAjudesUtilitzades"));
                 aRetornar.setEsAcabada(resSet.getBoolean("esAcabada"));
+                aRetornar.setTemps(resSet.getInt("temps"));
             }
         }
         catch (SQLException e)
@@ -128,6 +131,7 @@ public class GestorPartida
             ps.setInt(4, p.getnCelesResoltes());
             ps.setInt(5, p.getNumAjudesUtilitzades());
             ps.setBoolean(6, p.esAcabada());
+            ps.setInt(7, p.getTemps());
             ps.executeUpdate();
         }
         catch (SQLException e)
@@ -162,6 +166,7 @@ public class GestorPartida
             ps.setInt(2,p.getnCelesResoltes());
             ps.setInt(3,p.getNumAjudesUtilitzades());
             ps.setBoolean(4,p.esAcabada());
+            ps.setInt(5,p.getTemps());
         }
         catch (SQLException e)
         {
