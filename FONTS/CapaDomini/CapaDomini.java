@@ -15,6 +15,13 @@ public class CapaDomini
      * en les esquines o els que estan a un extrem del Tauler
      * @param Adjacents
      */
+
+    public static final int OK = 0;
+    public static final int ERRORTAMANY = 1;
+    public static final int ERRORFORATS = 2;
+    public static final int ERRORNUMPREDETERMINATS = 3;
+
+
     public static void ordenaAdjacents(List<Casella> Adjacents)
     {
         ListIterator<Casella> it = Adjacents.listIterator();
@@ -243,30 +250,28 @@ public class CapaDomini
         }
     }
 
-
-    public static boolean validarparamscreacioTaulerpredeterminat(int n, int m, int x, String dificultat)
+    /**
+     * Valida la entrada dels paràmetres dels generadors d'Hidatos aleatoris
+     * @param n El tamany d'un costat del Hidato
+     * @param m El nombre de Forats que hi haurà al Hidato
+     * @param x El nombre de números predeterminats que hi haurà al Hidato
+     * @return
+     */
+    public static int  validarparamscreacioTaulerpredeterminat(int n, int m, int x)
     {
-        /**@use Donat 3 enters i un string que seran els parametres per generar un Hidato
-         * random et verifica que son parametres legals
-         */
-
         if (n < 3 || n > 10)
         {
-            throw new RuntimeException("Nombre de costat no valid, inserti un altre");
+            return ERRORTAMANY;
         }
         if (m < 0 || m > (0.3 * n * n))
         {
-            throw new RuntimeException("Nombre de forats no vàlid, inserti un altre");
+           return ERRORFORATS;
         }
-        if (x < 3 || x > (n * n - 1))
+        if (x < 0.75*(n*n-m) || x > (n * n - 1))
         {
-            throw new RuntimeException("Nombre predeterminats no vàlid, inserti un altre");
+            return ERRORNUMPREDETERMINATS;
         }
-        if ((dificultat.compareTo("facil") != 0) || (dificultat.compareTo("normal") != 0) || (dificultat.compareTo("dificil") != 0) || (dificultat.compareTo("UltraViolence") != 0))
-        {
-            throw new RuntimeException("Dificultat no vàlida, inserti un altre");
-        }
-        return true;
+        return OK;
     }
 
 
