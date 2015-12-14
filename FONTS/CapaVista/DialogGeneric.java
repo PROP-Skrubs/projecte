@@ -79,12 +79,12 @@ public class DialogGeneric
         });
     }
 
-    private void executaOk()
+    public void executaOk()
     {
         throw new RuntimeException("Accio OK per defecte no reimplementada!");
     }
 
-    private void executaKo()
+    public void executaKo()
     {
         //simulem que l'usuari ha clicat la creueta de tancar finestra
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
