@@ -51,8 +51,8 @@ public class VistaCrearHidatos extends DialogGeneric
         mainPanel.add(toAdd, c);
 
         radioButtonGroup = new ButtonGroup();
-        radioButtonGroup.add(automaticamentRadioButton);
-        radioButtonGroup.add(manualmentRadioButton);
+        radioButtonGroup.add(radioButtonAutomatic);
+        radioButtonGroup.add(radioButtonManual);
 
     }
 
