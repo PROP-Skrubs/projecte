@@ -86,7 +86,7 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+    public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
 
         Random rnd = new Random();
         if (k == final1 - 1)
@@ -121,10 +121,10 @@ public class CapaDomini
                 //            escriu(taux);
                 //taux.print();
                 //System.out.print("\n");
-                if (taux.he_acabat()) backtrackingmayorde8(kaux, final1, aux, taux, fin);
+                if (taux.he_acabat()) backtrackingmayorde8(kaux, final1, aux, taux, fin, ++cont);
                 else if (!taux.esPartit())
                 {
-                    int auxret = backtrackingmayorde8(kaux, final1, aux, taux, fin);
+                    int auxret = backtrackingmayorde8(kaux, final1, aux, taux, fin, ++cont);
                     if (auxret == 0) return 0;
                 }
 
@@ -145,7 +145,7 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+    public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
 
         Random rnd = new Random();
         if (k == final1 - 1)
@@ -180,10 +180,10 @@ public class CapaDomini
                 //            escriu(taux);
                 //taux.print();
                 //System.out.print("\n");
-                if (taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin);
+                if (taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin, ++cont);
                 else if (!taux.esPartit())
                 {
-                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
+                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin, ++cont);
                     if (auxret == 0) return 0;
                 }
 
@@ -204,7 +204,7 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+    public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
 
 
         Random rnd = new Random();
@@ -238,10 +238,10 @@ public class CapaDomini
                 //            escriu(taux);
                //taux.print();
                 //System.out.print("\n");
-                if (taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin);
+                if (taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin, ++cont);
                 else if (!taux.esPartit())
                 {
-                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
+                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin, ++cont);
                     if (auxret == 0) return 0;
                 }
 
@@ -304,24 +304,18 @@ public class CapaDomini
             int auxY;
 
             //ficar_numadjlliures(t);
-
-            for (int i = 0; i < m; ++i)
-            { //poner de forma RANDOM els forats
-                auxX = rnd.nextInt(n);
-                auxY = rnd.nextInt(n);
-                if (t.getCasella(auxX, auxY).elem == -1)
-                {
-                    --i;
+            boolean b = true;
+            while(b) {
+                for (int i = 0; i < m; ++i) { //poner de forma RANDOM els forats
+                    auxX = rnd.nextInt(n);
+                    auxY = rnd.nextInt(n);
+                    if (t.getCasella(auxX, auxY).elem == -1) {
+                        --i;
+                    } else {
+                        t.setCasella(auxX, auxY, Casella.FORAT, -1);
+                    }
                 }
-                else
-                {
-                    t.setCasella(auxX, auxY, Casella.FORAT, -1);
-                }
-            }
-            boolean b = t.esPartit();
-            if (b)
-            {
-                throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");
+                b = t.esPartit();
             }
 
 
@@ -367,9 +361,10 @@ public class CapaDomini
                 throw new RuntimeException("L'Hidato propossat no té solució");
             if (acabarbacktrackin == ValidadorTauler.MULTIPLES && intentsdedonarHidatobo == 20)
                 throw new RuntimeException("Els parametres donats no son suficients per donar un Hidato únic");
-
-            if (n >= 7) backtrackingmayorde8(0, n * n - m, inicial, t, ret);
-            else backtrackingmenor(0, n * n - m, inicial, t, ret);
+            int cont;
+            cont = 0;
+            if (n >= 7) backtrackingmayorde8(0, n * n - m, inicial, t, ret, cont);
+            else backtrackingmenor(0, n * n - m, inicial, t, ret, cont);
             eliminarnumeros(ret, num_pre);
 
             acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
