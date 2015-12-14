@@ -57,9 +57,8 @@ public class CapaPersistencia
             "idHidato INTEGER NOT NULL," +
             "temps INTEGER NOT NULL," +
             "dificultat VARCHAR NOT NULL," +
-            "FOREIGN KEY (idUsuari) REFERENCES usuaris(id)," +
-            "FOREIGN KEY (idHidato) REFERENCES hidato(id)," +
-            "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
+            "FOREIGN KEY (nomUsuari) REFERENCES usuaris(id)," +
+            "FOREIGN KEY (idHidato) REFERENCES hidato(id)" +
             ")";
     static Connection conn;
 
@@ -69,6 +68,7 @@ public class CapaPersistencia
         {
             //jbdc:sqlite:<pathAlFitxer.db>
             conn = DriverManager.getConnection("jdbc:sqlite:DATA/basedades.db");
+            //conn = DriverManager.getConnection("jdbc:sqlite:/home/projecte/basedades.db");
         }
         catch (SQLException e)
         {
