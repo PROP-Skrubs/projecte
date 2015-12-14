@@ -153,6 +153,14 @@ public class GestorHidato
         }
     }
 
+    /**
+     * Aquesta funció modifica la tupla de la BD d'hidato que el pases com a primer paràmetre
+     * @param h Hidato que vols modificar
+     * @param id nou idTauler del Hidato h
+     * @param idComplet nou idTaulerComplert del Hidato h
+     * @param dificultat nova dificultat del Hidato h
+     * @return Retorna false si no s'ha modificat cap Hidato, et retorna el número d'Hidatos que s'han modificats, retorna true
+     */
     public static boolean modificaHidato(Hidato h, int id, int idComplet, String dificultat)
     {
         if(!existeixHidato(h.getUniqID())) {
