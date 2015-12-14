@@ -139,7 +139,19 @@ public class GestorPartida
 
     public static boolean eliminaPartida(int id)
     {
-        return false; //todo acabar
+        if(!existeixPartida(id)){
+            throw new RuntimeException("No existeix la partida que es vol eliminar");
+        }
+
+        try (PreparedStatement ps = conn.prepareStatement(DELETE_PARTIDA)) {
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+
     }
 
     /**

@@ -22,6 +22,11 @@ public class GestorHidato
     private final static String DELETE_HIDATO = "DELETE FROM hidatos WHERE id = ?";
     private final static String SELECT_HIDATO = "SELECT * FROM hidatos WHERE id = ?";
     private final static String SELECT_ALL_ID_HIDATO = "SELECT id FROM hidatos";
+    private final static String UPDATE_HIDATO = "UPDATE hidatos SET" +
+            "    idtauler=?," +
+            "    idtaulerComplert=?," +
+            "    dificultat=?" +
+            "WHERE idTauler=?";
 
     /**
      * Aquesta funcio mira si ja existeix un Hidato amb la id pasada per parametre a la BD
@@ -147,9 +152,31 @@ public class GestorHidato
         }
     }
 
-    public static boolean modificaHidato(Hidato h)
+    public static boolean modificaHidato(Hidato h, int id, int idComplet, String dificultat)
     {
-        return false; //todo what
+        if(!existeixHidato(h.getUniqID())) {
+            return false;
+        }
+        try(PreparedStatement s = conn.prepareStatement(UPDATE_HIDATO))
+        {
+            s.setInt(1, id);
+            s.setInt(2, idComplet);
+            s.setString(3, dificultat);
+            s.setInt(4, h.getIDTauler());
+            int modificats = s.executeUpdate();
+            if (modificats != 1){
+                String problema;
+                if (modificats == 0)
+                    throw new RuntimeException("No s'ha modificat l'hidato, pero ha passat el check d'existencia.");
+                else problema = String.format("S'han modificat %d hidatos!", modificats);
+                throw new RuntimeException(problema);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return true;
     }
 
     /**
