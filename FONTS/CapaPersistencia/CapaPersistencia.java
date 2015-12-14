@@ -36,11 +36,31 @@ public class CapaPersistencia
             "nCelesResoltes INTEGER NOT NULL," +
             "numAjudesUtilitzades INTEGER NOT NULL," +
             "esAcabada BOOLEAN NOT NULL," +
+            "temps INTEGER NOT NULL," +
             "FOREIGN KEY (idUsuari) REFERENCES usuaris(id)," +
             "FOREIGN KEY (idHidato) REFERENCES hidato(id)," +
             "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
             ")";
-
+    private static final String CREATE_TABLE_ESTADISTICA = "CREATE TABLE IF NOT EXISTS estadistica (" +
+            "idUsuari INTEGER NOT NULL," +
+            "idHidato INTEGER NOT NULL," +
+            "nIntents INTEGER NOT NULL," +
+            "copsResolt INTEGER NOT NULL," +
+            "temps INTEGER NOT NULL," +
+            "nAjudes INTEGER NOT NULL," +
+            "FOREIGN KEY (idUsuari) REFERENCES usuaris(id)," +
+            "FOREIGN KEY (idHidato) REFERENCES hidato(id)," +
+            ")";
+    private static final String CREATE_TABLE_RANQUING = "CREATE TABLE IF NOT EXISTS ranquing (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nomUsuari VARCHAR NOT NULL," +
+            "idHidato INTEGER NOT NULL," +
+            "temps INTEGER NOT NULL," +
+            "dificultat VARCHAR NOT NULL," +
+            "FOREIGN KEY (idUsuari) REFERENCES usuaris(id)," +
+            "FOREIGN KEY (idHidato) REFERENCES hidato(id)," +
+            "FOREIGN KEY (idTaulerProgres) REFERENCES taulers(id)" +
+            ")";
     static Connection conn;
 
     static
@@ -100,6 +120,8 @@ public class CapaPersistencia
             statement.execute(CREATE_TABLE_TAULERS);
             statement.execute(CREATE_TABLE_HIDATOS);
             statement.execute(CREATE_TABLE_PARTIDES);
+            statement.execute(CREATE_TABLE_ESTADISTICA);
+            statement.execute(CREATE_TABLE_RANQUING);
             //Falta afegir el codi de la resta de taules (e.g. estadistiques)
         }
         catch (SQLException e)

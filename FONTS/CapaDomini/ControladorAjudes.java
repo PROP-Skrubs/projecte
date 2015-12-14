@@ -13,6 +13,26 @@ public class ControladorAjudes {
     /**
      *
      * @param h
+     * @return Donat un Hidato per paràmetre et retorna un ArrayList de les caselles del tauler que no coincideixin amb
+     * les caselles del taulerComplert
+     */
+    public ArrayList<Casella> casellas_diferents(Hidato h){
+        ArrayList<Casella> array= new ArrayList<Casella>();
+        for (int i = 0 ; i < h.getTamany(); ++i){
+            for(int j = 0; i < h.getTamany(); ++i){
+                if (h.getTauler().getCasella(i,j).elem != -1 || h.getTauler().getCasella(i,j).elem != 0) {
+                    if (h.getTauler().getCasella(i, j).elem != h.getTaulerComplert().getCasella(i, j).elem) {
+                        array.add(h.getTauler().getCasella(i, j));
+                    }
+                }
+            }
+        }
+        return array;
+    }
+
+    /**
+     *
+     * @param h
      * @return Donat un Hidato per paràmetre et retorna la Casella següent que s’hauria completar al Hidato en una partida,
      * en ordre creixent de ficar Caselles.
      */

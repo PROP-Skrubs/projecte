@@ -14,7 +14,8 @@ public class Partida
     private int nCelesResoltes;
     private int numAjudesUtilitzades;
     private boolean esAcabada;
-
+    private int temps;
+    
     /**
      * Afegeix un valor n del Tauler del Hidato i imprimeix el tauler amb la nova modificacio.
      * @param x
@@ -237,6 +238,14 @@ public class Partida
         this.esAcabada = esAcabada;
     }
 
+    public int getTemps() {
+        return temps;
+    }
+
+    public void setTemps(int temps) {
+        this.temps = temps;
+    }
+    
     /**
      * Constructora buida
      */
