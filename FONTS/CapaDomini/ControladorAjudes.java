@@ -65,6 +65,27 @@ public class ControladorAjudes {
         return res1;
     }
 
+    /**
+     *
+     * @param num Número el cual quieres saber que posiciones puede tener
+     * @param h Hidato que se esta jugando
+     * @return Devuelve una lista de Casillas donde puede estar el num en el Hidato
+     */
+    public List<Casella> help3(Integer num, Hidato h) {
+
+        List<Casella> res = new ArrayList<Casella>();
+        Tauler t = h.getTauler();
+        Tauler tcomplet = h.getTaulerComplert();
+
+        for( int i = 0; i < t.getTamany(); ++i) {
+            for (int j = 0; j < t.getTamany(); ++j) {
+                if((tcomplet.getCasella(i,j).elem == (num +1) || tcomplet.getCasella(i,j).elem == (num-1)) && t.getCasella(i,j).elem == 0 ) res.add(t.getCasella(i,j));
+            }
+        }
+        return  res;
+
+    }
+
 
     /**
      *

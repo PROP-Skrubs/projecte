@@ -27,6 +27,7 @@ public class DriverGestioPartida
             else if (s.equals("play"))
             {
                 System.out.print("Introdueix id del hidato a jugar:");
+
                 List<Integer> l = new ArrayList<>();
                 for(int i = 0; i < l.size(); i++) {
                     System.out.print(l.get(i) + " ");
