@@ -1,5 +1,6 @@
 package Testers;
 
+import CapaDomini.Ranking;
 import CapaPersistencia.*;
 
 import java.util.ArrayList;
@@ -103,28 +104,48 @@ public class DriverGestEstRan {
                 while (true) {
                     System.out.println("Ranquing Top 10");
                     System.out.println("Introdueixi el numero de la consulta que vulgui realitzar:");
+                    System.out.println("\t- i: Introduir fila ranquing");
                     System.out.println("\t- 1: Lectura Ranquing de Usuaris per Hidato");
                     System.out.println("\t- 2: Lectura Ranquing de Hidatos");
                     System.out.println("\t- 3: Lectura  Ranquing de Persones per Dificultat");
                     System.out.println("\t- x: Lectura Sortir Ranquing");
-                    if (s.equals("1")) {
+                    s = capt.nextLine();
+                    if (s.equals("i")){
+                        Ranking ranquing = new Ranking();
+                        System.out.println("Introduieix nom usuari");
+                        s = capt.nextLine();
+                        ranquing.setNomUsuari(s);
+                        System.out.println("Introdueix idHidato");
+                        int x = capt.nextInt();
+                        ranquing.setIdHidato(x);
+                        System.out.println("Introdueix temps");
+                        x = capt.nextInt();
+                        ranquing.setTemps(x);
+                        System.out.println("Introdueix dificultat");
+                        s = capt.next();
+                        ranquing.setDificultat(s);
+                        GestorRanking gr = new GestorRanking();
+                        gr.insertRanquing(ranquing);
+
+                    }
+                    else if (s.equals("1")) {
                         System.out.println("Ha seleccionat Lectura Ranquing de Usuaris per Hidato");
                         System.out.println("\t Introdueix id Hidato:");
                         int id = capt.nextInt();
                         GestorRanking gr = new GestorRanking();
-                        ArrayList<Integer> array = gr.getIdUsuarisPerHidato(id);
+                        ArrayList<Ranking> array = gr.getUsuarisPerHidato(id);
                         System.out.println("\t Ranquing de Usuaris amb Hidato = " + id);
                         for (int i = 0; i < array.size(); ++i){
-                            System.out.println("\t\t" + i +  "-> " +  array.get(i) );
+                            System.out.println("\t\t" + i +  "-> " +  array.get(i).getnomUsuari() + " -> " +  array.get(i).getTemps() );
                         }
                     }
                     else if (s.equals("2")) {
                         System.out.println("Ha seleccionat Lectura Ranquing de Hidatos");
                         GestorRanking gr = new GestorRanking();
-                        ArrayList<Integer> array = gr.getIdHidatosMesCopsResolts();
+                        ArrayList<Ranking> array = gr.getHidatosMesCopsResolts();
                         System.out.println("\t HidatoS mes cops resolt ");
                         for (int i = 0; i < array.size(); ++i){
-                            System.out.println("\t\t" + i +  "-> " +  array.get(i) );
+                            System.out.println("\t\t" + i +  "-> " +  array.get(i).getIdHidato() + "-> " + array.get(i).getTemps() );
                         }
                     }
                     else if (s.equals("3")) {
@@ -132,10 +153,10 @@ public class DriverGestEstRan {
                         System.out.println("\t Introdueix dificultat:");
                         s = capt.nextLine();
                         GestorRanking gr = new GestorRanking();
-                        ArrayList<Integer> array = gr.getIdUsuarisPerDificultat(s);
+                        ArrayList<Ranking> array = gr.getUsuarisPerDificultat(s);
                         System.out.println("\t Ranquing de Usuaris amb dificultat = " + s);
                         for (int i = 0; i < array.size(); ++i){
-                            System.out.println("\t\t" + i +  "-> " +  array.get(i) );
+                            System.out.println("\t\t" + i +  "-> " +  array.get(i).getnomUsuari() + " -> " +  array.get(i).getTemps() );
                         }
                     }
                     else if (s.equals("x")) {
