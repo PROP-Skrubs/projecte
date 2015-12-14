@@ -33,6 +33,14 @@ public class GestorEstadistica {
     private static final String COUNT_USUARI_EST = "SELECT COUNT(*) FROM estadistica WHERE idUsuari=?";
     private final static String SELECT_ALL_ID_DIF = "SELECT DISTINCT id FROM hidatos WHERE dificultat = ?";
 
+
+
+    /**
+     * Aquesta funcio mira si ja existeix una Estadistica amb la idHidato i idUsuari pasada per parametre a la BD
+     * @param idHidato
+     * @param idUsuari
+     * @return Retorna true si existeix una Estadistica amb aquella idUsuari i idHidato a la BD
+     */
     public static boolean existeixEstadistica(int idHidato, int idUsuari){
         if(idHidato == -1 || idUsuari == -1) return false;
         try (PreparedStatement s = conn.prepareStatement(COUNT_ESTADISTICA))
@@ -50,6 +58,11 @@ public class GestorEstadistica {
         }
     }
 
+    /**
+     * Aquesta funcio mira si ja existeix una Estadistica amb l'idUsuari passat per parametre a la BD
+     * @param idUsuari
+     * @return Retorna true si existeix alguna Estadistica d'aquell idUsuari a la BD
+     */
     public static boolean existeixUsuariEnEstadistica(int idUsuari){
         try (PreparedStatement s = conn.prepareStatement(COUNT_USUARI_EST))
         {
@@ -65,6 +78,11 @@ public class GestorEstadistica {
         }
     }
 
+    /**
+     * Aquesta funcio guarda l'EstadisticaUsuari passada per parametre a la BD
+     * @param est
+     * @return Retorna true si es guarda correctament i false en cas que ja existeixi
+     */
     public static boolean guardaEstadistica(EstadisticasUsuari est) {
         if (existeixEstadistica(est.getIdUsuari(),est.getIdHidato()))
             return false;
@@ -82,6 +100,11 @@ public class GestorEstadistica {
         return true;
     }
 
+    /**
+     * Aquesta funcio dona totes les Estadistiques de l'usuari iduser  passat per parametre a la BD
+     * @param iduser
+     * @return Retorna una llista amb totes les estadistiques de l'usuari iduser
+     */
     public static List<EstadisticasUsuari> dona_estadistiques_Usuari(int iduser) {
         List<EstadisticasUsuari> l = new ArrayList<>();
 
@@ -104,6 +127,12 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona una llista amb tots els temps de les estadistiques
+     * d'idhidato passat per parametre a la BD
+     * @param idhidato
+     * @return Retorna una llista amb el temps de les estadistiques d'idhidato
+     */
     public static List<Integer> get_temps(int idhidato) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_TEMPS)) {
@@ -118,6 +147,12 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona el numero d'intents de totes les Estadistiques
+     * de idhidato passat per parametre a la BD
+     * @param idhidato
+     * @return Retorna una llista amb els nintents de les estadistiques de idhidato
+     */
     public static List<Integer> get_nintents(int idhidato) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_NINTENTS)) {
@@ -132,6 +167,12 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona el numero de coprs resolt de totes les Estadistiques
+     * de idhidato passat per parametre a la BD
+     * @param idhidato
+     * @return Retorna una llista amb el numero de cops resolt de les estadistiques de idhidato
+     */
     public static List<Integer> get_copsResolt(int idhidato) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_COPSRESOLT)) {
@@ -146,6 +187,12 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona el numero d'ajudes de totes les Estadistiques
+     * de idhidato passat per parametre a la BD
+     * @param idhidato
+     * @return Retorna una llista amb el numero d'ajudes resolt de les estadistiques de idhidato
+     */
     public static List<Integer> get_nAjudes(int idhidato) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_NAJUDES)) {
@@ -160,6 +207,10 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona una llista amb tots els idhidatos que hi ha a les Estadistiques
+     * @return Retorna una llista amb els idhidatos de estadistiques
+     */
     public static List<Integer> get_idHidatos( ) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_ALL_ID)) {
@@ -173,6 +224,11 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona els idHidato que tenen la dificultat passada per parametre
+     * @param dificultat
+     * @return Retorna una llista amb els idHidato que tenen la dificultat "dificultat"
+     */
     public static List<Integer> get_Hidatos_dificultat_x(String dificultat ) {
         List<Integer> l = new ArrayList<>();
         try (PreparedStatement p = conn.prepareStatement(SELECT_ALL_ID_DIF)) {
@@ -187,6 +243,11 @@ public class GestorEstadistica {
         return l;
     }
 
+    /**
+     * Aquesta funcio dona la dificultat de idHidato
+     * @param idHidato
+     * @return Retorna la dificultat de idHidato
+     */
     public static String get_dificultat(Integer idHidato) {
         String res = null;
         try (PreparedStatement p = conn.prepareStatement(SELECT_DIFICULTAD)) {
@@ -199,6 +260,12 @@ public class GestorEstadistica {
         return res;
     }
 
+    /**
+     * Aquesta funcio dona l'estadistica que te iduser i id_Hidato de la BD
+     * @param iduser
+     * @param id_Hidato
+     * @return Retorna una Estadistica que te com a parametres isuser i id_Hidato
+     */
     public static EstadisticasUsuari donaEstadistica(int iduser, int id_Hidato) {
         EstadisticasUsuari aRetornar = null;
         try (PreparedStatement p = conn.prepareStatement(SELECT_ESTADISTICA)) {
@@ -224,6 +291,12 @@ public class GestorEstadistica {
         return aRetornar;
     }
 
+    /**
+     * Aquesta funcio elimina de la BD l'estadistica amb iduser i idHidato
+     * @param iduser
+     * @param idHidato
+     * @return Retorna true si s'ha esborrat correctament, i false en cas contrari
+     */
     public static boolean eliminaEstadistica(int iduser, int idHidato) {
         Boolean b = true;
         String problema = null;
@@ -243,6 +316,11 @@ public class GestorEstadistica {
         return b;
     }
 
+    /**
+     * Aquesta funcio modifica a la BD l'estadistica est passada per parametre
+     * @param est
+     * @return Retorna true si s'ha modificat i false en cas contrari
+     */
     public static boolean modificaEstadistica(EstadisticasUsuari est){
         boolean b = false;
         if(!existeixEstadistica(est.getIdUsuari(),est.getIdHidato())){
