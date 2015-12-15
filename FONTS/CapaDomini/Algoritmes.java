@@ -3,12 +3,9 @@ package CapaDomini;
 import java.util.*;
 
 /**
- * Esta Classe crea Hidatos de forma Predeterminada mes tot lo que comporta
- * @author Eduard J. Seoane
+ * Created by Eduard on 15/12/15.
  */
-
-public class CapaDomini
-{
+public class Algoritmes {
     /**
      *  Donada una Llista de caselles donada per parametre d’entrada et modifica
      * aquesta llista perque et fiquin en primera posició els adjacents que estan
@@ -27,7 +24,7 @@ public class CapaDomini
 
 
 
-    public static void ordenaAdjacents(List<Casella> Adjacents)
+    private static void ordenaAdjacents(List<Casella> Adjacents)
     {
         ListIterator<Casella> it = Adjacents.listIterator();
         boolean acabat = false;
@@ -67,7 +64,7 @@ public class CapaDomini
      * @param t
      * @param num_pre
      */
-    public static void eliminarnumeros( Tauler t, List<Integer> num_pre){
+    private static void eliminarnumeros( Tauler t, List<Integer> num_pre){
 
         for (int i = 0; i < t.getTamany(); ++i) {
             for (int j = 0; j < t.getTamany(); ++j) {
@@ -91,7 +88,7 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
+    private static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
         ++cont;
         if (cont >= 300) {
             return 3;
@@ -154,70 +151,7 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
-        ++cont;
-        if (cont >= 300) {
-            return 3;
-        }
-        else {
-            Random rnd = new Random();
-            if (k == final1 - 1) {
-                fin.clone(t);
-                System.out.print("Contador de backtracking = " + cont + "\n");
-
-                //            escriu(fin);
-                return 0;
-            } else {
-                List<Casella> Adjacents = new ArrayList<Casella>();
-                t.getAdjacentslist(actual, Adjacents);
-                while (!Adjacents.isEmpty() && !fin.he_acabat()) {
-
-                    //int p = numadjmespetit(Adjacents);
-                    //Collections.sort(Adjacents, new Casella());
-                    ordenaAdjacents(Adjacents);
-
-                    //Collections.sort(Adjacents);
-                    int kaux = k + 1;
-                    Casella aux = Adjacents.get(0);
-                    Adjacents.remove(0);
-
-                    aux.elem = actual.elem + 1;
-
-                    Tauler taux = new Tauler(t.getTamany());
-                    taux.clone(t);
-                    //                escriu(taux);
-                    //              escriu(t);
-                    taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
-                    //            escriu(taux);
-                    //taux.print();
-                    //System.out.print("\n");
-                    if (taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin, ++cont);
-                    else if (!taux.esPartit()) {
-                        int auxret = backtrackingmenor(kaux, final1, aux, taux, fin, ++cont);
-                        if (auxret == 0) return 0;
-                        if (auxret == 3) return 3;
-                    }
-
-                }
-                return -1;
-            }
-        }
-    }
-
-
-    /**
-     * Donat dos enters una Casella y dos taulers, t’emplena un tauler
-     * completament amb un cami vàlid
-     *
-     * @param k contador del Backtracking
-     * @param final1 final del contador del Backtracking
-     * @param actual Casella on estas
-     * @param t Tauler per on es genera
-     * @param fin Cuando completas t lo pasas a fin para devolsver el tablero completo
-     *
-     * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
-     */
-    public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
+    private static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
 
         ++cont;
         if (cont >= 300) {
@@ -309,7 +243,7 @@ public class CapaDomini
         }
         if (m < 0 || m > (0.3 * n * n))
         {
-           return ERRORFORATS;
+            return ERRORFORATS;
         }
         if (x < minimPredeterminats*(n*n-m) || x > maximPredeterminats*(n*n-m))
         {
@@ -419,7 +353,7 @@ public class CapaDomini
                 acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
             }
 
-                System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
+            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
 
 
             System.out.print("Surto Backtracking:\n");
