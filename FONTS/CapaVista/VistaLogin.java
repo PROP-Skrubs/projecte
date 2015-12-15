@@ -25,7 +25,7 @@ public class VistaLogin extends VistaGenerica
         super("Benvingut");
 
         afegirComponents();
-//        afegirActionListeners();
+        afegirActionListeners();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -106,7 +106,8 @@ public class VistaLogin extends VistaGenerica
               {
                   String nomUsuari = campUsuari.getText();
                   String contrasenya = new String(campContrasenya.getPassword());
-                  new VistaCrearUsuari(nomUsuari, contrasenya);
+                  VistaCrearUsuari v = new VistaCrearUsuari(nomUsuari, contrasenya);
+                  v.mostra(true);
               }
         });
     }

@@ -19,6 +19,7 @@ public class VistaCrearHidatos extends DialogGeneric
         super("Selecciona mode creació hidato");
 
         afegirComponents();
+        afegirActionListeners();
 
         pack();
     }
@@ -45,7 +46,7 @@ public class VistaCrearHidatos extends DialogGeneric
         c.gridy = 1;
         mainPanel.add(toAdd, c);
 
-        toAdd = spinnerTamanyManual = new JSpinner();
+        toAdd = spinnerTamanyManual = new JSpinner(new SpinnerNumberModel(5, 3, 10, 1));
         toAdd.setPreferredSize(new Dimension(50,0));
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
@@ -58,9 +59,19 @@ public class VistaCrearHidatos extends DialogGeneric
         radioButtonGroup.add(radioButtonManual);
     }
 
-    private void afegirActionListener()
-    {
-        //enabled
-    }
 
+
+    @Override
+    public void executaOk()
+    {
+        if (radioButtonAutomatic.isSelected())
+        {
+            ControladorVista.demanaCrearHidatoAutomaticament();
+        }
+        if (radioButtonManual.isSelected())
+        {
+            ControladorVista.demanaCrearHidatoManualment((int) spinnerTamanyManual.getValue());
+        }
+        dispose();
+    }
 }

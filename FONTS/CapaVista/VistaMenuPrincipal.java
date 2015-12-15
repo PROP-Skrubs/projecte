@@ -2,6 +2,8 @@ package CapaVista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by daniel on 14/12/15.
@@ -74,7 +76,32 @@ public class VistaMenuPrincipal extends VistaGenerica
 
     private void afegirActionListeners()
     {
+        buttonCrearHidato.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                new VistaCrearHidatos().mostra(true);
+            }
+        });
 
+        buttonJugarHidato.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                new VistaJugarPartida().mostra(true);
+            }
+        });
+
+        buttonVeureEstadistiques.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+
+            }
+        });
     }
 
     private String donaNomUsuari()

@@ -37,7 +37,8 @@ public class NotificacioGenerica extends VistaComu
             }
         });
 
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.pack();
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        pack();
+        mostra(true);
     }
 }

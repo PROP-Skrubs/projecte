@@ -87,4 +87,21 @@ public class VistaCrearUsuari extends DialogGeneric
 
         pack();
     }
+
+    @Override
+    public void executaOk()
+    {
+        String nomUsuari = campUsuari.getText();
+        String contrasenya = new String(campContrasenya.getPassword());
+        String nomReal = campNomReal.getText();
+        if (ControladorVista.demanaCrearUsuari(nomUsuari, contrasenya, nomReal))
+        {
+            new NotificacioGenerica("Usuari creat correctament");
+            dispose();
+        }
+        else
+        {
+            new NotificacioGenerica("No s'ha pogut crear l'usuari");
+        }
+    }
 }

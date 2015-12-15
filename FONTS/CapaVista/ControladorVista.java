@@ -1,5 +1,6 @@
 package CapaVista;
 
+import CapaDomini.ControladorHidato;
 import CapaDomini.ControladorLogin;
 import CapaDomini.ControladorUsuari;
 
@@ -13,8 +14,23 @@ public class ControladorVista
         return ControladorLogin.fesLogin(nomUsuari,contrasenya);
     }
 
-    static void mostraMenuPrincipal()
+    public static void mostraMenuPrincipal()
     {
-        new VistaMenuPrincipal();
+        new VistaMenuPrincipal().mostra(true);
+    }
+
+    static boolean demanaCrearUsuari(String nomUsuari, String contrasenya, String nomReal)
+    {
+        return ControladorUsuari.crearUsuari(nomUsuari, contrasenya, nomReal);
+    }
+
+    static void demanaCrearHidatoAutomaticament()
+    {
+        ControladorHidato.creaHidatoAutomaticament();
+    }
+
+    static void demanaCrearHidatoManualment(int tamany)
+    {
+        ControladorHidato.creaHidatoManualment(tamany);
     }
 }

@@ -1,6 +1,7 @@
 package CapaDomini;
 
 import CapaPersistencia.GestorUsuari;
+import CapaVista.ControladorVista;
 
 /**
  * Aquesta classe es dedica a gestionar les accions que pot fer un Usuari
@@ -27,6 +28,7 @@ public class ControladorLogin
 
         //si passa totes les comprovacions
         usuariActual = u;
+        ControladorVista.mostraMenuPrincipal();
         return true;
     }
 
