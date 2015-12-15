@@ -91,50 +91,54 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-
-        Random rnd = new Random();
-        if (k == final1 - 1)
-        {
-            fin.clone(t);
-            //            escriu(fin);
-            return 0;
+    public static int backtrackingmayorde8(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
+        ++cont;
+        if (cont >= 300) {
+            return 3;
         }
-        else
-        {
-            List<Casella> Adjacents = new ArrayList<Casella>();
-            t.getAdjacentslist(actual, Adjacents);
-            while (!Adjacents.isEmpty() && !fin.he_acabat())
-            {
+        else {
 
-                //int p = numadjmespetit(Adjacents);
-                //Collections.sort(Adjacents, new Casella());
-                ordenaAdjacents(Adjacents);
+            Random rnd = new Random();
+            if (k == final1 - 1) {
+                fin.clone(t);
+                System.out.print("Contador de backtracking = " + cont + "\n");
 
-                //Collections.sort(Adjacents);
-                int kaux = k + 1;
-                Casella aux = Adjacents.get(0);
-                Adjacents.remove(0);
+                //            escriu(fin);
+                return 0;
+            } else {
+                List<Casella> Adjacents = new ArrayList<Casella>();
+                t.getAdjacentslist(actual, Adjacents);
+                while (!Adjacents.isEmpty() && !fin.he_acabat()) {
 
-                aux.elem = actual.elem + 1;
+                    //int p = numadjmespetit(Adjacents);
+                    //Collections.sort(Adjacents, new Casella());
+                    ordenaAdjacents(Adjacents);
 
-                Tauler taux = new Tauler(t.getTamany());
-                taux.clone(t);
-                //                escriu(taux);
-                //              escriu(t);
-                taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
-                //            escriu(taux);
-                //taux.print();
-                //System.out.print("\n");
-                if (taux.he_acabat()) backtrackingmayorde8(kaux, final1, aux, taux, fin);
-                else if (!taux.esPartit())
-                {
-                    int auxret = backtrackingmayorde8(kaux, final1, aux, taux, fin);
-                    if (auxret == 0) return 0;
+                    //Collections.sort(Adjacents);
+                    int kaux = k + 1;
+                    Casella aux = Adjacents.get(0);
+                    Adjacents.remove(0);
+
+                    aux.elem = actual.elem + 1;
+
+                    Tauler taux = new Tauler(t.getTamany());
+                    taux.clone(t);
+                    //                escriu(taux);
+                    //              escriu(t);
+                    taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
+                    //            escriu(taux);
+                    //taux.print();
+                    //System.out.print("\n");
+                    if (taux.he_acabat()) backtrackingmayorde8(kaux, final1, aux, taux, fin, ++cont);
+                    else if (!taux.esPartit()) {
+                        int auxret = backtrackingmayorde8(kaux, final1, aux, taux, fin, ++cont);
+                        if (auxret == 0) return 0;
+                        if (auxret == 3) return 3;
+                    }
+
                 }
-
+                return -1;
             }
-            return -1;
         }
     }
 
@@ -150,52 +154,56 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
-
-        Random rnd = new Random();
-        if (k == final1 - 1)
-        {
-            fin.clone(t);
-            //            escriu(fin);
-            return 0;
+    public static int backtrackingmayor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
+        ++cont;
+        if (cont >= 300) {
+            return 3;
         }
-        else
-        {
-            List<Casella> Adjacents = new ArrayList<Casella>();
-            t.getAdjacentslist(actual, Adjacents);
-            while (!Adjacents.isEmpty() && !fin.he_acabat())
-            {
+        else {
+            Random rnd = new Random();
+            if (k == final1 - 1) {
+                fin.clone(t);
+                System.out.print("Contador de backtracking = " + cont + "\n");
 
-                //int p = numadjmespetit(Adjacents);
-                //Collections.sort(Adjacents, new Casella());
-                ordenaAdjacents(Adjacents);
+                //            escriu(fin);
+                return 0;
+            } else {
+                List<Casella> Adjacents = new ArrayList<Casella>();
+                t.getAdjacentslist(actual, Adjacents);
+                while (!Adjacents.isEmpty() && !fin.he_acabat()) {
 
-                //Collections.sort(Adjacents);
-                int kaux = k + 1;
-                Casella aux = Adjacents.get(0);
-                Adjacents.remove(0);
+                    //int p = numadjmespetit(Adjacents);
+                    //Collections.sort(Adjacents, new Casella());
+                    ordenaAdjacents(Adjacents);
 
-                aux.elem = actual.elem + 1;
+                    //Collections.sort(Adjacents);
+                    int kaux = k + 1;
+                    Casella aux = Adjacents.get(0);
+                    Adjacents.remove(0);
 
-                Tauler taux = new Tauler(t.getTamany());
-                taux.clone(t);
-                //                escriu(taux);
-                //              escriu(t);
-                taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
-                //            escriu(taux);
-                //taux.print();
-                //System.out.print("\n");
-                if (taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin);
-                else if (!taux.esPartit())
-                {
-                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
-                    if (auxret == 0) return 0;
+                    aux.elem = actual.elem + 1;
+
+                    Tauler taux = new Tauler(t.getTamany());
+                    taux.clone(t);
+                    //                escriu(taux);
+                    //              escriu(t);
+                    taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
+                    //            escriu(taux);
+                    //taux.print();
+                    //System.out.print("\n");
+                    if (taux.he_acabat()) backtrackingmayor(kaux, final1, aux, taux, fin, ++cont);
+                    else if (!taux.esPartit()) {
+                        int auxret = backtrackingmenor(kaux, final1, aux, taux, fin, ++cont);
+                        if (auxret == 0) return 0;
+                        if (auxret == 3) return 3;
+                    }
+
                 }
-
+                return -1;
             }
-            return -1;
         }
     }
+
 
     /**
      * Donat dos enters una Casella y dos taulers, t’emplena un tauler
@@ -209,49 +217,53 @@ public class CapaDomini
      *
      * @return entero -1 si es para completar el tablero, 0 si es para volver por la recusividad
      */
-    public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin) {
+    public static int backtrackingmenor(int k, int final1, Casella actual, Tauler t,  Tauler fin, int cont) {
 
-
-        Random rnd = new Random();
-        if (k == final1 - 1)
-        {
-            fin.clone(t);
-            //            escriu(fin);
-            return 0;
+        ++cont;
+        if (cont >= 300) {
+            return 3;
         }
-        else
-        {
-            List<Casella> Adjacents = new ArrayList<Casella>();
-            t.getAdjacentslist(actual, Adjacents);
-            while (!Adjacents.isEmpty() && !fin.he_acabat())
-            {
+        else{
 
-                //int p = numadjmespetit(Adjacents);
-                //Collections.sort(Adjacents, new Casella());
-                Collections.sort(Adjacents);
-                int kaux = k + 1;
-                Casella aux = Adjacents.get(0);
-                Adjacents.remove(0);
 
-                aux.elem = actual.elem + 1;
+            Random rnd = new Random();
+            if (k == final1 - 1) {
+                fin.clone(t);
+                System.out.print("Contador de backtracking = " + cont + "\n");
+                //            escriu(fin);
+                return 0;
+            } else {
+                List<Casella> Adjacents = new ArrayList<Casella>();
+                t.getAdjacentslist(actual, Adjacents);
+                while (!Adjacents.isEmpty() && !fin.he_acabat()) {
 
-                Tauler taux = new Tauler(t.getTamany());
-                taux.clone(t);
-                //                escriu(taux);
-                //              escriu(t);
-                taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
-                //            escriu(taux);
-               //taux.print();
-                //System.out.print("\n");
-                if (taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin);
-                else if (!taux.esPartit())
-                {
-                    int auxret = backtrackingmenor(kaux, final1, aux, taux, fin);
-                    if (auxret == 0) return 0;
+                    //int p = numadjmespetit(Adjacents);
+                    //Collections.sort(Adjacents, new Casella());
+                    Collections.sort(Adjacents);
+                    int kaux = k + 1;
+                    Casella aux = Adjacents.get(0);
+                    Adjacents.remove(0);
+
+                    aux.elem = actual.elem + 1;
+
+                    Tauler taux = new Tauler(t.getTamany());
+                    taux.clone(t);
+                    //                escriu(taux);
+                    //              escriu(t);
+                    taux.setCasella(aux.x, aux.y, aux.elem, t.getCasella(aux.x, aux.y).numadjlliures);
+                    //            escriu(taux);
+                    //taux.print();
+                    //System.out.print("\n");
+                    if (taux.he_acabat()) backtrackingmenor(kaux, final1, aux, taux, fin, cont);
+                    else if (!taux.esPartit()) {
+                        int auxret = backtrackingmenor(kaux, final1, aux, taux, fin, cont);
+                        if (auxret == 0) return 0;
+                        if (auxret == 3) return 3;
+                    }
+
                 }
-
+                return -1;
             }
-            return -1;
         }
     }
 
@@ -321,10 +333,11 @@ public class CapaDomini
      */
     public static Tauler creacioTaulerPredeterminat(int n, int m, int x, String dificultat, TaulerComplert retcomplert)
     {
+        int vuelta = 3;
         int intentsdedonarHidatobo = 0;
         int acabarbacktrackin = -1;
         Tauler ret = new Tauler(n);
-        while (acabarbacktrackin != 0)
+        while (acabarbacktrackin != 0 && vuelta == 3 )
         {
             ++intentsdedonarHidatobo;
             Casella inicial = new Casella();
@@ -335,24 +348,18 @@ public class CapaDomini
             int auxY;
 
             //ficar_numadjlliures(t);
-
-            for (int i = 0; i < m; ++i)
-            { //poner de forma RANDOM els forats
-                auxX = rnd.nextInt(n);
-                auxY = rnd.nextInt(n);
-                if (t.getCasella(auxX, auxY).elem == -1)
-                {
-                    --i;
+            boolean b = true;
+            while(b) {
+                for (int i = 0; i < m; ++i) { //poner de forma RANDOM els forats
+                    auxX = rnd.nextInt(n);
+                    auxY = rnd.nextInt(n);
+                    if (t.getCasella(auxX, auxY).elem == -1) {
+                        --i;
+                    } else {
+                        t.setCasella(auxX, auxY, Casella.FORAT, -1);
+                    }
                 }
-                else
-                {
-                    t.setCasella(auxX, auxY, Casella.FORAT, -1);
-                }
-            }
-            boolean b = t.esPartit();
-            if (b)
-            {
-                throw new RuntimeException("Els forats parteixen l'Hidato Sisplau Repetir Hitaro predeterminat");
+                b = t.esPartit();
             }
 
 
@@ -398,18 +405,24 @@ public class CapaDomini
                 throw new RuntimeException("L'Hidato propossat no té solució");
             if (acabarbacktrackin == ValidadorTauler.MULTIPLES && intentsdedonarHidatobo == 20)
                 throw new RuntimeException("Els parametres donats no son suficients per donar un Hidato únic");
+            int cont;
+            cont = 0;
 
-            if (n >= 7) backtrackingmayorde8(0, n * n - m, inicial, t, ret);
-            else backtrackingmenor(0, n * n - m, inicial, t, ret);
-            eliminarnumeros(ret, num_pre);
 
-            acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
-            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
+            if (n >= 7) vuelta = backtrackingmayorde8(0, n * n - m, inicial, t, ret, cont);
+            else vuelta = backtrackingmenor(0, n * n - m, inicial, t, ret, cont);
+
+
+            if (vuelta != 3) {
+                eliminarnumeros(ret, num_pre);
+
+                acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
+            }
+
+                System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
 
 
             System.out.print("Surto Backtracking:\n");
-            ret.print();
-
 
             ret.print();
 
