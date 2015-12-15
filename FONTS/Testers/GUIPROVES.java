@@ -1,7 +1,6 @@
 package Testers;
 
-import CapaVista.VistaCreacioTaulerAutomatic;
-import CapaVista.VistaMenuPrincipal;
+import CapaVista.*;
 
 
 /**
@@ -11,7 +10,14 @@ public class GUIPROVES
 {
     public static void main(String[] argv)
     {
-        VistaMenuPrincipal d = new VistaMenuPrincipal();
-        d.mostra(true);
+        new VistaCrearHidatos().mostra(true);
+        new VistaCrearHidatoAutomatic().mostra(true);
+        new VistaCrearHidatoManual().mostra(true);
+        new VistaLogin().mostra(true);
+        new VistaMenuPrincipal().mostra(true);
+        new VistaComencarPartida().mostra(true);
+        new VistaCrearUsuari().mostra(true);
+        new VistaJugarPartida().mostra(true);
+        new NotificacioGenerica("EIEIEIEIEIEI QUE TIIO").mostra(true);
     }
 }

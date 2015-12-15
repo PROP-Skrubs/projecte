@@ -20,6 +20,11 @@ public class CapaDomini
     public static final int ERRORTAMANY = 1;
     public static final int ERRORFORATS = 2;
     public static final int ERRORNUMPREDETERMINATS = 3;
+    public static final int DIFICULTATINCORRECTA = 4;
+    public static final int FACIL = 1;
+    public static final int NORMAL = 2;
+    public static final int DIFICIL = 3;
+
 
 
     public static void ordenaAdjacents(List<Casella> Adjacents)
@@ -258,8 +263,34 @@ public class CapaDomini
      * @return Retorna 0 (OK) si es tot OK, 1 (ERRORTAMANY) si el Tamany falla, 2 (ERRORFORATS) si el nombre de Forats falla i 3 (ERRORNUMPREDETERMINATS) si el nombre de numeros
      * prederminats no es el correcte.
      */
-    public static int  validarparamscreacioTaulerpredeterminat(int n, int m, int x)
+    public static int  validarparamscreacioTaulerpredeterminat(int n, int m, int x, int dificultat)
     {
+        double minimPredeterminats,maximPredeterminats;
+        switch (dificultat)
+        {
+            case DIFICIL:
+            {
+                minimPredeterminats = 0.75;
+                maximPredeterminats = 0.82;
+                break;
+            }
+            case NORMAL:
+            {
+                minimPredeterminats = 0.83;
+                maximPredeterminats = 0.90;
+                break;
+            }
+            case FACIL:
+            {
+                minimPredeterminats = 0.91;
+                maximPredeterminats = 0.96;
+                break;
+            }
+            default:
+            {
+                return DIFICULTATINCORRECTA;
+            }
+        }
         if (n < 3 || n > 10)
         {
             return ERRORTAMANY;
@@ -268,7 +299,7 @@ public class CapaDomini
         {
            return ERRORFORATS;
         }
-        if (x < 0.75*(n*n-m) || x > (n * n - 1))
+        if (x < minimPredeterminats*(n*n-m) || x > maximPredeterminats*(n*n-m))
         {
             return ERRORNUMPREDETERMINATS;
         }

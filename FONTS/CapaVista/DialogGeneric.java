@@ -9,10 +9,13 @@ import java.awt.event.WindowEvent;
 /**
  * Created by daniel on 14/12/15.
  */
-public class DialogGeneric
+public class DialogGeneric extends VistaComu
 {
-    private JFrame frame;
+    private JPanel topPanel;
+    private GridBagLayout layoutTop;
     protected JPanel mainPanel;
+    private JPanel panelBotons;
+    private FlowLayout layoutBotons;
     private JButton buttonKo;
     private JButton buttonOk;
 
@@ -34,28 +37,39 @@ public class DialogGeneric
 
     private void afegirComponents()
     {
-        frame.getContentPane().setLayout(new GridBagLayout());
+        topPanel = new JPanel();
+        panelBotons = new JPanel();
+        layoutTop = new GridBagLayout();
+        layoutBotons = new FlowLayout(FlowLayout.RIGHT);
+        topPanel.setLayout(layoutTop);
+        panelBotons.setLayout(layoutBotons);
+
         GridBagConstraints c;
         Component toAdd;
 
         toAdd = mainPanel = new JPanel();
         c = new GridBagConstraints();
-        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.fill= GridBagConstraints.BOTH;
         c.gridx=0;
         c.gridy=0;
-        frame.getContentPane().add(toAdd,c);
+        topPanel.add(toAdd, c);
 
-        toAdd = buttonOk = new JButton("Acceptar");
+        toAdd = panelBotons;
         c = new GridBagConstraints();
         c.gridx=0;
-        c.gridy=1;
-        frame.getContentPane().add(toAdd,c);
+        c.gridy = 1;
+        c.fill = GridBagConstraints.BOTH;
+        topPanel.add(toAdd, c);
+
+
+        toAdd = buttonOk = new JButton("Acceptar");
+        panelBotons.add(toAdd, c);
 
         toAdd = buttonKo = new JButton("Cancelar");
-        c = new GridBagConstraints();
-        c.gridx=1;
-        c.gridy=1;
-        frame.getContentPane().add(toAdd,c);
+        panelBotons.add(toAdd,c);
+
+
+        frame.setContentPane(topPanel);
     }
 
     private void afegirActionListeners()
@@ -88,25 +102,5 @@ public class DialogGeneric
     {
         //simulem que l'usuari ha clicat la creueta de tancar finestra
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-    }
-
-    public void mostra(boolean b)
-    {
-        frame.setVisible(b);
-    }
-
-    protected void setDefaultCloseOperation(int op)
-    {
-        frame.setDefaultCloseOperation(op);
-    }
-
-    protected void pack()
-    {
-        frame.pack();
-    }
-
-    protected void dispose()
-    {
-        frame.dispose();
     }
 }

@@ -20,6 +20,7 @@ public class VistaCrearHidatos extends DialogGeneric
 
         afegirComponents();
 
+        pack();
     }
 
     private void afegirComponents()
@@ -29,14 +30,15 @@ public class VistaCrearHidatos extends DialogGeneric
         GridBagConstraints c;
         Component toAdd;
 
-        toAdd = radioButtonAutomatic = new JRadioButton();
+
+        toAdd = radioButtonManual = new JRadioButton("Vull crear un Hidato a partir de valors predeterminats");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
         mainPanel.add(toAdd, c);
 
-        toAdd = radioButtonManual = new JRadioButton();
+        toAdd = radioButtonAutomatic = new JRadioButton("Vull crear un Hidato manualment (introdueix el tamany del tauler)");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -44,6 +46,7 @@ public class VistaCrearHidatos extends DialogGeneric
         mainPanel.add(toAdd, c);
 
         toAdd = spinnerTamanyManual = new JSpinner();
+        toAdd.setPreferredSize(new Dimension(50,0));
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
@@ -53,7 +56,6 @@ public class VistaCrearHidatos extends DialogGeneric
         radioButtonGroup = new ButtonGroup();
         radioButtonGroup.add(radioButtonAutomatic);
         radioButtonGroup.add(radioButtonManual);
-
     }
 
     private void afegirActionListener()

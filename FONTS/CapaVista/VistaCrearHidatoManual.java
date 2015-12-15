@@ -6,13 +6,13 @@ import java.awt.*;
 /**
  * Created by daniel on 14/12/15.
  */
-public class VistaCrearTaulerManual extends DialogGeneric
+public class VistaCrearHidatoManual extends DialogGeneric
 {
     private GridBagLayout layout;
     private TaulerDisplayer taulerDisplayer;
     private JTextArea areaInstruccions;
 
-    public VistaCrearTaulerManual()
+    public VistaCrearHidatoManual()
     {
         super("Crear tauler manualment");
 

@@ -35,26 +35,39 @@ public class VistaMenuPrincipal extends VistaGenerica
 
         toAdd = labelTextBenvinguda = new JLabel("Benvingut, " + donaNomUsuari());
         c = new GridBagConstraints();
+        c.fill=GridBagConstraints.BOTH;
+        c.anchor=GridBagConstraints.CENTER;
         c.gridx = 0;
-        c.gridy = 0;
+        c.gridy = 1;
+        c.gridheight=GridBagConstraints.REMAINDER;
         mainPanel.add(toAdd, c);
 
+        toAdd = new JPanel();
+        toAdd.setPreferredSize(new Dimension(20,0));
+        c = new GridBagConstraints();
+        c.fill=GridBagConstraints.BOTH;
+        c.gridx=1;
+        c.gridheight=GridBagConstraints.REMAINDER;
+        mainPanel.add(toAdd,c);
 
         toAdd = buttonJugarHidato = new JButton("Jugar");
         c = new GridBagConstraints();
-        c.gridx = 0;
+        c.fill=GridBagConstraints.BOTH;
+        c.gridx = 2;
         c.gridy = 1;
         mainPanel.add(toAdd, c);
 
         toAdd = buttonCrearHidato = new JButton("Crear nou Hidato");
         c = new GridBagConstraints();
-        c.gridx = 0;
+        c.fill=GridBagConstraints.BOTH;
+        c.gridx = 2;
         c.gridy = 2;
         mainPanel.add(toAdd, c);
 
         toAdd = buttonVeureEstadistiques = new JButton("Estadístiques i rànquings");
         c = new GridBagConstraints();
-        c.gridx = 0;
+        c.fill=GridBagConstraints.BOTH;
+        c.gridx = 2;
         c.gridy = 3;
         mainPanel.add(toAdd, c);
     }

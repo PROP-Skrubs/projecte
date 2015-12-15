@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by daniel on 14/12/15.
  */
-public class VistaCreacioTaulerAutomatic extends DialogGeneric
+public class VistaCrearHidatoAutomatic extends DialogGeneric
 {
     private GridBagLayout layout;
     private JSpinner spinnerTamanyHidato;
@@ -20,7 +20,7 @@ public class VistaCreacioTaulerAutomatic extends DialogGeneric
 
 
 
-    public VistaCreacioTaulerAutomatic()
+    public VistaCrearHidatoAutomatic()
     {
         super("Crear tauler manualment");
 

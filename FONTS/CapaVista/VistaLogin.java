@@ -79,47 +79,36 @@ public class VistaLogin extends VistaGenerica
         mainPanel.add(toAdd, c);
     }
 
-//    private void afegirActionListeners()
-//    {
-//        botoEntrar.addActionListener(new ActionListener() {
-//             @Override
-//             public void actionPerformed(ActionEvent actionEvent)
-//             {
-//                 String nomUsuari = campUsuari.getText();
-//                 String contrasenya = new String(campContrasenya.getPassword());
-//
-//                 if (ControladorLogin.fesLogin(nomUsuari, contrasenya))
-//                 {
-//                     new MenuPrincipal();
-//                     //TODO: que el menu es mostri al centre de la pantalla
-//                     dispose();
-//                 }
-//                 else
-//                 {
-//                     //Alerta a l'usuari que el login ha sigut incorrecte
-//                     //TODO: aixo es pot fer amb un "pop-up" grafic, oi? :)
-//                     System.out.println("Login incorrecte");
-//                 }
-//             }
-//        });
-//
-//        botoCrearCompte.addActionListener(new ActionListener()
-//        {
-//              @Override
-//              public void actionPerformed(ActionEvent actionEvent)
-//              {
-//                  String nomUsuari = campUsuari.getText();
-//                  String contrasenya = new String(campContrasenya.getPassword());
-//                  String nomReal = "pepito";
-//                  boolean usuariCreatCorrectament = ControladorUsuari.crearUsuari(nomUsuari, contrasenya, nomReal);
-//
-//                  //TODO: aixo es pot fer amb un "pop-up" grafic, oi? :)
-//                  if (usuariCreatCorrectament)
-//                      System.out.println("Usuari creat correctament");
-//                  else
-//                      System.out.println("Ja existia un usuari amb aquest nom!!");
-//              }
-//        });
-//
-//    }
+    private void afegirActionListeners()
+    {
+        botoEntrar.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent actionEvent)
+             {
+                 String nomUsuari = campUsuari.getText();
+                 String contrasenya = new String(campContrasenya.getPassword());
+
+                 if (ControladorVista.demanaFerLogin(nomUsuari, contrasenya))
+                 {
+                     dispose();
+                 }
+                 else
+                 {
+                     new NotificacioGenerica("Credencials de login incorrectes!");
+                 }
+             }
+        });
+
+        botoCrearCompte.addActionListener(new ActionListener()
+        {
+              @Override
+              public void actionPerformed(ActionEvent actionEvent)
+              {
+                  String nomUsuari = campUsuari.getText();
+                  String contrasenya = new String(campContrasenya.getPassword());
+                  new VistaCrearUsuari(nomUsuari, contrasenya);
+              }
+        });
+    }
+
 }
