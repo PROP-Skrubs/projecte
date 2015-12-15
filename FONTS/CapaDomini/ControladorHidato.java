@@ -111,7 +111,7 @@ public class ControladorHidato
         Tauler t;
         TaulerComplert tc = new TaulerComplert();
 
-        t = CapaDomini.creacioTaulerPredeterminat(tamanyHidato, numForats, numPrecolocats, dificultat, tc);
+        t = Algoritmes.creacioTaulerPredeterminat(tamanyHidato, numForats, numPrecolocats, dificultat, tc);
 
         Hidato nouHidato = new Hidato();
         nouHidato.setTauler(t);

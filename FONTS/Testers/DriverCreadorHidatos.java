@@ -1,10 +1,10 @@
 package Testers;
 
 
-import CapaDomini.CapaDomini;
 import CapaDomini.Tauler;
 import CapaDomini.TaulerComplert;
 import CapaDomini.ValidadorTauler;
+import CapaDomini.Algoritmes;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,7 +57,7 @@ public class DriverCreadorHidatos
                     s = capt.nextLine();
                     if (s.equals("facil") || s.equals("normal") || s.equals("dificil") || s.equals("UltraViolence"))
                     {
-                        CapaDomini cd = new CapaDomini();
+                        Algoritmes cd = new Algoritmes();
                         Tauler t = new Tauler();
                         TaulerComplert tc = new TaulerComplert();
                         t = cd.creacioTaulerPredeterminat(n, m, x, s, tc);
