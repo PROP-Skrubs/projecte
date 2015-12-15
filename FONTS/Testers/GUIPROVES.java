@@ -1,6 +1,7 @@
 package Testers;
 
 import CapaVista.VistaCreacioTaulerAutomatic;
+import CapaVista.VistaMenuPrincipal;
 
 
 /**
@@ -10,7 +11,7 @@ public class GUIPROVES
 {
     public static void main(String[] argv)
     {
-        VistaCreacioTaulerAutomatic d = new VistaCreacioTaulerAutomatic();
+        VistaMenuPrincipal d = new VistaMenuPrincipal();
         d.mostra(true);
     }
 }

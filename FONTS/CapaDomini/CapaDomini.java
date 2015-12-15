@@ -255,7 +255,7 @@ public class CapaDomini
      * @param n El tamany d'un costat del Hidato
      * @param m El nombre de Forats que hi haurà al Hidato
      * @param x El nombre de números predeterminats que hi haurà al Hidato
-     * @return Retorna 0 si es tot OK, 1 si el Tamany falla, 2 si el nombre de Forats falla i 3 si el nombre de numeros
+     * @return Retorna 0 (OK) si es tot OK, 1 (ERRORTAMANY) si el Tamany falla, 2 (ERRORFORATS) si el nombre de Forats falla i 3 (ERRORNUMPREDETERMINATS) si el nombre de numeros
      * prederminats no es el correcte.
      */
     public static int  validarparamscreacioTaulerpredeterminat(int n, int m, int x)
