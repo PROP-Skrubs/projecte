@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class ControladorRanquing {
 
-    public static boolean afegirRanquing (String nomUsuari, int idHidato, int temps, String dificultat){
+    public static int afegirRanquing (String nomUsuari, int idHidato, int temps, String dificultat){
         Ranking r = new Ranking();
         r.setNomUsuari(nomUsuari);
         r.setIdHidato(idHidato);
@@ -18,15 +18,15 @@ public class ControladorRanquing {
         return GestorRanking.insertRanquing(r);
     }
 
-    public ArrayList<String> getTopUsuarisperHidato(int idHidato){
-        return GestorRanking.getNomUsuarisPerHidato(idHidato);
+    public static ArrayList<Ranking> getTopUsuarisperHidato(int idHidato){
+        return GestorRanking.getUsuarisPerHidato(idHidato);
     }
 
-    public ArrayList<String> getTopUsuarisperDificultat(String dificultat){
-        return GestorRanking.getNomUsuarisPerDificultat(dificultat);
+    public static ArrayList<Ranking> getTopUsuarisperDificultat(String dificultat){
+        return GestorRanking.getUsuarisPerDificultat(dificultat);
     }
 
-    public ArrayList<Integer> getTopIdHidatos(){
-        return GestorRanking.getIdHidatosMesCopsResolts();
+    public static ArrayList<Ranking> getTopIdHidatos(){
+        return GestorRanking.getHidatosMesCopsResolts();
     }
 }

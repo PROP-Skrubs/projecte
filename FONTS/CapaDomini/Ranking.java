@@ -45,4 +45,6 @@ public class Ranking {
     public void setIdHidato(int idHidato) {
         this.idHidato = idHidato;
     }
+
+
 }
