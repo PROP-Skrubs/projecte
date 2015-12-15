@@ -20,7 +20,7 @@ public class GestorPartida
             "idTaulerProgres," +
             "nCelesResoltes," +
             "numAjudesUtilitzades," +
-            "esAcabada" +
+            "esAcabada," +
             "temps" +
             ") VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String COUNT_PARTIDA = "SELECT COUNT(*) FROM partides WHERE id=?";

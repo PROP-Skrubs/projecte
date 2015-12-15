@@ -159,8 +159,12 @@ public class ControladorPartida
             GestorPartida.creaPartida(partida);
     }
 
-    public static void descartaPartida(int idPartida)
+    /**
+     * Elimina la Partida actual
+     */
+    public static void descartaPartida()
     {
+        int idPartida = partida.getUniqID();
         GestorPartida.eliminaPartida(idPartida);
     }
 

@@ -31,7 +31,7 @@ public class ControladorUsuari
     }
 
     /**
-     * lEimina el Usuari que tingui el nomUsuari passat per paràmetre
+     * Elimina el Usuari que tingui el nomUsuari passat per paràmetre
      * @param nomUsuari
      * @return Retorna si la elimanat o no
      */
