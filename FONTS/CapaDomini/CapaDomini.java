@@ -365,6 +365,9 @@ public class CapaDomini
             cont = 0;
             if (n >= 7) backtrackingmayorde8(0, n * n - m, inicial, t, ret, cont);
             else backtrackingmenor(0, n * n - m, inicial, t, ret, cont);
+
+            System.out.print("Contador de backtracking = " + cont + "\n");
+
             eliminarnumeros(ret, num_pre);
 
             acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
