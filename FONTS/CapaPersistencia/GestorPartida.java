@@ -33,6 +33,7 @@ public class GestorPartida
             "esAcabada=?," +
             "temps=? WHERE id=?";
     private static final String SELECT_ALL_ID_PARTIDA = "SELECT id FROM partides";
+    private static final String SELECT_ID_SEGONS_USUARI = "SELECT id FROM partides WHERE idUsuari=?";
 
     /**
      * Aquesta funcio comprova si existeix ja una partida amb aquell id a la BD
@@ -179,6 +180,7 @@ public class GestorPartida
             ps.setInt(3,p.getNumAjudesUtilitzades());
             ps.setBoolean(4,p.esAcabada());
             ps.setInt(5,p.getTemps());
+            ps.executeUpdate();
         }
         catch (SQLException e)
         {
@@ -208,4 +210,23 @@ public class GestorPartida
         return aRetornar;
     }
 
+    public static  List<Integer> donaIdsegonsUsuari(Integer idUsuari){
+
+        List<Integer> ret = new ArrayList<>();
+        try (PreparedStatement ps = conn.prepareStatement(SELECT_ID_SEGONS_USUARI)) {
+            ps.setInt(1,idUsuari);
+            ResultSet resSet = ps.executeQuery();
+
+            while (resSet.next()) {
+                ret.add(resSet.getInt("id"));
+            }
+
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return ret;
+
+    }
 }

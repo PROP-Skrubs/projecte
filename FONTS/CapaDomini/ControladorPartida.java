@@ -4,6 +4,10 @@ import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorPartida;
 import CapaPersistencia.GestorUsuari;
 import CapaVista.JugarPartida;
+import com.sun.xml.internal.ws.wsdl.writer.UsingAddressing;
+import sun.swing.BakedArrayList;
+
+import java.util.*;
 
 /**
  * Aquesta Casella s'encarrega de gestionar les accions d'una Partida
@@ -155,12 +159,25 @@ public class ControladorPartida
             GestorPartida.creaPartida(partida);
     }
 
-    public static void descartaPartida()
+    public static void descartaPartida(int idPartida)
     {
-        //todo aixo pot tenir en compte que s'ha fet un intent i incrementar les estadistiques apropiadament (en el futur)
+        GestorPartida.eliminaPartida(idPartida);
     }
 
-
-
+    /**
+     * Dona els llistat de les idPartida del Usuari que tingui la idUsuari passat per paràmetre
+     * @param idUsuari
+     * @return una Llista d'enters que son les idPartidas del Usuari
+     */
+    public static List<Integer> donarPartidaSegonsUsuari(int idUsuari) {
+        List<Integer> listIdPartides = new ArrayList<>();
+        if(!GestorUsuari.existeixUsuari(idUsuari)) {
+            throw new RuntimeException("L'Usuari no existeix");
+        }
+        else {
+            listIdPartides = GestorPartida.donaIdsegonsUsuari(idUsuari);
+        }
+        return  listIdPartides;
+    }
 
 }

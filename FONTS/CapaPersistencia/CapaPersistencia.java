@@ -49,7 +49,7 @@ public class CapaPersistencia
             "temps INTEGER NOT NULL," +
             "nAjudes INTEGER NOT NULL," +
             "FOREIGN KEY (idUsuari) REFERENCES usuaris(id)," +
-            "FOREIGN KEY (idHidato) REFERENCES hidato(id)," +
+            "FOREIGN KEY (idHidato) REFERENCES hidato(id)" +
             ")";
     private static final String CREATE_TABLE_RANQUING = "CREATE TABLE IF NOT EXISTS ranquing (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
