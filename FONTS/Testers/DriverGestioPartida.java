@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import CapaDomini.Controladors.ControladorPartida;
-import CapaDomini.Algoritmes.Hidato;
+import CapaDomini.Modelo.Hidato;
 import CapaPersistencia.GestorHidato;
 
 /**

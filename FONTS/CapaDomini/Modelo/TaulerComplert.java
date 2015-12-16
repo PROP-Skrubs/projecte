@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 /**
  * Aquesta Classe conte TaulerComplert i les seves funcionalitats

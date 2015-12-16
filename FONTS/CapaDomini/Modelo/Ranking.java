@@ -1,8 +1,4 @@
-package CapaDomini.Algoritmes;
-
-import CapaPersistencia.GestorRanking;
-
-import java.util.ArrayList;
+package CapaDomini.Modelo;
 
 /**
  * Created by oriol on 7/12/15.

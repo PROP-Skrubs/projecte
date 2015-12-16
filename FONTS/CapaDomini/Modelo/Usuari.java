@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 /**
  * Aquesta classe conté a Usuari i totes les seves funcionalitats

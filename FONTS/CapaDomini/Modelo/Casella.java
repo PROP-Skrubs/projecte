@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 /**
  * Esta Classe conté tot Casella amb les seves funcionalitats

@@ -1,9 +1,9 @@
 package CapaPersistencia;
 
-import CapaDomini.Algoritmes.Hidato;
-import CapaDomini.Algoritmes.Partida;
-import CapaDomini.Algoritmes.Tauler;
-import CapaDomini.Algoritmes.Usuari;
+import CapaDomini.Modelo.Hidato;
+import CapaDomini.Modelo.Partida;
+import CapaDomini.Modelo.Tauler;
+import CapaDomini.Modelo.Usuari;
 
 import java.sql.*;
 import java.util.ArrayList;

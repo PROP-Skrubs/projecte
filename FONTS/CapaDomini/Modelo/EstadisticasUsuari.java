@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 /**
  * Created by Maria on 01/12/2015.

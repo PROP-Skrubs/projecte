@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 public interface TaulerDisplayerCallbacks
 {

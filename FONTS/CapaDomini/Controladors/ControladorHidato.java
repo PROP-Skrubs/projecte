@@ -1,6 +1,6 @@
 package CapaDomini.Controladors;
 
-import CapaDomini.Algoritmes.*;
+import CapaDomini.Modelo.*;
 import CapaPersistencia.GestorHidato;
 import CapaVista.ControladorVista;
 import CapaVista.VistaCrearHidatoManual;

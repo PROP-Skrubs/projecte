@@ -1,8 +1,8 @@
 package CapaVista;
 
-import CapaDomini.Algoritmes.Tauler;
-import CapaDomini.Algoritmes.TaulerDisplayerCallbacks;
-import CapaDomini.Algoritmes.ValidadorTauler;
+import CapaDomini.Modelo.Tauler;
+import CapaDomini.Modelo.TaulerDisplayerCallbacks;
+import CapaDomini.Modelo.ValidadorTauler;
 
 import javax.swing.*;
 import java.awt.*;

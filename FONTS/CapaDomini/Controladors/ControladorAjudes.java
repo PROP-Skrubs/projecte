@@ -1,8 +1,8 @@
 package CapaDomini.Controladors;
 
-import CapaDomini.Algoritmes.Casella;
-import CapaDomini.Algoritmes.Hidato;
-import CapaDomini.Algoritmes.Tauler;
+import CapaDomini.Modelo.Casella;
+import CapaDomini.Modelo.Hidato;
+import CapaDomini.Modelo.Tauler;
 
 import java.util.ArrayList;
 import java.util.List;

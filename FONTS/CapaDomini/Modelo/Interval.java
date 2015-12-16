@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 /**
  * Aquesta classe serveix per tenir intervals

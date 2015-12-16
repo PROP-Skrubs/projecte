@@ -1,4 +1,4 @@
-package CapaDomini.Algoritmes;
+package CapaDomini.Modelo;
 
 /**
  * Aquesta classe conte Hidato i totoes les seves funcionalitats

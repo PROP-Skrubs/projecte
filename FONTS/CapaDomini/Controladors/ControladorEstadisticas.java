@@ -1,8 +1,8 @@
 package CapaDomini.Controladors;
 
-import CapaDomini.Algoritmes.EstadisticasHidato;
-import CapaDomini.Algoritmes.EstadisticasUsuari;
-import CapaDomini.Algoritmes.Partida;
+import CapaDomini.Modelo.EstadisticasHidato;
+import CapaDomini.Modelo.EstadisticasUsuari;
+import CapaDomini.Modelo.Partida;
 import CapaPersistencia.GestorEstadistica;
 
 import java.util.ArrayList;

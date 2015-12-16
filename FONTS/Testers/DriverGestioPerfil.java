@@ -1,7 +1,7 @@
 package Testers;
 
 import CapaDomini.Controladors.ControladorLogin;
-import CapaDomini.Algoritmes.Usuari;
+import CapaDomini.Modelo.Usuari;
 import CapaPersistencia.GestorUsuari;
 
 import java.util.Scanner;

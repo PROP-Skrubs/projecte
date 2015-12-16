@@ -35,4 +35,8 @@ public class VistaComu
         frame.setLocationRelativeTo(null);
     }
 
+    protected void setTitol(String titol)
+    {
+        frame.setTitle(titol);
+    }
 }

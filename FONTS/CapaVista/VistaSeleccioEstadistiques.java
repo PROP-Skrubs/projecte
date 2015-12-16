@@ -31,6 +31,7 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         carregaModel(1);
         carregaModel(2);
         listSeleccions.setModel(modelLlistaUsuaris);
+        listSeleccions.setSelectedIndex(0);
 
         pack();
     }
@@ -42,13 +43,13 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         GridBagConstraints c;
         Component toAdd;
 
-        toAdd = radioButtonUsuari = new JRadioButton("Veure estadístiques de Hidatos");
+        toAdd = radioButtonUsuari = new JRadioButton("Veure estadístiques de Usuaris");
         c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
         mainPanel.add(toAdd, c);
 
-        toAdd = radioButtonHidato = new JRadioButton("Veure estadistiques de usuaris");
+        toAdd = radioButtonHidato = new JRadioButton("Veure estadistiques de Hidatos");
         c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 1;
@@ -77,14 +78,16 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
             public void actionPerformed(ActionEvent actionEvent)
             {
                 listSeleccions.setModel(modelLlistaUsuaris);
+                listSeleccions.setSelectedIndex(0);
             }
         });
-        radioButtonUsuari.addActionListener(new ActionListener()
+        radioButtonHidato.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
                 listSeleccions.setModel(modelLlistaHidatos);
+                listSeleccions.setSelectedIndex(0);
             }
         });
     }
@@ -121,6 +124,13 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
     @Override
     public void executaOk()
     {
-//        ControladorVista.mostraEstadistiques(usuari/hidato, id);
+        if (radioButtonUsuari.isSelected())
+        {
+            ControladorVista.mostrarEstadistiquesUsuari((String) listSeleccions.getSelectedValue());
+        }
+        else
+        {
+            ControladorVista.mostraEstadistiquesHidato( Integer.valueOf( (String) listSeleccions.getSelectedValue()));
+        }
     }
 }

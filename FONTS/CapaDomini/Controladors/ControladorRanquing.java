@@ -1,6 +1,6 @@
 package CapaDomini.Controladors;
 
-import CapaDomini.Algoritmes.Ranking;
+import CapaDomini.Modelo.Ranking;
 import CapaPersistencia.GestorRanking;
 
 import java.util.ArrayList;

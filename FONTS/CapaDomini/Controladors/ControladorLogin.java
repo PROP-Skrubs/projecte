@@ -1,6 +1,6 @@
 package CapaDomini.Controladors;
 
-import CapaDomini.Algoritmes.Usuari;
+import CapaDomini.Modelo.Usuari;
 import CapaPersistencia.GestorUsuari;
 import CapaVista.ControladorVista;
 

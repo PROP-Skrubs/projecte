@@ -1,6 +1,6 @@
 package CapaDomini.Controladors;
 
-import CapaDomini.Algoritmes.*;
+import CapaDomini.Modelo.*;
 import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorPartida;
 import CapaPersistencia.GestorUsuari;
@@ -163,7 +163,10 @@ public class ControladorPartida
     public static void descartaPartida()
     {
         int idPartida = partida.getUniqID();
-        GestorPartida.eliminaPartida(idPartida);
+        if (GestorPartida.existeixPartida(partida.getUniqID()))
+        {
+            GestorPartida.eliminaPartida(idPartida);
+        }
     }
 
     /**
@@ -198,6 +201,6 @@ public class ControladorPartida
         {
             ControladorEstadisticas.registrar_abandonament(partida);
         }
-
+        descartaPartida();
     }
 }

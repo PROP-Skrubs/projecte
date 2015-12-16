@@ -135,26 +135,26 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&gt;</code></td>
+<td class="colFirst"><code>static java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../CapaPersistencia/GestorRanking.html#getHidatosMesCopsResolts()">getHidatosMesCopsResolts</a></strong>()</code>
 <div class="block">Aquesta funcio selecciona de la BD el Hidatos que han estat mes cops resolts i no han utilitzat cap ajuda</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&gt;</code></td>
+<td class="colFirst"><code>static java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../CapaPersistencia/GestorRanking.html#getUsuarisPerDificultat(java.lang.String)">getUsuarisPerDificultat</a></strong>(java.lang.String&nbsp;dificultat)</code>
 <div class="block">Aquesta funcio selecciona els usuaris que han resolt menor temps qualsevol Hidato amb una certa dificultat i no han utilitzat cap ajuda</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&gt;</code></td>
+<td class="colFirst"><code>static java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../CapaPersistencia/GestorRanking.html#getUsuarisPerHidato(int)">getUsuarisPerHidato</a></strong>(int&nbsp;idHidato)</code>
 <div class="block">Aquesta funcio selecciona de la BD els usuaris que han resolt un Hidato h amb menor temps i no han utilitzat cap ajuda</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><strong><a href="../CapaPersistencia/GestorRanking.html#insertRanquing(CapaDomini.Algoritmes.Ranking)">insertRanquing</a></strong>(<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&nbsp;r)</code>
+<td class="colLast"><code><strong><a href="../CapaPersistencia/GestorRanking.html#insertRanquing(CapaDomini.Algoritmes.Ranking)">insertRanquing</a></strong>(<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&nbsp;r)</code>
 <div class="block">Donat un ranquing r, insereix els seus parametres a la BD</div>
 </td>
 </tr>
@@ -203,7 +203,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>insertRanquing</h4>
-<pre>public static&nbsp;int&nbsp;insertRanquing(<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&nbsp;r)</pre>
+<pre>public static&nbsp;int&nbsp;insertRanquing(<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&nbsp;r)</pre>
 <div class="block">Donat un ranquing r, insereix els seus parametres a la BD</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>r</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>Retorna la ultima clau inserida</dd></dl>
@@ -215,7 +215,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getUsuarisPerHidato</h4>
-<pre>public static&nbsp;java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&gt;&nbsp;getUsuarisPerHidato(int&nbsp;idHidato)</pre>
+<pre>public static&nbsp;java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&gt;&nbsp;getUsuarisPerHidato(int&nbsp;idHidato)</pre>
 <div class="block">Aquesta funcio selecciona de la BD els usuaris que han resolt un Hidato h amb menor temps i no han utilitzat cap ajuda</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>idHidato</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>Retorna un ArrayList amb les ids dels deu usuaris que han resolt un Hidato h amb un menor temps.
@@ -228,7 +228,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getUsuarisPerDificultat</h4>
-<pre>public static&nbsp;java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&gt;&nbsp;getUsuarisPerDificultat(java.lang.String&nbsp;dificultat)</pre>
+<pre>public static&nbsp;java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&gt;&nbsp;getUsuarisPerDificultat(java.lang.String&nbsp;dificultat)</pre>
 <div class="block">Aquesta funcio selecciona els usuaris que han resolt menor temps qualsevol Hidato amb una certa dificultat i no han utilitzat cap ajuda</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>dificultat</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>Retorna un ArrayList amb les ids dels deu usuaris que han resolt un Hidato h amb un menor temps i una donada dificultat.
@@ -241,7 +241,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getHidatosMesCopsResolts</h4>
-<pre>public static&nbsp;java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Algoritmes">Ranking</a>&gt;&nbsp;getHidatosMesCopsResolts()</pre>
+<pre>public static&nbsp;java.util.ArrayList&lt;<a href="../CapaDomini/Algoritmes/Ranking.html" title="class in CapaDomini.Modelo">Ranking</a>&gt;&nbsp;getHidatosMesCopsResolts()</pre>
 <div class="block">Aquesta funcio selecciona de la BD el Hidatos que han estat mes cops resolts i no han utilitzat cap ajuda</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>Retorna un ArrayList amb les ids dels Hidatos que han estat mes cops resolt.
  El tamany maxim possible del array sera 10.El parametre temps de cadascun del elements del Array sera els nombre de cops resolts</dd></dl>

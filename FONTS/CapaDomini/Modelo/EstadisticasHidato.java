@@ -1,6 +1,4 @@
-package CapaDomini.Algoritmes;
-
-import java.util.List;
+package CapaDomini.Modelo;
 
 /**
  * Created by Maria on 01/12/2015.

@@ -1,6 +1,6 @@
 package CapaPersistencia;
 
-import CapaDomini.Algoritmes.Hidato;
+import CapaDomini.Modelo.Hidato;
 
 import java.sql.*;
 import java.util.ArrayList;

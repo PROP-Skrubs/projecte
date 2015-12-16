@@ -1,6 +1,6 @@
 package CapaVista;
 
-import CapaDomini.Algoritmes.*;
+import CapaDomini.Modelo.*;
 import CapaDomini.Controladors.ControladorHidato;
 import CapaDomini.Controladors.ControladorLogin;
 import CapaDomini.Controladors.ControladorUsuari;
@@ -157,5 +157,15 @@ public class ControladorVista
         {
             throw new RuntimeException(e);
         }
+    }
+
+    static void mostrarEstadistiquesUsuari(String nomUsuari)
+    {
+        new VistaMostraEstadistiquesUsuari(nomUsuari).mostra(true);
+    }
+
+    static void mostraEstadistiquesHidato(int idHidato)
+    {
+        new VistaMostraEstadisticaHidato(idHidato).mostra(true);
     }
 }

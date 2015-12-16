@@ -1,7 +1,7 @@
 package CapaPersistencia;
 
 
-import CapaDomini.Algoritmes.Ranking;
+import CapaDomini.Modelo.Ranking;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

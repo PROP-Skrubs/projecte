@@ -1,6 +1,6 @@
 package CapaVista;
 
-import CapaDomini.Algoritmes.Algoritmes;
+import CapaDomini.Modelo.Algoritmes;
 
 import javax.swing.*;
 import java.awt.*;
