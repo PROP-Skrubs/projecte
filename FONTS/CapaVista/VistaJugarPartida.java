@@ -20,7 +20,6 @@ public class VistaJugarPartida extends VistaGenerica
     private JButton buttonSortir;
     private JButton buttonValidar;
     private JLabel labelContador;
-    int n = 0;
     int horas = 0;
     int min = 0;
     int seg = 0;
@@ -31,9 +30,11 @@ public class VistaJugarPartida extends VistaGenerica
 
     }
 
-    public VistaJugarPartida(Tauler taulerProgres, TaulerDisplayerCallbacks cMethods)
+    public VistaJugarPartida(Tauler taulerProgres, TaulerDisplayerCallbacks cMethods, int segonsTranscorreguts)
     {
         super("Jugar");
+
+        conversionInicial(segonsTranscorreguts);
 
         afegirComponents();
         afegirActionListeners();
@@ -62,16 +63,16 @@ public class VistaJugarPartida extends VistaGenerica
 
         toAdd = labelContador = new JLabel();
         int delay = 1000; //milliseconds
-        n = 0;
+        seg = 0;
         labelContador.setText("00:00:00");
         ActionListener taskPerformer = new ActionListener()
         {
             public void actionPerformed(ActionEvent evt)
             {
-                n += 1;
-                String count = conversion(n);
+                seg += 1;
+                String count = conversion(seg);
                 labelContador.setText(count);
-                if (n > 59) n = 0;
+                if (seg > 59) seg = 0;
             }
         };
         new Timer(delay, taskPerformer).start();
@@ -113,7 +114,7 @@ public class VistaJugarPartida extends VistaGenerica
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                ControladorPartida.guardarPartida();
+                ControladorPartida.guardarPartida(horas*3600+min*60+seg);
                 new NotificacioGenerica("Partida guardada correctament!").mostra(true);
             }
         });
@@ -149,7 +150,7 @@ public class VistaJugarPartida extends VistaGenerica
     }
 
 
-    public String conversion(int seg)
+    private String conversion(int seg)
     {
         String segundos;
         String minutos;
@@ -190,5 +191,14 @@ public class VistaJugarPartida extends VistaGenerica
         }
         String r = hora + ":" + minutos + ":" + segundos;
         return r;
+    }
+
+    private void conversionInicial(int segundos)
+    {
+        horas = segundos/3600;
+        segundos = segundos%3600;
+        min = segundos/60;
+        segundos = segundos%60;
+        seg = segundos;
     }
 }

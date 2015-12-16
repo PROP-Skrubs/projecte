@@ -96,7 +96,7 @@ public class ControladorPartida
      */
     public static void jugaPartida()
     {
-        new VistaJugarPartida(partida.getTaulerProgres(),callbackImplementor).mostra(true);
+        new VistaJugarPartida(partida.getTaulerProgres(),callbackImplementor,partida.getTemps()).mostra(true);
     }
 
     /**
@@ -147,9 +147,9 @@ public class ControladorPartida
     /**
      * Guarda la Partida actual
      */
-    public static void guardarPartida()
+    public static void guardarPartida(int tempsTranscorregut)
     {
-
+        partida.setTemps(tempsTranscorregut);
         //todo aixo hauria d'associar el usuari amb la ID de la partida (cas creacio)
         if (GestorPartida.existeixPartida(partida.getUniqID()))
             GestorPartida.modificaPartida(partida);
