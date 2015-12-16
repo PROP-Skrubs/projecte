@@ -1,8 +1,5 @@
 package Testers;
-import CapaDomini.ControladorEstadisticas;
-import CapaDomini.ControladorUsuari;
-import CapaDomini.Usuari;
-import CapaPersistencia.CapaPersistencia;
+import CapaDomini.Controladors.ControladorEstadisticas;
 
 import java.util.Scanner;
 

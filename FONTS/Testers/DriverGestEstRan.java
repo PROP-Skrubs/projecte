@@ -1,6 +1,6 @@
 package Testers;
 
-import CapaDomini.Ranking;
+import CapaDomini.Algoritmes.Ranking;
 import CapaPersistencia.*;
 
 import java.util.ArrayList;

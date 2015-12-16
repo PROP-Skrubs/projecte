@@ -1,6 +1,6 @@
 package Testers;
 
-import CapaDomini.Tauler;
+import CapaDomini.Algoritmes.Tauler;
 
 import java.util.Scanner;
 

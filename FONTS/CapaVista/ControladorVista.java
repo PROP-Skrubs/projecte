@@ -1,9 +1,11 @@
 package CapaVista;
 
-import CapaDomini.*;
+import CapaDomini.Algoritmes.*;
+import CapaDomini.Controladors.ControladorHidato;
+import CapaDomini.Controladors.ControladorLogin;
+import CapaDomini.Controladors.ControladorUsuari;
 
 import java.io.File;
-import java.io.IOError;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -28,7 +30,7 @@ public class ControladorVista
 
     static boolean demanaFerLogin(String nomUsuari, String contrasenya)
     {
-        return ControladorLogin.fesLogin(nomUsuari,contrasenya);
+        return ControladorLogin.fesLogin(nomUsuari, contrasenya);
     }
 
     public static void mostraMenuPrincipal()

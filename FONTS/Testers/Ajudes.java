@@ -2,9 +2,9 @@ package Testers;
 
 
 
-import CapaDomini.Hidato;
-import CapaDomini.ControladorAjudes;
-import CapaDomini.Casella;
+import CapaDomini.Algoritmes.Hidato;
+import CapaDomini.Controladors.ControladorAjudes;
+import CapaDomini.Algoritmes.Casella;
 
 import java.util.Iterator;
 import java.util.List;
