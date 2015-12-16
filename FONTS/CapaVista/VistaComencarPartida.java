@@ -101,7 +101,7 @@ public class VistaComencarPartida extends DialogGeneric
         java.util.List<Integer> totesID;
         if (quinModel == 1) //Partida
         {
-            totesID = GestorPartida.donaTotesIDPartidaDeUsuari(ControladorLogin.getUsuariActual().getUniqID());
+            totesID = ControladorPartida.donarPartidaSegonsUsuari(ControladorLogin.getUsuariActual().getUniqID());
         }
         else
         {
