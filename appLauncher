@@ -1,1 +1,1 @@
-java -classpath EXE:sqlite-jdbc-3.8.11.2.jar CapaVista.PuntEntrada
+java -classpath EXE:sqlite-jdbc-3.8.11.2.jar CapaVista.ControladorVista
