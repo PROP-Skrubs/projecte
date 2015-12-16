@@ -28,7 +28,7 @@ public class GestorUsuari
 
     //Inserta un nou usuari a la BD
 
-    public static List<String> donaTotesID()
+    public static List<String> donaTotsNom()
     {
         List<String> aRetornar = new ArrayList<>(30);
         try (Statement s = conn.createStatement())

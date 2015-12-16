@@ -66,6 +66,7 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         radioButtonGroup = new ButtonGroup();
         radioButtonGroup.add(radioButtonHidato);
         radioButtonGroup.add(radioButtonUsuari);
+        radioButtonUsuari.setSelected(true);
     }
 
     private void afegirActionListeners()
@@ -93,7 +94,7 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         java.util.List<Integer> totesID;
         java.util.List<String> totesNOM;
 
-            totesNOM = GestorUsuari.donaTotesID();
+            totesNOM = GestorUsuari.donaTotsNom();
             totesID = GestorHidato.donaTotesID();
 
         DefaultListModel<String> listM = new DefaultListModel<>();
