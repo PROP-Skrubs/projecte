@@ -3,6 +3,8 @@ package CapaPersistencia;
 import CapaDomini.Algoritmes.Usuari;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Aquesta classe s'encarrega de les Funcionalitats amb la BD del Usuari
@@ -11,6 +13,7 @@ import java.sql.*;
 public class GestorUsuari
 {
     private final static Connection conn = CapaPersistencia.conn;
+    private final static String SELECT_ALL_NOM_USUARI = "SELECT nomUsuari FROM hidatos";
     private final static String INSERT_USUARI = "INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)";
     private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
     private final static String COUNT_USUARI_ID = "SELECT COUNT(*) FROM usuaris WHERE id=?";
@@ -24,6 +27,24 @@ public class GestorUsuari
             "WHERE id=?";
 
     //Inserta un nou usuari a la BD
+
+    public static List<String> donaTotesID()
+    {
+        List<String> aRetornar = new ArrayList<>(30);
+        try (Statement s = conn.createStatement())
+        {
+            ResultSet resSet = s.executeQuery(SELECT_ALL_NOM_USUARI);
+            while (resSet.next())
+            {
+                aRetornar.add(resSet.getString("nomUsuari"));
+            }
+        }
+        catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return aRetornar;
+    }
 
     /**
      * Aquesta funcio comprova si existeix ja un Usuaro amb aquell nomUsuari a la BD

@@ -97,7 +97,7 @@ public class ControladorVista
 
     static void mostraSeleccioEstadistiques()
     {
-
+        new VistaSeleccioEstadistiques().mostra(true);
     }
 
     static void mostraSeleccioRanquings()
