@@ -13,7 +13,7 @@ import java.util.List;
 public class GestorUsuari
 {
     private final static Connection conn = CapaPersistencia.conn;
-    private final static String SELECT_ALL_NOM_USUARI = "SELECT nomUsuari FROM hidatos";
+    private final static String SELECT_ALL_NOM_USUARI = "SELECT nomUsuari FROM usuaris";
     private final static String INSERT_USUARI = "INSERT INTO usuaris (nomUsuari, contrasenya, nomReal) VALUES (?,?,?)";
     private final static String COUNT_USUARI = "SELECT COUNT(*) FROM usuaris WHERE nomUsuari = ?";
     private final static String COUNT_USUARI_ID = "SELECT COUNT(*) FROM usuaris WHERE id=?";
