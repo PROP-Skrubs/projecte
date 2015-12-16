@@ -80,7 +80,6 @@ public class TaulerDisplayer extends JPanel
                 {
                     numeroInputBuffer *= 10;
                     numeroInputBuffer += caracterIntroduit - '0';
-
                 }
             }
 

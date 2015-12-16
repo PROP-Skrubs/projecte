@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  */
 public class NotificacioGenerica extends VistaComu
 {
-    private JLabel label;
+    private JTextArea label;
     private JButton button;
 
     public NotificacioGenerica()
@@ -21,11 +21,16 @@ public class NotificacioGenerica extends VistaComu
     public NotificacioGenerica(String missatge)
     {
         frame = new JFrame("Notificació");
-        frame.getContentPane().setLayout(new GridLayout(2,1));
-        label = new JLabel(missatge);
+        frame.getContentPane().setLayout(new GridBagLayout());
+        label = new JTextArea(missatge);
+        label.setEnabled(false);
+        label.setEditable(false);
         button = new JButton("D'acord!");
-        frame.getContentPane().add(label);
-        frame.getContentPane().add(button);
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        frame.getContentPane().add(label,c);
+        c.gridy = 1;
+        frame.getContentPane().add(button,c);
         button.requestFocusInWindow();
 
         button.addActionListener(new ActionListener()

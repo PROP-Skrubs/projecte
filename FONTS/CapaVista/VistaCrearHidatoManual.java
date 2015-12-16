@@ -1,5 +1,9 @@
 package CapaVista;
 
+import CapaDomini.Tauler;
+import CapaDomini.TaulerDisplayerCallbacks;
+import CapaDomini.ValidadorTauler;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,10 +15,19 @@ public class VistaCrearHidatoManual extends DialogGeneric
     private GridBagLayout layout;
     private TaulerDisplayer taulerDisplayer;
     private JTextArea areaInstruccions;
+    private Tauler t;
+    private TaulerDisplayerCallbacks cMethods;
 
     public VistaCrearHidatoManual()
     {
+
+    }
+
+    public VistaCrearHidatoManual(Tauler t, TaulerDisplayerCallbacks cMethods)
+    {
         super("Crear tauler manualment");
+        this.t = t;
+        this.cMethods = cMethods;
 
         afegirComponents();
 
@@ -29,6 +42,10 @@ public class VistaCrearHidatoManual extends DialogGeneric
         Component toAdd;
 
         toAdd = taulerDisplayer = new TaulerDisplayer(); //ControladorVista.donaCallbacksCreacioManual()
+        taulerDisplayer.setTauler(t);
+        taulerDisplayer.setCallbackMethods(cMethods);
+        taulerDisplayer.requestFocusInWindow();
+
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -48,7 +65,50 @@ public class VistaCrearHidatoManual extends DialogGeneric
     @Override
     public void executaOk()
     {
-        super.executaOk();
+        int resultatValidacio = ControladorVista.demanaValidaIGuarda();
+        String missatge = "";
+        switch (resultatValidacio)
+        {
+            case ValidadorTauler.OK:
+            {
+                missatge = "Hidato creat i guardat correctament!";
+                break;
+            }
+            case ValidadorTauler.JARESOLT:
+            {
+                missatge = "L'Hidato que has donat ja estava completament resolt!";
+                break;
+            }
+            case ValidadorTauler.MULTIPLES:
+            {
+                missatge = "L'Hidato no és admissible ja que té múltiples solucions";
+                break;
+            }
+            case ValidadorTauler.NOBENPOSADES:
+            {
+                missatge = "Aquest Hidato conté números consecutius que no son adjacents";
+                break;
+            }
+            case ValidadorTauler.NOMINMAX:
+            {
+                missatge = "Aquest Hidato no té el mínim i el màxim posats";
+                break;
+            }
+            case ValidadorTauler.NOTESOL:
+            {
+                missatge = "Aquest Hidato no té solució";
+                break;
+            }
+        }
+        new NotificacioGenerica(missatge).mostra(true);
+        if (resultatValidacio == ValidadorTauler.OK)
+        {
+            dispose();
+        }
+        else
+        {
+            taulerDisplayer.requestFocusInWindow();
+        }
     }
 
     @Override

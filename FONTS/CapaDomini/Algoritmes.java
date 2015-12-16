@@ -18,9 +18,10 @@ public class Algoritmes {
     public static final int ERRORFORATS = 2;
     public static final int ERRORNUMPREDETERMINATS = 3;
     public static final int DIFICULTATINCORRECTA = 4;
-    public static final int FACIL = 1;
-    public static final int NORMAL = 2;
-    public static final int DIFICIL = 3;
+
+    public static final int FACIL = 0;
+    public static final int NORMAL = 1;
+    public static final int DIFICIL = 2;
 
 
 

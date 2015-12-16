@@ -1,7 +1,15 @@
 package CapaVista;
 
+import CapaDomini.ControladorLogin;
+import CapaDomini.ControladorPartida;
+import CapaPersistencia.GestorHidato;
+import CapaPersistencia.GestorPartida;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 
 /**
  * Created by daniel on 15/12/15.
@@ -12,6 +20,9 @@ public class VistaComencarPartida extends DialogGeneric
     private JRadioButton radioButtonNovaPartida;
     private JRadioButton radioButtonCarregarPartida;
     private JList listSeleccions;
+    private ButtonGroup radioButtonGroup;
+    private AbstractListModel<String> modelLlistaPartides;
+    private AbstractListModel<String> modelLlistaHidatos;
 
 
     public VistaComencarPartida()
@@ -20,6 +31,10 @@ public class VistaComencarPartida extends DialogGeneric
 
         afegirComponents();
         afegirActionListeners();
+
+        carregaModel(1);
+        carregaModel(2);
+        listSeleccions.setModel(modelLlistaPartides);
 
         pack();
     }
@@ -49,13 +64,85 @@ public class VistaComencarPartida extends DialogGeneric
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 0;
-        c.weighty=2;
+        c.weighty= GridBagConstraints.REMAINDER;
         mainPanel.add(toAdd, c);
+
+        radioButtonGroup = new ButtonGroup();
+        radioButtonGroup.add(radioButtonCarregarPartida);
+        radioButtonGroup.add(radioButtonNovaPartida);
+        radioButtonCarregarPartida.setSelected(true);
     }
 
     private void afegirActionListeners()
     {
+        radioButtonCarregarPartida.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                listSeleccions.setModel(modelLlistaPartides);
+                listSeleccions.setSelectedIndex(0);
+            }
+        });
+
+        radioButtonNovaPartida.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                listSeleccions.setModel(modelLlistaHidatos);
+                listSeleccions.setSelectedIndex(0);
+            }
+        });
 
     }
 
+    public void carregaModel(int quinModel)
+    {
+        java.util.List<Integer> totesID;
+        if (quinModel == 1) //Partida
+        {
+            totesID = GestorPartida.donaTotesID();
+        }
+        else
+        {
+            totesID = GestorHidato.donaTotesID();
+        }
+
+        DefaultListModel<String> listM = new DefaultListModel<>();
+        for (Integer i : totesID)
+        {
+            listM.addElement(i.toString());
+        }
+        if (quinModel == 1)
+        {
+            modelLlistaPartides = listM;
+        }
+        else
+        {
+            modelLlistaHidatos = listM;
+        }
+    }
+
+    @Override
+    public void executaOk()
+    {
+        if (listSeleccions.getSelectedValue() == null) return;
+        Integer idSeleccionada = Integer.valueOf((String) listSeleccions.getSelectedValue());
+        if (radioButtonCarregarPartida.isSelected())
+        {
+            ControladorPartida.carregarPartida(idSeleccionada); //todo verificar que un usuari nomes pugui carregar la seva partida
+        }
+        else if (radioButtonNovaPartida.isSelected())
+        {
+            ControladorPartida.novaPartida(ControladorLogin.getUsuariActual().getUniqID(), idSeleccionada);
+        }
+        else
+        {
+            throw new RuntimeException("Que vols que faci?");
+        }
+        ControladorPartida.jugaPartida();
+        dispose();
+
+    }
 }

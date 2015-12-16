@@ -4,6 +4,7 @@ import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorPartida;
 import CapaPersistencia.GestorUsuari;
 import CapaVista.JugarPartida;
+import CapaVista.VistaJugarPartida;
 import com.sun.xml.internal.ws.wsdl.writer.UsingAddressing;
 import sun.swing.BakedArrayList;
 
@@ -97,8 +98,7 @@ public class ControladorPartida
      */
     public static void jugaPartida()
     {
-
-        JugarPartida j = new JugarPartida(partida.getTaulerProgres(),callbackImplementor);
+        new VistaJugarPartida(partida.getTaulerProgres(),callbackImplementor).mostra(true);
     }
 
     /**
@@ -184,4 +184,22 @@ public class ControladorPartida
         return  listIdPartides;
     }
 
+    public static boolean esAcabada()
+    {
+        return partida.getTaulerProgres().recorreTauler(1).getElem() == partida.getTaulerProgres().maximElementPossible();
+    }
+
+    public static void actualitzaEstadistiquesIRanquings()
+    {
+        if (esAcabada())
+        {
+            ControladorEstadisticas.registrar_guanyat(partida);
+            ControladorRanquing.afegirRanquing(partida.getUsuari().getNomUsuari(),partida.getIDHidato(),partida.getTemps(),partida.getHidato().getDificultat());
+        }
+        else
+        {
+            ControladorEstadisticas.registrar_abandonament(partida);
+        }
+
+    }
 }

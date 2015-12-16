@@ -1,5 +1,7 @@
 package CapaVista;
 
+import CapaDomini.ControladorLogin;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,7 @@ public class VistaMenuPrincipal extends VistaGenerica
     private JButton buttonJugarHidato;
     private JButton buttonCrearHidato;
     private JButton buttonVeureEstadistiques;
+    private JButton buttonVeureRanquings;
     private JLabel labelTextBenvinguda;
 
 
@@ -66,13 +69,23 @@ public class VistaMenuPrincipal extends VistaGenerica
         c.gridy = 2;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonVeureEstadistiques = new JButton("Estadístiques i rànquings");
+        toAdd = buttonVeureEstadistiques = new JButton("Estadístiques");
         c = new GridBagConstraints();
         c.fill=GridBagConstraints.BOTH;
         c.gridx = 2;
         c.gridy = 3;
         mainPanel.add(toAdd, c);
+
+        toAdd = buttonVeureRanquings = new JButton("Rànquings");
+        c = new GridBagConstraints();
+        c.fill=GridBagConstraints.BOTH;
+        c.gridx = 2;
+        c.gridy = 4;
+        mainPanel.add(toAdd, c);
+
+
     }
+
 
     private void afegirActionListeners()
     {
@@ -90,7 +103,7 @@ public class VistaMenuPrincipal extends VistaGenerica
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                new VistaJugarPartida().mostra(true);
+                new VistaComencarPartida().mostra(true);
             }
         });
 
@@ -99,13 +112,22 @@ public class VistaMenuPrincipal extends VistaGenerica
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
+                ControladorVista.mostraSeleccioEstadistiques();
+            }
+        });
 
+        buttonVeureRanquings.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                ControladorVista.mostraSeleccioRanquings();
             }
         });
     }
 
     private String donaNomUsuari()
     {
-        return "ESTATIC";
+        return ControladorLogin.getUsuariActual().getNomReal();
     }
 }

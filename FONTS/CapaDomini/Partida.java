@@ -1,6 +1,8 @@
 package CapaDomini;
 
 
+import CapaVista.ControladorVista;
+
 /**
  * Aquesta classe conté Partida i les seves funcionalitats
  * @author Eduard J. Seoane
@@ -26,9 +28,9 @@ public class Partida
     public int afegir(int x, int y, int elem)
     { //todo arreglar aixo
 
-        System.out.print("TaulerProgres.getTamany(): "); System.out.println(taulerProgres.getTamany());
-        System.out.print("X: "); System.out.println(x);
-        System.out.print("Y: "); System.out.println(y);
+//        System.out.print("TaulerProgres.getTamany(): "); System.out.println(taulerProgres.getTamany());
+//        System.out.print("X: "); System.out.println(x);
+//        System.out.print("Y: "); System.out.println(y);
         if (x < 0 | x > taulerProgres.getTamany()-1)
         {
             System.out.println("X no valida, introdueix una altra");
@@ -43,23 +45,23 @@ public class Partida
 
         if (taulerProgres.buscaCasella(elem) != null)
         {
-            System.out.println("Valor ja assignat");
+            ControladorVista.notifica("Valor ja assignat");
             return 3;
         }
         if (taulerProgres.maximElementPossible() < elem)
         {
-            System.out.println("Valor massa gran");
+            ControladorVista.notifica("Valor massa gran");
             return 3;
         }
         if (elem < 1)
         {
-            System.out.println("Valor massa petit");
+            ControladorVista.notifica("Valor massa petit");
             return 3;
         }
         if (hidato.casellaEsOriginal(x,y))
         {
-            System.out.print("Aquesta casella no es pot modificar");
-            return 0;
+            ControladorVista.notifica("Aquesta casella no es pot modificar");
+            return 4;
         }
         else
         {

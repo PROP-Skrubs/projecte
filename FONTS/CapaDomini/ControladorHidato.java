@@ -2,8 +2,12 @@ package CapaDomini;
 
 import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorTauler;
+import CapaVista.ControladorVista;
 import CapaVista.CrearTaulerAutomatic;
 import CapaVista.CrearTaulerManual;
+import CapaVista.VistaCrearHidatoManual;
+
+import java.util.Scanner;
 
 /**
  * Aquesta classe es dedica a poder gestionar les accions que es poden fer amb l'Hidato
@@ -81,9 +85,8 @@ public class ControladorHidato
     {
 
         taulerCreacio = new Tauler(tamany);
-        CrearTaulerManual ct = new CrearTaulerManual(taulerCreacio,callbackImplementor);
-        ct.pack();
-        ct.setVisible(true);
+        VistaCrearHidatoManual ct = new VistaCrearHidatoManual(taulerCreacio,callbackImplementor);
+        ct.mostra(true);
     }
 
     /**
@@ -91,10 +94,7 @@ public class ControladorHidato
      */
     public static void creaHidatoAutomaticament()
     {
-
-        CrearTaulerAutomatic ct = new CrearTaulerAutomatic();
-        ct.pack();
-        ct.setVisible(true);
+        ControladorVista.mostraCreacioHidatoAutomatica();
     }
 
 
@@ -105,7 +105,7 @@ public class ControladorHidato
      * @param numPrecolocats
      * @param dificultat
      */
-    public static void fesCreacioAutomatica(int tamanyHidato, int numForats, int numPrecolocats, String dificultat)
+    public static int fesCreacioAutomatica(int tamanyHidato, int numForats, int numPrecolocats, String dificultat)
     {
 
         Tauler t;
@@ -118,7 +118,7 @@ public class ControladorHidato
         nouHidato.setTaulerComplert(tc);
         nouHidato.setDificultat(dificultat);
 
-        GestorHidato.creaHidato(nouHidato); //todo prendre nota del creador i de la id
+        return GestorHidato.creaHidato(nouHidato); //todo prendre nota del creador i de la id
 
     }
 
@@ -127,7 +127,6 @@ public class ControladorHidato
      */
     public static int validaIGuarda() //todo fer aixo com una interface
     {
-
         TaulerComplert hopefully = new TaulerComplert();
         int result = ValidadorTauler.validarTauler(taulerCreacio,hopefully);
         if (result == ValidadorTauler.OK)
@@ -138,8 +137,18 @@ public class ControladorHidato
             aGuardar.setDificultat("Facil"); //todo aixo esta hardcoded hard.
             GestorHidato.creaHidato(aGuardar);
         }
-        System.out.print("S'ha aconseguit un resultat de: ");
-        System.out.println(result);
         return result;
+    }
+
+    public static Tauler donaTauler(int idHidato)
+    {
+        Hidato h = GestorHidato.donaHidato(idHidato);
+        return h.getTauler();
+    }
+
+    public static int llegeixTaulerCreacio(Scanner in)
+    {
+        taulerCreacio.llegeixRepresentacioTextual(in);
+        return validaIGuarda();
     }
 }
