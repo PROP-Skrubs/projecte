@@ -1,7 +1,7 @@
 package CapaPersistencia;
 
-import CapaDomini.Tauler;
-import CapaDomini.TaulerComplert;
+import CapaDomini.Algoritmes.Tauler;
+import CapaDomini.Algoritmes.TaulerComplert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

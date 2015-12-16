@@ -1,8 +1,5 @@
 package Testers;
 
-import CapaDomini.ControladorEstadisticas;
-import CapaDomini.Partida;
-
 import java.util.Scanner;
 
 /**

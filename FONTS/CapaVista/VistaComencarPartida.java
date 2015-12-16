@@ -1,7 +1,7 @@
 package CapaVista;
 
-import CapaDomini.ControladorLogin;
-import CapaDomini.ControladorPartida;
+import CapaDomini.Controladors.ControladorLogin;
+import CapaDomini.Controladors.ControladorPartida;
 import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorPartida;
 
@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 
 /**
  * Created by daniel on 15/12/15.

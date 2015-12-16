@@ -1,7 +1,7 @@
 package CapaVista;
 
-import CapaDomini.ControladorLogin;
-import CapaDomini.ControladorUsuari;
+import CapaDomini.Controladors.ControladorLogin;
+import CapaDomini.Controladors.ControladorUsuari;
 
 import javax.swing.*;
 import java.awt.*;

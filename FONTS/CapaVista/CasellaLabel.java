@@ -1,6 +1,6 @@
 package CapaVista;
 
-import CapaDomini.Casella;
+import CapaDomini.Algoritmes.Casella;
 
 import javax.swing.*;
 import java.awt.*;

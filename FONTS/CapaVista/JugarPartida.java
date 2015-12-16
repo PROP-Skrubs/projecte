@@ -1,9 +1,8 @@
 package CapaVista;
 
-import CapaDomini.ControladorHidato;
-import CapaDomini.ControladorPartida;
-import CapaDomini.Tauler;
-import CapaDomini.TaulerDisplayerCallbacks;
+import CapaDomini.Controladors.ControladorPartida;
+import CapaDomini.Algoritmes.Tauler;
+import CapaDomini.Algoritmes.TaulerDisplayerCallbacks;
 
 import javax.swing.*;
 import java.awt.*;

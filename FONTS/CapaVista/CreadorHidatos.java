@@ -1,6 +1,6 @@
 package CapaVista;
 
-import CapaDomini.ControladorHidato;
+import CapaDomini.Controladors.ControladorHidato;
 
 import javax.swing.*;
 import java.awt.*;

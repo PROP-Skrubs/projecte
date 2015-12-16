@@ -1,8 +1,8 @@
 package Testers;
 
-import CapaDomini.Tauler;
-import CapaDomini.TaulerComplert;
-import CapaDomini.ValidadorTauler;
+import CapaDomini.Algoritmes.Tauler;
+import CapaDomini.Algoritmes.TaulerComplert;
+import CapaDomini.Algoritmes.ValidadorTauler;
 
 import java.util.Scanner;
 

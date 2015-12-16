@@ -1,6 +1,6 @@
 package CapaPersistencia;
 
-import CapaDomini.Usuari;
+import CapaDomini.Algoritmes.Usuari;
 
 import java.sql.*;
 

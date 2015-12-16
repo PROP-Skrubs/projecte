@@ -1,7 +1,7 @@
 package CapaVista;
 
-import CapaDomini.ControladorLogin;
-import CapaDomini.ControladorPartida;
+import CapaDomini.Controladors.ControladorLogin;
+import CapaDomini.Controladors.ControladorPartida;
 import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorPartida;
 
