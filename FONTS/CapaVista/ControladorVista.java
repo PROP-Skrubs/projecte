@@ -12,6 +12,20 @@ import java.util.Scanner;
  */
 public class ControladorVista
 {
+
+    public static void main(String[] argv)
+    {
+        //        new VistaCrearHidatos().mostra(true);
+        //        new VistaCrearHidatoAutomatic().mostra(true);
+        //        new VistaCrearHidatoManual().mostra(true);
+        new VistaLogin().mostra(true);
+        //        new VistaMenuPrincipal().mostra(true);
+        //        new VistaComencarPartida().mostra(true);
+        //        new VistaCrearUsuari("asdf","asdf").mostra(true);
+        //        new VistaJugarPartida().mostra(true);
+        //        new NotificacioGenerica("EIEIEIEIEIEI QUE TIIO").mostra(true);
+    }
+
     static boolean demanaFerLogin(String nomUsuari, String contrasenya)
     {
         return ControladorLogin.fesLogin(nomUsuari,contrasenya);

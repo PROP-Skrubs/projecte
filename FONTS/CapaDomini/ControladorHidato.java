@@ -148,6 +148,7 @@ public class ControladorHidato
 
     public static int llegeixTaulerCreacio(Scanner in)
     {
+        taulerCreacio = new Tauler();
         taulerCreacio.llegeixRepresentacioTextual(in);
         return validaIGuarda();
     }

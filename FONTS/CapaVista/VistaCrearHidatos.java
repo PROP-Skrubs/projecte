@@ -118,7 +118,6 @@ public class VistaCrearHidatos extends DialogGeneric
         }
         if (radioButtonFitxer.isSelected())
         {
-            new NotificacioGenerica(chooser.getSelectedFile().getAbsolutePath());
             ControladorVista.demanaCrearHidatoFitxer(chooser.getSelectedFile().getAbsolutePath());
         }
         dispose();
