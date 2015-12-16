@@ -63,7 +63,6 @@ public class VistaJugarPartida extends VistaGenerica
 
         toAdd = labelContador = new JLabel();
         int delay = 1000; //milliseconds
-        seg = 0;
         labelContador.setText("00:00:00");
         ActionListener taskPerformer = new ActionListener()
         {
