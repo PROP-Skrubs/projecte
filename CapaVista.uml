@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>CapaVista</OriginalElement>
+  <nodes>
+    <node x="646.6582952815829" y="1209.9216133942161">CapaVista.TaulerDisplayer</node>
+    <node x="679.1430332922315" y="1697.1590628853269">CapaVista.VistaMostraEstadistica</node>
+    <node x="2614.79778051788" y="241.56350184956852">CapaVista.VistaCrearHidatoAutomatic</node>
+    <node x="0.0" y="990.0">CapaVista.JugarPartida</node>
+    <node x="1148.1430332922314" y="1697.1590628853269">CapaVista.VistaMostraRanquing</node>
+    <node x="753.751902587519" y="974.0106544901066">CapaVista.ControladorVista</node>
+    <node x="0.0" y="671.0">CapaVista.VistaJugarPartida</node>
+    <node x="1251.1697108066974" y="968.7572298325724">CapaVista.CasellaLabel</node>
+    <node x="2198.000000000001" y="666.0110974106042">CapaVista.VistaCrearUsuari</node>
+    <node x="1248.476407914764" y="1292.2237442922376">CapaVista.CrearTaulerManual</node>
+    <node x="2197.3964992389647" y="1179.486301369863">CapaVista.ComencarPartidaLauncher</node>
+    <node x="674.8926940639271" y="1641.9977168949772">CapaVista.VistaEstadistiquesSeleccio</node>
+    <node x="1495.1011097410606" y="655.0900123304563">CapaVista.VistaComencarPartida</node>
+    <node x="914.1430332922315" y="1697.1590628853269">CapaVista.VistaRanquingSeleccio</node>
+    <node x="1802.5" y="227.0">CapaVista.DialogGeneric</node>
+    <node x="1664.4472671242258" y="1523.112389199496">CapaVista.CreadorHidatos</node>
+    <node x="1133.75" y="335.5">CapaVista.NotificacioGenerica</node>
+    <node x="1705.3767123287669" y="958.6986301369864">CapaVista.MenuLogin</node>
+    <node x="421.9377791478287" y="226.55672009864372">CapaVista.VistaGenerica</node>
+    <node x="1825.6966707768188" y="705.1122071516646">CapaVista.VistaCrearHidatos</node>
+    <node x="2245.2275494672754" y="1002.7207001522072">CapaVista.PuntEntrada</node>
+    <node x="0.0" y="1453.0">CapaVista.CrearTaulerAutomatic</node>
+    <node x="766.0" y="671.4044389642416">CapaVista.VistaMenuPrincipal</node>
+    <node x="1106.75" y="0.0">CapaVista.VistaComu</node>
+    <node x="719.6276202219481" y="277.9679408138103">CapaVista.VistaLogin</node>
+    <node x="1142.7977805178791" y="524.8434032059187">CapaVista.VistaCrearHidatoManual</node>
+    <node x="1725.9299847792995" y="1247.7130898021312">CapaVista.MenuPrincipal</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="CapaVista.MenuPrincipal" target="CapaVista.ComencarPartidaLauncher">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaCrearHidatoAutomatic" target="CapaVista.DialogGeneric">
+      <point x="0.0" y="-161.0" />
+      <point x="2832.5" y="593.0" />
+      <point x="2169.7" y="593.0" />
+      <point x="163.20000000000005" y="173.0" />
+    </edge>
+    <edge source="CapaVista.MenuLogin" target="CapaVista.MenuPrincipal">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaLogin" target="CapaVista.VistaCrearUsuari">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaLogin" target="CapaVista.VistaGenerica">
+      <point x="0.0" y="-137.0" />
+      <point x="554.5" y="603.0" />
+      <point x="533.538888888889" y="603.0" />
+      <point x="0.0" y="52.5" />
+    </edge>
+    <edge source="CapaVista.VistaComencarPartida" target="CapaVista.DialogGeneric">
+      <point x="0.0" y="-101.0" />
+      <point x="1653.5" y="603.0" />
+      <point x="1924.9" y="603.0" />
+      <point x="-81.59999999999991" y="173.0" />
+    </edge>
+    <edge source="CapaVista.VistaGenerica" target="CapaVista.VistaComu">
+      <point x="0.0" y="-52.5" />
+      <point x="533.538888888889" y="202.0" />
+      <point x="1148.75" y="202.0" />
+      <point x="-84.0" y="88.5" />
+    </edge>
+    <edge source="CapaVista.TaulerDisplayer" target="CapaVista.CasellaLabel">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.PuntEntrada" target="CapaVista.MenuLogin">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.MenuPrincipal" target="CapaVista.CreadorHidatos">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaCrearUsuari" target="CapaVista.DialogGeneric">
+      <point x="0.0" y="-149.0" />
+      <point x="2399.5" y="603.0" />
+      <point x="2088.1" y="603.0" />
+      <point x="81.59999999999991" y="173.0" />
+    </edge>
+    <edge source="CapaVista.VistaCrearHidatoManual" target="CapaVista.DialogGeneric">
+      <point x="0.0" y="-101.0" />
+      <point x="1310.5" y="593.0" />
+      <point x="1843.3" y="593.0" />
+      <point x="-163.20000000000005" y="173.0" />
+    </edge>
+    <edge source="CapaVista.VistaCrearUsuari" target="CapaVista.NotificacioGenerica">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaCrearHidatos" target="CapaVista.DialogGeneric">
+      <point x="0.0" y="-113.0" />
+      <point x="0.0" y="173.0" />
+    </edge>
+    <edge source="CapaVista.JugarPartida" target="CapaVista.TaulerDisplayer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaMenuPrincipal" target="CapaVista.VistaCrearHidatos">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaCrearHidatoManual" target="CapaVista.TaulerDisplayer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaMenuPrincipal" target="CapaVista.VistaJugarPartida">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaJugarPartida" target="CapaVista.VistaGenerica">
+      <point x="0.0" y="-113.0" />
+      <point x="171.5" y="603.0" />
+      <point x="461.20555555555575" y="603.0" />
+      <point x="-72.33333333333331" y="52.5" />
+    </edge>
+    <edge source="CapaVista.ControladorVista" target="CapaVista.VistaMenuPrincipal">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaLogin" target="CapaVista.NotificacioGenerica">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.NotificacioGenerica" target="CapaVista.VistaComu">
+      <point x="0.0" y="-64.5" />
+      <point x="0.0" y="88.5" />
+    </edge>
+    <edge source="CapaVista.VistaMenuPrincipal" target="CapaVista.VistaGenerica">
+      <point x="0.0" y="-125.0" />
+      <point x="947.5" y="603.0" />
+      <point x="605.8722222222223" y="603.0" />
+      <point x="72.33333333333326" y="52.5" />
+    </edge>
+    <edge source="CapaVista.CrearTaulerManual" target="CapaVista.TaulerDisplayer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.VistaJugarPartida" target="CapaVista.TaulerDisplayer">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="CapaVista.DialogGeneric" target="CapaVista.VistaComu">
+      <point x="0.0" y="-173.0" />
+      <point x="2006.5" y="202.0" />
+      <point x="1316.75" y="202.0" />
+      <point x="84.0" y="88.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.32246520874751505" x="1392.1461187214607" y="1189.1834094368337" />
+  <SelectedNodes>
+    <node>CapaVista.VistaCrearHidatoAutomatic</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

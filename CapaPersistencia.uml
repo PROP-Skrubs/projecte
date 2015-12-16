@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>CapaPersistencia</OriginalElement>
+  <nodes>
+    <node x="779.0" y="0.0">CapaPersistencia.GestorHidato</node>
+    <node x="0.0" y="774.0">CapaPersistencia.GestorPartida</node>
+    <node x="998.0" y="774.0">CapaPersistencia.GestorTauler</node>
+    <node x="499.0" y="774.0">CapaPersistencia.GestorUsuari</node>
+    <node x="0.0" y="1212.0">CapaPersistencia.CapaPersistencia</node>
+    <node x="473.0" y="1212.0">CapaPersistencia.GestorRanking</node>
+    <node x="0.0" y="0.0">CapaPersistencia.GestorEstadistica</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.5000000000000001" x="388.9999999999998" y="797.9999999999998" />
+  <SelectedNodes>
+    <node>CapaPersistencia.GestorHidato</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
