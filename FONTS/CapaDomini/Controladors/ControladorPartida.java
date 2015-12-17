@@ -208,4 +208,29 @@ public class ControladorPartida
     {
         partida.setNumAjudesUtilitzades(partida.getNumAjudesUtilitzades()+1);
     }
+
+    public static Casella demanaPrimeraAjuda()
+    {
+        incrementaAjuda();
+        Hidato temp = partida.getHidato();
+        temp.setTauler(partida.getTaulerProgres());
+        return ControladorAjudes.help1(temp);
+    }
+
+    public static List<Integer> demanaSegonaAjuda(int x, int y)
+    {
+        incrementaAjuda();
+        Hidato temp = partida.getHidato();
+        temp.setTauler(partida.getTaulerProgres());
+        return ControladorAjudes.help2(x,y,temp);
+    }
+
+    public static List<Casella> demanaTerceraAjuda()
+    {
+        incrementaAjuda();
+        Hidato temp = partida.getHidato();
+        temp.setTauler(partida.getTaulerProgres());
+        int next = temp.getTauler().trobaPrimeraIncognitaAPartirDe(1);
+        return ControladorAjudes.help3(next,temp);
+    }
 }
