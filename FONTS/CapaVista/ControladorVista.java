@@ -159,11 +159,6 @@ public class ControladorVista
         }
     }
 
-    static void mostrarEstadistiquesUsuari(String nomUsuari)
-    {
-        new VistaMostraEstadistiquesUsuari(nomUsuari).mostra(true);
-    }
-
     static void mostraEstadistiquesHidato(int idHidato)
     {
         new VistaMostraEstadisticaHidato(idHidato).mostra(true);
