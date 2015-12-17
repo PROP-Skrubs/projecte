@@ -25,7 +25,7 @@ public class VistaSeleccioRanquings extends DialogGeneric
 
     public VistaSeleccioRanquings()
     {
-        super("Estadístiques");
+        super("Ranquings");
 
         carregaModels();
 

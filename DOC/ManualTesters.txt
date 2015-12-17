@@ -1,0 +1,181 @@
+MANUAL DE USO TESTERS
+
+------------------------------------------------------------------------------
+DRIVER GENERAL
+
+Se nos mostrara por pantalla las siguientes opciones:
+	1 : Gestio Perfil
+        2 : Gestio Partida
+	3 : Gestio Estadistiques i Ranquing
+
+
+1 Gestio Perfil: 			introducir 1 y enter
+	
+2 Gestio Partida: 			introducir 2 y enter
+
+3 Gestio Estadistiques i Ranquing: 	introducir un 3 y enter
+
+
+------------------------------------------------------------------------------
+DRIVER GESTIO PERFIL
+
+Se nos mostrara por pantalla las siguientes opciones:
+	1: Login Usuari
+	2: Crear Usuari
+	3: Entrar a al creador de Hidatos
+	x: Sortir de Gestio de Perfil
+
+1 Login usuari:	Introducir 1 y enter
+		- Se mostrara:
+			Nom Usuari: Introducir el nombre de usuario y enter
+			Contraseña: Introducir la contraseña y enter
+
+		- Si es incorrecto, y nos sale el mensaje de error, volver a introducir nombre y contraseña
+
+
+2 Crear Usuari: Introducir 2 y enter
+		- Se mostrara:
+			Siusplau, introdueix nom usuari a crear: Introducir el nombre de usuario y enter
+		- Si ya existe, se muestra mensaje por pantalla indicandolo y volvemos a insertar otro nombre
+
+		-Se mostrara:
+			Siusplau, introdueix nom Real: Introducir el nombre y enter
+		- Se mostrara:
+			Siusplau, introdueix contrassenya: Introducir la contraseña y enter
+
+		Si es incorrecto, sale mensaje, volver a introducir paramertos
+
+
+3 Entrar a al creador de Hidatos: Introducir 3 y enter
+		- Se entra en el Driver Creador Hidatos, explicado mas abajo
+
+
+x Salimos de Gestio Perfil: Introducir x y enter
+
+Si se introduce otro valor nos aparecera "Comana no valida"
+		
+------------------------------------------------------------------------------
+DRIVER CREADOR HIDATOS
+Se nos mostrara por pantalla las siguientes opciones:
+	1: Generar Hidato aleatori
+	2: Generar Hidato manualment
+	x: Sortir generador Hidatos
+
+1 Generar Hidato aleatori: Introducir 1 y enter
+		- Se mostrara:
+			Introdueix tamany hidato: Introducir un numero entre 3 y diez ambos incluidos y enter
+		- Si el numero introducido no esta entre 3 y 10 (ambos inlcuidos), nos lo indica y debemos volver a introducir un numero y enter
+
+		- Se mostrara:
+			Introdueix numero de forats: Introducir numero mayor que 0 y mayor al 30% de el tamaño
+		- Si es incorrecto, se nos muestra por pantalla, y debemos introducir numero y enter
+		- Se mostrara:
+			Introdueix numero valors predeterminats: El numero debe ser o menor qe 3 o mayor que el tamaño del Hidato -1
+		- Si es incorrecto, se nos muestra por pantalla,  y debemos introducir numero y enter
+
+		- Se mostrara:
+			Dificultat: Introducir "facil" "normal" "dificil" "UltraViolence" y enter
+		- Si es incorrecto, se muestra por pantalla y debemos introducirlo de nuevo y enter
+
+2 Generar Hidato manualment: Introducir 2 y enter
+		- Se mostrara:
+			Selecciona arixu:[1/2/3/4/5] : Elegir un numero entre 1 y 6  y enter
+		- Si se introduce otro valor, nos mostrara "comana no valida"
+		- Si no encuentra el archivo, nos mostrara "arxiu no trobat"
+
+
+		Si es correcto, pinta el tablero
+		Errores:
+			1- Error, no conte el valor minim o el maxim
+			2- Error, els valor no estan ben posats
+			3- Error, el hidato ja esta resolt
+			4- Error, no te solucio possible
+			5- Error de solucio multiple, tauler no valid
+
+
+x Salimos de Generador Hidatos: Introducir x y enter
+
+Si se introduce otro valor nos aparecera "Comana no valida"
+
+
+------------------------------------------------------------------------------
+DRIVER GESTIO PARTIDA
+Debemos introducir:
+	Para salir de gestio partida: x y enter
+	Para jugar debemos introducir: play y enter
+		- Se nos mostrara: Introdueix id del hidato a jugar y una lista con todos los id's de Hidato
+			Introducir la id del Hidato que queremos jugar y enter
+
+		- Se nos mostrara el siguiente menu:
+			add:  Afegir numero
+			rm:   Eliminar numero
+			help1: Seguent numero
+			help2: Possibles candidats
+			x: Sortir de la partida
+
+			add: Introducir add y intro
+				- Se nos mostrara: 
+					Introdueix x: Introducir numero y enter
+					Introdueix y: Introducir numero y enter
+					Introdueix elem: Introducir numero y enter
+
+
+			rm: Introducir rm y intro
+				- Se nos mostrara: 
+					Introdueix x: Introducir numero y enter
+					Introdueix y: Introducir numero y enter
+					Introdueix elem: Introducir numero y enter
+
+			help1: Introducir help1 y intro
+				- Se nos mostrara por pantalla la ayuda 1
+			help2: Introducir help2 y intro
+				- Se nos mostrara por pantalla la ayuda 2
+			x: Introducir x y intro
+				- Salimos de la partida
+		
+			Si completamos el tablero se nos mostrara: HAS GUANYAT LA PARTIDA
+
+------------------------------------------------------------------------------
+DRIVER GESTRIO ESTADISTIQUES I RANQUING
+
+Se nos mostrara por pantalla las siguientes opciones:
+	1: Estadistiques
+	2: Ranquing
+
+1 Estadistiques: Introducir 1 y enter
+		- Se mostrara:
+			1: Lectura Estadistiques Usuari : Introdcuir 1 y enter
+			2: Lectura Estadistiques Hidatos resolts per dificultat : Introducir 2 y enter
+			3: Lectura Estadistiques Hidatos totals resolts : Introducir 3 y enter
+			x: Sortir estadistiques: Introducir x y enter
+			En caso de error, muestra "comana no valida"
+
+2 Ranquing: Introducir 2 y enter
+			1: Lectura Ranquing de Usuaris per Hidato: Introducir 1 y enter
+			2: Lectura Ranquing de Hidatos: Introducir 2 y enter
+			3: Lectura  Ranquing de Persones per Dificultat: Introducir 3 y enter
+			x: Lectura Sortir Ranquing: Introducir x y enter
+			En caso de error, muestra "comana no valida"
+
+x Salir: Introducir x y enter
+En caso de error, muestra "comana no valida"
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
