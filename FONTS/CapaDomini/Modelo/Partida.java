@@ -157,7 +157,7 @@ public class Partida
         }
         if (hidato.casellaEsOriginal(x,y))
         {
-            System.out.print("Aquesta casella no es pot eliminar");
+//            System.out.print("Aquesta casella no es pot eliminar");
             return 3;
         }
         else

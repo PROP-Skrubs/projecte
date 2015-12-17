@@ -24,7 +24,7 @@ public class TaulerDisplayer extends JPanel
      * implementar click-edit
      */
     private CasellaLabel[][] numerosAlTauler;
-    private Casella focus;
+    protected Casella focus;
     private Casella oldFocus;
     private int numeroInputBuffer = 0;
     private TaulerDisplayerCallbacks callbackMethods;
@@ -149,6 +149,11 @@ public class TaulerDisplayer extends JPanel
         numerosAlTauler[oldFocus.x][oldFocus.y].setHighlight(false);
         numerosAlTauler[focus.x][focus.y].setHighlight(true);
         oldFocus = focus;
+    }
+
+    public void setHighlightOn(Casella c, boolean on)
+    {
+        numerosAlTauler[c.x][c.y].setHighlight(on);
     }
 
     /**

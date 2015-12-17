@@ -1,6 +1,8 @@
 package CapaVista;
 
+import CapaDomini.Controladors.ControladorAjudes;
 import CapaDomini.Controladors.ControladorPartida;
+import CapaDomini.Modelo.Casella;
 import CapaDomini.Modelo.Tauler;
 import CapaDomini.Modelo.TaulerDisplayerCallbacks;
 
@@ -8,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by daniel on 15/12/15.
@@ -19,6 +22,9 @@ public class VistaJugarPartida extends VistaGenerica
     private JButton buttonGuardarPartida;
     private JButton buttonSortir;
     private JButton buttonValidar;
+    private JButton buttonPrimeraAjuda;
+    private JButton buttonSegonaAjuda;
+    private JButton buttonTerceraAjuda;
     private JLabel labelContador;
     int horas = 0;
     int min = 0;
@@ -96,11 +102,33 @@ public class VistaJugarPartida extends VistaGenerica
         c.gridy = 2;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonSortir = new JButton("Sortir");
+        toAdd = buttonPrimeraAjuda = new JButton("Ajuda (revela seguent casella)");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 3;
+        mainPanel.add(toAdd, c);
+
+        toAdd = buttonSegonaAjuda = new JButton("Ajuda (possibles valors en casella actual)");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 4;
+        mainPanel.add(toAdd, c);
+
+        toAdd = buttonTerceraAjuda = new JButton("Ajuda (caselles on pot anar el seguent numero)");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 5;
+        mainPanel.add(toAdd, c);
+
+
+        toAdd = buttonSortir = new JButton("Sortir");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 6;
         mainPanel.add(toAdd, c);
 
         pack();
@@ -115,6 +143,7 @@ public class VistaJugarPartida extends VistaGenerica
             {
                 ControladorPartida.guardarPartida(horas*3600+min*60+seg);
                 new NotificacioGenerica("Partida guardada correctament!").mostra(true);
+                taulerDisplayer.requestFocusInWindow();
             }
         });
 
@@ -143,9 +172,69 @@ public class VistaJugarPartida extends VistaGenerica
                 {
                     new NotificacioGenerica("L'Hidato encara no és correcte!").mostra(true);
                 }
+                taulerDisplayer.requestFocusInWindow();
             }
         });
 
+        buttonPrimeraAjuda.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                //revela seguent casella
+                final Casella seguent = ControladorPartida.demanaPrimeraAjuda();
+                taulerDisplayer.setHighlightOn(seguent, true);
+                // defes el highlight despres de 2 segons?
+                ActionListener runNext = new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent evt)
+                    {
+                        taulerDisplayer.setHighlightOn(seguent,false);
+                    }
+                };
+                new Timer(1000, runNext).start();
+
+                taulerDisplayer.requestFocusInWindow();
+            }
+        });
+
+        buttonSegonaAjuda.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                java.util.List<Integer> l = ControladorPartida.demanaSegonaAjuda(taulerDisplayer.focus.x,taulerDisplayer.focus.y);
+                String notif = "En aquesta casella pot anar:";
+                for (Integer i : l)
+                {
+                    notif+="\n"+i.toString();
+                }
+                new NotificacioGenerica(notif);
+                taulerDisplayer.requestFocusInWindow();
+            }
+        });
+
+        buttonTerceraAjuda.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                java.util.List<Casella> candidats = ControladorPartida.demanaTerceraAjuda();
+                for (final Casella seguent : candidats)
+                {
+                    taulerDisplayer.setHighlightOn(seguent,true);
+                    ActionListener runNext = new ActionListener()
+                    {
+                        public void actionPerformed(ActionEvent evt)
+                        {
+                            taulerDisplayer.setHighlightOn(seguent,false);
+                        }
+                    };
+                    new Timer(1000, runNext).start();
+                }
+                taulerDisplayer.requestFocusInWindow();
+            }
+        });
     }
 
 

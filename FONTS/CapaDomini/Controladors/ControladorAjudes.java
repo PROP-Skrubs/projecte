@@ -20,7 +20,7 @@ public class ControladorAjudes {
      * @return Donat un Hidato per paràmetre et retorna un ArrayList de les caselles del tauler que no coincideixin amb
      * les caselles del taulerComplert
      */
-    public ArrayList<Casella> casellas_diferents(Hidato h){
+    public static ArrayList<Casella> casellas_diferents(Hidato h){
         ArrayList<Casella> array= new ArrayList<Casella>();
         for (int i = 0 ; i < h.getTamany(); ++i){
             for(int j = 0; i < h.getTamany(); ++i){
@@ -40,7 +40,7 @@ public class ControladorAjudes {
      * @return Donat un Hidato per paràmetre et retorna la Casella següent que s’hauria completar al Hidato en una partida,
      * en ordre creixent de ficar Caselles.
      */
-    public Casella help1(Hidato h){
+    public static Casella help1(Hidato h){
         int x = h.getTauler().trobaPrimeraIncognitaAPartirDe(1);
         return h.getTaulerComplert().buscaCasella(x);
     }
@@ -54,7 +54,7 @@ public class ControladorAjudes {
      * @return Et retorna una llista de enters que seran els valors que pot obtenir el valor de la Casella a la
      * posicio I i J del Hidaot H que pasen per paràmetre.
      */
-    public List<Integer> help2(Integer i, Integer j, Hidato h) {
+    public static List<Integer> help2(Integer i, Integer j, Hidato h) {
 
 
         List<Integer> candidatos_todos = new ArrayList<>();
@@ -75,7 +75,7 @@ public class ControladorAjudes {
      * @param h Hidato que se esta jugando
      * @return Devuelve una lista de Casillas donde puede estar el num en el Hidato
      */
-    public List<Casella> help3(Integer num, Hidato h) {
+    public static List<Casella> help3(Integer num, Hidato h) {
 
         List<Casella> res = new ArrayList<Casella>();
         Tauler t = h.getTauler();
@@ -100,7 +100,7 @@ public class ControladorAjudes {
      * @return Retorna una llista amb les cadidats de la Casella a la posició I i J del Hidato H. Candidats s’enten com
      * els valors que pot pendre el valor.
      */
-    public List<Integer> quitar_resto(List<Integer> vector, Integer i, Integer j, Hidato h) {
+    public static List<Integer> quitar_resto(List<Integer> vector, Integer i, Integer j, Hidato h) {
 
         Integer indice = 0;
         while (indice < vector.size())
@@ -215,7 +215,7 @@ public class ControladorAjudes {
      * @param h
      * @return Retorna una llista sense els valors de la llista que estiguin ja predeterminats al Hidato
      */
-    public List<Integer> quitar_puestos(List<Integer> vector, Hidato h) {
+    public static List<Integer> quitar_puestos(List<Integer> vector, Hidato h) {
 
         List<Integer> listaaux = new ArrayList<>();
         for (int k = 0; k < h.getTauler().getTamany(); ++k)
@@ -238,7 +238,7 @@ public class ControladorAjudes {
      * @param h
      * @return Retorna una llista omplerta amb els valors de 1 fins a tamany del Tauler menys forats
      */
-    public List<Integer> omplir_vex(Hidato h){
+    public static List<Integer> omplir_vex(Hidato h){
         Integer n = h.getTauler().getTamany() * h.getTauler().getTamany();
         List<Integer> l = new ArrayList<>();
         for (int i = 0; i < n; i++)
@@ -252,7 +252,7 @@ public class ControladorAjudes {
      * Surt per pantalla els valors de la llista pasada per paràmetres
      * @param vector
      */
-    public void print(List<Integer> vector){
+    public static void print(List<Integer> vector){
 
         for (Integer temp : vector) {
             System.out.println(temp);

@@ -108,16 +108,6 @@ public class DriverGestioPartida
 
                         }
                     }
-                    else if (s.equals("help1"))
-                    {
-                        Ajudes a = new Ajudes();
-                        a.ajuda1(h);
-                    }
-                    else if (s.equals("help2"))
-                    {
-                        Ajudes a = new Ajudes();
-                        a.ajuda2(h);
-                    }
                     else if (s.equals("x"))
                     {
                         break;

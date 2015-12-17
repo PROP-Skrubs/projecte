@@ -558,14 +558,14 @@ public class Tauler
             visitats[actual.x][actual.y] = true;
             getAdjacents(actual, aVisitar);
         }
-        System.err.println("S'han fet " + iteracions + " iteracions");
+//        System.err.println("S'han fet " + iteracions + " iteracions");
 
         //Ara mirem si hem visitat tantes caselles com te el mapa...
         if (casellesVisitades > tauler.length * tauler.length)
             throw new RuntimeException("S'han visitat " + casellesVisitades + " en un tauler de " + tauler.length * tauler.length + " caselles");
         if (casellesVisitades < tauler.length * tauler.length)
         {
-            System.err.println("S'han visitat " + casellesVisitades + " caselles...");
+//            System.err.println("S'han visitat " + casellesVisitades + " caselles...");
             return true;
         }
         return false;
@@ -573,18 +573,18 @@ public class Tauler
 
     public void print()
     {
-        /**
-         * Pintar el Tauler per pantalla
-         */
-        for (int i = 0; i < getTamany(); ++i)
-        {
-            for (int j = 0; j < getTamany(); ++j)
-            {
-                System.out.print(getCasella(i, j).elem);
-                System.out.print("\t");
-            }
-            System.out.println();
-        }
+//        /**
+//         * Pintar el Tauler per pantalla
+//         */
+//        for (int i = 0; i < getTamany(); ++i)
+//        {
+//            for (int j = 0; j < getTamany(); ++j)
+//            {
+//                System.out.print(getCasella(i, j).elem);
+//                System.out.print("\t");
+//            }
+//            System.out.println();
+//        }
     }
 
     /**
@@ -612,31 +612,32 @@ public class Tauler
 
     public void pintar_tauler()
     {
-        /**
-         * Imprimeix per pantalla el tauler donat. El simbol '*' significa una casella en la qual no hi pot anar cap element.
-         * Els numeros de color vermell indiquen els valors propis donats per el Tauler mentre que els numeros de color negre indiquen els valors
-         * indtroduits per el usuari.
-         */
-        final String ANSI_RESET = "\u001B[0m";
-        final String ANSI_RED = "\u001B[31m";
-        final String ANSI_BARRA = "\u2014";
-
-        for (int i = 0; i < getTamany(); ++i)
-        {
-            System.out.print("|");
-            for (int j = 0; j < getTamany(); ++j)
-            {
-                if (getCasella(i, j).elem - 10 < 0) System.out.print(" ");
-                if (getCasella(i, j).elem == -1) System.out.print("*");
-                else if (getCasella(i, j).elem != 0)
-                    System.out.print(ANSI_RED + getCasella(i, j).elem + ANSI_RESET); //mirar si es un numero core
-                else System.out.print(getCasella(i, j).elem);
-                System.out.print("|");
-            }
-            System.out.print("\n");
-
-        }
-
+//        /**
+//         * Imprimeix per pantalla el tauler donat. El simbol '*' significa una casella en la qual no hi pot anar cap element.
+//         * Els numeros de color vermell indiquen els valors propis donats per el Tauler mentre que els numeros de color negre indiquen els valors
+//         * indtroduits per el usuari.
+//         */
+//        final String ANSI_RESET = "\u001B[0m";
+//        final String ANSI_RED = "\u001B[31m";
+//        final String ANSI_BARRA = "\u2014";
+//
+//        for (int i = 0; i < getTamany(); ++i)
+//        {
+//            System.out.print("|");
+//            for (int j = 0; j < getTamany(); ++j)
+//            {
+//                if (getCasella(i, j).elem - 10 < 0) System.out.print(" ");
+//                if (getCasella(i, j).elem == -1) System.out.print("*");
+//                else if (getCasella(i, j).elem != 0)
+//                    System.out.print(ANSI_RED + getCasella(i, j).elem + ANSI_RESET); //mirar si es un numero core
+//                else
+//                System.out.print(getCasella(i, j).elem);
+//                System.out.print("|");
+//            }
+//            System.out.print("\n");
+//
+//        }
+//
     }
 
 }

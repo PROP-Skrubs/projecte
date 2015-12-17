@@ -150,7 +150,7 @@ public class ControladorEstadisticas {
      * @return retorna l'estadistica d'idHidato
      */    public static EstadisticasHidato dona_estadistiques_Hidato(int idHidato) {
             EstadisticasHidato aux = fer_mitja_variables(idHidato);
-            System.out.println(aux.getIdHidato() + ": " + aux.getIntents() + ": " + aux.getCops_res() + ": " + aux.getTemps_mig() + ": " + aux.getAjudes());
+//            System.out.println(aux.getIdHidato() + ": " + aux.getIntents() + ": " + aux.getCops_res() + ": " + aux.getTemps_mig() + ": " + aux.getAjudes());
             return aux;
     }
 

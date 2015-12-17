@@ -99,7 +99,7 @@ public class Algoritmes {
             Random rnd = new Random();
             if (k == final1 - 1) {
                 fin.clone(t);
-                System.out.print("Contador de backtracking = " + cont + "\n");
+//                System.out.print("Contador de backtracking = " + cont + "\n");
 
                 //            escriu(fin);
                 return 0;
@@ -164,7 +164,7 @@ public class Algoritmes {
             Random rnd = new Random();
             if (k == final1 - 1) {
                 fin.clone(t);
-                System.out.print("Contador de backtracking = " + cont + "\n");
+//                System.out.print("Contador de backtracking = " + cont + "\n");
                 //            escriu(fin);
                 return 0;
             } else {
@@ -354,10 +354,10 @@ public class Algoritmes {
                 acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
             }
 
-            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
+//            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
 
 
-            System.out.print("Surto Backtracking:\n");
+//            System.out.print("Surto Backtracking:\n");
 
             ret.print();
 
