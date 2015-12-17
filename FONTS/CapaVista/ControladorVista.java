@@ -102,7 +102,7 @@ public class ControladorVista
 
     static void mostraSeleccioRanquings()
     {
-
+        new VistaSeleccioRanquings().mostra(true);
     }
 
     public static void notifica(String missatge)

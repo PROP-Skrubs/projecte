@@ -203,4 +203,9 @@ public class ControladorPartida
         }
         descartaPartida();
     }
+
+    public static void incrementaAjuda()
+    {
+        partida.setNumAjudesUtilitzades(partida.getNumAjudesUtilitzades()+1);
+    }
 }

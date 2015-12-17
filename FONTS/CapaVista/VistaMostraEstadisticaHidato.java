@@ -23,29 +23,19 @@ public class VistaMostraEstadisticaHidato extends VistaGenerica
 
     VistaMostraEstadisticaHidato()
     {
-        super();
-
-        afegirComponents();
-        afegirActionListeners();
-
-        pack();
-
     }
 
     VistaMostraEstadisticaHidato(int idHidato)
     {
         super();
 
+        h = ControladorEstadisticas.dona_estadistiques_Hidato(idHidato);
+
         afegirComponents();
         afegirActionListeners();
 
         setTitol("Estadistiques de l'Hidato " + h.getIdHidato());
         pack();
-    }
-
-    private void construeix()
-    {
-
     }
 
     private void afegirComponents()
