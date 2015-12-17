@@ -1,0 +1,119 @@
+MANUAL APLICACION
+
+-----------------------------------------------------------------
+Menu Login
+
+Introdueixes Nom d'usuari i contrasenya
+	Cliques fer login
+		Si es correcte, s'obre el Menu Principal
+		Si es incorrecte, s'obre una finestra on diu que les credencials del login son incorrectes
+
+	Cliques crear nou compte d'usuari
+		S'Obre una finestra on et demana completar un camp Nom Real
+			Si es correcte, s'obre una finestra on et diu que l'Usuari s'ha creat correctement i t'envia al Menu Principal
+			Si es incorrecte, s'obre una finestra on et diu que no s'ha pogut crear l'Usuari
+
+-----------------------------------------------------------------
+Menu Principal 
+
+Tenim les opcions:
+	Jugar
+		S'obre la finestra Començar Partida
+
+	Crear nou Hidato
+		S'obre la finestra Creador Hidato
+
+	Estadistiques 
+		S'obre la finestra Veure Estadistiques
+	
+	Rànquings
+		S'obre la finestra Veure Ranquings
+
+-----------------------------------------------------------------
+Comencar Partida Launcher
+
+Tenim les opcions:
+	Vull començar partida nova
+		Hem de seleccionar la opcio i seleccionar la id de l'hidato y clicar Acceptar
+
+	Vull carregar partida en curs
+		Hem de seleccionar la opcio i seleccionar la id de la partida y clicar Acceptar
+
+
+-----------------------------------------------------------------
+Jugar Partida
+
+S'utilitzen les fletxes del teclat per mouren's pel tauler, introduir el numero amb el teclat i clicar intro per desar-lo
+
+Tenim varies opcions:
+	- Validar Hidato: Et comproba si l'Hidato esta ben resolt.
+		-Si esta ben resolt: S'obra una finestra que et dona l'enhorabona per guanyar i et retorna al Menu Principal
+		-Si esta mal resolt: S'obra una finestra que et diu que no es correcte l'Hidato.
+	- Guardar Partida: Es guarda la partida  a la BD
+	- Primera Ajuda: Et resolt el primer número buit en ordre creixent 
+	- Segona Ajuda: S'obre una finestra amb les possibles solucions que te la casella  
+	- Tercera Ajuda: 
+	- Salir: Et retorna al Menu Principal
+
+-----------------------------------------------------------------
+Crear Hidatos
+
+Tenim les opcions;
+	Vull crear un Hidato a partir de valors predeterminats
+		S'obre la finestra crear tauler automatic
+	
+	Vull crear Hidato manualment
+		Escogeixes el tamany d'un costat del Hidato i s'obre la finestra crear tauler manual
+
+	Vull escogir fitxer
+		S'obre una finestra que es un navegador per obrir un fitxer de text
+
+-----------------------------------------------------------------
+Crear Tauler a partir de valors predeterminats 
+
+Afegim els parametres: Tamany, forats, numero pre-colocats i dificultat
+	-Boto ok :
+		Si els parametres son correctes: T'obre una finesta on et mostra l'Hidato. 
+		Si els parametres no son correctes: S'obre una finestra que et diu en percentatges el nombre de numeros predefinits que hi ha d'haver envers la dificultat
+	-Cancel : No es desen els canvis
+
+-----------------------------------------------------------------
+Crear Tauler Manual
+
+Utilitzem les fletxes del teclat per mouren's pel tauler, shift per guardar-lo i backspace per esborrar.
+Els forats es representen amb 'X'
+Aquestes instrucciones estan explicades a la pantalla
+
+Opcions:
+	OK: Es guarda el tauler a la BD
+	Cancel: No es guarda
+
+Errors que es poden causar: 
+	
+			1- Error, no conte el valor minim o el maxim
+			2- Error, els valor no estan ben posats
+			3- Error, el hidato ja esta resolt
+			4- Error, no te solucio possible
+			5- Error de solucio multiple, tauler no valid
+
+-------------------------------------------------------------------
+Veure Estadistiques 
+
+Tenim una opcion
+		
+	Veure Estadistiques d'Hidato. Llavors hem d'escollir un Hidato
+		S'Obra una finestra mostrant les estadistiques
+-----------------------------------------------------------------
+Veure Ranquings
+
+Tenim dues opcions
+	Veure Ranquings per dels Usuaris per Hidato. Llavors s'ha de escollir L'Hidato.
+
+	Veure Ranquigs de Usuaris per dificulatats. Llavors s'ha de escollir la dificultat.
+
+
+
+
+
+
+

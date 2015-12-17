@@ -351,7 +351,7 @@ public class Algoritmes {
             if (vuelta != 3) {
                 eliminarnumeros(ret, num_pre);
 
-                acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
+                //acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
             }
 
 //            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
@@ -359,7 +359,7 @@ public class Algoritmes {
 
 //            System.out.print("Surto Backtracking:\n");
 
-            ret.print();
+            //ret.print();
 
         }
         return ret;
