@@ -42,7 +42,7 @@ public class VistaMostraRanquing extends VistaGenerica
         }
         while (i<10)
         {
-            jLabels.add(new JLabel("--"));
+            jLabels.add(new JLabel("----------------------"));
             mainPanel.add(jLabels.get(i));
             ++i;
         }
