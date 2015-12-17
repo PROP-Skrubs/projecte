@@ -120,7 +120,14 @@ public class VistaCrearHidatoAutomatic extends DialogGeneric
             case Algoritmes.OK:
             {
                 int nouHidato = ControladorVista.demanaCreacioAutomatica(tamany, numForats, numColocats, (String) comboBoxDificultat.getSelectedItem());
-                ControladorVista.mostraHidato(nouHidato);
+                if (nouHidato==-1)
+                {
+                    new NotificacioGenerica("No s'ha pogut generar un Hidato d'aquestes característiques.");
+                }
+                else
+                {
+                    ControladorVista.mostraHidato(nouHidato);
+                }
                 dispose();
                 return;
             }

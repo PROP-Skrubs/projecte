@@ -350,8 +350,7 @@ public class Algoritmes {
 
             if (vuelta != 3) {
                 eliminarnumeros(ret, num_pre);
-
-                //acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
+                acabarbacktrackin = ValidadorTauler.validarTauler(ret, retcomplert);
             }
 
 //            System.out.print("acabarbacktrackin = " + acabarbacktrackin + "\n");
@@ -361,6 +360,10 @@ public class Algoritmes {
 
             //ret.print();
 
+        }
+        if (retcomplert.getTauler() == null)
+        {
+            throw new RuntimeException("No s'ha pogut generar un Hidato d'aquestes característiques.");
         }
         return ret;
     }
