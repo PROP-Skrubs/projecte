@@ -111,6 +111,8 @@ public class ControladorHidato
 
         t = Algoritmes.creacioTaulerPredeterminat(tamanyHidato, numForats, numPrecolocats, dificultat, tc);
 
+        if (tc.getTauler() == null) return -1;
+
         Hidato nouHidato = new Hidato();
         nouHidato.setTauler(t);
         nouHidato.setTaulerComplert(tc);
