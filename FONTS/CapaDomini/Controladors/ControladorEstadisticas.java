@@ -74,7 +74,7 @@ public class ControladorEstadisticas {
      */
      public static void registrar_abandonament(Partida p) {
         EstadisticasUsuari e = new EstadisticasUsuari();
-        if(GestorEstadistica.existeixEstadistica(p.getIDUsuari(),p.getIDHidato())) {
+        if(GestorEstadistica.existeixEstadistica(p.getIDHidato(),p.getIDUsuari())) {
             e = GestorEstadistica.donaEstadistica(p.getIDUsuari(), p.getIDHidato());
             int intents = e.getIntents();
             ++intents;
@@ -101,7 +101,7 @@ public class ControladorEstadisticas {
      * */
     public static void registrar_guanyat(Partida p) {
         EstadisticasUsuari e;
-        if (GestorEstadistica.existeixEstadistica(p.getIDUsuari(), p.getIDHidato())) {
+        if (GestorEstadistica.existeixEstadistica( p.getIDHidato(),p.getIDUsuari())) {
             e = GestorEstadistica.donaEstadistica(p.getIDUsuari(), p.getIDHidato());
             int intents = e.getIntents();
             int temps = e.getTemps_mig();
