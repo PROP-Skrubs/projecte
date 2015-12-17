@@ -26,6 +26,8 @@ public class TaulerDisplayer extends JPanel
     private CasellaLabel[][] numerosAlTauler;
     protected Casella focus;
     private Casella oldFocus;
+    private int valorAnticCasella;
+    private boolean modificantCasella;
     private int numeroInputBuffer = 0;
     private TaulerDisplayerCallbacks callbackMethods;
 
@@ -69,6 +71,7 @@ public class TaulerDisplayer extends JPanel
      */
     public TaulerDisplayer()
     {
+        modificantCasella = false;
         setFocusable(true);
         addKeyListener(new KeyListener()
         {
@@ -78,8 +81,15 @@ public class TaulerDisplayer extends JPanel
                 char caracterIntroduit = keyEvent.getKeyChar();
                 if ('0' <= caracterIntroduit && caracterIntroduit <= '9')
                 {
+                    if (!modificantCasella)
+                    {
+                        modificantCasella = true;
+                        valorAnticCasella = focus.getElem();
+                    }
                     numeroInputBuffer *= 10;
                     numeroInputBuffer += caracterIntroduit - '0';
+                    focus.setElem(numeroInputBuffer);
+                    setCasella(focus);
                 }
             }
 
@@ -88,6 +98,7 @@ public class TaulerDisplayer extends JPanel
             {
                 Casella casellaASumar = null;
                 Casella aModificar = null;
+                if (modificantCasella) { focus.setElem(valorAnticCasella); setCasella(focus); modificantCasella = false; }
                 switch (keyEvent.getKeyCode())
                 {
                     case KeyEvent.VK_LEFT:
@@ -120,6 +131,7 @@ public class TaulerDisplayer extends JPanel
                 {
                     numeroInputBuffer = 0;
                     focus = focus.sumaAmbCheck(casellaASumar, 0, getTamany() - 1);
+                    focus.setElem(numerosAlTauler[focus.x][focus.y].getCasellaElem());
                     setHighlightOnFocus();
                 }
                 if (aModificar != null)
