@@ -1,0 +1,12 @@
+DANI: ControladorHidato, TaulerComplert, Usuari, ValidadorTauler, CapaPersistencia,  GestorUsuari, CapaVista, 
+      GUIPROVES, TaulerParticionat
+
+MARIA: ControladorAjudes,ControladorEstadisticas, ControladorLogin, ControladoUsuari, GestorHidato, GestorEstadistica,
+       DriverGestioPerfil, Prueba, PruebaEstadisticasAdd
+
+ORIOL: ControladorRanquing, Hidato, Tauler, Interval,GestorPartida, GestorRanking, Ranking, EstadisticasUsuari
+       DriverCrearHidatos, DriverGeneral, LecturaFicher
+
+EDU: ControladorPartida,Algoritmes,Casella, Partida, GestorTauler,EstadisticasHidato, 
+     DriverGestEstRan, DriverGetioPartida, ValidarHidato
+
