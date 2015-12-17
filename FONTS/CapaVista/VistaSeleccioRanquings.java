@@ -68,8 +68,8 @@ public class VistaSeleccioRanquings extends DialogGeneric
         buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButtonDificultat);
         buttonGroup.add(radioButtonHidato);
-        radioButtonDificultat.setSelected(true);
-        listSeleccions.setModel(modelDificultat);
+        radioButtonHidato.setSelected(true);
+        listSeleccions.setModel(modelHidatos);
     }
 
     private void afegirActionListeners()
