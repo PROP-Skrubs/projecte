@@ -361,10 +361,6 @@ public class Algoritmes {
             //ret.print();
 
         }
-        if (retcomplert.getTauler() == null)
-        {
-            throw new RuntimeException("No s'ha pogut generar un Hidato d'aquestes característiques.");
-        }
         return ret;
     }
 }
