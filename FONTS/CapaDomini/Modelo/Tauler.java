@@ -640,4 +640,24 @@ public class Tauler
 //
     }
 
+    public String determinaDificultat()
+    {
+        double precolocats = 0;
+        double forats = 0;
+        int tamany = getTamany() * getTamany();
+        for (int i = 0; i < getTamany(); ++i)
+        {
+            for (int j = 0; j < getTamany(); ++j)
+            {
+                if (tauler[i][j].getElem() > 0) precolocats += 1.0;
+                if (tauler[i][j].getElem() == Casella.FORAT) forats += 1.0;
+            }
+        }
+        double possibles = tamany - forats;
+        double ratio = precolocats/possibles;
+        if (0.90 < ratio && ratio <= 0.96) return "Fàcil";
+        if (0.83 < ratio && ratio <= 0.90) return "Normal";
+        else return "Dificil";
+    }
+
 }

@@ -99,7 +99,7 @@ public class VistaSeleccioRanquings extends DialogGeneric
     private void carregaModels()
     {
         DefaultListModel<String> m1 = new DefaultListModel<>();
-        for (String s : new String[]{"Facil" , "Normal", "Dificil"})
+        for (String s : new String[]{"Fàcil" , "Normal", "Dificil"})
         {
             m1.addElement(s);
         }

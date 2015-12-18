@@ -185,4 +185,9 @@ public class Hidato
         return tauler.getCasella(x,y).elem >0;
     }
 
+    public String determinaDificultat()
+    {
+        return tauler.determinaDificultat();
+    }
+
 }

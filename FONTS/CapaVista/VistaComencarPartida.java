@@ -36,7 +36,7 @@ public class VistaComencarPartida extends DialogGeneric
         afegirActionListeners();
 
         carregaModel();
-        listSeleccions.setModel(modelLlistaPartides);
+        listSeleccions.setModel(modelLlistaHidatos);
 
         pack();
     }
@@ -77,7 +77,7 @@ public class VistaComencarPartida extends DialogGeneric
         radioButtonGroup = new ButtonGroup();
         radioButtonGroup.add(radioButtonCarregarPartida);
         radioButtonGroup.add(radioButtonNovaPartida);
-        radioButtonCarregarPartida.setSelected(true);
+        radioButtonNovaPartida.setSelected(true);
     }
 
     private void afegirActionListeners()
@@ -104,32 +104,6 @@ public class VistaComencarPartida extends DialogGeneric
 
     }
 
-//    public void carregaModelvell(int quinModel)
-//    {
-//        java.util.List<Integer> totesID;
-//        if (quinModel == 1) //Partida
-//        {
-//            totesID = ControladorPartida.donarPartidaSegonsUsuari(ControladorLogin.getUsuariActual().getUniqID());
-//        }
-//        else
-//        {
-//            totesID = GestorHidato.donaTotesID();
-//        }
-//
-//        DefaultListModel<String> listM = new DefaultListModel<>();
-//        for (Integer i : totesID)
-//        {
-//            listM.addElement(i.toString());
-//        }
-//        if (quinModel == 1)
-//        {
-//            modelLlistaPartides = listM;
-//        }
-//        else
-//        {
-//            modelLlistaHidatos = listM;
-//        }
-//    }
 
     public void carregaModel()
     {

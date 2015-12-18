@@ -134,7 +134,8 @@ public class ControladorHidato
             Hidato aGuardar = new Hidato();
             aGuardar.setTauler(taulerCreacio);
             aGuardar.setTaulerComplert(hopefully);
-            aGuardar.setDificultat("Facil"); //todo aixo esta hardcoded hard.
+            aGuardar.setDificultat(aGuardar.determinaDificultat());
+//            aGuardar.setDificultat("Facil"); //todo aixo esta hardcoded hard.
             GestorHidato.creaHidato(aGuardar);
         }
         return result;
