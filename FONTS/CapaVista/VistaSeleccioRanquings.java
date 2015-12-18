@@ -56,8 +56,9 @@ public class VistaSeleccioRanquings extends DialogGeneric
         c.gridy = 1;
         mainPanel.add(toAdd, c);
 
-        toAdd = listSeleccions = new JList();
-        listSeleccions.setPreferredSize(new Dimension(150,150));
+        listSeleccions = new JList();
+        toAdd = new JScrollPane(listSeleccions);
+        toAdd.setPreferredSize(new Dimension(300,100));
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
@@ -118,6 +119,11 @@ public class VistaSeleccioRanquings extends DialogGeneric
     @Override
     public void executaOk()
     {
+        if (listSeleccions.getSelectedValue() == null)
+        {
+            new NotificacioGenerica("Si us plau, selecciona algun Hidato per veure'n les estadístiques.");
+            return;
+        }
         java.util.List<Ranking> l;
         if (radioButtonDificultat.isSelected())
         {

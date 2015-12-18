@@ -166,7 +166,7 @@ public class GestorPartida
      * Aquesta funcio modifica una partida guardada de la BD
      * @param p
      */
-    public static void modificaPartida(Partida p)
+    public static int modificaPartida(Partida p)
     {
         //todo: aixo esborra les dades (taulerProgres) velles i en crea de noves. Hauria de ser capaç de modificar l'estat.
         if (!existeixPartida(p.getUniqID()))
@@ -174,21 +174,24 @@ public class GestorPartida
             throw new RuntimeException("Vols que modifiqui una partida que no es present a la BD?");
         }
         GestorTauler.eliminaTauler(p.getIDTaulerProgres());
+        int novaIDTaulerProgres = GestorTauler.creaTauler(p.getTaulerProgres());
+        p.setIDTaulerProgres(novaIDTaulerProgres);
 
         try (PreparedStatement ps = conn.prepareStatement(UPDATE_PARTIDA))
         {
-            int novaIDTaulerProgres = GestorTauler.creaTauler(p.getTaulerProgres());
-            ps.setInt(1,novaIDTaulerProgres);
+            ps.setInt(1,p.getIDTaulerProgres());
             ps.setInt(2,p.getnCelesResoltes());
             ps.setInt(3,p.getNumAjudesUtilitzades());
             ps.setBoolean(4,p.esAcabada());
             ps.setInt(5,p.getTemps());
+            ps.setInt(6,p.getUniqID());
             ps.executeUpdate();
         }
         catch (SQLException e)
         {
             throw new RuntimeException(e);
         }
+        return p.getUniqID();
     }
 
     /**

@@ -21,6 +21,7 @@ public class VistaJugarPartida extends VistaGenerica
     private TaulerDisplayer taulerDisplayer;
     private JButton buttonGuardarPartida;
     private JButton buttonSortir;
+    private JButton buttonAbandonar;
     private JButton buttonValidar;
     private JButton buttonPrimeraAjuda;
     private JButton buttonSegonaAjuda;
@@ -95,32 +96,39 @@ public class VistaJugarPartida extends VistaGenerica
         c.gridy = 1;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonGuardarPartida = new JButton("Guardar Partida");
+        toAdd = buttonAbandonar = new JButton("Abandonar partida (i borrarla del sistema");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 2;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonPrimeraAjuda = new JButton("Ajuda (revela seguent casella)");
+        toAdd = buttonGuardarPartida = new JButton("Guardar Partida");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 3;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonSegonaAjuda = new JButton("Ajuda (possibles valors en casella actual)");
+        toAdd = buttonPrimeraAjuda = new JButton("Ajuda (revela seguent casella)");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 4;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonTerceraAjuda = new JButton("Ajuda (caselles on pot anar el seguent numero)");
+        toAdd = buttonSegonaAjuda = new JButton("Ajuda (possibles valors en casella actual)");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 5;
+        mainPanel.add(toAdd, c);
+
+        toAdd = buttonTerceraAjuda = new JButton("Ajuda (caselles on pot anar el seguent numero)");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 6;
         mainPanel.add(toAdd, c);
 
 
@@ -128,7 +136,7 @@ public class VistaJugarPartida extends VistaGenerica
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
-        c.gridy = 6;
+        c.gridy = 7;
         mainPanel.add(toAdd, c);
 
         pack();
@@ -152,10 +160,20 @@ public class VistaJugarPartida extends VistaGenerica
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                ControladorPartida.actualitzaEstadistiquesIRanquings();
                 dispose();
             }
         });
+
+        buttonAbandonar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                ControladorPartida.actualitzaEstadistiquesIRanquings(horas*3600+min*60+seg);
+                dispose();
+            }
+        });
+
 
         buttonValidar.addActionListener(new ActionListener()
         {
@@ -164,7 +182,7 @@ public class VistaJugarPartida extends VistaGenerica
             {
                 if (ControladorPartida.esAcabada())
                 {
-                    ControladorPartida.actualitzaEstadistiquesIRanquings();
+                    ControladorPartida.actualitzaEstadistiquesIRanquings(horas*3600+min*60+seg);
                     new NotificacioGenerica("Enhorabona per guanyar!").mostra(true);
                     dispose();
                 }
@@ -192,7 +210,9 @@ public class VistaJugarPartida extends VistaGenerica
                         taulerDisplayer.setHighlightOn(seguent,false);
                     }
                 };
-                new Timer(1000, runNext).start();
+                Timer t = new Timer(1000, runNext);
+                t.setRepeats(false);
+                t.start();
 
                 taulerDisplayer.requestFocusInWindow();
             }
