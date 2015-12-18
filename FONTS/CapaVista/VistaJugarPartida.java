@@ -96,7 +96,7 @@ public class VistaJugarPartida extends VistaGenerica
         c.gridy = 1;
         mainPanel.add(toAdd, c);
 
-        toAdd = buttonAbandonar = new JButton("Abandonar partida (i borrarla del sistema");
+        toAdd = buttonAbandonar = new JButton("Abandonar partida (i borrarla del sistema)");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
@@ -125,11 +125,11 @@ public class VistaJugarPartida extends VistaGenerica
         mainPanel.add(toAdd, c);
 
         toAdd = buttonTerceraAjuda = new JButton("Ajuda (caselles on pot anar el seguent numero)");
-        c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 1;
-        c.gridy = 6;
-        mainPanel.add(toAdd, c);
+//        c = new GridBagConstraints();
+//        c.fill = GridBagConstraints.BOTH;
+//        c.gridx = 1;
+//        c.gridy = 6;
+//        mainPanel.add(toAdd, c);
 
 
         toAdd = buttonSortir = new JButton("Sortir");
