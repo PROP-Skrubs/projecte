@@ -178,7 +178,9 @@ public class ControladorEstadisticas {
         for (int elem : l_temps) {
             temps += elem;
         }
-        temps = temps / (l_temps.size());
+        int x = l_temps.size();
+        if (x!=0)
+            temps = temps / (l_temps.size());
         List<Integer> l_ajudes = GestorEstadistica.get_nAjudes(i);
         for (int elem : l_ajudes) {
             ajudes += elem;

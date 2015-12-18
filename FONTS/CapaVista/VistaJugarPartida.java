@@ -125,11 +125,11 @@ public class VistaJugarPartida extends VistaGenerica
         mainPanel.add(toAdd, c);
 
         toAdd = buttonTerceraAjuda = new JButton("Ajuda (caselles on pot anar el seguent numero)");
-//        c = new GridBagConstraints();
-//        c.fill = GridBagConstraints.BOTH;
-//        c.gridx = 1;
-//        c.gridy = 6;
-//        mainPanel.add(toAdd, c);
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 6;
+        mainPanel.add(toAdd, c);
 
 
         toAdd = buttonSortir = new JButton("Sortir");
@@ -250,7 +250,9 @@ public class VistaJugarPartida extends VistaGenerica
                             taulerDisplayer.setHighlightOn(seguent,false);
                         }
                     };
-                    new Timer(1000, runNext).start();
+                    Timer t = new Timer(1000, runNext);
+                    t.setRepeats(false);
+                    t.start();
                 }
                 taulerDisplayer.requestFocusInWindow();
             }

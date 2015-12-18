@@ -66,7 +66,7 @@ public class VistaComencarPartida extends DialogGeneric
 
         listSeleccions = new JList();
         toAdd = new JScrollPane(listSeleccions);
-        toAdd.setPreferredSize(new Dimension(300,100));
+        toAdd.setPreferredSize(new Dimension(300,300));
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
