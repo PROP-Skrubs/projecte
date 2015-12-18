@@ -3,6 +3,7 @@ package CapaDomini.Controladors;
 import CapaDomini.Modelo.Casella;
 import CapaDomini.Modelo.Hidato;
 import CapaDomini.Modelo.Tauler;
+import CapaDomini.Modelo.TaulerComplert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
  */
 
 public class ControladorAjudes {
+
+    static  int[] X = {1,0,1,1,-1,-1,-1,0};
+    static  int[] Y = {0,1,1,-1,1,-1,0,-1};
 
     /**
      *
@@ -79,17 +83,28 @@ public class ControladorAjudes {
 
         List<Casella> res = new ArrayList<Casella>();
         Tauler t = h.getTauler();
-        Tauler tcomplet = h.getTaulerComplert();
+        TaulerComplert tcomplet = h.getTaulerComplert();
 
         for( int i = 0; i < t.getTamany(); ++i) {
             for (int j = 0; j < t.getTamany(); ++j) {
-                if((tcomplet.getCasella(i,j).elem == (num +1) || tcomplet.getCasella(i,j).elem == (num-1)) && t.getCasella(i,j).elem == 0 ) res.add(t.getCasella(i,j));
+                if( voltant(tcomplet.getCasella(i,j), num, tcomplet) && t.getCasella(i,j).elem == 0 ) res.add(t.getCasella(i,j));
             }
         }
         return  res;
 
     }
 
+    private static  boolean voltant(Casella cas, Integer num, TaulerComplert complert) {
+
+
+        for(int i =0 ; i < 8; ++i) {
+            if (complert.esValid(cas.getX() + X[i],cas.getY() + Y[i] )){
+
+                if ((complert.getCasella(cas.getX() + X[i], cas.getY() + Y[i] ).getElem() == num+1) || (complert.getCasella(cas.getX() + X[i], cas.getY() + Y[i] ).getElem() == num-1)) return true;
+            }
+        }
+        return false;
+    }
 
     /**
      *
