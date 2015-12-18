@@ -50,12 +50,16 @@ public class VistaComencarPartida extends DialogGeneric
 
         toAdd = radioButtonNovaPartida = new JRadioButton("Vull seleccionar un Hidato començar una nova partida");
         c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.LINE_START;
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
         mainPanel.add(toAdd, c);
 
         toAdd = radioButtonCarregarPartida = new JRadioButton("Vull carregar una partida en curs");
         c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.LINE_START;
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
         mainPanel.add(toAdd, c);
@@ -67,7 +71,7 @@ public class VistaComencarPartida extends DialogGeneric
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
         c.gridy = 0;
-        c.weighty= GridBagConstraints.REMAINDER;
+        c.gridheight= GridBagConstraints.REMAINDER;
         mainPanel.add(toAdd, c);
 
         radioButtonGroup = new ButtonGroup();
