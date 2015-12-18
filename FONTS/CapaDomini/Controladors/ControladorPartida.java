@@ -190,8 +190,9 @@ public class ControladorPartida
         return partida.getTaulerProgres().recorreTauler(1).getElem() == partida.getTaulerProgres().maximElementPossible();
     }
 
-    public static void actualitzaEstadistiquesIRanquings()
+    public static void actualitzaEstadistiquesIRanquings(int tempsTranscorregut)
     {
+        partida.setTemps(tempsTranscorregut);
         if (esAcabada())
         {
             ControladorEstadisticas.registrar_guanyat(partida);

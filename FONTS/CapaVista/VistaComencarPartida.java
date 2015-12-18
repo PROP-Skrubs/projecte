@@ -2,6 +2,8 @@ package CapaVista;
 
 import CapaDomini.Controladors.ControladorLogin;
 import CapaDomini.Controladors.ControladorPartida;
+import CapaDomini.Modelo.Hidato;
+import CapaDomini.Modelo.Partida;
 import CapaPersistencia.GestorHidato;
 import CapaPersistencia.GestorPartida;
 
@@ -9,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by daniel on 15/12/15.
@@ -22,7 +25,8 @@ public class VistaComencarPartida extends DialogGeneric
     private ButtonGroup radioButtonGroup;
     private AbstractListModel<String> modelLlistaPartides;
     private AbstractListModel<String> modelLlistaHidatos;
-
+    java.util.List<Integer> idHidatos;
+    java.util.List<Integer> idPartides;
 
     public VistaComencarPartida()
     {
@@ -31,8 +35,7 @@ public class VistaComencarPartida extends DialogGeneric
         afegirComponents();
         afegirActionListeners();
 
-        carregaModel(1);
-        carregaModel(2);
+        carregaModel();
         listSeleccions.setModel(modelLlistaPartides);
 
         pack();
@@ -45,7 +48,7 @@ public class VistaComencarPartida extends DialogGeneric
         GridBagConstraints c;
         Component toAdd;
 
-        toAdd = radioButtonNovaPartida = new JRadioButton("Vull començar una nova partida");
+        toAdd = radioButtonNovaPartida = new JRadioButton("Vull seleccionar un Hidato començar una nova partida");
         c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
@@ -57,8 +60,9 @@ public class VistaComencarPartida extends DialogGeneric
         c.gridy = 1;
         mainPanel.add(toAdd, c);
 
-        toAdd = listSeleccions = new JList();
-        listSeleccions.setPreferredSize(new Dimension(150,150));
+        listSeleccions = new JList();
+        toAdd = new JScrollPane(listSeleccions);
+        toAdd.setPreferredSize(new Dimension(300,100));
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
@@ -96,44 +100,83 @@ public class VistaComencarPartida extends DialogGeneric
 
     }
 
-    public void carregaModel(int quinModel)
-    {
-        java.util.List<Integer> totesID;
-        if (quinModel == 1) //Partida
-        {
-            totesID = ControladorPartida.donarPartidaSegonsUsuari(ControladorLogin.getUsuariActual().getUniqID());
-        }
-        else
-        {
-            totesID = GestorHidato.donaTotesID();
-        }
+//    public void carregaModelvell(int quinModel)
+//    {
+//        java.util.List<Integer> totesID;
+//        if (quinModel == 1) //Partida
+//        {
+//            totesID = ControladorPartida.donarPartidaSegonsUsuari(ControladorLogin.getUsuariActual().getUniqID());
+//        }
+//        else
+//        {
+//            totesID = GestorHidato.donaTotesID();
+//        }
+//
+//        DefaultListModel<String> listM = new DefaultListModel<>();
+//        for (Integer i : totesID)
+//        {
+//            listM.addElement(i.toString());
+//        }
+//        if (quinModel == 1)
+//        {
+//            modelLlistaPartides = listM;
+//        }
+//        else
+//        {
+//            modelLlistaHidatos = listM;
+//        }
+//    }
 
-        DefaultListModel<String> listM = new DefaultListModel<>();
-        for (Integer i : totesID)
+    public void carregaModel()
+    {
+        idHidatos = GestorHidato.donaTotesID();
+        idPartides = GestorPartida.donaIdsegonsUsuari(ControladorLogin.getUsuariActual().getUniqID());
+        java.util.List<Hidato> hidatos = new ArrayList<>();
+        java.util.List<Partida> partides= new ArrayList<>();
+        for (Integer id : idHidatos)
         {
-            listM.addElement(i.toString());
+            hidatos.add(GestorHidato.donaHidato(id));
         }
-        if (quinModel == 1)
+        for (Integer id : idPartides)
         {
-            modelLlistaPartides = listM;
+            partides.add(GestorPartida.donaPartida(id));
         }
-        else
+        DefaultListModel<String> modelHidatos = new DefaultListModel<>();
+        DefaultListModel<String> modelPartides = new DefaultListModel<>();
+        for (Hidato h : hidatos)
         {
-            modelLlistaHidatos = listM;
+            String descripcio = "Hidato: " + Integer.toString(h.getUniqID()) + "    Dificultat: " + h.getDificultat() +  "    Tamany: " + h.getTamany();
+            modelHidatos.addElement(descripcio);
         }
+        for (Partida p : partides)
+        {
+            String descripcio = "ID: " + Integer.toString(p.getUniqID()) + "    Hidato: " + p.getIDHidato();
+            modelPartides.addElement(descripcio);
+        }
+        modelLlistaPartides = modelPartides;
+        modelLlistaHidatos = modelHidatos;
+
     }
 
     @Override
     public void executaOk()
     {
-        if (listSeleccions.getSelectedValue() == null) return;
-        Integer idSeleccionada = Integer.valueOf((String) listSeleccions.getSelectedValue());
+        if (listSeleccions.getSelectedValue() == null)
+        {
+            new NotificacioGenerica("Si us plau, selecciona alguna partida o Hidato.");
+            return;
+        }
+        int indexSeleccionat = listSeleccions.getSelectedIndex();
+
+
         if (radioButtonCarregarPartida.isSelected())
         {
+            Integer idSeleccionada = idPartides.get(indexSeleccionat);
             ControladorPartida.carregarPartida(idSeleccionada); //todo verificar que un usuari nomes pugui carregar la seva partida
         }
         else if (radioButtonNovaPartida.isSelected())
         {
+            Integer idSeleccionada = idHidatos.get(indexSeleccionat);
             ControladorPartida.novaPartida(ControladorLogin.getUsuariActual().getUniqID(), idSeleccionada);
         }
         else

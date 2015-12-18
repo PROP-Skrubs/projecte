@@ -4,6 +4,8 @@ import CapaDomini.Modelo.Ranking;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +31,14 @@ public class VistaMostraRanquing extends VistaGenerica
 
     private void afegirComponents()
     {
-        layout = new GridLayout(10,1);
+        layout = new GridLayout(11,1);
         mainPanel.setLayout(layout);
         jLabels = new ArrayList<>(10);
         int i = 0;
         for (Ranking r : rankings)
         {
             if (i>=10) break;
-            jLabels.add(new JLabel(r.getnomUsuari()));
+            jLabels.add(new JLabel(r.getnomUsuari() + " : " + Integer.toString(r.getTemps()) + " segons"));
             mainPanel.add(jLabels.get(i));
             ++i;
         }
@@ -46,5 +48,16 @@ public class VistaMostraRanquing extends VistaGenerica
             mainPanel.add(jLabels.get(i));
             ++i;
         }
+        JButton b = new JButton("Tancar");
+        mainPanel.add(b);
+        b.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                dispose();
+            }
+        });
+
     }
 }

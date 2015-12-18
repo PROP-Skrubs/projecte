@@ -43,11 +43,6 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         GridBagConstraints c;
         Component toAdd;
 
-//        toAdd = radioButtonUsuari = new JRadioButton("Veure estadístiques de Usuaris");
-//        c = new GridBagConstraints();
-//        c.gridx = 0;
-//        c.gridy = 0;
-//        mainPanel.add(toAdd, c);
 
         toAdd = radioButtonHidato = new JRadioButton("Veure estadistiques de Hidatos");
         c = new GridBagConstraints();
@@ -55,8 +50,9 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         c.gridy = 0;
         mainPanel.add(toAdd, c);
 
-        toAdd = listSeleccions = new JList();
-        listSeleccions.setPreferredSize(new Dimension(150,150));
+        listSeleccions = new JList();
+        toAdd = new JScrollPane(listSeleccions);
+        toAdd.setPreferredSize(new Dimension(300,100));
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
@@ -64,22 +60,15 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
         mainPanel.add(toAdd, c);
 
         radioButtonGroup = new ButtonGroup();
-//        radioButtonGroup.add(radioButtonUsuari);
+
         radioButtonGroup.add(radioButtonHidato);
         radioButtonHidato.setSelected(true);
     }
 
     private void afegirActionListeners()
     {
-//        radioButtonUsuari.addActionListener(new ActionListener()
-//        {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent)
-//            {
-//                listSeleccions.setModel(modelLlistaUsuaris);
-//                listSeleccions.setSelectedIndex(0);
-//            }
-//        });
+
+
         radioButtonHidato.addActionListener(new ActionListener()
         {
             @Override
@@ -94,42 +83,25 @@ public class VistaSeleccioEstadistiques extends DialogGeneric
     public void carregaModel(int quinModel)
     {
         java.util.List<Integer> totesID;
-//        java.util.List<String> totesNOM;
-
-//            totesNOM = GestorUsuari.donaTotsNom();
-            totesID = GestorHidato.donaTotesID();
-
+        totesID = GestorHidato.donaTotesID();
         DefaultListModel<String> listM = new DefaultListModel<>();
-
-//        if (quinModel == 1)
-//        {
-//            for (String s : totesNOM)
-//            {
-//                listM.addElement(s);
-//                modelLlistaUsuaris = listM;
-//            }
-//        }
-//        else
-//        {
-            for (Integer i : totesID)
-            {
-                listM.addElement(i.toString());
-            }
+        for (Integer i : totesID)
+        {
+            listM.addElement(i.toString());
+        }
         modelLlistaHidatos = listM;
-        //        }
+
     }
 
 
     @Override
     public void executaOk()
     {
-//        if (radioButtonUsuari.isSelected())
-//        {
-//            ControladorVista.mostrarEstadistiquesUsuari((String) listSeleccions.getSelectedValue());
-//        }
-//        else
-//        {
-            ControladorVista.mostraEstadistiquesHidato(Integer.valueOf((String) listSeleccions.getSelectedValue()));
-//        }
+        if (listSeleccions.getSelectedValue() == null)
+        {
+            new NotificacioGenerica("Si us plau, selecciona algun Hidato per veure'n les estadístiques.");
+            return;
+        }
+        ControladorVista.mostraEstadistiquesHidato(Integer.valueOf((String) listSeleccions.getSelectedValue()));
     }
 }

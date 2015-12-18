@@ -169,7 +169,7 @@ public class VistaJugarPartida extends VistaGenerica
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                ControladorPartida.actualitzaEstadistiquesIRanquings();
+                ControladorPartida.actualitzaEstadistiquesIRanquings(horas*3600+min*60+seg);
                 dispose();
             }
         });
@@ -182,7 +182,7 @@ public class VistaJugarPartida extends VistaGenerica
             {
                 if (ControladorPartida.esAcabada())
                 {
-                    ControladorPartida.actualitzaEstadistiquesIRanquings();
+                    ControladorPartida.actualitzaEstadistiquesIRanquings(horas*3600+min*60+seg);
                     new NotificacioGenerica("Enhorabona per guanyar!").mostra(true);
                     dispose();
                 }
@@ -210,7 +210,9 @@ public class VistaJugarPartida extends VistaGenerica
                         taulerDisplayer.setHighlightOn(seguent,false);
                     }
                 };
-                new Timer(1000, runNext).start();
+                Timer t = new Timer(1000, runNext);
+                t.setRepeats(false);
+                t.start();
 
                 taulerDisplayer.requestFocusInWindow();
             }
